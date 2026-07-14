@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="10" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.DashboardController">
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label fx:id="welcomeLabel" style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+    <Label text="Match Officials Dashboard" style="-fx-font-size: 14px;"/>
+
+    <Button text="View Assigned Matches (Goal 2)" prefWidth="260" onAction="#goAssignedMatches"/>
+    <Button text="Submit Match Report (Goal 3)" prefWidth="260" onAction="#goMatchReport"/>
+    <Button text="Record Fouls and Cards (Goal 4)" prefWidth="260" onAction="#goFoulsCards"/>
+    <Button text="Update Match Result (Goal 5)" prefWidth="260" onAction="#goUpdateResult"/>
+    <Button text="Request Referee Replacement (Goal 6)" prefWidth="260" onAction="#goReplacement"/>
+    <Button text="View Match Schedule (Goal 7)" prefWidth="260" onAction="#goSchedule"/>
+    <Button text="Verify Player Eligibility (Goal 8)" prefWidth="260" onAction="#goEligibility"/>
+
+    <Button text="Logout" prefWidth="150" style="-fx-text-fill: red;" onAction="#handleLogout"/>
+
+</VBox>

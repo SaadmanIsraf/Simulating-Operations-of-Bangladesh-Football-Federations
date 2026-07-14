@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.ReplacementRequestController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Request Referee Replacement"/>
+
+    <Label text="Select Match:"/>
+    <ComboBox fx:id="matchComboBox" prefWidth="300"/>
+
+    <Label text="Reason for Replacement:"/>
+    <TextArea fx:id="reasonTextArea" prefHeight="120" wrapText="true"
+              promptText="e.g. injury, conflict of interest, illness..."/>
+
+    <Button text="Submit Request" onAction="#handleSubmitRequest"/>
+    <Label fx:id="messageLabel"/>
+
+    <Label text="My Replacement Requests:"/>
+    <ListView fx:id="requestsListView" prefHeight="120"/>
+
+    <Button text="Back to Dashboard" onAction="#handleBack"/>
+</VBox>

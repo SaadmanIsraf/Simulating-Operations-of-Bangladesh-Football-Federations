@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx"
+      xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AssignedMatchesController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20"/>
+    </padding>
+
+    <Label style="-fx-font-size: 18px; -fx-font-weight: bold;" text="Assigned Matches"/>
+
+    <TableView fx:id="matchTable" prefHeight="220">
+        <columns>
+            <TableColumn fx:id="colId" text="Match ID" prefWidth="80"/>
+            <TableColumn fx:id="colHome" text="Home" prefWidth="130"/>
+            <TableColumn fx:id="colAway" text="Away" prefWidth="130"/>
+            <TableColumn fx:id="colDate" text="Date" prefWidth="100"/>
+            <TableColumn fx:id="colVenue" text="Venue" prefWidth="150"/>
+        </columns>
+    </TableView>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Enter Match ID for details:"/>
+        <TextField fx:id="matchIdField" promptText="e.g. M001" prefWidth="120"/>
+        <Button text="View Details" onAction="#handleViewDetails"/>
+    </HBox>
+
+    <Label fx:id="detailsLabel" wrapText="true"/>
+
+    <Button text="Back to Dashboard" onAction="#handleBack"/>
+</VBox>
