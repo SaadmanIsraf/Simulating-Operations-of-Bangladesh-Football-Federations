@@ -10,6 +10,6 @@ public class Dashboard_Controller {
 
     @javafx.fxml.FXML
     public void logout_ON_Action(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("Login.fxmls");
+        SceneSwitcher.switchTo("Login.fxml");
     }
 }
