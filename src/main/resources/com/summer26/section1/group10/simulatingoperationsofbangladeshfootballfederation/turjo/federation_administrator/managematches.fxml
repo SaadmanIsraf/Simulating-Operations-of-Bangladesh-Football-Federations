@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="750.0"
+            prefWidth="1100.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_managematchesController">
+
+
+    <!-- Title -->
+
+    <Label layoutX="420.0"
+           layoutY="25.0"
+           text="Match Management"
+           textFill="#133799">
+        <font>
+            <Font size="28"/>
+        </font>
+    </Label>
+
+
+    <!-- Match Table -->
+
+    <TableView fx:id="tblMatches"
+               layoutX="40.0"
+               layoutY="80.0"
+               prefHeight="260.0"
+               prefWidth="1020.0">
+
+        <columns>
+
+            <TableColumn fx:id="matchIdCol"
+                         text="Match ID"
+                         prefWidth="90"/>
+
+            <TableColumn fx:id="homeTeamCol"
+                         text="Home Team"
+                         prefWidth="140"/>
+
+            <TableColumn fx:id="awayTeamCol"
+                         text="Away Team"
+                         prefWidth="140"/>
+
+            <TableColumn fx:id="competitionCol"
+                         text="Competition"
+                         prefWidth="150"/>
+
+            <TableColumn fx:id="stadiumCol"
+                         text="Stadium"
+                         prefWidth="150"/>
+
+            <TableColumn fx:id="dateCol"
+                         text="Date"
+                         prefWidth="120"/>
+
+            <TableColumn fx:id="timeCol"
+                         text="Time"
+                         prefWidth="100"/>
+
+            <TableColumn fx:id="statusCol"
+                         text="Status"
+                         prefWidth="120"/>
+
+        </columns>
+
+    </TableView>
+
+
+    <!-- Section Title -->
+
+    <Label layoutX="50.0"
+           layoutY="380.0"
+           text="Match Information"
+           textFill="#133799">
+        <font>
+            <Font size="20"/>
+        </font>
+    </Label>
+
+
+    <!-- Match ID -->
+
+    <Label layoutX="50.0"
+           layoutY="425.0"
+           text="Match ID"/>
+
+    <TextField fx:id="txtMatchId"
+               layoutX="50.0"
+               layoutY="450.0"
+               prefWidth="180"
+               promptText="Match ID"/>
+
+
+    <!-- Home Team -->
+
+    <Label layoutX="270.0"
+           layoutY="425.0"
+           text="Home Team"/>
+
+    <ComboBox fx:id="cmbHomeTeam"
+              layoutX="270.0"
+              layoutY="450.0"
+              prefWidth="180"
+              promptText="Select Home Team"/>
+
+
+    <!-- Away Team -->
+
+    <Label layoutX="490.0"
+           layoutY="425.0"
+           text="Away Team"/>
+
+    <ComboBox fx:id="cmbAwayTeam"
+              layoutX="490.0"
+              layoutY="450.0"
+              prefWidth="180"
+              promptText="Select Away Team"/>
+
+
+    <!-- Competition -->
+
+    <Label layoutX="710.0"
+           layoutY="425.0"
+           text="Competition"/>
+
+    <ComboBox fx:id="cmbCompetition"
+              layoutX="710.0"
+              layoutY="450.0"
+              prefWidth="220"
+              promptText="Select Competition"/>
+
+
+    <!-- Stadium -->
+
+    <Label layoutX="50.0"
+           layoutY="525.0"
+           text="Stadium"/>
+
+    <ComboBox fx:id="cmbStadium"
+              layoutX="50.0"
+              layoutY="550.0"
+              prefWidth="180"
+              promptText="Select Stadium"/>
+
+
+    <!-- Date -->
+
+    <Label layoutX="270.0"
+           layoutY="525.0"
+           text="Match Date"/>
+
+    <DatePicker fx:id="dpMatchDate"
+                layoutX="270.0"
+                layoutY="550.0"
+                prefWidth="180"/>
+
+
+    <!-- Time -->
+
+    <Label layoutX="490.0"
+           layoutY="525.0"
+           text="Match Time"/>
+
+    <TextField fx:id="txtMatchTime"
+               layoutX="490.0"
+               layoutY="550.0"
+               prefWidth="180"
+               promptText="HH:mm"/>
+
+
+    <!-- Status -->
+
+    <Label layoutX="710.0"
+           layoutY="525.0"
+           text="Match Status"/>
+
+    <ComboBox fx:id="cmbMatchStatus"
+              layoutX="710.0"
+              layoutY="550.0"
+              prefWidth="220"
+              promptText="Select Status"/>
+
+
+    <!-- Buttons -->
+
+    <Button layoutX="60.0"
+            layoutY="650.0"
+            prefWidth="120"
+            text="Create"
+            onAction="#createMatchOA"/>
+
+    <Button layoutX="220.0"
+            layoutY="650.0"
+            prefWidth="120"
+            text="Update"
+            onAction="#updateMatchOA"/>
+
+    <Button layoutX="380.0"
+            layoutY="650.0"
+            prefWidth="120"
+            text="Cancel"
+            onAction="#cancelMatchOA"/>
+
+    <Button layoutX="540.0"
+            layoutY="650.0"
+            prefWidth="120"
+            text="Search"
+            onAction="#searchMatchOA"/>
+
+    <Button layoutX="700.0"
+            layoutY="650.0"
+            prefWidth="120"
+            text="Clear"
+            onAction="#clearOA"/>
+
+    <Button layoutX="860.0"
+            layoutY="650.0"
+            prefWidth="120"
+            text="Back"
+            onAction="#backOA"/>
+
+</AnchorPane>
