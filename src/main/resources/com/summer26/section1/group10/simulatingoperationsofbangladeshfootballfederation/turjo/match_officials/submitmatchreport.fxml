@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0"
+            prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_submitmatchreportController">
+
+
+    <Label layoutX="280.0"
+           layoutY="30.0"
+           text="Submit Match Report"
+           textFill="#133799">
+
+        <font>
+            <Font size="28"/>
+        </font>
+
+    </Label>
+
+
+
+    <!-- Match Between -->
+
+    <Label layoutX="70.0"
+           layoutY="100.0"
+           text="Match Between"/>
+
+    <TextField fx:id="matchBetweenTF"
+               layoutX="70.0"
+               layoutY="125.0"
+               prefWidth="250"
+               promptText="Home Team vs Away Team"/>
+
+
+
+
+    <!-- Match Result -->
+
+    <Label layoutX="430.0"
+           layoutY="100.0"
+           text="Final Score"/>
+
+    <TextField fx:id="scoreTF"
+               layoutX="430.0"
+               layoutY="125.0"
+               prefWidth="200"
+               promptText="Example: 2-1"/>
+
+
+
+
+    <!-- Match Status -->
+
+    <Label layoutX="70.0"
+           layoutY="220.0"
+           text="Match Status"/>
+
+    <ComboBox fx:id="statusCB"
+              layoutX="70.0"
+              layoutY="245.0"
+              prefWidth="220"
+              promptText="Completed / Abandoned"/>
+
+
+
+
+    <!-- Goals -->
+
+    <Label layoutX="400.0"
+           layoutY="220.0"
+           text="Goal Scorers"/>
+
+    <TextField fx:id="goalScorersTF"
+               layoutX="400.0"
+               layoutY="245.0"
+               prefWidth="250"
+               promptText="Enter Goal Scorers"/>
+
+
+
+
+    <!-- Cards -->
+
+    <Label layoutX="70.0"
+           layoutY="340.0"
+           text="Cards Given"/>
+
+    <TextField fx:id="cardsTF"
+               layoutX="70.0"
+               layoutY="365.0"
+               prefWidth="220"
+               promptText="Yellow / Red Cards"/>
+
+
+
+
+    <!-- Report -->
+
+    <Label layoutX="400.0"
+           layoutY="340.0"
+           text="Match Summary"/>
+
+    <TextArea fx:id="summaryTA"
+              layoutX="400.0"
+              layoutY="365.0"
+              prefWidth="300"
+              prefHeight="100"
+              promptText="Write match summary"/>
+
+
+
+
+    <!-- Buttons -->
+
+    <Button layoutX="180.0"
+            layoutY="520.0"
+            prefWidth="160"
+            text="Submit Report"
+            onAction="#submitReportOA"/>
+
+
+    <Button layoutX="400.0"
+            layoutY="520.0"
+            prefWidth="120"
+            text="Clear"
+            onAction="#clearOA"/>
+
+
+    <Button layoutX="600.0"
+            layoutY="520.0"
+            prefWidth="120"
+            text="Back"
+            onAction="#backOA"/>
+
+
+</AnchorPane>
