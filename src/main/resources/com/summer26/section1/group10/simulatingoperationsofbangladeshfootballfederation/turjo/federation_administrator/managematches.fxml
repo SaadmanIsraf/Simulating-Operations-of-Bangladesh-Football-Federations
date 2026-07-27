@@ -10,14 +10,12 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="750.0"
+<AnchorPane prefHeight="800.0"
             prefWidth="1100.0"
             xmlns="http://javafx.com/javafx/26"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_managematchesController">
 
-
-    <!-- Title -->
 
     <Label layoutX="420.0"
            layoutY="25.0"
@@ -41,42 +39,45 @@
 
             <TableColumn fx:id="matchIdCol"
                          text="Match ID"
-                         prefWidth="90"/>
+                         prefWidth="80"/>
 
             <TableColumn fx:id="homeTeamCol"
                          text="Home Team"
-                         prefWidth="140"/>
+                         prefWidth="130"/>
 
             <TableColumn fx:id="awayTeamCol"
                          text="Away Team"
-                         prefWidth="140"/>
+                         prefWidth="130"/>
 
             <TableColumn fx:id="competitionCol"
                          text="Competition"
-                         prefWidth="150"/>
+                         prefWidth="140"/>
 
             <TableColumn fx:id="stadiumCol"
                          text="Stadium"
-                         prefWidth="150"/>
+                         prefWidth="130"/>
 
             <TableColumn fx:id="dateCol"
                          text="Date"
-                         prefWidth="120"/>
+                         prefWidth="100"/>
 
             <TableColumn fx:id="timeCol"
                          text="Time"
-                         prefWidth="100"/>
+                         prefWidth="90"/>
+
+            <TableColumn fx:id="officialCol"
+                         text="Official"
+                         prefWidth="120"/>
 
             <TableColumn fx:id="statusCol"
                          text="Status"
-                         prefWidth="120"/>
+                         prefWidth="100"/>
 
         </columns>
 
     </TableView>
 
 
-    <!-- Section Title -->
 
     <Label layoutX="50.0"
            layoutY="380.0"
@@ -86,6 +87,7 @@
             <Font size="20"/>
         </font>
     </Label>
+
 
 
     <!-- Match ID -->
@@ -101,6 +103,7 @@
                promptText="Match ID"/>
 
 
+
     <!-- Home Team -->
 
     <Label layoutX="270.0"
@@ -112,6 +115,7 @@
               layoutY="450.0"
               prefWidth="180"
               promptText="Select Home Team"/>
+
 
 
     <!-- Away Team -->
@@ -127,6 +131,7 @@
               promptText="Select Away Team"/>
 
 
+
     <!-- Competition -->
 
     <Label layoutX="710.0"
@@ -138,6 +143,8 @@
               layoutY="450.0"
               prefWidth="220"
               promptText="Select Competition"/>
+
+
 
 
     <!-- Stadium -->
@@ -153,6 +160,7 @@
               promptText="Select Stadium"/>
 
 
+
     <!-- Date -->
 
     <Label layoutX="270.0"
@@ -163,6 +171,7 @@
                 layoutX="270.0"
                 layoutY="550.0"
                 prefWidth="180"/>
+
 
 
     <!-- Time -->
@@ -178,6 +187,7 @@
                promptText="HH:mm"/>
 
 
+
     <!-- Status -->
 
     <Label layoutX="710.0"
@@ -191,42 +201,64 @@
               promptText="Select Status"/>
 
 
+
+    <!-- Assigned Official -->
+
+    <Label layoutX="270.0"
+           layoutY="625.0"
+           text="Assigned Official"/>
+
+    <TextField fx:id="assignedOfficialTF"
+               layoutX="270.0"
+               layoutY="650.0"
+               prefWidth="220"
+               promptText="Enter Official Name"/>
+
+
+
+
     <!-- Buttons -->
 
     <Button layoutX="60.0"
-            layoutY="650.0"
+            layoutY="720.0"
             prefWidth="120"
             text="Create"
             onAction="#createMatchOA"/>
 
+
     <Button layoutX="220.0"
-            layoutY="650.0"
+            layoutY="720.0"
             prefWidth="120"
             text="Update"
             onAction="#updateMatchOA"/>
 
+
     <Button layoutX="380.0"
-            layoutY="650.0"
+            layoutY="720.0"
             prefWidth="120"
             text="Cancel"
             onAction="#cancelMatchOA"/>
 
+
     <Button layoutX="540.0"
-            layoutY="650.0"
+            layoutY="720.0"
             prefWidth="120"
             text="Search"
             onAction="#searchMatchOA"/>
 
+
     <Button layoutX="700.0"
-            layoutY="650.0"
+            layoutY="720.0"
             prefWidth="120"
             text="Clear"
             onAction="#clearOA"/>
 
+
     <Button layoutX="860.0"
-            layoutY="650.0"
+            layoutY="720.0"
             prefWidth="120"
             text="Back"
             onAction="#backOA"/>
+
 
 </AnchorPane>

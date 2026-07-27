@@ -1,5 +1,8 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import javafx.event.ActionEvent;
+import javafx.scene.control.*;
+
 public class federation_administrator_managematchesController
 {
     @javafx.fxml.FXML
@@ -36,6 +39,10 @@ public class federation_administrator_managematchesController
     private TableColumn timeCol;
     @javafx.fxml.FXML
     private ComboBox cmbStadium;
+    @javafx.fxml.FXML
+    private TextField assignedOfficialTF;
+    @javafx.fxml.FXML
+    private TableColumn officialCol;
 
     @javafx.fxml.FXML
     public void initialize() {

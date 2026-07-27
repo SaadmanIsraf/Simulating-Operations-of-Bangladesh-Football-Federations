@@ -1,4 +1,4 @@
-module com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation {
+module com.summer.section.group.simulatingoperationsofbangladeshfootballfederation {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;

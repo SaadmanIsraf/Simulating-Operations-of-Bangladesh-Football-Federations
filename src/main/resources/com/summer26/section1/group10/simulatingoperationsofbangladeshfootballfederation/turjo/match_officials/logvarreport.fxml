@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="650.0"
+            prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_logvarreportController">
+
+
+    <!-- Title -->
+
+    <Label layoutX="300.0"
+           layoutY="30.0"
+           text="Log VAR Report"
+           textFill="#133799">
+
+        <font>
+            <Font size="28"/>
+        </font>
+
+    </Label>
+
+
+
+    <!-- Match Between -->
+
+    <Label layoutX="70.0"
+           layoutY="100.0"
+           text="Match Between"/>
+
+    <TextField fx:id="matchBetweenTF"
+               layoutX="70.0"
+               layoutY="125.0"
+               prefWidth="250"
+               promptText="Home Team vs Away Team"/>
+
+
+
+
+    <!-- Match Day -->
+
+    <Label layoutX="430.0"
+           layoutY="100.0"
+           text="Match Day"/>
+
+    <DatePicker fx:id="matchDayDP"
+                layoutX="430.0"
+                layoutY="125.0"
+                prefWidth="220"/>
+
+
+
+
+    <!-- Match Minute -->
+
+    <Label layoutX="70.0"
+           layoutY="220.0"
+           text="Match Minute"/>
+
+    <TextField fx:id="minuteTF"
+               layoutX="70.0"
+               layoutY="245.0"
+               prefWidth="180"
+               promptText="Minute"/>
+
+
+
+
+    <!-- Review Type -->
+
+    <Label layoutX="330.0"
+           layoutY="220.0"
+           text="Review Type"/>
+
+    <ComboBox fx:id="reviewTypeCB"
+              layoutX="330.0"
+              layoutY="245.0"
+              prefWidth="220"
+              promptText="Select Review Type"/>
+
+
+
+
+    <!-- VAR Decision -->
+
+    <Label layoutX="600.0"
+           layoutY="220.0"
+           text="VAR Decision"/>
+
+    <ComboBox fx:id="varDecisionCB"
+              layoutX="600.0"
+              layoutY="245.0"
+              prefWidth="200"
+              promptText="Select Decision"/>
+
+
+
+
+    <!-- Player Involved -->
+
+    <Label layoutX="70.0"
+           layoutY="340.0"
+           text="Player Involved"/>
+
+    <TextField fx:id="playerNameTF"
+               layoutX="70.0"
+               layoutY="365.0"
+               prefWidth="220"
+               promptText="Player Name"/>
+
+
+
+
+    <!-- Final Decision -->
+
+    <Label layoutX="400.0"
+           layoutY="340.0"
+           text="Final Decision"/>
+
+    <TextField fx:id="decisionTF"
+               layoutX="400.0"
+               layoutY="365.0"
+               prefWidth="250"
+               promptText="Enter Final Decision"/>
+
+
+
+
+    <!-- VAR Report Details -->
+
+    <Label layoutX="70.0"
+           layoutY="450.0"
+           text="VAR Report Details"/>
+
+    <TextArea fx:id="detailsTA"
+              layoutX="70.0"
+              layoutY="475.0"
+              prefWidth="730"
+              prefHeight="70"
+              promptText="Describe VAR review"/>
+
+
+
+
+    <!-- Buttons -->
+
+    <Button layoutX="180.0"
+            layoutY="580.0"
+            prefWidth="150"
+            text="Submit Report"
+            onAction="#submitVARReportOA"/>
+
+
+    <Button layoutX="390.0"
+            layoutY="580.0"
+            prefWidth="120"
+            text="Clear"
+            onAction="#clearOA"/>
+
+
+    <Button layoutX="580.0"
+            layoutY="580.0"
+            prefWidth="120"
+            text="Back"
+            onAction="#backOA"/>
+
+
+</AnchorPane>
