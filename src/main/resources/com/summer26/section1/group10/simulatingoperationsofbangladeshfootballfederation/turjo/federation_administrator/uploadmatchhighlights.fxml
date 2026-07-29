@@ -8,21 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0"
-            prefWidth="1000.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_uploadmatchhighlightsController">
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_uploadmatchhighlightsController">
 
 
     <!-- Title -->
 
-    <Label layoutX="300.0"
-           layoutY="25.0"
-           text="Upload Match Highlights"
-           textFill="#133799">
+    <Label layoutX="300.0" layoutY="25.0" text="Upload Match Highlights" textFill="#133799">
         <font>
-            <Font size="26"/>
+            <Font size="26" />
         </font>
     </Label>
 
@@ -30,160 +23,88 @@
 
     <!-- Match -->
 
-    <Label layoutX="60.0"
-           layoutY="100.0"
-           text="Select Match"/>
+    <Label layoutX="60.0" layoutY="100.0" text="Select Match" />
 
-    <ComboBox fx:id="cmbMatch"
-              layoutX="60.0"
-              layoutY="125.0"
-              prefWidth="250"
-              promptText="Select Match"/>
+    <ComboBox fx:id="cmbMatch" layoutX="60.0" layoutY="125.0" prefWidth="250" promptText="Select Match" />
 
 
 
     <!-- Highlight Title -->
 
-    <Label layoutX="370.0"
-           layoutY="100.0"
-           text="Highlight Title"/>
+    <Label layoutX="370.0" layoutY="100.0" text="Highlight Title" />
 
-    <TextField fx:id="txtHighlightTitle"
-               layoutX="370.0"
-               layoutY="125.0"
-               prefWidth="250"
-               promptText="Enter Highlight Title"/>
+    <TextField fx:id="txtHighlightTitle" layoutX="370.0" layoutY="125.0" prefWidth="250" promptText="Enter Highlight Title" />
 
 
 
     <!-- Competition -->
 
-    <Label layoutX="680.0"
-           layoutY="100.0"
-           text="Competition"/>
+    <Label layoutX="680.0" layoutY="100.0" text="Competition" />
 
-    <ComboBox fx:id="cmbCompetition"
-              layoutX="680.0"
-              layoutY="125.0"
-              prefWidth="220"
-              promptText="Select Competition"/>
+    <ComboBox fx:id="cmbCompetition" layoutX="680.0" layoutY="125.0" prefWidth="220" promptText="Select Competition" />
 
 
 
     <!-- Video Link -->
 
-    <Label layoutX="60.0"
-           layoutY="220.0"
-           text="Video Link"/>
+    <Label layoutX="60.0" layoutY="220.0" text="Video Link" />
 
-    <TextField fx:id="txtVideoLink"
-               layoutX="60.0"
-               layoutY="245.0"
-               prefWidth="400"
-               promptText="Enter video URL"/>
+    <TextField fx:id="txtVideoLink" layoutX="60.0" layoutY="245.0" prefWidth="400" />
 
 
 
     <!-- Duration -->
 
-    <Label layoutX="520.0"
-           layoutY="220.0"
-           text="Duration"/>
+    <Label layoutX="520.0" layoutY="220.0" text="Duration" />
 
-    <TextField fx:id="txtDuration"
-               layoutX="520.0"
-               layoutY="245.0"
-               prefWidth="150"
-               promptText="Example: 08:30"/>
+    <TextField fx:id="txtDuration" layoutX="520.0" layoutY="245.0" prefWidth="150" />
 
 
 
     <!-- Highlight Type -->
 
-    <Label layoutX="730.0"
-           layoutY="220.0"
-           text="Highlight Type"/>
+    <Label layoutX="730.0" layoutY="220.0" text="Highlight Type" />
 
-    <ComboBox fx:id="cmbHighlightType"
-              layoutX="730.0"
-              layoutY="245.0"
-              prefWidth="170"
-              promptText="Select Type"/>
+    <ComboBox fx:id="cmbHighlightType" layoutX="730.0" layoutY="245.0" prefWidth="170" promptText="Select Type" />
 
 
 
     <!-- Key Moments -->
 
-    <Label layoutX="60.0"
-           layoutY="340.0"
-           text="Key Moments"/>
+    <Label layoutX="60.0" layoutY="340.0" text="Key Moments" />
 
-    <TextArea fx:id="txtKeyMoments"
-              layoutX="60.0"
-              layoutY="365.0"
-              prefWidth="400"
-              prefHeight="100"
-              promptText="Example: 20' Goal, 55' Yellow Card"/>
+    <TextArea fx:id="txtKeyMoments" layoutX="60.0" layoutY="365.0" prefHeight="100" prefWidth="400" />
 
 
 
     <!-- Description -->
 
-    <Label layoutX="520.0"
-           layoutY="340.0"
-           text="Description"/>
+    <Label layoutX="520.0" layoutY="340.0" text="Description" />
 
-    <TextArea fx:id="txtDescription"
-              layoutX="520.0"
-              layoutY="365.0"
-              prefWidth="380"
-              prefHeight="100"
-              promptText="Write highlight description"/>
+    <TextArea fx:id="txtDescription" layoutX="520.0" layoutY="365.0" prefHeight="100" prefWidth="380" />
 
 
 
     <!-- Publish Status -->
 
-    <Label layoutX="60.0"
-           layoutY="510.0"
-           text="Status"/>
+    <Label layoutX="60.0" layoutY="510.0" text="Status" />
 
-    <ComboBox fx:id="cmbPublishStatus"
-              layoutX="60.0"
-              layoutY="535.0"
-              prefWidth="200"
-              promptText="Draft / Published"/>
+    <ComboBox fx:id="cmbPublishStatus" layoutX="60.0" layoutY="535.0" prefWidth="200" promptText="Draft / Published" />
 
 
 
     <!-- Buttons -->
 
-    <Button layoutX="320.0"
-            layoutY="535.0"
-            prefWidth="120"
-            text="Upload"
-            onAction="#uploadHighlightOA"/>
+    <Button layoutX="320.0" layoutY="535.0" onAction="#uploadHighlightOA" prefWidth="120" text="Upload" />
 
 
-    <Button layoutX="480.0"
-            layoutY="535.0"
-            prefWidth="120"
-            text="Update"
-            onAction="#updateHighlightOA"/>
+    <Button layoutX="480.0" layoutY="535.0" onAction="#updateHighlightOA" prefWidth="120" text="Update" />
 
 
-    <Button layoutX="640.0"
-            layoutY="535.0"
-            prefWidth="120"
-            text="Delete"
-            onAction="#deleteHighlightOA"/>
+    <Button layoutX="640.0" layoutY="535.0" onAction="#deleteHighlightOA" prefWidth="120" text="Delete" />
 
 
-    <Button layoutX="800.0"
-            layoutY="535.0"
-            prefWidth="120"
-            text="Back"
-            onAction="#backOA"/>
+    <Button layoutX="800.0" layoutY="535.0" onAction="#backOA" prefWidth="120" text="Back" />
 
 
 </AnchorPane>
