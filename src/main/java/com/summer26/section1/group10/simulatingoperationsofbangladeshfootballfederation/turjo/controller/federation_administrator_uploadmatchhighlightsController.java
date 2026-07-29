@@ -207,7 +207,6 @@ public class federation_administrator_uploadmatchhighlightsController {
 
 
 
-
     private void clearFields(){
 
 
