@@ -11,7 +11,11 @@
 
     <Label layoutX="240.0" layoutY="30.0" style="-fx-font-size:22px; -fx-font-weight:bold;" text="Approve Player Transfer" textFill="#9e7c25" />
 
-
+    <Label fx:id="messageLabel"
+           layoutX="230.0"
+           layoutY="390.0"
+           style="-fx-font-size:16px; -fx-font-weight:bold;"
+           text=""/>
     <Label layoutX="60.0" layoutY="100.0" text="Player Name" />
 
     <TextField fx:id="playerNameTF" layoutX="60.0" layoutY="125.0" prefWidth="200" />

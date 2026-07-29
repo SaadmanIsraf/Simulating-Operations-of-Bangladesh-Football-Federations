@@ -8,106 +8,225 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_postliveupdatesController">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_postliveupdatesController">
 
 
-    <!-- Title -->
+    <Label layoutX="300.0"
+           layoutY="25.0"
+           text="Post Live Match Updates"
+           textFill="#133799">
 
-    <Label layoutX="300.0" layoutY="25.0" text="Post Live Match Updates" textFill="#133799">
         <font>
-            <Font size="26" />
+            <Font size="26"/>
         </font>
+
     </Label>
 
 
 
     <!-- Match Selection -->
 
-    <Label layoutX="60.0" layoutY="90.0" text="Match" />
+    <Label layoutX="60.0"
+           layoutY="90.0"
+           text="Match"/>
 
 
-    <Label layoutX="370.0" layoutY="90.0" text="Match Minute" />
+    <ComboBox fx:id="cmbMatch"
+              layoutX="60.0"
+              layoutY="115.0"
+              prefWidth="220"
+              promptText="Select Match"/>
 
-    <TextField fx:id="txtMinute" layoutX="370.0" layoutY="115.0" prefWidth="150" />
 
 
-    <Label layoutX="650.0" layoutY="90.0" text="Match Status" />
+    <Label layoutX="370.0"
+           layoutY="90.0"
+           text="Match Minute"/>
 
-    <ComboBox fx:id="cmbMatchStatus" layoutX="650.0" layoutY="115.0" prefWidth="220" promptText="Live / Half Time / Finished" />
+
+    <TextField fx:id="txtMinute"
+               layoutX="370.0"
+               layoutY="115.0"
+               prefWidth="150"/>
+
+
+
+    <Label layoutX="650.0"
+           layoutY="90.0"
+           text="Match Status"/>
+
+
+    <ComboBox fx:id="cmbMatchStatus"
+              layoutX="650.0"
+              layoutY="115.0"
+              prefWidth="220"
+              promptText="Live / Half Time / Finished"/>
+
 
 
 
 
     <!-- Score -->
 
-    <Label layoutX="60.0" layoutY="200.0" text="Home Team Score" />
+    <Label layoutX="60.0"
+           layoutY="200.0"
+           text="Home Team Score"/>
 
-    <TextField fx:id="txtHomeScore" layoutX="60.0" layoutY="225.0" prefWidth="150" promptText="Home Score" />
+
+    <TextField fx:id="txtHomeScore"
+               layoutX="60.0"
+               layoutY="225.0"
+               prefWidth="150"
+               promptText="Home Score"/>
 
 
-    <Label layoutX="370.0" layoutY="200.0" text="Away Team Score" />
 
-    <TextField fx:id="txtAwayScore" layoutX="370.0" layoutY="225.0" prefWidth="150" promptText="Away Score" />
+    <Label layoutX="370.0"
+           layoutY="200.0"
+           text="Away Team Score"/>
+
+
+    <TextField fx:id="txtAwayScore"
+               layoutX="370.0"
+               layoutY="225.0"
+               prefWidth="150"
+               promptText="Away Score"/>
+
+
 
 
 
     <!-- Goal Information -->
 
-    <Label layoutX="650.0" layoutY="200.0" text="Goal Scorer" />
+    <Label layoutX="650.0"
+           layoutY="200.0"
+           text="Goal Scorer"/>
 
-    <TextField fx:id="txtGoalScorer" layoutX="650.0" layoutY="225.0" prefWidth="220" promptText="Player Name" />
+
+    <TextField fx:id="txtGoalScorer"
+               layoutX="650.0"
+               layoutY="225.0"
+               prefWidth="220"
+               promptText="Player Name"/>
 
 
 
-    <Label layoutX="60.0" layoutY="310.0" text="Assist Player" />
 
-    <TextField fx:id="txtAssist" layoutX="60.0" layoutY="335.0" prefWidth="220" promptText="Assist By" />
+    <Label layoutX="60.0"
+           layoutY="310.0"
+           text="Assist Player"/>
+
+
+    <TextField fx:id="txtAssist"
+               layoutX="60.0"
+               layoutY="335.0"
+               prefWidth="220"
+               promptText="Assist By"/>
+
+
 
 
 
     <!-- Card -->
 
-    <Label layoutX="370.0" layoutY="310.0" text="Card Type" />
+    <Label layoutX="370.0"
+           layoutY="310.0"
+           text="Card Type"/>
 
-    <ComboBox fx:id="cmbCardType" layoutX="370.0" layoutY="335.0" prefWidth="180" promptText="Yellow / Red" />
+
+    <ComboBox fx:id="cmbCardType"
+              layoutX="370.0"
+              layoutY="335.0"
+              prefWidth="180"
+              promptText="Yellow / Red"/>
 
 
-    <Label layoutX="650.0" layoutY="310.0" text="Card Player" />
 
-    <TextField fx:id="txtCardPlayer" layoutX="650.0" layoutY="335.0" prefWidth="220" promptText="Player Name" />
+    <Label layoutX="650.0"
+           layoutY="310.0"
+           text="Card Player"/>
+
+
+    <TextField fx:id="txtCardPlayer"
+               layoutX="650.0"
+               layoutY="335.0"
+               prefWidth="220"
+               promptText="Player Name"/>
+
+
 
 
 
     <!-- Substitution -->
 
-    <Label layoutX="60.0" layoutY="420.0" text="Substitution" />
+    <Label layoutX="60.0"
+           layoutY="420.0"
+           text="Substitution"/>
 
-    <TextField fx:id="txtSubstitution" layoutX="60.0" layoutY="445.0" prefWidth="300" promptText="Player In - Player Out" />
+
+    <TextField fx:id="txtSubstitution"
+               layoutX="60.0"
+               layoutY="445.0"
+               prefWidth="300"
+               promptText="Player In - Player Out"/>
+
+
 
 
 
     <!-- Commentary -->
 
-    <Label layoutX="430.0" layoutY="420.0" text="Live Commentary" />
+    <Label layoutX="430.0"
+           layoutY="420.0"
+           text="Live Commentary"/>
 
-    <TextArea fx:id="txtCommentary" layoutX="430.0" layoutY="445.0" prefHeight="90" prefWidth="440" promptText="Write live update" />
+
+    <TextArea fx:id="txtCommentary"
+              layoutX="430.0"
+              layoutY="445.0"
+              prefHeight="90"
+              prefWidth="440"
+              promptText="Write live update"/>
+
 
 
 
 
     <!-- Buttons -->
 
-    <Button layoutX="120.0" layoutY="600.0" onAction="#postUpdateOA" prefWidth="130" text="Post Update" />
+
+    <Button layoutX="120.0"
+            layoutY="600.0"
+            onAction="#postUpdateOA"
+            prefWidth="130"
+            text="Post Update"/>
 
 
-    <Button layoutX="300.0" layoutY="600.0" onAction="#updateScoreOA" prefWidth="130" text="Update Score" />
+
+    <Button layoutX="300.0"
+            layoutY="600.0"
+            onAction="#updateScoreOA"
+            prefWidth="130"
+            text="Update Score"/>
 
 
-    <Button layoutX="480.0" layoutY="600.0" onAction="#clearOA" prefWidth="130" text="Clear" />
+
+    <Button layoutX="480.0"
+            layoutY="600.0"
+            onAction="#clearOA"
+            prefWidth="130"
+            text="Clear"/>
 
 
-    <Button layoutX="660.0" layoutY="600.0" onAction="#backOA" prefWidth="130" text="Back" />
-   <TextField layoutX="60.0" layoutY="122.0" prefHeight="26.0" prefWidth="232.0" promptText="Team Betwen" />
+
+    <Button layoutX="660.0"
+            layoutY="600.0"
+            onAction="#backOA"
+            prefWidth="130"
+            text="Back"/>
 
 
 </AnchorPane>
