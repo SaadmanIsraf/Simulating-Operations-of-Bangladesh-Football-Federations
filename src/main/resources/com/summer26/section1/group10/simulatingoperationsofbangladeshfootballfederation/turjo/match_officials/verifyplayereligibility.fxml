@@ -1,116 +1,120 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="600.0"
-            prefWidth="900.0"
+            prefWidth="950.0"
             xmlns="http://javafx.com/javafx/26"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_verifyplayereligibilityController">
 
+    <children>
 
-    <Label layoutX="250.0"
-           layoutY="30.0"
-           text="Player Eligibility &amp; Card History"
-           style="-fx-font-size:24px; -fx-font-weight:bold;">
+        <Text layoutX="250.0"
+              layoutY="45.0"
+              text="Verify Player Eligibility">
+            <font>
+                <Font size="30.0"/>
+            </font>
+        </Text>
 
-        <font>
-            <Font size="24"/>
-        </font>
+        <Label layoutX="50.0"
+               layoutY="90.0"
+               text="Match"/>
 
-    </Label>
+        <ComboBox fx:id="matchCB"
+                  layoutX="150.0"
+                  layoutY="85.0"
+                  prefWidth="280.0"/>
 
+        <Label layoutX="50.0"
+               layoutY="140.0"
+               text="Player"/>
 
+        <ComboBox fx:id="playerCB"
+                  layoutX="150.0"
+                  layoutY="135.0"
+                  prefWidth="280.0"/>
 
-    <!-- Select Match -->
+        <Button fx:id="addPlayerBtn"
+                layoutX="470.0"
+                layoutY="135.0"
+                prefWidth="120.0"
+                text="Add Player"
+                onAction="#addPlayerOA"/>
 
-    <Label layoutX="80.0"
-           layoutY="100.0"
-           text="Select Match"/>
+        <Button fx:id="removePlayerBtn"
+                layoutX="620.0"
+                layoutY="135.0"
+                prefWidth="120.0"
+                text="Remove Player"
+                onAction="#removePlayerOA"/>
 
-    <ComboBox fx:id="matchCB"
-              layoutX="80.0"
-              layoutY="125.0"
-              prefWidth="250"
-              promptText="Choose Match"/>
+        <TableView fx:id="playerTable"
+                   layoutX="40.0"
+                   layoutY="200.0"
+                   prefWidth="860.0"
+                   prefHeight="280.0">
 
+            <columns>
 
+                <TableColumn fx:id="playerNameCol"
+                             text="Player Name"
+                             prefWidth="240.0"/>
 
-    <!-- Select Player -->
+                <TableColumn fx:id="matchCol"
+                             text="Match"
+                             prefWidth="240.0"/>
 
-    <Label layoutX="450.0"
-           layoutY="100.0"
-           text="Select Player"/>
+                <TableColumn fx:id="yellowCardCol"
+                             text="Yellow Cards"
+                             prefWidth="110.0"/>
 
-    <ComboBox fx:id="playerCB"
-              layoutX="450.0"
-              layoutY="125.0"
-              prefWidth="250"
-              promptText="Choose Player"/>
+                <TableColumn fx:id="redCardCol"
+                             text="Red Cards"
+                             prefWidth="110.0"/>
 
+                <TableColumn fx:id="eligibilityCol"
+                             text="Eligibility"
+                             prefWidth="160.0"/>
 
+            </columns>
 
+        </TableView>
 
-    <!-- Player Information Table -->
+        <Button layoutX="70.0"
+                layoutY="520.0"
+                prefWidth="140.0"
+                text="View Cards"
+                onAction="#viewCardsOA"/>
 
-    <TableView fx:id="playerTable"
-               layoutX="80.0"
-               layoutY="220.0"
-               prefWidth="740"
-               prefHeight="220">
+        <Button layoutX="240.0"
+                layoutY="520.0"
+                prefWidth="140.0"
+                text="Update Cards"
+                onAction="#updateCardsOA"/>
 
-        <columns>
+        <Button layoutX="410.0"
+                layoutY="520.0"
+                prefWidth="170.0"
+                text="Check Eligibility"
+                onAction="#checkEligibilityOA"/>
 
-            <TableColumn fx:id="playerNameCol"
-                         text="Player Name"
-                         prefWidth="220"/>
+        <Button layoutX="610.0"
+                layoutY="520.0"
+                prefWidth="120.0"
+                text="Refresh"
+                onAction="#refreshOA"/>
 
-            <TableColumn fx:id="eligibilityCol"
-                         text="Eligibility Status"
-                         prefWidth="180"/>
+        <Button layoutX="760.0"
+                layoutY="520.0"
+                prefWidth="120.0"
+                text="Back"
+                onAction="#backOA"/>
 
-            <TableColumn fx:id="yellowCardCol"
-                         text="Yellow Cards"
-                         prefWidth="150"/>
-
-            <TableColumn fx:id="redCardCol"
-                         text="Red Cards"
-                         prefWidth="150"/>
-
-        </columns>
-
-    </TableView>
-
-
-
-
-    <!-- Buttons -->
-
-    <Button layoutX="150.0"
-            layoutY="500.0"
-            prefWidth="160"
-            text="Check Eligibility"
-            onAction="#checkEligibilityOA"/>
-
-
-    <Button layoutX="370.0"
-            layoutY="500.0"
-            prefWidth="160"
-            text="View Cards"
-            onAction="#viewCardsOA"/>
-
-
-    <Button layoutX="590.0"
-            layoutY="500.0"
-            prefWidth="120"
-            text="Back"
-            onAction="#backOA"/>
-
+    </children>
 
 </AnchorPane>

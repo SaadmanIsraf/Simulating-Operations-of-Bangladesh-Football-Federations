@@ -57,7 +57,8 @@ public class federation_administrator_publishannouncementController {
                 FXCollections.observableArrayList(
                         "Abahani Limited vs Bashundhara Kings",
                         "Mohammedan SC vs Sheikh Russel",
-                        "Abahani Limited vs Mohammedan SC"
+                        "Abahani Limited vs Mohammedan SC" ,
+                                "Real Madrid VS Bayern Munchen"
                 )
         );
 
