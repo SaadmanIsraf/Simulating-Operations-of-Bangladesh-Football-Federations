@@ -9,6 +9,4 @@ module com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
     opens com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller to javafx.fxml;
     exports com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo;
 
-    opens com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman to javafx.fxml;
-    exports com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman;
 }
