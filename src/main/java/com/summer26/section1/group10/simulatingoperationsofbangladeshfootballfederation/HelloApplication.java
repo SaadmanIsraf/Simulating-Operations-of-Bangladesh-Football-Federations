@@ -10,9 +10,10 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_officials/matchofficialsdashboard.fxml"));
+        SceneSwitcher.stage = stage;
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Arman/medical_officer/medical_officer_dashboard.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("Hello!");
+        stage.setTitle("Bangladesh Football Federation");
         stage.setScene(scene);
         stage.show();
 
