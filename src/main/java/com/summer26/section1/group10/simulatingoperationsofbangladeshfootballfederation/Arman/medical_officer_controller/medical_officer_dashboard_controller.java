@@ -16,6 +16,7 @@ public class medical_officer_dashboard_controller
 
     @javafx.fxml.FXML
     public void player_medical_history_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/medical_officer/player_medical_history.fxml");
     }
 
     @javafx.fxml.FXML

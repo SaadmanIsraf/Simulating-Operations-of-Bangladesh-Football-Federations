@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="573.0" prefWidth="843.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.player_medical_history_controller">
+   <top>
+      <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Player Medical History " textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman Bold" size="19.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane prefHeight="511.0" prefWidth="856.0">
+               <children>
+                  <Label layoutX="62.0" layoutY="62.0" text="Player ID :">
+                     <font>
+                        <Font name="Times New Roman Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="player_id_textfield" layoutX="142.0" layoutY="58.0" prefHeight="26.0" prefWidth="170.0" />
+                  <Button layoutX="62.0" layoutY="102.0" mnemonicParsing="false" onAction="#search_button_on_action" text="Search" />
+                  <TableView fx:id="player_mdecial_history_tableview" layoutX="21.0" layoutY="165.0" prefHeight="244.0" prefWidth="802.0">
+                    <columns>
+                      <TableColumn fx:id="player_id_column" prefWidth="91.20001411437988" text="Player ID" />
+                        <TableColumn fx:id="player_name_column" prefWidth="105.5999984741211" text="Player Name" />
+                        <TableColumn fx:id="injury_report_column" prefWidth="152.79998779296875" text="Injury Report " />
+                        <TableColumn fx:id="date_column" prefWidth="144.00003051757812" text="Date" />
+                        <TableColumn fx:id="treatment_plans_column" prefWidth="146.39996337890625" text="Treatment Plans" />
+                        <TableColumn fx:id="matchday_incident_column" prefWidth="163.20001220703125" text="Match day Incident" />
+                    </columns>
+                  </TableView>
+                  <Button layoutX="43.0" layoutY="451.0" mnemonicParsing="false" onAction="#back_button_on_action" text="← Back" />
+               </children>
+            </AnchorPane>
+         </children>
+      </HBox>
+   </center>
+</BorderPane>
