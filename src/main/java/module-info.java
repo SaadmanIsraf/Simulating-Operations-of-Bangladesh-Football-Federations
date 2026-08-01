@@ -2,6 +2,7 @@ module com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.graphics;
+    requires com.dlsc.fxmlkit;
 
     exports com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation;
     opens com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation to javafx.fxml;
@@ -11,4 +12,6 @@ module com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 
     opens com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller
             to javafx.fxml;
+    exports com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf;
+    opens com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf to javafx.fxml;
 }
