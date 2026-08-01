@@ -7,129 +7,82 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity"
-            maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="516.0"
-            prefWidth="659.0"
-            xmlns="http://javafx.com/javafx/21.0.6"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.medical_officer_dashboard_controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="516.0" prefWidth="659.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.medical_officer_dashboard_controller">
 
     <top>
-        <HBox alignment="CENTER"
-              prefHeight="81.0"
-              style="-fx-background-color: #42AD60;"
-              BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" prefHeight="81.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
 
-            <Label alignment="CENTER"
-                   text="Medical Officer Dashboard"
-                   textFill="WHITE">
+            <Label alignment="CENTER" text="Medical Officer Dashboard" textFill="WHITE">
 
                 <font>
-                    <Font name="Times New Roman Bold" size="18.0"/>
+                    <Font name="Times New Roman Bold" size="18.0" />
                 </font>
             </Label>
         </HBox>
     </top>
 
     <center>
-        <VBox alignment="CENTER"
-              spacing="15.0"
-              BorderPane.alignment="CENTER">
-
-            <Button mnemonicParsing="false"
-                    onAction="#medical_officer_profile_button_on_action"
-                    prefHeight="26.0"
-                    prefWidth="222.0"
-                    text="Profile">
-                <font>
-                    <Font name="Times New Roman Bold" size="12.0"/>
-                </font>
-            </Button>
-
-            <Button mnemonicParsing="false"
-                    onAction="#medical_equipment_button_on_action"
-                    prefHeight="26.0"
-                    prefWidth="222.0"
-                    text="Medical Equipment">
-                <font>
-                    <Font name="Times New Roman Bold" size="12.0"/>
-                </font>
-            </Button>
-
-            <Button mnemonicParsing="false"
-                    onAction="#injury_report_and_fitness_status_button_on_action"
-                    prefHeight="26.0"
-                    prefWidth="222.0"
-                    text="Injury Report &amp; Fitness Status">
-                <font>
-                    <Font name="Times New Roman Bold" size="12.0"/>
-                </font>
-            </Button>
-
-            <Button mnemonicParsing="false"
-                    onAction="#treatment_plan_button_on_Action"
-                    prefHeight="26.0"
-                    prefWidth="222.0"
-                    text="Treatment Plan">
-                <font>
-                    <Font name="Times New Roman Bold" size="12.0"/>
-                </font>
-            </Button>
-
-            <Button mnemonicParsing="false"
-                    onAction="#player_medical_history_button_on_action"
-                    prefHeight="26.0"
-                    prefWidth="222.0"
-                    text="Player Medical History">
-                <font>
-                    <Font name="Times New Roman Bold" size="12.0"/>
-                </font>
-            </Button>
-
-            <Button mnemonicParsing="false"
-                    onAction="#medical_incident_button_on_action"
-                    prefHeight="26.0"
-                    prefWidth="222.0"
-                    text="Medical Incident">
-                <font>
-                    <Font name="Times New Roman Bold" size="12.0"/>
-                </font>
-            </Button>
-
-            <Button mnemonicParsing="false"
-                    onAction="#player_rehabilitation_progress_button_on_action"
-                    prefHeight="26.0"
-                    prefWidth="222.0"
-                    text="Player Rehabilitation Progress">
-                <font>
-                    <Font name="Times New Roman Bold" size="12.0"/>
-                </font>
-            </Button>
-
-            <Button mnemonicParsing="false"
-                    onAction="#player_medically_fit_or_banned_button_on_action"
-                    prefHeight="26.0"
-                    prefWidth="222.0"
-                    text="Player Medically Fit or Banned">
-                <font>
-                    <Font name="Times New Roman Bold" size="12.0"/>
-                </font>
-            </Button>
-
-            <Button mnemonicParsing="false"
-                    onAction="#logout_button_on_action"
-                    prefHeight="26.0"
-                    prefWidth="222.0"
-                    text="Logout">
-                <font>
-                    <Font name="Times New Roman Bold" size="12.0"/>
-                </font>
-            </Button>
-
-        </VBox>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+              <VBox alignment="CENTER" spacing="15.0">
+      
+                  <Button mnemonicParsing="false" onAction="#medical_officer_profile_button_on_action" prefHeight="26.0" prefWidth="222.0" text="Profile">
+                      <font>
+                          <Font name="Times New Roman Bold" size="12.0" />
+                      </font>
+                  </Button>
+      
+                  <Button mnemonicParsing="false" onAction="#medical_equipment_button_on_action" prefHeight="26.0" prefWidth="222.0" text="Medical Equipment">
+                      <font>
+                          <Font name="Times New Roman Bold" size="12.0" />
+                      </font>
+                  </Button>
+      
+                  <Button mnemonicParsing="false" onAction="#injury_report_and_fitness_status_button_on_action" prefHeight="26.0" prefWidth="222.0" text="Injury Report &amp; Fitness Status">
+                      <font>
+                          <Font name="Times New Roman Bold" size="12.0" />
+                      </font>
+                  </Button>
+      
+                  <Button mnemonicParsing="false" onAction="#treatment_plan_button_on_Action" prefHeight="26.0" prefWidth="222.0" text="Treatment Plan">
+                      <font>
+                          <Font name="Times New Roman Bold" size="12.0" />
+                      </font>
+                  </Button>
+      
+                  <Button mnemonicParsing="false" onAction="#player_medical_history_button_on_action" prefHeight="26.0" prefWidth="222.0" text="Player Medical History">
+                      <font>
+                          <Font name="Times New Roman Bold" size="12.0" />
+                      </font>
+                  </Button>
+      
+                  <Button mnemonicParsing="false" onAction="#medical_incident_button_on_action" prefHeight="26.0" prefWidth="222.0" text="Medical Incident">
+                      <font>
+                          <Font name="Times New Roman Bold" size="12.0" />
+                      </font>
+                  </Button>
+      
+                  <Button mnemonicParsing="false" onAction="#player_rehabilitation_progress_button_on_action" prefHeight="26.0" prefWidth="222.0" text="Player Rehabilitation Progress">
+                      <font>
+                          <Font name="Times New Roman Bold" size="12.0" />
+                      </font>
+                  </Button>
+      
+                  <Button mnemonicParsing="false" onAction="#player_medically_fit_or_banned_button_on_action" prefHeight="26.0" prefWidth="222.0" text="Player Medically Fit or Banned">
+                      <font>
+                          <Font name="Times New Roman Bold" size="12.0" />
+                      </font>
+                  </Button>
+      
+                  <Button mnemonicParsing="false" onAction="#logout_button_on_action" prefHeight="26.0" prefWidth="222.0" text="Logout">
+                      <font>
+                          <Font name="Times New Roman Bold" size="12.0" />
+                      </font>
+                  </Button>
+      
+              </VBox>
+         </children>
+      </HBox>
     </center>
 
 </BorderPane>

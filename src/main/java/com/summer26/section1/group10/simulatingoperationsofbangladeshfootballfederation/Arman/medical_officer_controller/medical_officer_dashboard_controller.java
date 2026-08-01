@@ -11,6 +11,7 @@ public class medical_officer_dashboard_controller
 
     @javafx.fxml.FXML
     public void injury_report_and_fitness_status_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/medical_officer/injury_report_and_fitness_status.fxml");
     }
 
     @javafx.fxml.FXML
@@ -40,6 +41,7 @@ public class medical_officer_dashboard_controller
 
     @javafx.fxml.FXML
     public void treatment_plan_button_on_Action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/medical_officer/treatment_plan.fxml");
     }
 
     @javafx.fxml.FXML
