@@ -25,6 +25,7 @@ public class medical_officer_dashboard_controller
 
     @javafx.fxml.FXML
     public void player_medically_fit_or_banned_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/medical_officer/player_medically_fit_or_banned.fxml");
     }
 
     @javafx.fxml.FXML
@@ -34,10 +35,12 @@ public class medical_officer_dashboard_controller
 
     @javafx.fxml.FXML
     public void player_rehabilitation_progress_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/medical_officer/player_rehabilitation_progress.fxml");
     }
 
     @javafx.fxml.FXML
     public void medical_incident_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/medical_officer/medical_incident.fxml");
     }
 
     @javafx.fxml.FXML
