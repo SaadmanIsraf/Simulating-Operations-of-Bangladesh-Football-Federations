@@ -31,7 +31,7 @@
       </TableView>
       <Button layoutX="472.0" layoutY="197.0" mnemonicParsing="false" onAction="#RegisterPlayerButton" prefHeight="46.0" prefWidth="100.0" text="Register Player" />
       <Text layoutX="460.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Skill:" />
-      <Label fx:id="programIsCreatedLabel" layoutX="572.0" layoutY="98.0" prefHeight="36.0" prefWidth="124.0" text="Label" />
+      <Label fx:id="messageLabel" layoutX="572.0" layoutY="98.0" prefHeight="36.0" prefWidth="124.0" text="Label" />
       <Label fx:id="registerLabel" layoutX="472.0" layoutY="266.0" prefHeight="56.0" prefWidth="149.0" text="Label" />
       <ComboBox fx:id="skillTF" layoutX="491.0" layoutY="54.0" prefHeight="25.0" prefWidth="63.0" />
    </children>

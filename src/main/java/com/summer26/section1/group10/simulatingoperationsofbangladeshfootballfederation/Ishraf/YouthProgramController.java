@@ -13,8 +13,6 @@ public class YouthProgramController
     @javafx.fxml.FXML
     private TableColumn<YouthProgram,String> programNameTC;
     @javafx.fxml.FXML
-    private Label programIsCreatedLabel;
-    @javafx.fxml.FXML
     private ComboBox<String> genderTF;
     @javafx.fxml.FXML
     private TableColumn<YouthProgram,String> ageTC;
@@ -32,6 +30,8 @@ public class YouthProgramController
     private TableColumn<YouthProgram,String> skillTC;
     @javafx.fxml.FXML
     private ComboBox<String> skillTF;
+    @javafx.fxml.FXML
+    private Label messageLabel;
 
     @javafx.fxml.FXML
     public void initialize() {
@@ -66,6 +66,15 @@ public class YouthProgramController
         String gender = genderTF.getValue();
         String skill = skillTF.getValue();
 
+        int playerAge = Integer.parseInt(age);
+        //Age Validation//
+        if (playerAge < 0 || playerAge > 42) {
+
+            messageLabel.setText("Player age is invalid");
+
+            return;
+        }
+
         YouthProgram program = new YouthProgram(
                 id, name, age, gender, skill
         );
@@ -79,7 +88,10 @@ public class YouthProgramController
         skillTF.setValue(null);
 
 
+
+
     }
+
 
     @javafx.fxml.FXML
     public void RegisterPlayerButton(ActionEvent actionEvent) {
