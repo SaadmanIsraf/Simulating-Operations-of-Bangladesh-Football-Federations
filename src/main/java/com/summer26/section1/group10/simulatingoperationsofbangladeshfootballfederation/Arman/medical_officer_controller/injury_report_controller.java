@@ -5,6 +5,7 @@ import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_manager.InjuryReportManager;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -17,38 +18,54 @@ public class injury_report_controller
 {
     @javafx.fxml.FXML
     private TableColumn<InjuryReport, Integer> player_id_column;
+
     @javafx.fxml.FXML
     private TableColumn<InjuryReport, String> affected_body_part_column;
+
     @javafx.fxml.FXML
     private TableColumn<InjuryReport, String> initial_fitness_status_column;
-    @javafx.fxml.FXML
-    private Label player_details_label;
-    @javafx.fxml.FXML
-    private TextField additional_notes_textfield;
+
+    @FXML
+    private TextArea player_details_textarea;
+
+    @FXML
+    private TextArea additional_notes_textfield;
+
     @javafx.fxml.FXML
     private TableView<InjuryReport> Injurt_report_tableview;
+
     @javafx.fxml.FXML
     private TableColumn<InjuryReport, String> severity_column;
+
     @javafx.fxml.FXML
     private DatePicker injury_date_datepicker;
+
     @javafx.fxml.FXML
     private TextField search_by_player_Id_textfield;
+
     @javafx.fxml.FXML
     private TextField player_id_text_field;
+
     @javafx.fxml.FXML
     private TableColumn<InjuryReport, String> injury_type_column;
+
     @javafx.fxml.FXML
     private TableColumn<InjuryReport, LocalDate> injury_date_column;
+
+    @FXML
+    private TableColumn<InjuryReport, String> additional_notes_column;
+
     @javafx.fxml.FXML
     private ComboBox<String> initial_fitness_status_combobox;
+
     @javafx.fxml.FXML
     private ComboBox<String> injury_type_combobox;
+
     @javafx.fxml.FXML
     private ComboBox<String> severity_combobox;
+
     @javafx.fxml.FXML
     private ComboBox<String> affected_body_part_combobox;
-
-    private Player searchedPlayer;
 
     private final List<Player> playerList = new ArrayList<>();
 
@@ -107,37 +124,31 @@ public class injury_report_controller
                 new PropertyValueFactory<>("affectedBodyPart")
         );
 
-        severity_column.setCellValueFactory(
-                new PropertyValueFactory<>("severity")
-        );
-
         initial_fitness_status_column.setCellValueFactory(
                 new PropertyValueFactory<>("fitnessStatus")
         );
 
-        Injurt_report_tableview.getItems().addAll(
+        severity_column.setCellValueFactory(
+                new PropertyValueFactory<>("severity")
+        );
+
+        additional_notes_column.setCellValueFactory(
+                new PropertyValueFactory<>("additionalNotes")
+        );
+
+        Injurt_report_tableview.getItems().setAll(
                 InjuryReportManager.getInjuryReportList()
         );
+
+        player_details_textarea.setWrapText(true);
 
         loadPlayersFromFile();
     }
 
     @javafx.fxml.FXML
-    public void Severity_combobox_on_action(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
     public void save_button_on_action(ActionEvent actionEvent) {
 
-        if (searchedPlayer == null) {
-
-            showAlert(
-                    Alert.AlertType.WARNING,
-                    "Player Not Selected",
-                    "Search for a valid player before saving."
-            );
-            return;
-        }
+        loadPlayersFromFile();
 
         String playerIdText =
                 player_id_text_field.getText().trim();
@@ -190,12 +201,22 @@ public class injury_report_controller
             return;
         }
 
-        if (searchedPlayer.getId() != playerId) {
+        Player foundPlayer = null;
+
+        for (Player player : playerList) {
+
+            if (player.getId() == playerId) {
+                foundPlayer = player;
+                break;
+            }
+        }
+
+        if (foundPlayer == null) {
 
             showAlert(
                     Alert.AlertType.ERROR,
-                    "Player ID Mismatch",
-                    "The entered Player ID does not match the searched player."
+                    "Player Not Found",
+                    "Player does not exist in the system."
             );
             return;
         }
@@ -208,21 +229,6 @@ public class injury_report_controller
                     "Injury date cannot be a future date."
             );
             return;
-        }
-
-        for (InjuryReport report :
-                InjuryReportManager.getInjuryReportList()) {
-
-            if (report.getPlayerId() == playerId
-                    && report.isActive()) {
-
-                showAlert(
-                        Alert.AlertType.ERROR,
-                        "Active Injury Found",
-                        "Player already has an active injury report."
-                );
-                return;
-            }
         }
 
         int reportId =
@@ -243,40 +249,33 @@ public class injury_report_controller
         InjuryReportManager.addReport(injuryReport);
         InjuryReportManager.saveToFile();
 
-        searchedPlayer.setFitnessStatus(fitnessStatus);
+        foundPlayer.setFitnessStatus(fitnessStatus);
         savePlayersToFile();
 
-        Injurt_report_tableview.getItems().add(injuryReport);
+        Injurt_report_tableview.getItems().setAll(
+                InjuryReportManager.getInjuryReportList()
+        );
+
+        Injurt_report_tableview.refresh();
+
+        displayPlayerAndInjuryDetails(
+                foundPlayer,
+                injuryReport
+        );
 
         showAlert(
                 Alert.AlertType.INFORMATION,
                 "Successful",
-                "Injury Report Added Successfully! Player fitness status updated to "
-                        + fitnessStatus + "."
+                "Injury Report Added Successfully!"
         );
 
-        clearFields();
-    }
-
-    @javafx.fxml.FXML
-    public void injury_type_combobox_on_action(ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void initial_fitness_status_combobox_on_action(
-            ActionEvent actionEvent) {
-    }
-
-    @javafx.fxml.FXML
-    public void back_button_on_action(ActionEvent actionEvent) {
-
-        SceneSwitcher.switchTo(
-                "Arman/medical_officer/medical_officer_dashboard.fxml"
-        );
+        clearFormFields();
     }
 
     @javafx.fxml.FXML
     public void search_by_player_Id_on_action(ActionEvent actionEvent) {
+
+        loadPlayersFromFile();
 
         String playerIdText =
                 search_by_player_Id_textfield.getText().trim();
@@ -306,21 +305,23 @@ public class injury_report_controller
             return;
         }
 
-        searchedPlayer = null;
+        Player foundPlayer = null;
 
         for (Player player : playerList) {
 
             if (player.getId() == playerId) {
-                searchedPlayer = player;
+                foundPlayer = player;
                 break;
             }
         }
 
-        if (searchedPlayer == null) {
+        if (foundPlayer == null) {
 
-            player_details_label.setText(
+            player_details_textarea.setText(
                     "Player does not exist in the system."
             );
+
+            Injurt_report_tableview.getItems().clear();
 
             showAlert(
                     Alert.AlertType.ERROR,
@@ -330,65 +331,158 @@ public class injury_report_controller
             return;
         }
 
+        ArrayList<InjuryReport> playerReports =
+                new ArrayList<>();
+
         for (InjuryReport report :
                 InjuryReportManager.getInjuryReportList()) {
 
-            if (report.getPlayerId() == playerId
-                    && report.isActive()) {
-
-                player_details_label.setText(
-                        "Player already has an active injury report."
-                );
-
-                showAlert(
-                        Alert.AlertType.ERROR,
-                        "Active Injury Found",
-                        "Player already has an active injury report."
-                );
-                searchedPlayer = null;
-                return;
+            if (report.getPlayerId() == playerId) {
+                playerReports.add(report);
             }
         }
 
-        player_id_text_field.setText(
-                String.valueOf(searchedPlayer.getId())
+        Injurt_report_tableview.getItems().setAll(
+                playerReports
         );
 
-        player_details_label.setText(
-                "Player ID: " + searchedPlayer.getId()
-                        + " | Name: " + searchedPlayer.getName()
-                        + " | Current Fitness: "
-                        + searchedPlayer.getFitnessStatus()
-        );
+        Injurt_report_tableview.refresh();
 
-        showAlert(
-                Alert.AlertType.INFORMATION,
-                "Player Found",
-                "Player details loaded successfully."
-        );
+        if (playerReports.isEmpty()) {
+
+            displayPlayerWithoutInjury(foundPlayer);
+
+            showAlert(
+                    Alert.AlertType.INFORMATION,
+                    "Player Found",
+                    "Player found. No injury report exists."
+            );
+
+        } else {
+
+            InjuryReport latestReport =
+                    playerReports.get(playerReports.size() - 1);
+
+            displayPlayerAndAllInjuries(
+                    foundPlayer,
+                    playerReports
+            );
+
+            Injurt_report_tableview.getSelectionModel()
+                    .select(latestReport);
+
+            Injurt_report_tableview.scrollTo(latestReport);
+
+            showAlert(
+                    Alert.AlertType.INFORMATION,
+                    "Medical Records Found",
+                    "Player details and injury reports loaded successfully."
+            );
+        }
     }
 
-    @javafx.fxml.FXML
-    public void affected_body_part_combobox_on_action(
-            ActionEvent actionEvent) {
+    private void displayPlayerAndInjuryDetails(
+            Player player,
+            InjuryReport report) {
+
+        ArrayList<InjuryReport> reports = new ArrayList<>();
+
+        for (InjuryReport r : InjuryReportManager.getInjuryReportList()) {
+
+            if (r.getPlayerId() == player.getId()) {
+                reports.add(r);
+            }
+        }
+
+        displayPlayerAndAllInjuries(player, reports);
+    }
+
+
+
+    private void displayPlayerAndAllInjuries(
+            Player player,
+            List<InjuryReport> reports) {
+
+        StringBuilder sb = new StringBuilder();
+
+        sb.append("PLAYER DETAILS\n");
+        sb.append("=====================================================\n");
+        sb.append("Player ID          : ").append(player.getId()).append("\n");
+        sb.append("Player Name        : ").append(player.getName()).append("\n");
+        sb.append("Team               : ").append(player.getTeamName()).append("\n");
+        sb.append("Playing Position   : ").append(player.getPlayingPosition()).append("\n");
+        sb.append("Age                : ").append(player.getAge()).append("\n");
+        sb.append("Fitness Status     : ").append(player.getFitnessStatus()).append("\n");
+        sb.append("Contact Number     : ").append(player.getContactNumber()).append("\n\n");
+
+        sb.append("PLAYER INJURY REPORTS\n");
+        sb.append("=====================================================\n");
+
+        if (reports.isEmpty()) {
+
+            sb.append("No injury reports found.");
+
+        } else {
+
+            int i = 1;
+
+            for (InjuryReport report : reports) {
+
+                sb.append("\nReport #").append(i++).append("\n");
+                sb.append("Injury Type        : ").append(report.getInjuryType()).append("\n");
+                sb.append("Injury Date        : ").append(report.getInjuryDate()).append("\n");
+                sb.append("Affected Body Part : ").append(report.getAffectedBodyPart()).append("\n");
+                sb.append("Severity           : ").append(report.getSeverity()).append("\n");
+                sb.append("Fitness Status     : ").append(report.getFitnessStatus()).append("\n");
+                sb.append("Additional Notes   : ").append(report.getAdditionalNotes()).append("\n");
+                sb.append("-----------------------------------------------------\n");
+            }
+        }
+
+        player_details_textarea.setText(sb.toString());
+    }
+
+    private void displayPlayerWithoutInjury(Player player) {
+
+        player_details_textarea.setText(
+                "Player Details"
+                        + "\nPlayer ID: " + player.getId()
+                        + "\nName: " + player.getName()
+                        + "\nTeam: " + player.getTeamName()
+                        + "\nPosition: " + player.getPlayingPosition()
+                        + "\nCurrent Fitness: "
+                        + player.getFitnessStatus()
+                        + "\n\nNo injury report found."
+        );
     }
 
     @SuppressWarnings("unchecked")
     private void loadPlayersFromFile() {
 
+        playerList.clear();
+
         try (ObjectInputStream in =
                      new ObjectInputStream(
                              new FileInputStream(PLAYER_FILE_NAME))) {
 
-            playerList.clear();
+            Object object = in.readObject();
 
-            playerList.addAll(
-                    (ArrayList<Player>) in.readObject()
+            if (object instanceof ArrayList<?>) {
+
+                playerList.addAll(
+                        (ArrayList<Player>) object
+                );
+            }
+
+        } catch (FileNotFoundException e) {
+
+            System.out.println(
+                    "players.bin does not exist."
             );
 
         } catch (IOException | ClassNotFoundException e) {
 
-            System.out.println("Could not load player data.");
+            e.printStackTrace();
         }
     }
 
@@ -408,14 +502,15 @@ public class injury_report_controller
             showAlert(
                     Alert.AlertType.ERROR,
                     "File Error",
-                    "Could not update the player fitness status."
+                    "Could not update player fitness status."
             );
+
+            e.printStackTrace();
         }
     }
 
-    private void clearFields() {
+    private void clearFormFields() {
 
-        search_by_player_Id_textfield.clear();
         player_id_text_field.clear();
         injury_type_combobox.setValue(null);
         injury_date_datepicker.setValue(null);
@@ -423,12 +518,34 @@ public class injury_report_controller
         severity_combobox.setValue(null);
         initial_fitness_status_combobox.setValue(null);
         additional_notes_textfield.clear();
+    }
 
-        player_details_label.setText(
-                "Search for a player to add an injury report."
+    @javafx.fxml.FXML
+    public void Severity_combobox_on_action(
+            ActionEvent actionEvent) {
+    }
+
+    @javafx.fxml.FXML
+    public void injury_type_combobox_on_action(
+            ActionEvent actionEvent) {
+    }
+
+    @javafx.fxml.FXML
+    public void initial_fitness_status_combobox_on_action(
+            ActionEvent actionEvent) {
+    }
+
+    @javafx.fxml.FXML
+    public void affected_body_part_combobox_on_action(
+            ActionEvent actionEvent) {
+    }
+
+    @javafx.fxml.FXML
+    public void back_button_on_action(ActionEvent actionEvent) {
+
+        SceneSwitcher.switchTo(
+                "Arman/medical_officer/medical_officer_dashboard.fxml"
         );
-
-        searchedPlayer = null;
     }
 
     private void showAlert(

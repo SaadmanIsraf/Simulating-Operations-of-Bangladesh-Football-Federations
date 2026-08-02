@@ -2,9 +2,13 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Player extends User implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private int age;
     private String teamName;
@@ -98,7 +102,6 @@ public class Player extends User implements Serializable {
     public void setMatchEligibilityStatus(String matchEligibilityStatus) {
         this.matchEligibilityStatus = matchEligibilityStatus;
     }
-
 
     public void changePassword(String newPassword) {
         setPassword(newPassword);
