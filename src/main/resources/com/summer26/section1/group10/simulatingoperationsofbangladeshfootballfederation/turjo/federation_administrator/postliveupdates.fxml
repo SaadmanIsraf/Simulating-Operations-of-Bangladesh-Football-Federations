@@ -3,12 +3,14 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0"
+<AnchorPane prefHeight="950.0" prefWidth="1000.0"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_postliveupdatesController">
@@ -227,6 +229,54 @@
             onAction="#backOA"
             prefWidth="130"
             text="Back"/>
+
+
+
+    <!-- Live Updates Table -->
+
+    <TableView fx:id="updatesTable"
+               layoutX="60.0"
+               layoutY="670.0"
+               prefHeight="250.0"
+               prefWidth="880.0">
+
+        <columns>
+
+            <TableColumn fx:id="minuteCol"
+                         text="Minute"
+                         prefWidth="80"/>
+
+            <TableColumn fx:id="scoreCol"
+                         text="Score"
+                         prefWidth="90"/>
+
+            <TableColumn fx:id="statusCol"
+                         text="Status"
+                         prefWidth="110"/>
+
+            <TableColumn fx:id="goalScorerCol"
+                         text="Goal Scorer"
+                         prefWidth="120"/>
+
+            <TableColumn fx:id="assistCol"
+                         text="Assist"
+                         prefWidth="110"/>
+
+            <TableColumn fx:id="cardCol"
+                         text="Card"
+                         prefWidth="120"/>
+
+            <TableColumn fx:id="substitutionCol"
+                         text="Substitution"
+                         prefWidth="150"/>
+
+            <TableColumn fx:id="commentaryCol"
+                         text="Commentary"
+                         prefWidth="260"/>
+
+        </columns>
+
+    </TableView>
 
 
 </AnchorPane>

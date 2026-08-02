@@ -3,10 +3,12 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageuseraccountController">
+<AnchorPane prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageuseraccountController">
 
 
     <Label layoutX="280.0" layoutY="30.0" style="-fx-font-size:24px; -fx-font-weight:bold;" text="Manage User Account" textFill="#100bae" />
@@ -45,6 +47,19 @@
 
 
     <Button layoutX="600.0" layoutY="350.0" onAction="#backOA" prefWidth="100" text="Back" />
+    <Button layoutX="38.0" layoutY="350.0" mnemonicParsing="false" onAction="#clearOA" text="Clear" />
+
+
+    <!-- Table -->
+
+    <TableView fx:id="userTable" layoutX="80.0" layoutY="420.0" prefHeight="240.0" prefWidth="640.0">
+        <columns>
+            <TableColumn fx:id="usernameCol" prefWidth="160.0" text="Username" />
+            <TableColumn fx:id="roleCol" prefWidth="160.0" text="Role" />
+            <TableColumn fx:id="statusCol" prefWidth="160.0" text="Status" />
+            <TableColumn fx:id="permissionCol" prefWidth="160.0" text="Permission" />
+        </columns>
+    </TableView>
 
 
 </AnchorPane>

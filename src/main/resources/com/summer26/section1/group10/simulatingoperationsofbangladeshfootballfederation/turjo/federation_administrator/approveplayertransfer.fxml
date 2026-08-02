@@ -3,19 +3,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_approveplayertransferController">
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_approveplayertransferController">
 
 
     <Label layoutX="240.0" layoutY="30.0" style="-fx-font-size:22px; -fx-font-weight:bold;" text="Approve Player Transfer" textFill="#9e7c25" />
 
-    <Label fx:id="messageLabel"
-           layoutX="230.0"
-           layoutY="390.0"
-           style="-fx-font-size:16px; -fx-font-weight:bold;"
-           text=""/>
+    <Label fx:id="messageLabel" layoutX="230.0" layoutY="390.0" style="-fx-font-size:16px; -fx-font-weight:bold;" text="" />
     <Label layoutX="60.0" layoutY="100.0" text="Player Name" />
 
     <TextField fx:id="playerNameTF" layoutX="60.0" layoutY="125.0" prefWidth="200" />
@@ -39,10 +37,23 @@
     <Button layoutX="67.0" layoutY="333.0" onAction="#verifyTransferOA" prefWidth="120" text="Verify" />
 
 
-    <Button layoutX="276.0" layoutY="333.0" onAction="#saveOA" prefWidth="120" text="Save" />
+    <Button layoutX="200.0" layoutY="333.0" onAction="#saveOA" prefWidth="120" text="Save" />
 
 
-    <Button layoutX="507.0" layoutY="333.0" onAction="#backOA" prefWidth="100" text="Back" textFill="#991d1d" />
+    <Button layoutX="507.0" layoutY="333.0" onAction="#clearOA" prefWidth="100" text="Clear" textFill="#991d1d" />
+    <Button layoutX="350.0" layoutY="333.0" onAction="#backOA" prefWidth="120" text="Back" />
+
+
+    <!-- Table -->
+
+    <TableView fx:id="transferTable" layoutX="60.0" layoutY="430.0" prefHeight="220.0" prefWidth="580.0">
+        <columns>
+            <TableColumn fx:id="playerNameCol" prefWidth="145.0" text="Player Name" />
+            <TableColumn fx:id="fromClubCol" prefWidth="145.0" text="From Club" />
+            <TableColumn fx:id="toClubCol" prefWidth="145.0" text="To Club" />
+            <TableColumn fx:id="decisionCol" prefWidth="145.0" text="Decision" />
+        </columns>
+    </TableView>
 
 
 </AnchorPane>

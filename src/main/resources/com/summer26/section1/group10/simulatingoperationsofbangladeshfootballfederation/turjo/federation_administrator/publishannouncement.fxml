@@ -4,12 +4,14 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0"
+<AnchorPane prefHeight="900.0"
             prefWidth="1000.0"
             xmlns="http://javafx.com/javafx/26"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -198,6 +200,54 @@
             prefWidth="120"
             text="Back"
             onAction="#backOA"/>
+
+
+
+    <!-- Announcements Table -->
+
+    <TableView fx:id="announcementTable"
+               layoutX="60.0"
+               layoutY="630.0"
+               prefHeight="230.0"
+               prefWidth="880.0">
+
+        <columns>
+
+            <TableColumn fx:id="titleCol"
+                         text="Title"
+                         prefWidth="130"/>
+
+            <TableColumn fx:id="matchCol"
+                         text="Match"
+                         prefWidth="130"/>
+
+            <TableColumn fx:id="competitionCol"
+                         text="Competition"
+                         prefWidth="110"/>
+
+            <TableColumn fx:id="venueCol"
+                         text="Venue"
+                         prefWidth="100"/>
+
+            <TableColumn fx:id="dateCol"
+                         text="Date"
+                         prefWidth="90"/>
+
+            <TableColumn fx:id="timeCol"
+                         text="Time"
+                         prefWidth="80"/>
+
+            <TableColumn fx:id="matchTypeCol"
+                         text="Type"
+                         prefWidth="100"/>
+
+            <TableColumn fx:id="detailsCol"
+                         text="Details"
+                         prefWidth="140"/>
+
+        </columns>
+
+    </TableView>
 
 
 </AnchorPane>

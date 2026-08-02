@@ -8,140 +8,69 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="650.0"
-            prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageplayersController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageplayersController">
 
-    <Label layoutX="330.0"
-           layoutY="20.0"
-           text="Manage Players"
-           textFill="#133799"
-           style="-fx-font-size:26px; -fx-font-weight:bold;"/>
+    <Label layoutX="330.0" layoutY="20.0" style="-fx-font-size:26px; -fx-font-weight:bold;" text="Manage Players" textFill="#133799" />
 
 
-    <TableView fx:id="playertableview"
-               layoutX="40.0"
-               layoutY="70.0"
-               prefHeight="260.0"
-               prefWidth="820.0">
+    <TableView fx:id="playertableview" layoutX="40.0" layoutY="70.0" prefHeight="260.0" prefWidth="820.0">
 
         <columns>
 
-            <TableColumn fx:id="playernamecol"
-                         text="Player Name"
-                         prefWidth="180"/>
+            <TableColumn fx:id="playernamecol" prefWidth="180" text="Player Name" />
 
-            <TableColumn fx:id="positioncol"
-                         text="Position"
-                         prefWidth="150"/>
+            <TableColumn fx:id="positioncol" prefWidth="150" text="Position" />
 
-            <TableColumn fx:id="injurycol"
-                         text="Injury Status"
-                         prefWidth="150"/>
+            <TableColumn fx:id="injurycol" prefWidth="150" text="Injury Status" />
 
-            <TableColumn fx:id="clubcol"
-                         text="Current Club"
-                         prefWidth="180"/>
+            <TableColumn fx:id="clubcol" prefWidth="180" text="Current Club" />
 
-            <TableColumn fx:id="valuecol"
-                         text="Current Value"
-                         prefWidth="150"/>
+            <TableColumn fx:id="valuecol" prefWidth="150" text="Current Value" />
 
         </columns>
 
     </TableView>
 
 
-    <Label layoutX="60.0"
-           layoutY="370.0"
-           text="Player Name"/>
+    <Label layoutX="60.0" layoutY="370.0" text="Player Name" />
 
-    <Label layoutX="300.0"
-           layoutY="370.0"
-           text="Position"/>
+    <Label layoutX="300.0" layoutY="370.0" text="Position" />
 
-    <Label layoutX="520.0"
-           layoutY="370.0"
-           text="Injury Status"/>
+    <Label layoutX="520.0" layoutY="370.0" text="Injury Status" />
 
-    <Label layoutX="60.0"
-           layoutY="450.0"
-           text="Current Club"/>
+    <Label layoutX="60.0" layoutY="450.0" text="Current Club" />
 
-    <Label layoutX="350.0"
-           layoutY="450.0"
-           text="Current Value"/>
+    <Label layoutX="350.0" layoutY="450.0" text="Current Value" />
 
 
-    <TextField fx:id="playernameTF"
-               layoutX="60.0"
-               layoutY="400.0"
-               prefWidth="180"
-               promptText="Player Name"/>
+    <TextField fx:id="playernameTF" layoutX="60.0" layoutY="400.0" prefWidth="180" promptText="Player Name" />
 
 
-    <ComboBox fx:id="positionCB"
-              layoutX="300.0"
-              layoutY="400.0"
-              prefWidth="150"
-              promptText="Position"/>
+    <ComboBox fx:id="positionCB" layoutX="300.0" layoutY="400.0" prefWidth="150" promptText="Position" />
 
 
-    <ComboBox fx:id="injuryCB"
-              layoutX="520.0"
-              layoutY="400.0"
-              prefWidth="150"
-              promptText="Injury Status"/>
+    <ComboBox fx:id="injuryCB" layoutX="520.0" layoutY="400.0" prefWidth="150" promptText="Injury Status" />
 
 
-    <TextField fx:id="clubTF"
-               layoutX="60.0"
-               layoutY="480.0"
-               prefWidth="220"
-               promptText="Current Club"/>
+    <TextField fx:id="clubTF" layoutX="60.0" layoutY="480.0" prefWidth="220" promptText="Current Club" />
 
 
-    <TextField fx:id="valueTF"
-               layoutX="350.0"
-               layoutY="480.0"
-               prefWidth="180"
-               promptText="Current Value"/>
+    <TextField fx:id="valueTF" layoutX="350.0" layoutY="480.0" prefWidth="180" promptText="Current Value" />
 
 
-    <Button layoutX="70.0"
-            layoutY="560.0"
-            prefWidth="120"
-            text="Add Player"
-            onAction="#addplayerOA"/>
+    <Button layoutX="70.0" layoutY="560.0" onAction="#addplayerOA" prefWidth="120" text="Add Player" />
 
 
-    <Button layoutX="240.0"
-            layoutY="560.0"
-            prefWidth="120"
-            text="Update Player"
-            onAction="#updateplayerOA"/>
+    <Button layoutX="240.0" layoutY="560.0" onAction="#updateplayerOA" prefWidth="120" text="Update Player" />
 
 
-    <Button layoutX="410.0"
-            layoutY="560.0"
-            prefWidth="120"
-            text="Delete Player"
-            onAction="#deleteplayerOA"/>
+    <Button layoutX="410.0" layoutY="560.0" onAction="#deleteplayerOA" prefWidth="120" text="Delete Player" />
 
 
-    <Button layoutX="580.0"
-            layoutY="560.0"
-            prefWidth="100"
-            text="Refresh"
-            onAction="#refreshOA"/>
+    <Button layoutX="580.0" layoutY="560.0" onAction="#refreshOA" prefWidth="100" text="Refresh" />
 
 
-    <Button layoutX="720.0"
-            layoutY="560.0"
-            prefWidth="100"
-            text="Save"
-            onAction="#saveOA"/>
+    <Button layoutX="720.0" layoutY="560.0" onAction="#saveOA" prefWidth="100" text="Save" />
+   <Button layoutX="433.0" layoutY="611.0" mnemonicParsing="false" onAction="#backOA" text="Back" />
 
 </AnchorPane>

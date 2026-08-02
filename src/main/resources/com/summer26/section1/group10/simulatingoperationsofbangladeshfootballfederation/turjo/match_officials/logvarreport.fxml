@@ -4,12 +4,14 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0"
+<AnchorPane prefHeight="900.0"
             prefWidth="900.0"
             xmlns="http://javafx.com/javafx/26"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -172,6 +174,50 @@
             prefWidth="120"
             text="Back"
             onAction="#backOA"/>
+
+
+
+    <!-- VAR Reports Table -->
+
+    <TableView fx:id="varReportsTable"
+               layoutX="70.0"
+               layoutY="630.0"
+               prefHeight="240.0"
+               prefWidth="760.0">
+
+        <columns>
+
+            <TableColumn fx:id="matchBetweenCol"
+                         text="Match"
+                         prefWidth="140"/>
+
+            <TableColumn fx:id="matchDayCol"
+                         text="Date"
+                         prefWidth="90"/>
+
+            <TableColumn fx:id="minuteCol"
+                         text="Minute"
+                         prefWidth="70"/>
+
+            <TableColumn fx:id="reviewTypeCol"
+                         text="Review Type"
+                         prefWidth="110"/>
+
+            <TableColumn fx:id="varDecisionCol"
+                         text="VAR Decision"
+                         prefWidth="110"/>
+
+            <TableColumn fx:id="playerNameCol"
+                         text="Player"
+                         prefWidth="100"/>
+
+            <TableColumn fx:id="finalDecisionCol"
+                         text="Final Decision"
+                         prefWidth="140"/>
+
+        </columns>
+
+    </TableView>
 
 
 </AnchorPane>
