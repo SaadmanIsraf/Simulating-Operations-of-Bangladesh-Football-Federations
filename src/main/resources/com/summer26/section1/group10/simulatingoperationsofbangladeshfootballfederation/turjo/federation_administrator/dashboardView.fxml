@@ -5,84 +5,33 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_dashboardviewController"
-            prefHeight="532.0"
-            prefWidth="750.0">
+<AnchorPane prefHeight="532.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_dashboardviewController">
 
     <children>
 
-        <Text layoutX="25.0" layoutY="40.0" text="Dashboard">
+        <Text fill="#0d7b4a" layoutX="200.0" layoutY="47.0" text="Federation AdministratorDashboard">
             <font>
-                <Font size="22.0"/>
+                <Font size="22.0" />
             </font>
         </Text>
 
-        <Button layoutX="28.0"
-                layoutY="110.0"
-                prefHeight="57.0"
-                prefWidth="161.0"
-                text="Manage Team Ranking"
-                onAction="#manageteamrankingOA"/>
+        <Button layoutX="28.0" layoutY="110.0" onAction="#manageteamrankingOA" prefHeight="57.0" prefWidth="161.0" text="Manage Team Ranking" />
 
-        <Button layoutX="203.0"
-                layoutY="110.0"
-                prefHeight="57.0"
-                prefWidth="161.0"
-                text="Manage Players"
-                onAction="#manageplayersOA"/>
+        <Button layoutX="203.0" layoutY="110.0" onAction="#manageplayersOA" prefHeight="57.0" prefWidth="161.0" text="Manage Players" />
 
-        <Button layoutX="378.0"
-                layoutY="110.0"
-                prefHeight="57.0"
-                prefWidth="161.0"
-                text="Manage Matches"
-                onAction="#managematchesOA"/>
+        <Button layoutX="378.0" layoutY="110.0" onAction="#managematchesOA" prefHeight="57.0" prefWidth="161.0" text="Manage Matches" />
 
-        <Button layoutX="553.0"
-                layoutY="110.0"
-                prefHeight="57.0"
-                prefWidth="161.0"
-                text="Publish Announcement"
-                onAction="#publishannounceOA"/>
+        <Button layoutX="553.0" layoutY="110.0" onAction="#publishannounceOA" prefHeight="57.0" prefWidth="161.0" text="Publish Announcement" />
 
-        <Button layoutX="28.0"
-                layoutY="190.0"
-                prefHeight="57.0"
-                prefWidth="161.0"
-                text="Post Live Match Updates"
-                onAction="#postliveupdatesOA"/>
+        <Button layoutX="28.0" layoutY="190.0" onAction="#postliveupdatesOA" prefHeight="57.0" prefWidth="161.0" text="Post Live Match Updates" />
 
-        <Button layoutX="203.0"
-                layoutY="190.0"
-                prefHeight="57.0"
-                prefWidth="161.0"
-                text="Upload Match Highlight"
-                onAction="#uploadmatchhighlightsOA"/>
+        <Button layoutX="203.0" layoutY="190.0" onAction="#uploadmatchhighlightsOA" prefHeight="57.0" prefWidth="161.0" text="Upload Match Highlight" />
 
-        <Button layoutX="378.0"
-                layoutY="190.0"
-                prefHeight="57.0"
-                prefWidth="161.0"
-                text="Manage User Account"
-                onAction="#manageuseraccountOA"/>
+        <Button layoutX="378.0" layoutY="190.0" onAction="#manageuseraccountOA" prefHeight="57.0" prefWidth="161.0" text="Manage User Account" />
 
-        <Button layoutX="553.0"
-                layoutY="190.0"
-                prefHeight="57.0"
-                prefWidth="161.0"
-                text="Approve Player Transfer"
-                onAction="#approveplayertransferOA"/>
+        <Button layoutX="553.0" layoutY="190.0" onAction="#approveplayertransferOA" prefHeight="57.0" prefWidth="161.0" text="Approve Player Transfer" />
 
-        <Button layoutX="295.0"
-                layoutY="435.0"
-                prefHeight="45.0"
-                prefWidth="160.0"
-                text="Logout"
-                textFill="WHITE"
-                style="-fx-background-color: #800000;"
-                onAction="#logoutOA"/>
+        <Button layoutX="295.0" layoutY="435.0" onAction="#logoutOA" prefHeight="45.0" prefWidth="160.0" style="-fx-background-color: #800000;" text="Logout" textFill="WHITE" />
 
     </children>
 

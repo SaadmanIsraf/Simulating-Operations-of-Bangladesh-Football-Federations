@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0"
-            prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_registerController">
+<AnchorPane prefHeight="750.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_registerController">
 
 
-    <Label layoutX="250.0"
-           layoutY="30.0"
-           text="Register as Match Official"
-           textFill="#133799">
+    <Label layoutX="250.0" layoutY="13.0" text="Register as Match Official" textFill="#133799">
 
         <font>
-            <Font size="26"/>
+            <Font size="26" />
         </font>
 
     </Label>
@@ -28,82 +23,73 @@
 
     <!-- Name -->
 
-    <Label layoutX="80.0"
-           layoutY="100.0"
-           text="Official Name"/>
+    <Label layoutX="80.0" layoutY="77.0" text="Official Name" />
 
-    <TextField fx:id="nameTF"
-               layoutX="80.0"
-               layoutY="125.0"
-               prefWidth="220"
-               promptText="Enter Name"/>
+    <TextField fx:id="nameTF" layoutX="80.0" layoutY="104.0" prefWidth="220" promptText="Enter Name" />
 
 
 
     <!-- License Number -->
 
-    <Label layoutX="400.0"
-           layoutY="100.0"
-           text="License Number"/>
+    <Label layoutX="400.0" layoutY="79.0" text="License Number" />
 
-    <TextField fx:id="licenseTF"
-               layoutX="400.0"
-               layoutY="125.0"
-               prefWidth="220"
-               promptText="Enter License No"/>
+    <TextField fx:id="licenseTF" layoutX="400.0" layoutY="104.0" prefWidth="220" promptText="Enter License No" />
 
 
 
     <!-- Experience -->
 
-    <Label layoutX="80.0"
-           layoutY="220.0"
-           text="Experience Level"/>
+    <Label layoutX="80.0" layoutY="220.0" text="Experience Level" />
 
-    <ComboBox fx:id="experienceCB"
-              layoutX="80.0"
-              layoutY="245.0"
-              prefWidth="220"
-              promptText="Select Experience"/>
+    <ComboBox fx:id="experienceCB" layoutX="80.0" layoutY="245.0" prefWidth="220" promptText="Select Experience" />
 
 
 
     <!-- Role -->
 
-    <Label layoutX="400.0"
-           layoutY="220.0"
-           text="Official Role"/>
+    <Label layoutX="400.0" layoutY="220.0" text="Official Role" />
 
-    <ComboBox fx:id="roleCB"
-              layoutX="400.0"
-              layoutY="245.0"
-              prefWidth="220"
-              promptText="Referee / Assistant"/>
+    <ComboBox fx:id="roleCB" layoutX="400.0" layoutY="245.0" prefWidth="220" promptText="Referee / Assistant" />
 
 
 
 
     <!-- Buttons -->
 
-    <Button layoutX="180.0"
-            layoutY="380.0"
-            prefWidth="150"
-            text="Register"
-            onAction="#registerOA"/>
+    <Button layoutX="180.0" layoutY="380.0" onAction="#registerOA" prefWidth="150" text="Register" />
 
 
-    <Button layoutX="400.0"
-            layoutY="380.0"
-            prefWidth="120"
-            text="Clear"
-            onAction="#clearOA"/>
+    <Button layoutX="400.0" layoutY="380.0" onAction="#clearOA" prefWidth="120" text="Clear" />
 
 
-    <Button layoutX="580.0"
-            layoutY="380.0"
-            prefWidth="120"
-            text="Back"
-            onAction="#backOA"/>
+    <Button layoutX="580.0" layoutY="380.0" onAction="#backOA" prefWidth="120" text="Back" />
+
+
+
+    <!-- Registered Officials Table -->
+
+    <TableView fx:id="officialsTable" layoutX="80.0" layoutY="440.0" prefHeight="260.0" prefWidth="620.0">
+
+        <columns>
+
+            <TableColumn fx:id="nameCol" prefWidth="160" text="Name" />
+
+            <TableColumn fx:id="licenseCol" prefWidth="150" text="License No" />
+
+            <TableColumn fx:id="experienceCol" prefWidth="150" text="Experience" />
+
+            <TableColumn fx:id="roleCol" prefWidth="150" text="Role" />
+
+        </columns>
+
+    </TableView>
+   <Label layoutX="82.0" layoutY="145.0" text="Create new password" />
+   <TextField fx:id="newPasswordTF" layoutX="82.0" layoutY="172.0" prefWidth="220" promptText="new pass" />
+   <Label layoutX="402.0" layoutY="147.0" text="Cofirm password" />
+   <TextField fx:id="ConfirmPasswordTF" layoutX="402.0" layoutY="172.0" prefWidth="220" promptText="confirm pass" />
+   <Label layoutX="86.0" layoutY="302.0" text="enter email address" />
+   <TextField fx:id="newEmailTF" layoutX="86.0" layoutY="329.0" prefWidth="220" promptText="email" />
+   <Label fx:id="messageLabel" alignment="CENTER" layoutX="328.0" layoutY="311.0" prefHeight="38.0" prefWidth="402.0" textFill="#bd00ff" />
 
 
 </AnchorPane>

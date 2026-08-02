@@ -1,223 +1,200 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class federation_administrator_publishannouncementController {
 
-
     @FXML
-    private TextField txtPlace;
-
+    private TableColumn<?, ?> titleCol;
+    @FXML
+    private TableView<?> announcementTable;
+    @FXML
+    private TableColumn<?, ?> matchTypeCol;
+    @FXML
+    private TableColumn<?, ?> venueCol;
     @FXML
     private TextField txtMatchTime;
-
     @FXML
     private ComboBox<String> cmbCompetition;
-
     @FXML
-    private TextField txtAnnouncementTitle;
-
+    private TableColumn<?, ?> matchCol;
     @FXML
     private TextArea txtAnnouncementDetails;
-
     @FXML
     private ComboBox<String> cmbMatch;
-
     @FXML
-    private DatePicker dpMatchDate;
-
-    @FXML
-    private ComboBox<String> cmbMatchType;
-
-    @FXML
-    private TextField txtSponsor;
-
+    private TableColumn<?, ?> competitionCol;
     @FXML
     private TextField txtVenue;
-
-
+    @FXML
+    private TableColumn<?, ?> dateCol;
+    @FXML
+    private TableColumn<?, ?> detailsCol;
+    @FXML
+    private TextField txtPlace;
+    @FXML
+    private TextField txtAnnouncementTitle;
+    @FXML
+    private DatePicker dpMatchDate;
+    @FXML
+    private ComboBox<String> cmbMatchType;
+    @FXML
+    private TextField txtSponsor;
+    @FXML
+    private TableColumn<?, ?> timeCol;
+    @FXML
+    private Label messageLabel;
 
     @FXML
     public void initialize() {
 
-
-        cmbCompetition.setItems(
-                FXCollections.observableArrayList(
-                        "Premier League",
-                        "Federation Cup",
-                        "National Championship"
-                )
+        cmbCompetition.getItems().addAll(
+                "Premier League",
+                "Federation Cup",
+                "Independence Cup"
         );
 
-
-        cmbMatch.setItems(
-                FXCollections.observableArrayList(
-                        "Abahani Limited vs Bashundhara Kings",
-                        "Mohammedan SC vs Sheikh Russel",
-                        "Abahani Limited vs Mohammedan SC" ,
-                                "Real Madrid VS Bayern Munchen"
-                )
+        cmbMatch.getItems().addAll(
+                "Match 101",
+                "Match 102",
+                "Match 103"
         );
 
-
-        cmbMatchType.setItems(
-                FXCollections.observableArrayList(
-                        "League Match",
-                        "Cup Match",
-                        "Friendly Match",
-                        "Final Match"
-                )
+        cmbMatchType.getItems().addAll(
+                "League",
+                "Friendly",
+                "Knockout",
+                "Final"
         );
-
     }
 
+    private boolean validateInput() {
 
+        if (txtAnnouncementTitle.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter announcement title.");
+            txtAnnouncementTitle.requestFocus();
+            return false;
+        }
 
+        if (cmbMatch.getValue() == null) {
+            messageLabel.setText("Select a match.");
+            cmbMatch.requestFocus();
+            return false;
+        }
+
+        if (cmbCompetition.getValue() == null) {
+            messageLabel.setText("Select a competition.");
+            cmbCompetition.requestFocus();
+            return false;
+        }
+
+        if (txtVenue.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter venue.");
+            txtVenue.requestFocus();
+            return false;
+        }
+
+        if (!txtVenue.getText().matches("[A-Za-z ]+")) {
+            messageLabel.setText("Venue must contain only letters.");
+            txtVenue.requestFocus();
+            return false;
+        }
+
+        if (txtSponsor.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter sponsor.");
+            txtSponsor.requestFocus();
+            return false;
+        }
+
+        if (!txtSponsor.getText().matches("[A-Za-z ]+")) {
+            messageLabel.setText("Sponsor must contain only letters.");
+            txtSponsor.requestFocus();
+            return false;
+        }
+
+        if (txtPlace.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter place.");
+            txtPlace.requestFocus();
+            return false;
+        }
+
+        if (!txtPlace.getText().matches("[A-Za-z ]+")) {
+            messageLabel.setText("Place must contain only letters.");
+            txtPlace.requestFocus();
+            return false;
+        }
+
+        if (dpMatchDate.getValue() == null) {
+            messageLabel.setText("Select match date.");
+            dpMatchDate.requestFocus();
+            return false;
+        }
+
+        if (txtMatchTime.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter match time.");
+            txtMatchTime.requestFocus();
+            return false;
+        }
+
+        if (cmbMatchType.getValue() == null) {
+            messageLabel.setText("Select match type.");
+            cmbMatchType.requestFocus();
+            return false;
+        }
+
+        if (txtAnnouncementDetails.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter announcement details.");
+            txtAnnouncementDetails.requestFocus();
+            return false;
+        }
+
+        messageLabel.setText("");
+        return true;
+    }
 
     @FXML
     public void publishAnnouncementOA(ActionEvent actionEvent) {
 
-
-        if(txtAnnouncementTitle.getText().isEmpty()
-                || txtAnnouncementDetails.getText().isEmpty()
-                || cmbCompetition.getValue() == null
-                || dpMatchDate.getValue() == null){
-
-
-            showAlert(
-                    "Error",
-                    "Please fill all announcement information"
-            );
-
+        if (!validateInput()) {
             return;
         }
 
-
-
-        String announcement =
-                "Title: "
-                        + txtAnnouncementTitle.getText()
-                        + "\nCompetition: "
-                        + cmbCompetition.getValue()
-                        + "\nMatch: "
-                        + cmbMatch.getValue()
-                        + "\nDate: "
-                        + dpMatchDate.getValue()
-                        + "\nVenue: "
-                        + txtVenue.getText()
-                        + "\nDetails: "
-                        + txtAnnouncementDetails.getText();
-
-
-
-        showAlert(
-                "Published",
-                announcement
-        );
-
+        messageLabel.setText("Announcement published successfully.");
     }
-
-
-
-
 
     @FXML
     public void updateAnnouncementOA(ActionEvent actionEvent) {
 
-
-        if(txtAnnouncementTitle.getText().isEmpty()){
-
-
-            showAlert(
-                    "Error",
-                    "Enter announcement title first"
-            );
-
+        if (!validateInput()) {
             return;
         }
 
-
-
-        showAlert(
-                "Updated",
-                "Announcement updated successfully"
-        );
-
+        messageLabel.setText("Announcement updated successfully.");
     }
-
-
-
-
 
     @FXML
     public void clearOA(ActionEvent actionEvent) {
 
-
-        txtPlace.clear();
-
-        txtMatchTime.clear();
-
         txtAnnouncementTitle.clear();
-
+        txtVenue.clear();
+        txtSponsor.clear();
+        txtPlace.clear();
+        txtMatchTime.clear();
         txtAnnouncementDetails.clear();
 
-        txtSponsor.clear();
-
-        txtVenue.clear();
-
-
-        cmbCompetition.setValue(null);
-
-        cmbMatch.setValue(null);
-
-        cmbMatchType.setValue(null);
-
+        cmbCompetition.getSelectionModel().clearSelection();
+        cmbMatch.getSelectionModel().clearSelection();
+        cmbMatchType.getSelectionModel().clearSelection();
 
         dpMatchDate.setValue(null);
 
+        messageLabel.setText("");
     }
-
-
-
-
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
 
-
-        clearOA(actionEvent);
-
-
-        showAlert(
-                "Back",
-                "Returning to previous page"
-        );
-
     }
-
-
-
-
-
-    private void showAlert(String title, String message){
-
-
-        Alert alert =
-                new Alert(Alert.AlertType.INFORMATION);
-
-
-        alert.setTitle(title);
-
-        alert.setHeaderText(null);
-
-        alert.setContentText(message);
-
-
-        alert.showAndWait();
-
-    }
-
 }
