@@ -1,37 +1,44 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficials;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.RecordFouls;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
 
 public class matchofficial_recordfoulscardsController {
 
     @FXML
     private TextField foulTypeTF;
     @FXML
-    private TableColumn<?, ?> eventTypeCol;
+    private TableColumn<RecordFouls, String> eventTypeCol;
     @FXML
-    private TableColumn<?, ?> cardTypeCol;
+    private TableColumn<RecordFouls, String> cardTypeCol;
     @FXML
-    private TableColumn<?, ?> minuteCol;
+    private TableColumn<RecordFouls, String> minuteCol;
     @FXML
-    private TableColumn<?, ?> matchCol;
+    private TableColumn<RecordFouls, String> matchCol;
     @FXML
     private TextField minuteTF;
     @FXML
     private ComboBox<String> eventTypeCB;
     @FXML
-    private TableView<?> foulsCardsTable;
+    private TableView<RecordFouls> foulsCardsTable;
     @FXML
     private ComboBox<String> cardTypeCB;
     @FXML
-    private TableColumn<?, ?> playerNameCol;
+    private TableColumn<RecordFouls, String> playerNameCol;
     @FXML
     private TextArea noteTA;
     @FXML
     private ComboBox<String> matchCB;
     @FXML
-    private TableColumn<?, ?> foulTypeCol;
+    private TableColumn<RecordFouls, String> foulTypeCol;
     @FXML
     private TextField playerNameTF;
     @FXML
@@ -40,20 +47,39 @@ public class matchofficial_recordfoulscardsController {
     @FXML
     public void initialize() {
 
+        cardTypeCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("cardType"));
+        foulTypeCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("foulType"));
+        matchCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("matchbetween"));
+        playerNameCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("playerName"));
+        minuteCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("minute"));
+        eventTypeCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("notes"));
+
+
+        ArrayList<Object> recordList = BinaryFileUtility.readObjects("RecordFouls.bin");
+        for (Object record : recordList) {
+            if(record instanceof RecordFouls recordsfoul) {
+                foulsCardsTable.getItems().add(recordsfoul);
+            }
+        }
+
+
+
+
         eventTypeCB.getItems().addAll(
                 "Foul",
                 "Yellow Card",
-                "Red Card"
+                "Goal"
         );
 
         cardTypeCB.getItems().addAll(
                 "No Card",
-                "Yellow",
+                "2nd Yellow",
                 "Red"
         );
 
         matchCB.getItems().addAll(
-                "Bangladesh vs India",
+                "Real Madrid VS Nepoli",
+                "Brazil VS Norway",
                 "Bangladesh vs Nepal",
                 "Bangladesh vs Maldives"
         );
@@ -133,6 +159,7 @@ public class matchofficial_recordfoulscardsController {
         return true;
     }
 
+
     @FXML
     public void saveRecordOA(ActionEvent actionEvent) {
 
@@ -140,7 +167,10 @@ public class matchofficial_recordfoulscardsController {
             return;
         }
 
-        messageLabel.setText("Foul/Card record saved successfully.");
+        RecordFouls recordFouls = new RecordFouls(matchCB.getValue(),playerNameTF.getText(),minuteTF.getText(),eventTypeCB.getValue(),cardTypeCB.getValue(),foulTypeTF.getText(),noteTA.getText());
+        foulsCardsTable.getItems().add(recordFouls);
+        BinaryFileUtility.writeObjects("RecordFouls.bin", recordFouls);
+        messageLabel.setText("Official registered successfully.");
     }
 
     @FXML
@@ -160,6 +190,7 @@ public class matchofficial_recordfoulscardsController {
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
 
     }
 }

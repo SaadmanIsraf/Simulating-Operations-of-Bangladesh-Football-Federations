@@ -85,6 +85,13 @@
               promptText="Foul / Card"/>
 
 
+    <Label fx:id="messageLabel"
+           layoutX="40.0"
+           layoutY="520.0"
+           prefWidth="400.0"
+           textFill="red"/>
+
+
 
 
     <!-- Card Type -->
@@ -194,6 +201,7 @@
         </columns>
 
     </TableView>
+
 
 
 </AnchorPane>
