@@ -132,12 +132,7 @@
 
 
 
-    <Label fx:id="messageLabel"
-           layoutX="270.0"
-           layoutY="685.0"
-           prefWidth="500.0"
-           textFill="#7f804e"
-    />
+    <Label fx:id="messageLabel" layoutX="270.0" layoutY="685.0" prefWidth="500.0" textFill="#7f804e" />
 
 
     <!-- Buttons -->

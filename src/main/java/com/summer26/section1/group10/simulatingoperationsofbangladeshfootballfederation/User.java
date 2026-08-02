@@ -1,6 +1,8 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation;
 
-public abstract class User {
+import java.io.Serializable;
+
+public abstract class User implements Serializable {
     protected final int id;
     protected String name;
     protected String email;

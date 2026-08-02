@@ -2,7 +2,9 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
 
-public class MatchOfficials extends User {
+import java.io.Serializable;
+
+public class MatchOfficials extends User implements Serializable {
     private final int licenseNumber;
     private String exprerienceLevel;
     private String matchOfficeRole;
