@@ -1,7 +1,7 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation;
 
 public abstract class User {
-    protected int id;
+    protected final int id;
     protected String name;
     protected String email;
     protected String password;
@@ -33,10 +33,6 @@ public abstract class User {
 
     public String getRole() {
         return role;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public void setName(String name) {

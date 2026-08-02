@@ -1,118 +1,116 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class matchofficial_registerController {
 
     @FXML
+    private TableColumn<?, ?> licenseCol;
+    @FXML
     private TextField nameTF;
-
     @FXML
     private ComboBox<String> roleCB;
-
     @FXML
     private TextField licenseTF;
-
+    @FXML
+    private TableColumn<?, ?> experienceCol;
+    @FXML
+    private TableColumn<?, ?> nameCol;
+    @FXML
+    private TableColumn<?, ?> roleCol;
     @FXML
     private ComboBox<String> experienceCB;
+    @FXML
+    private TableView<?> officialsTable;
+    @FXML
+    private Label messageLabel;
 
     @FXML
     public void initialize() {
 
-        roleCB.setItems(
-                FXCollections.observableArrayList(
-                        "Referee",
-                        "Assistant Referee",
-                        "Fourth Official",
-                        "VAR Official"
-                )
+        roleCB.getItems().addAll(
+                "Referee",
+                "Assistant Referee",
+                "Fourth Official",
+                "VAR Official"
         );
 
-        experienceCB.setItems(
-                FXCollections.observableArrayList(
-                        "0-2 Years",
-                        "3-5 Years",
-                        "6-10 Years",
-                        "10+ Years"
-                )
+        experienceCB.getItems().addAll(
+                "1-2 Years",
+                "3-5 Years",
+                "6-10 Years",
+                "10+ Years"
         );
+    }
 
-        roleCB.setValue("Referee");
-        experienceCB.setValue("0-2 Years");
+    private boolean validateInput() {
+
+        if (nameTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Name cannot be empty.");
+            nameTF.requestFocus();
+            return false;
+        }
+
+        if (!nameTF.getText().matches("[A-Za-z ]+")) {
+            messageLabel.setText("Name can contain only letters.");
+            nameTF.requestFocus();
+            return false;
+        }
+
+        if (roleCB.getValue() == null) {
+            messageLabel.setText("Select a role.");
+            roleCB.requestFocus();
+            return false;
+        }
+
+        if (licenseTF.getText().trim().isEmpty()) {
+            messageLabel.setText("License number cannot be empty.");
+            licenseTF.requestFocus();
+            return false;
+        }
+
+        if (!licenseTF.getText().matches("[A-Za-z0-9-]+")) {
+            messageLabel.setText("Invalid license number.");
+            licenseTF.requestFocus();
+            return false;
+        }
+
+        if (experienceCB.getValue() == null) {
+            messageLabel.setText("Select experience.");
+            experienceCB.requestFocus();
+            return false;
+        }
+
+        messageLabel.setText("");
+        return true;
     }
 
     @FXML
     public void registerOA(ActionEvent actionEvent) {
 
-        if (nameTF.getText().isEmpty()
-                || licenseTF.getText().isEmpty()
-                || roleCB.getValue() == null
-                || experienceCB.getValue() == null) {
-
-            showAlert(
-                    "Error",
-                    "Please fill in all registration details."
-            );
-
+        if (!validateInput()) {
             return;
         }
 
-        String registration =
-                "Name: " + nameTF.getText()
-                        + "\nRole: " + roleCB.getValue()
-                        + "\nLicense No: " + licenseTF.getText()
-                        + "\nExperience: " + experienceCB.getValue();
-
-        showAlert(
-                "Registration Successful",
-                registration
-        );
+        messageLabel.setText("Official registered successfully.");
     }
 
     @FXML
     public void clearOA(ActionEvent actionEvent) {
 
-        clearFields();
+        nameTF.clear();
+        licenseTF.clear();
 
-        showAlert(
-                "Cleared",
-                "All fields have been cleared."
-        );
+        roleCB.getSelectionModel().clearSelection();
+        experienceCB.getSelectionModel().clearSelection();
+
+        messageLabel.setText("");
     }
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
 
-        clearFields();
-
-        showAlert(
-                "Back",
-                "Returning to previous page."
-        );
-    }
-
-    private void clearFields() {
-
-        nameTF.clear();
-        licenseTF.clear();
-
-        roleCB.setValue("Referee");
-        experienceCB.setValue("0-2 Years");
-    }
-
-    private void showAlert(String title, String message) {
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        alert.showAndWait();
     }
 }

@@ -1,307 +1,183 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 
 public class federation_administrator_manageteamrankingController {
 
-
     @FXML
-    private TableColumn<ObservableList<String>, String> rankingtableviewlossescol;
-
+    private TableColumn<?, ?> rankingtableviewlossescol;
     @FXML
-    private TableView<ObservableList<String>> rankingtableview;
-
+    private TableView<?> rankingtableview;
     @FXML
     private TextField teamnameTF;
-
     @FXML
     private TextField winsTF;
-
     @FXML
-    private TableColumn<ObservableList<String>, String> rankingtableviewteamnamecol;
-
+    private TableColumn<?, ?> rankingtableviewteamnamecol;
     @FXML
     private TextField rankTF;
-
     @FXML
     private TextField drawTF;
-
     @FXML
-    private TableColumn<ObservableList<String>, String> rankingtableviewpointscol;
-
+    private TableColumn<?, ?> rankingtableviewpointscol;
     @FXML
     private TextField lossesTF;
-
     @FXML
-    private TableColumn<ObservableList<String>, String> rankingtableviewwinscol;
-
+    private TableColumn<?, ?> rankingtableviewwinscol;
     @FXML
-    private TableColumn<ObservableList<String>, String> rankingtableviewdrawcol;
-
+    private TableColumn<?, ?> rankingtableviewdrawcol;
     @FXML
     private TextField poitsTF;
-
     @FXML
-    private TableColumn<ObservableList<String>, String> rankingtableviewrankcol;
-
-
-
-    private ObservableList<ObservableList<String>> rankingList =
-            FXCollections.observableArrayList();
-
-
+    private TableColumn<?, ?> rankingtableviewrankcol;
+    @FXML
+    private Label messageLabel;
 
     @FXML
     public void initialize() {
 
-
-        rankingtableviewrankcol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(0)
-                ));
-
-
-        rankingtableviewteamnamecol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(1)
-                ));
-
-
-        rankingtableviewwinscol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(2)
-                ));
-
-
-        rankingtableviewdrawcol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(3)
-                ));
-
-
-        rankingtableviewlossescol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(4)
-                ));
-
-
-        rankingtableviewpointscol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(5)
-                ));
-
-
-        rankingtableview.setItems(rankingList);
-
     }
 
+    private boolean validateInput() {
 
+        if (teamnameTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter team name.");
+            teamnameTF.requestFocus();
+            return false;
+        }
 
+        if (!teamnameTF.getText().matches("[A-Za-z ]+")) {
+            messageLabel.setText("Team name must contain only letters.");
+            teamnameTF.requestFocus();
+            return false;
+        }
+
+        if (rankTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter rank.");
+            rankTF.requestFocus();
+            return false;
+        }
+
+        if (!rankTF.getText().matches("\\d+")) {
+            messageLabel.setText("Rank must contain only numbers.");
+            rankTF.requestFocus();
+            return false;
+        }
+
+        if (winsTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter wins.");
+            winsTF.requestFocus();
+            return false;
+        }
+
+        if (!winsTF.getText().matches("\\d+")) {
+            messageLabel.setText("Wins must contain only numbers.");
+            winsTF.requestFocus();
+            return false;
+        }
+
+        if (drawTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter draws.");
+            drawTF.requestFocus();
+            return false;
+        }
+
+        if (!drawTF.getText().matches("\\d+")) {
+            messageLabel.setText("Draws must contain only numbers.");
+            drawTF.requestFocus();
+            return false;
+        }
+
+        if (lossesTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter losses.");
+            lossesTF.requestFocus();
+            return false;
+        }
+
+        if (!lossesTF.getText().matches("\\d+")) {
+            messageLabel.setText("Losses must contain only numbers.");
+            lossesTF.requestFocus();
+            return false;
+        }
+
+        if (poitsTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter points.");
+            poitsTF.requestFocus();
+            return false;
+        }
+
+        if (!poitsTF.getText().matches("\\d+")) {
+            messageLabel.setText("Points must contain only numbers.");
+            poitsTF.requestFocus();
+            return false;
+        }
+
+        messageLabel.setText("");
+        return true;
+    }
 
     @FXML
     public void addteamrankOA(ActionEvent actionEvent) {
 
-
-        if(rankTF.getText().isEmpty()
-                || teamnameTF.getText().isEmpty()
-                || winsTF.getText().isEmpty()
-                || drawTF.getText().isEmpty()
-                || lossesTF.getText().isEmpty()
-                || poitsTF.getText().isEmpty()){
-
-
-            showAlert(
-                    "Error",
-                    "Please fill all team ranking information"
-            );
-
+        if (!validateInput()) {
             return;
         }
 
-
-
-        ObservableList<String> team =
-                FXCollections.observableArrayList();
-
-
-
-        team.add(rankTF.getText());
-
-        team.add(teamnameTF.getText());
-
-        team.add(winsTF.getText());
-
-        team.add(drawTF.getText());
-
-        team.add(lossesTF.getText());
-
-        team.add(poitsTF.getText());
-
-
-
-        rankingList.add(team);
-
-
-        rankingtableview.refresh();
-
-
-
-        showAlert(
-                "Success",
-                "Team Ranking Added Successfully"
-        );
-
+        messageLabel.setText("Team ranking added successfully.");
     }
-
-
-
-
 
     @FXML
     public void updaterankOA(ActionEvent actionEvent) {
 
-
-        ObservableList<String> selected =
-                rankingtableview.getSelectionModel()
-                        .getSelectedItem();
-
-
-
-        if(selected == null){
-
-
-            showAlert(
-                    "Error",
-                    "Select a team first"
-            );
-
+        if (!validateInput()) {
             return;
         }
 
-
-
-        selected.set(0, rankTF.getText());
-
-        selected.set(1, teamnameTF.getText());
-
-        selected.set(2, winsTF.getText());
-
-        selected.set(3, drawTF.getText());
-
-        selected.set(4, lossesTF.getText());
-
-        selected.set(5, poitsTF.getText());
-
-
-
-        rankingtableview.refresh();
-
-
-
-        showAlert(
-                "Updated",
-                "Team Ranking Updated Successfully"
-        );
-
+        messageLabel.setText("Team ranking updated successfully.");
     }
-
-
-
-
-
-    @FXML
-    public void deleteteamOA(ActionEvent actionEvent) {
-
-
-        ObservableList<String> selected =
-                rankingtableview.getSelectionModel()
-                        .getSelectedItem();
-
-
-
-        if(selected == null){
-
-
-            showAlert(
-                    "Error",
-                    "Select a team first"
-            );
-
-            return;
-        }
-
-
-
-        rankingList.remove(selected);
-
-
-
-        showAlert(
-                "Deleted",
-                "Team Removed Successfully"
-        );
-
-    }
-
-
-
-
-
-    @FXML
-    public void refreshOA(ActionEvent actionEvent) {
-
-
-        rankingtableview.refresh();
-
-
-
-        showAlert(
-                "Refresh",
-                "Ranking Table Refreshed"
-        );
-
-    }
-
-
-
-
 
     @FXML
     public void saveOA(ActionEvent actionEvent) {
 
+        if (!validateInput()) {
+            return;
+        }
 
-        showAlert(
-                "Saved",
-                "Team Ranking Saved Successfully"
-        );
-
+        messageLabel.setText("Team ranking saved successfully.");
     }
 
+    @FXML
+    public void deleteteamOA(ActionEvent actionEvent) {
 
+        if (teamnameTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Enter team name to delete.");
+            teamnameTF.requestFocus();
+            return;
+        }
 
-
-
-    private void showAlert(String title, String message){
-
-
-        Alert alert =
-                new Alert(Alert.AlertType.INFORMATION);
-
-
-        alert.setTitle(title);
-
-        alert.setHeaderText(null);
-
-        alert.setContentText(message);
-
-
-        alert.showAndWait();
-
+        messageLabel.setText("Team deleted successfully.");
     }
 
+    @FXML
+    public void refreshOA(ActionEvent actionEvent) {
+
+        teamnameTF.clear();
+        rankTF.clear();
+        winsTF.clear();
+        drawTF.clear();
+        lossesTF.clear();
+        poitsTF.clear();
+
+        messageLabel.setText("Form refreshed.");
+    }
+
+    @FXML
+    public void backOA(ActionEvent actionEvent) {
+
+    }
 }

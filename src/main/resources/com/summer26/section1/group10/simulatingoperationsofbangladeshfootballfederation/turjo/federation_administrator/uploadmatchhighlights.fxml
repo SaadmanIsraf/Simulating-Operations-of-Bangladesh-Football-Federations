@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_uploadmatchhighlightsController">
+<AnchorPane prefHeight="900.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_highlightsController">
 
 
     <!-- Title -->
@@ -84,6 +84,13 @@
     <Label layoutX="520.0" layoutY="340.0" text="Description" />
 
     <TextArea fx:id="txtDescription" layoutX="520.0" layoutY="365.0" prefHeight="100" prefWidth="380" />
+
+
+    <Label fx:id="messageLabel"
+           layoutX="50.0"
+           layoutY="620.0"
+           prefWidth="500.0"
+           textFill="red"/>
 
 
 

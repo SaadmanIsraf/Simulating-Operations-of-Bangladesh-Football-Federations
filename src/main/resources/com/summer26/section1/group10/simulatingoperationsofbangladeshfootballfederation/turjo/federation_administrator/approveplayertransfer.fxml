@@ -8,7 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_approveplayertransferController">
+<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_approveplayertransferController">
 
 
     <Label layoutX="240.0" layoutY="30.0" style="-fx-font-size:22px; -fx-font-weight:bold;" text="Approve Player Transfer" textFill="#9e7c25" />
@@ -34,14 +34,11 @@
     <ComboBox fx:id="decisionCB" layoutX="350.0" layoutY="215.0" prefWidth="200" promptText="Select" />
 
 
-    <Button layoutX="67.0" layoutY="333.0" onAction="#verifyTransferOA" prefWidth="120" text="Verify" />
+    <Button layoutX="74.0" layoutY="337.0" onAction="#saveOA" prefWidth="120" text="Save" />
 
 
-    <Button layoutX="200.0" layoutY="333.0" onAction="#saveOA" prefWidth="120" text="Save" />
-
-
-    <Button layoutX="507.0" layoutY="333.0" onAction="#clearOA" prefWidth="100" text="Clear" textFill="#991d1d" />
-    <Button layoutX="350.0" layoutY="333.0" onAction="#backOA" prefWidth="120" text="Back" />
+    <Button layoutX="457.0" layoutY="337.0" onAction="#clearOA" prefWidth="100" text="Clear" textFill="#991d1d" />
+    <Button layoutX="276.0" layoutY="337.0" onAction="#backOA" prefWidth="120" text="Back" />
 
 
     <!-- Table -->
