@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="762.0" prefWidth="962.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.injury_report_and_fitness_status_controller">
    <top>
       <HBox alignment="CENTER" prefHeight="56.0" prefWidth="600.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
@@ -41,7 +40,7 @@
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="166.0" layoutY="106.0" onAction="#injury_type_combobox_on_action" prefHeight="26.0" prefWidth="168.0" />
+                  <ComboBox fx:id="injury_type_combobox" layoutX="166.0" layoutY="106.0" onAction="#injury_type_combobox_on_action" prefHeight="26.0" prefWidth="168.0" />
                   <DatePicker fx:id="injury_date_datepicker" layoutX="163.0" layoutY="154.0" />
                   <Label layoutX="42.0" layoutY="159.0" text="Injury Date :">
                      <font>
@@ -53,19 +52,19 @@
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="208.0" layoutY="198.0" onAction="#affected_body_part_combobox_on_action" prefHeight="26.0" prefWidth="168.0" />
+                  <ComboBox fx:id="affected_body_part_combobox" layoutX="208.0" layoutY="198.0" onAction="#affected_body_part_combobox_on_action" prefHeight="26.0" prefWidth="168.0" />
                   <Label layoutX="567.0" layoutY="72.0" text="Severity :">
                      <font>
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="635.0" layoutY="67.0" onAction="#Severity_combobox_on_action" prefHeight="26.0" prefWidth="168.0" />
+                  <ComboBox fx:id="severity_combobox" layoutX="635.0" layoutY="67.0" onAction="#Severity_combobox_on_action" prefHeight="26.0" prefWidth="168.0" />
                   <Label layoutX="567.0" layoutY="116.0" text="Initial Fitness Status :">
                      <font>
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="707.0" layoutY="112.0" onAction="#initial_fitness_status_combobox_on_action" prefHeight="26.0" prefWidth="168.0" />
+                  <ComboBox fx:id="initial_fitness_status_combobox" layoutX="707.0" layoutY="112.0" onAction="#initial_fitness_status_combobox_on_action" prefHeight="26.0" prefWidth="168.0" />
                   <TextField fx:id="additional_notes_textfield" layoutX="567.0" layoutY="189.0" prefHeight="94.0" prefWidth="303.0" />
                   <Label layoutX="567.0" layoutY="157.0" text="Additional Notes:">
                      <font>

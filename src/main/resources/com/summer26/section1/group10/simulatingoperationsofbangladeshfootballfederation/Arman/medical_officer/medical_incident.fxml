@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="601.0" prefWidth="863.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.medical_incident_controller">
    <top>
       <HBox alignment="CENTER" prefHeight="71.0" prefWidth="600.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
@@ -47,19 +46,19 @@
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="175.0" layoutY="129.0" onAction="#incident_type_combobox_on_action" prefHeight="26.0" prefWidth="161.0" />
+                  <ComboBox fx:id="incident_type_combobox" layoutX="175.0" layoutY="129.0" onAction="#incident_type_combobox_on_action" prefHeight="26.0" prefWidth="161.0" />
                   <Label layoutX="70.0" layoutY="175.0" text="Severity :">
                      <font>
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="149.0" layoutY="170.0" onAction="#severity_combobox_on_action" prefHeight="26.0" prefWidth="161.0" />
+                  <ComboBox fx:id="severity_combobox" layoutX="149.0" layoutY="170.0" onAction="#severity_combobox_on_action" prefHeight="26.0" prefWidth="161.0" />
                   <Label layoutX="71.0" layoutY="220.0" text="Action Taken :">
                      <font>
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="168.0" layoutY="215.0" onAction="#action_taken_on_action" prefHeight="26.0" prefWidth="161.0" />
+                  <ComboBox fx:id="action_taken_combobox" layoutX="168.0" layoutY="215.0" onAction="#action_taken_on_action" prefHeight="26.0" prefWidth="161.0" />
                   <Button layoutX="381.0" layoutY="215.0" mnemonicParsing="false" onAction="#submit_button_on_action" prefHeight="26.0" prefWidth="64.0" text="Submit" />
                   <TableView fx:id="medical_incident_tableview" layoutX="63.0" layoutY="272.0" prefHeight="200.0" prefWidth="730.0">
                     <columns>

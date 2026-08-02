@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.player_medically_fit_or_banned_controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.player_medical_status_controller">
    <top>
       <HBox alignment="CENTER" prefHeight="69.0" prefWidth="600.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
          <children>
@@ -46,7 +46,7 @@
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="104.0" layoutY="162.0" onAction="#gameplay_declaration_combobox_on_action" prefWidth="150.0" />
+                  <ComboBox fx:id="gameplay_declaration_combobox" layoutX="104.0" layoutY="162.0" onAction="#gameplay_declaration_combobox_on_action" prefWidth="150.0" />
                   <Button layoutX="332.0" layoutY="161.0" mnemonicParsing="false" onAction="#save_button_on_action" prefHeight="26.0" prefWidth="59.0" text="Save" />
                   <TableView fx:id="player_medical_fitness_tableview" layoutX="104.0" layoutY="216.0" prefHeight="200.0" prefWidth="588.0">
                     <columns>

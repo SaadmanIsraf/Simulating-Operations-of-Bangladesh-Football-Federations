@@ -1,6 +1,13 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation;
 
-public abstract class User {
+import java.io.Serial;
+import java.io.Serializable;
+
+public abstract class User implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     protected int id;
     protected String name;
     protected String email;
@@ -65,8 +72,6 @@ public abstract class User {
                 ", role='" + role + '\'' +
                 '}';
     }
-
-    //getter getter to string
 
     public final boolean checkPassword(String password) {
         return password.equals(this.password);
