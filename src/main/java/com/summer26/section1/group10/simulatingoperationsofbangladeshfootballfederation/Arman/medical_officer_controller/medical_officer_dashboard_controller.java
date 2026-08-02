@@ -12,7 +12,7 @@ public class medical_officer_dashboard_controller
 
     @javafx.fxml.FXML
     public void injury_report_and_fitness_status_button_on_action(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("Arman/medical_officer/injury_report_and_fitness_status.fxml");
+        SceneSwitcher.switchTo("Arman/medical_officer/injury_report.fxml");
     }
 
     @javafx.fxml.FXML

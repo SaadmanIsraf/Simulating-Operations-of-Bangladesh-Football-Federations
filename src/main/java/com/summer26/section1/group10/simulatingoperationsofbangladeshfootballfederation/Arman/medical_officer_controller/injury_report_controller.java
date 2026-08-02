@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class injury_report_and_fitness_status_controller
+public class injury_report_controller
 {
     @javafx.fxml.FXML
     private TableColumn<InjuryReport, Integer> player_id_column;
