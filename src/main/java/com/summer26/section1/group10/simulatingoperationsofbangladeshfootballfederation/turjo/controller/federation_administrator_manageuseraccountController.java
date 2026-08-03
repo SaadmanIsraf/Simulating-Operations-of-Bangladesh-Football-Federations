@@ -1,34 +1,53 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.UserAccount;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
 
 public class federation_administrator_manageuseraccountController {
 
     @FXML
-    private TableColumn<?, ?> usernameCol;
+    private TableColumn<UserAccount, String> usernameCol;
     @FXML
     private TextField usernameTF;
     @FXML
     private ComboBox<String> roleCB;
     @FXML
-    private TableColumn<?, ?> statusCol;
+    private TableColumn<UserAccount, String> statusCol;
     @FXML
     private ComboBox<String> permissionCB;
     @FXML
-    private TableColumn<?, ?> permissionCol;
+    private TableColumn<UserAccount, String> permissionCol;
     @FXML
     private ComboBox<String> statusCB;
     @FXML
-    private TableView<?> userTable;
+    private TableView<UserAccount> userTable;
     @FXML
-    private TableColumn<?, ?> roleCol;
+    private TableColumn<UserAccount, String> roleCol;
     @FXML
     private Label messageLabel;
 
     @FXML
     public void initialize() {
+
+        usernameCol.setCellValueFactory(new PropertyValueFactory<UserAccount, String>("name"));
+        roleCol.setCellValueFactory(new PropertyValueFactory<UserAccount, String>("role"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<UserAccount, String>("status"));
+        permissionCol.setCellValueFactory(new PropertyValueFactory<UserAccount, String>("permission"));
+
+        ArrayList<Object> userList = BinaryFileUtility.readObjects("UserAccounts.bin");
+        for (Object record : userList) {
+            if (record instanceof UserAccount userAccount) {
+                userTable.getItems().add(userAccount);
+            }
+        }
 
         roleCB.getItems().addAll(
                 "Administrator",
@@ -46,6 +65,15 @@ public class federation_administrator_manageuseraccountController {
                 "Admin",
                 "User"
         );
+
+        userTable.getSelectionModel().selectedItemProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                usernameTF.setText(newVal.getName());
+                roleCB.setValue(newVal.getRole());
+                statusCB.setValue(newVal.getStatus());
+                permissionCB.setValue(newVal.getPermission());
+            }
+        });
     }
 
     private boolean validateInput() {
@@ -87,11 +115,49 @@ public class federation_administrator_manageuseraccountController {
     }
 
     @FXML
+    public void addUserOA(ActionEvent actionEvent) {
+
+        if (!validateInput()) {
+            return;
+        }
+
+        int newId = (int) System.currentTimeMillis();
+
+        UserAccount userAccount = new UserAccount(
+                newId,
+                usernameTF.getText(),
+                "changeme123",
+                roleCB.getValue(),
+                statusCB.getValue(),
+                permissionCB.getValue());
+
+        userTable.getItems().add(userAccount);
+        BinaryFileUtility.writeObjects("UserAccounts.bin", userAccount);
+
+        messageLabel.setText("User added successfully.");
+    }
+
+    @FXML
     public void updateUserOA(ActionEvent actionEvent) {
 
         if (!validateInput()) {
             return;
         }
+
+        UserAccount selected = userTable.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            messageLabel.setText("Please select a user to update.");
+            return;
+        }
+
+        selected.setName(usernameTF.getText());
+        selected.setRole(roleCB.getValue());
+        selected.setStatus(statusCB.getValue());
+        selected.setPermission(permissionCB.getValue());
+
+        selected.updateUser();
+        userTable.refresh();
 
         messageLabel.setText("User updated successfully.");
     }
@@ -105,7 +171,18 @@ public class federation_administrator_manageuseraccountController {
             return;
         }
 
+        UserAccount selected = userTable.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            messageLabel.setText("Please select a user to block.");
+            return;
+        }
+
+        selected.setStatus("Blocked");
         statusCB.setValue("Blocked");
+        selected.updateUser();
+        userTable.refresh();
+
         messageLabel.setText("User blocked successfully.");
     }
 
@@ -118,7 +195,18 @@ public class federation_administrator_manageuseraccountController {
             return;
         }
 
+        UserAccount selected = userTable.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            messageLabel.setText("Please select a user to activate.");
+            return;
+        }
+
+        selected.setStatus("Active");
         statusCB.setValue("Active");
+        selected.updateUser();
+        userTable.refresh();
+
         messageLabel.setText("User activated successfully.");
     }
 
@@ -136,6 +224,6 @@ public class federation_administrator_manageuseraccountController {
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
-
+        SceneSwitcher.switchTo("turjo/federation_administrator/dashboardView.fxml");
     }
 }

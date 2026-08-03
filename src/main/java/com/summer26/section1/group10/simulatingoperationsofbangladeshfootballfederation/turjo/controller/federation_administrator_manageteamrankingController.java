@@ -1,46 +1,66 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.TeamRanking;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
 
 public class federation_administrator_manageteamrankingController {
 
     @FXML
-    private TableColumn<?, ?> rankingtableviewlossescol;
+    private TableColumn<TeamRanking, String> rankingtableviewlossescol;
     @FXML
-    private TableView<?> rankingtableview;
+    private TableView<TeamRanking> rankingtableview;
     @FXML
     private TextField teamnameTF;
     @FXML
     private TextField winsTF;
     @FXML
-    private TableColumn<?, ?> rankingtableviewteamnamecol;
+    private TableColumn<TeamRanking, String> rankingtableviewteamnamecol;
     @FXML
     private TextField rankTF;
     @FXML
     private TextField drawTF;
     @FXML
-    private TableColumn<?, ?> rankingtableviewpointscol;
+    private TableColumn<TeamRanking, String> rankingtableviewpointscol;
     @FXML
     private TextField lossesTF;
     @FXML
-    private TableColumn<?, ?> rankingtableviewwinscol;
+    private TableColumn<TeamRanking, String> rankingtableviewwinscol;
     @FXML
-    private TableColumn<?, ?> rankingtableviewdrawcol;
+    private TableColumn<TeamRanking, String> rankingtableviewdrawcol;
     @FXML
     private TextField poitsTF;
     @FXML
-    private TableColumn<?, ?> rankingtableviewrankcol;
+    private TableColumn<TeamRanking, String> rankingtableviewrankcol;
     @FXML
     private Label messageLabel;
 
     @FXML
     public void initialize() {
 
+        rankingtableviewrankcol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("rank"));
+        rankingtableviewteamnamecol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("teamname"));
+        rankingtableviewwinscol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("wins"));
+        rankingtableviewdrawcol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("draw"));
+        rankingtableviewlossescol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("losses"));
+        rankingtableviewpointscol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("points"));
+
+        ArrayList<Object> rankingList = BinaryFileUtility.readObjects("Teamrankings.bin");
+        for (Object record : rankingList) {
+            if (record instanceof TeamRanking teamranking) {
+                rankingtableview.getItems().add(teamranking);
+            }
+        }
     }
 
     private boolean validateInput() {
@@ -128,6 +148,17 @@ public class federation_administrator_manageteamrankingController {
             return;
         }
 
+        TeamRanking teamranking = new TeamRanking(
+                rankTF.getText(),
+                teamnameTF.getText(),
+                winsTF.getText(),
+                drawTF.getText(),
+                lossesTF.getText(),
+                poitsTF.getText());
+
+        rankingtableview.getItems().add(teamranking);
+        BinaryFileUtility.writeObjects("Teamrankings.bin", teamranking);
+
         messageLabel.setText("Team ranking added successfully.");
     }
 
@@ -137,6 +168,22 @@ public class federation_administrator_manageteamrankingController {
         if (!validateInput()) {
             return;
         }
+
+        TeamRanking selected = rankingtableview.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            messageLabel.setText("Please select a team to update.");
+            return;
+        }
+
+        selected.setRank(rankTF.getText());
+        selected.setTeamname(teamnameTF.getText());
+        selected.setWins(winsTF.getText());
+        selected.setDraw(drawTF.getText());
+        selected.setLosses(lossesTF.getText());
+        selected.setPoints(poitsTF.getText());
+
+        rankingtableview.refresh();
 
         messageLabel.setText("Team ranking updated successfully.");
     }
@@ -160,6 +207,15 @@ public class federation_administrator_manageteamrankingController {
             return;
         }
 
+        TeamRanking selected = rankingtableview.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            messageLabel.setText("Please select a team to delete.");
+            return;
+        }
+
+        rankingtableview.getItems().remove(selected);
+
         messageLabel.setText("Team deleted successfully.");
     }
 
@@ -178,6 +234,6 @@ public class federation_administrator_manageteamrankingController {
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
-
+        SceneSwitcher.switchTo("turjo/federation_administrator/dashboardView.fxml");
     }
 }

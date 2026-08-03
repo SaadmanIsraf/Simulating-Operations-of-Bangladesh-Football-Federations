@@ -6,8 +6,8 @@ public class federation_administrator extends User {
     //field
 
 
-    public federation_administrator(int id, String name, String email, String password, String role) {
-        super(id, name, email, password, role);
+    public federation_administrator(int id, String name, String password, String role) {
+        super(id, name, password, role);
     }
 
     //absract

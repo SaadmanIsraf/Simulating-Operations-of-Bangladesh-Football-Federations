@@ -1,17 +1,24 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.Liveupdates;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
 
 public class federation_administrator_postliveupdatesController {
 
     @FXML
     private ComboBox<String> cmbMatchStatus;
     @FXML
-    private TableView<?> updatesTable;
+    private TableView<Liveupdates> updatesTable;
     @FXML
-    private TableColumn<?, ?> scoreCol;
+    private TableColumn<Liveupdates, String> scoreCol;
     @FXML
     private TextField txtCardPlayer;
     @FXML
@@ -21,29 +28,29 @@ public class federation_administrator_postliveupdatesController {
     @FXML
     private TextField txtSubstitution;
     @FXML
-    private TableColumn<?, ?> commentaryCol;
+    private TableColumn<Liveupdates, String> commentaryCol;
     @FXML
-    private TableColumn<?, ?> minuteCol;
+    private TableColumn<Liveupdates, String> minuteCol;
     @FXML
     private TextField txtAwayScore;
     @FXML
-    private TableColumn<?, ?> goalScorerCol;
+    private TableColumn<Liveupdates, String> goalScorerCol;
     @FXML
     private ComboBox<String> cmbMatch;
     @FXML
     private TextField txtAssist;
     @FXML
-    private TableColumn<?, ?> assistCol;
+    private TableColumn<Liveupdates, String> assistCol;
     @FXML
     private TextField txtGoalScorer;
     @FXML
-    private TableColumn<?, ?> cardCol;
+    private TableColumn<Liveupdates, String> cardCol;
     @FXML
-    private TableColumn<?, ?> statusCol;
+    private TableColumn<Liveupdates, String> statusCol;
     @FXML
     private TextArea txtCommentary;
     @FXML
-    private TableColumn<?, ?> substitutionCol;
+    private TableColumn<Liveupdates, String> substitutionCol;
     @FXML
     private TextField txtHomeScore;
     @FXML
@@ -51,6 +58,22 @@ public class federation_administrator_postliveupdatesController {
 
     @FXML
     public void initialize() {
+
+        minuteCol.setCellValueFactory(new PropertyValueFactory<Liveupdates, String>("minute"));
+        scoreCol.setCellValueFactory(new PropertyValueFactory<Liveupdates, String>("score"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<Liveupdates, String>("matchstatus"));
+        goalScorerCol.setCellValueFactory(new PropertyValueFactory<Liveupdates, String>("goalscorer"));
+        assistCol.setCellValueFactory(new PropertyValueFactory<Liveupdates, String>("assist"));
+        cardCol.setCellValueFactory(new PropertyValueFactory<Liveupdates, String>("cardtype"));
+        substitutionCol.setCellValueFactory(new PropertyValueFactory<Liveupdates, String>("substitution"));
+        commentaryCol.setCellValueFactory(new PropertyValueFactory<Liveupdates, String>("commentary"));
+
+        ArrayList<Object> updatesList = BinaryFileUtility.readObjects("Liveupdates.bin");
+        for (Object record : updatesList) {
+            if (record instanceof Liveupdates liveupdates) {
+                updatesTable.getItems().add(liveupdates);
+            }
+        }
 
         cmbMatch.getItems().addAll(
                 "Match 101",
@@ -186,6 +209,22 @@ public class federation_administrator_postliveupdatesController {
             return;
         }
 
+        Liveupdates liveupdates = new Liveupdates(
+                cmbMatch.getValue(),
+                txtMinute.getText(),
+                txtHomeScore.getText(),
+                txtAwayScore.getText(),
+                cmbMatchStatus.getValue(),
+                txtGoalScorer.getText(),
+                txtAssist.getText(),
+                cmbCardType.getValue(),
+                txtCardPlayer.getText(),
+                txtSubstitution.getText(),
+                txtCommentary.getText());
+
+        updatesTable.getItems().add(liveupdates);
+        BinaryFileUtility.writeObjects("Liveupdates.bin", liveupdates);
+
         messageLabel.setText("Live update posted successfully.");
     }
 
@@ -210,6 +249,6 @@ public class federation_administrator_postliveupdatesController {
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
-
+        SceneSwitcher.switchTo("turjo/federation_administrator/dashboardView.fxml");
     }
 }

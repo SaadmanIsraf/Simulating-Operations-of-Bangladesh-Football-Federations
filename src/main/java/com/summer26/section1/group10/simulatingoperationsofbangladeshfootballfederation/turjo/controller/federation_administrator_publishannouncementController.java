@@ -1,37 +1,45 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.Announcement;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class federation_administrator_publishannouncementController {
 
     @FXML
-    private TableColumn<?, ?> titleCol;
+    private TableColumn<Announcement, String> titleCol;
     @FXML
-    private TableView<?> announcementTable;
+    private TableView<Announcement> announcementTable;
     @FXML
-    private TableColumn<?, ?> matchTypeCol;
+    private TableColumn<Announcement, String> matchTypeCol;
     @FXML
-    private TableColumn<?, ?> venueCol;
+    private TableColumn<Announcement, String> venueCol;
     @FXML
     private TextField txtMatchTime;
     @FXML
     private ComboBox<String> cmbCompetition;
     @FXML
-    private TableColumn<?, ?> matchCol;
+    private TableColumn<Announcement, String> matchCol;
     @FXML
     private TextArea txtAnnouncementDetails;
     @FXML
     private ComboBox<String> cmbMatch;
     @FXML
-    private TableColumn<?, ?> competitionCol;
+    private TableColumn<Announcement, String> competitionCol;
     @FXML
     private TextField txtVenue;
     @FXML
-    private TableColumn<?, ?> dateCol;
+    private TableColumn<Announcement, LocalDate> dateCol;
     @FXML
-    private TableColumn<?, ?> detailsCol;
+    private TableColumn<Announcement, String> detailsCol;
     @FXML
     private TextField txtPlace;
     @FXML
@@ -43,12 +51,28 @@ public class federation_administrator_publishannouncementController {
     @FXML
     private TextField txtSponsor;
     @FXML
-    private TableColumn<?, ?> timeCol;
+    private TableColumn<Announcement, String> timeCol;
     @FXML
     private Label messageLabel;
 
     @FXML
     public void initialize() {
+
+        titleCol.setCellValueFactory(new PropertyValueFactory<Announcement, String>("title"));
+        matchCol.setCellValueFactory(new PropertyValueFactory<Announcement, String>("match"));
+        competitionCol.setCellValueFactory(new PropertyValueFactory<Announcement, String>("competition"));
+        venueCol.setCellValueFactory(new PropertyValueFactory<Announcement, String>("venue"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<Announcement, LocalDate>("matchdate"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<Announcement, String>("matchtime"));
+        matchTypeCol.setCellValueFactory(new PropertyValueFactory<Announcement, String>("matchtype"));
+        detailsCol.setCellValueFactory(new PropertyValueFactory<Announcement, String>("details"));
+
+        ArrayList<Object> announcementList = BinaryFileUtility.readObjects("Announcements.bin");
+        for (Object record : announcementList) {
+            if (record instanceof Announcement announcement) {
+                announcementTable.getItems().add(announcement);
+            }
+        }
 
         cmbCompetition.getItems().addAll(
                 "Premier League",
@@ -161,6 +185,21 @@ public class federation_administrator_publishannouncementController {
             return;
         }
 
+        Announcement announcement = new Announcement(
+                txtAnnouncementTitle.getText(),
+                cmbMatch.getValue(),
+                cmbCompetition.getValue(),
+                txtVenue.getText(),
+                txtSponsor.getText(),
+                txtPlace.getText(),
+                dpMatchDate.getValue(),
+                txtMatchTime.getText(),
+                cmbMatchType.getValue(),
+                txtAnnouncementDetails.getText());
+
+        announcementTable.getItems().add(announcement);
+        BinaryFileUtility.writeObjects("Announcements.bin", announcement);
+
         messageLabel.setText("Announcement published successfully.");
     }
 
@@ -170,6 +209,26 @@ public class federation_administrator_publishannouncementController {
         if (!validateInput()) {
             return;
         }
+
+        Announcement selected = announcementTable.getSelectionModel().getSelectedItem();
+
+        if (selected == null) {
+            messageLabel.setText("Please select an announcement to update.");
+            return;
+        }
+
+        selected.setTitle(txtAnnouncementTitle.getText());
+        selected.setMatch(cmbMatch.getValue());
+        selected.setCompetition(cmbCompetition.getValue());
+        selected.setVenue(txtVenue.getText());
+        selected.setSponsor(txtSponsor.getText());
+        selected.setPlace(txtPlace.getText());
+        selected.setMatchdate(dpMatchDate.getValue());
+        selected.setMatchtime(txtMatchTime.getText());
+        selected.setMatchtype(cmbMatchType.getValue());
+        selected.setDetails(txtAnnouncementDetails.getText());
+
+        announcementTable.refresh();
 
         messageLabel.setText("Announcement updated successfully.");
     }
@@ -195,6 +254,6 @@ public class federation_administrator_publishannouncementController {
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
-
+        SceneSwitcher.switchTo("turjo/federation_administrator/dashboardView.fxml");
     }
 }

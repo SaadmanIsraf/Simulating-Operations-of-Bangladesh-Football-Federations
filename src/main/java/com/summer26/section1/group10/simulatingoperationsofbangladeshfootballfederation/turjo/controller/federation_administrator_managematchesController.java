@@ -1,13 +1,20 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.Managematch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
 
 public class federation_administrator_managematchesController {
 
     @FXML
-    private TableColumn<?, ?> awayTeamCol;
+    private TableColumn<Managematch, String> awayTeamCol;
     @FXML
     private ComboBox<String> cmbMatchStatus;
     @FXML
@@ -19,29 +26,29 @@ public class federation_administrator_managematchesController {
     @FXML
     private TextField txtMatchId;
     @FXML
-    private TableColumn<?, ?> homeTeamCol;
+    private TableColumn<Managematch, String> homeTeamCol;
     @FXML
-    private TableColumn<?, ?> competitionCol;
+    private TableColumn<Managematch, String> competitionCol;
     @FXML
-    private TableColumn<?, ?> matchIdCol;
+    private TableColumn<Managematch, String> matchIdCol;
     @FXML
-    private TableColumn<?, ?> stadiumCol;
+    private TableColumn<Managematch, String> stadiumCol;
     @FXML
     private ComboBox<String> cmbAwayTeam;
     @FXML
-    private TableColumn<?, ?> dateCol;
+    private TableColumn<Managematch, LocalDate> dateCol;
     @FXML
-    private TableColumn<?, ?> statusCol;
+    private TableColumn<Managematch, String> statusCol;
     @FXML
-    private TableView<?> tblMatches;
+    private TableView<Managematch> tblMatches;
     @FXML
     private ComboBox<String> cmbHomeTeam;
     @FXML
     private DatePicker dpMatchDate;
     @FXML
-    private TableColumn<?, ?> timeCol;
+    private TableColumn<Managematch, String> timeCol;
     @FXML
-    private TableColumn<?, ?> officialCol;
+    private TableColumn<Managematch, String> officialCol;
     @FXML
     private ComboBox<String> cmbStadium;
     @FXML
@@ -49,6 +56,23 @@ public class federation_administrator_managematchesController {
 
     @FXML
     public void initialize() {
+
+        matchIdCol.setCellValueFactory(new PropertyValueFactory<>("matchId"));
+        homeTeamCol.setCellValueFactory(new PropertyValueFactory<>("hometeam"));
+        awayTeamCol.setCellValueFactory(new PropertyValueFactory<>("awayteam"));
+        competitionCol.setCellValueFactory(new PropertyValueFactory<>("competition"));
+        stadiumCol.setCellValueFactory(new PropertyValueFactory<>("stadium"));
+        dateCol.setCellValueFactory(new PropertyValueFactory<>("matchdate"));
+        timeCol.setCellValueFactory(new PropertyValueFactory<>("matchtime"));
+        officialCol.setCellValueFactory(new PropertyValueFactory<>("officials"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        ArrayList managematch = BinaryFileUtility.readObjects("Managematches.bin");
+        for (Object record : managematch) {
+            if (record instanceof Managematch managematches) {
+                tblMatches.getItems().add(managematches);
+            }
+        }
 
         cmbCompetition.getItems().addAll(
                 "Premier League",
@@ -173,6 +197,20 @@ public class federation_administrator_managematchesController {
             return;
         }
 
+        Managematch managematch = new Managematch(
+                txtMatchId.getText(),
+                cmbHomeTeam.getValue(),
+                cmbAwayTeam.getValue(),
+                cmbCompetition.getValue(),
+                cmbStadium.getValue(),
+                dpMatchDate.getValue(),
+                txtMatchTime.getText(),
+                assignedOfficialTF.getText(),
+                cmbMatchStatus.getValue());
+
+        tblMatches.getItems().add(managematch);
+        BinaryFileUtility.writeObjects("Managematches.bin", managematch);
+
         messageLabel.setText("Match created successfully.");
     }
 
@@ -201,6 +239,6 @@ public class federation_administrator_managematchesController {
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
-
+        SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
     }
 }

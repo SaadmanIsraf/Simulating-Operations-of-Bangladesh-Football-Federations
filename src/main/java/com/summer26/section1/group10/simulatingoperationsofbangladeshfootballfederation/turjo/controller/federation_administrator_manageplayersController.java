@@ -1,5 +1,6 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -169,6 +170,7 @@ public class federation_administrator_manageplayersController {
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/federation_administrator/dashboardView.fxml");
 
     }
 }

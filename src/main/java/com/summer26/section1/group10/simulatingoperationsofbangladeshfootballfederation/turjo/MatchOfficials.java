@@ -9,8 +9,8 @@ public class MatchOfficials extends User implements Serializable {
     private String exprerienceLevel;
     private String matchOfficeRole;
 
-    public MatchOfficials(int id, String name, String email, String password, String role, int licenseNumber, String exprerienceLevel, String matchOfficeRole) {
-        super(id, name, email, password, role);
+    public MatchOfficials(int id, String name, String password, String role, int licenseNumber, String exprerienceLevel, String matchOfficeRole) {
+        super(id, name, password, role);
         this.licenseNumber = licenseNumber;
         this.exprerienceLevel = exprerienceLevel;
         this.matchOfficeRole = matchOfficeRole;

@@ -128,10 +128,9 @@ public class matchofficial_registerController  {
         }
 
         int newid = DatabaseAccessor.generateNewUniqueId("User.bin", "id");
-//        int id, String name, String email, String password, String role,
-//        int licenseNumber, String exprerienceLevel, String matchOfficeRole
-        MatchOfficials matchOfficials = new MatchOfficials(newid, nameTF.getText(), newEmailTF.getText(), newPasswordTF.getText(),
-                "Match Officials", Integer.parseInt(licenseTF.getText()), experienceCB.getValue(), roleCB.getValue());
+//        int id, String name, String password, String role, int licenseNumber, String exprerienceLevel, String matchOfficeRole
+        MatchOfficials matchOfficials = new MatchOfficials(1,nameTF.getText(),newPasswordTF.getText(),"Match Officials",Integer.parseInt(licenseTF.getText()), experienceCB.getValue(),roleCB.getValue());
+
 
         BinaryFileUtility.writeObjects("User.bin", matchOfficials);
         officialsTable.getItems().add(matchOfficials);
