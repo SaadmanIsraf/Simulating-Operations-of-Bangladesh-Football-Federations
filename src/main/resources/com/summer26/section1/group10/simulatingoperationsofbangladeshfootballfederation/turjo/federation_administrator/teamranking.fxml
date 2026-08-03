@@ -7,52 +7,28 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="650.0"
-            prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageteamrankingController">
+<AnchorPane prefHeight="650.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageteamrankingController">
 
     <!-- Title -->
-    <Label layoutX="300.0"
-           layoutY="20.0"
-           text="Administrator Dashboard"
-           textFill="#133799"
-           style="-fx-font-size:24px; -fx-font-weight:bold;" />
+    <Label layoutX="300.0" layoutY="20.0" style="-fx-font-size:24px; -fx-font-weight:bold;" text="Administrator Dashboard" textFill="#133799" />
 
 
     <!-- Team Ranking Table -->
-    <TableView fx:id="rankingtableview"
-               layoutX="40.0"
-               layoutY="70.0"
-               prefHeight="250.0"
-               prefWidth="820.0">
+    <TableView fx:id="rankingtableview" layoutX="40.0" layoutY="70.0" prefHeight="250.0" prefWidth="820.0">
 
         <columns>
 
-            <TableColumn fx:id="rankingtableviewrankcol"
-                         prefWidth="80.0"
-                         text="Rank"/>
+            <TableColumn fx:id="rankingtableviewrankcol" prefWidth="80.0" text="Rank" />
 
-            <TableColumn fx:id="rankingtableviewteamnamecol"
-                         prefWidth="166.4"
-                         text="Team Name"/>
+            <TableColumn fx:id="rankingtableviewteamnamecol" prefWidth="166.4" text="Team Name" />
 
-            <TableColumn fx:id="rankingtableviewwinscol"
-                         prefWidth="116.8"
-                         text="Wins"/>
+            <TableColumn fx:id="rankingtableviewwinscol" prefWidth="116.8" text="Wins" />
 
-            <TableColumn fx:id="rankingtableviewdrawcol"
-                         prefWidth="99.2"
-                         text="Draw"/>
+            <TableColumn fx:id="rankingtableviewdrawcol" prefWidth="99.2" text="Draw" />
 
-            <TableColumn fx:id="rankingtableviewlossescol"
-                         prefWidth="149.6"
-                         text="Losses"/>
+            <TableColumn fx:id="rankingtableviewlossescol" prefWidth="149.6" text="Losses" />
 
-            <TableColumn fx:id="rankingtableviewpointscol"
-                         prefWidth="206.4"
-                         text="Points"/>
+            <TableColumn fx:id="rankingtableviewpointscol" prefWidth="206.4" text="Points" />
 
         </columns>
 
@@ -61,100 +37,51 @@
 
     <!-- Labels -->
 
-    <Label layoutX="60.0"
-           layoutY="350.0"
-           text="Rank"/>
+    <Label layoutX="60.0" layoutY="350.0" text="Rank" />
 
-    <Label layoutX="250.0"
-           layoutY="350.0"
-           text="Team Name"/>
+    <Label layoutX="250.0" layoutY="350.0" text="Team Name" />
 
-    <Label layoutX="60.0"
-           layoutY="410.0"
-           text="Wins"/>
+    <Label layoutX="60.0" layoutY="410.0" text="Wins" />
 
-    <Label layoutX="250.0"
-           layoutY="410.0"
-           text="Losses"/>
+    <Label layoutX="250.0" layoutY="410.0" text="Losses" />
 
-    <Label layoutX="500.0"
-           layoutY="350.0"
-           text="Draw"/>
+    <Label layoutX="500.0" layoutY="350.0" text="Draw" />
 
-    <Label layoutX="450.0"
-           layoutY="410.0"
-           text="Points"/>
+    <Label layoutX="450.0" layoutY="410.0" text="Points" />
 
 
     <!-- Text Fields -->
 
-    <TextField fx:id="rankTF"
-               layoutX="60.0"
-               layoutY="375.0"
-               prefWidth="120.0"
-               promptText="Rank"/>
+    <TextField fx:id="rankTF" layoutX="60.0" layoutY="375.0" prefWidth="120.0" promptText="Rank" />
 
-    <TextField fx:id="teamnameTF"
-               layoutX="250.0"
-               layoutY="375.0"
-               prefWidth="220.0"
-               promptText="Team Name"/>
+    <TextField fx:id="teamnameTF" layoutX="250.0" layoutY="375.0" prefWidth="220.0" promptText="Team Name" />
 
-    <TextField fx:id="winsTF"
-               layoutX="60.0"
-               layoutY="435.0"
-               prefWidth="120.0"
-               promptText="Wins"/>
+    <TextField fx:id="winsTF" layoutX="60.0" layoutY="435.0" prefWidth="120.0" promptText="Wins" />
 
-    <TextField fx:id="lossesTF"
-               layoutX="250.0"
-               layoutY="435.0"
-               prefWidth="120.0"
-               promptText="Losses"/>
+    <TextField fx:id="lossesTF" layoutX="250.0" layoutY="435.0" prefWidth="120.0" promptText="Losses" />
 
-    <TextField fx:id="drawTF"
-               layoutX="500.0"
-               layoutY="375.0"
-               prefWidth="220.0"
-               promptText="Draw"/>
+    <TextField fx:id="drawTF" layoutX="500.0" layoutY="375.0" prefWidth="220.0" promptText="Draw" />
 
-    <TextField fx:id="poitsTF"
-               layoutX="443.0"
-               layoutY="435.0"
-               prefWidth="120.0"
-               promptText="Points"/>
+    <TextField fx:id="poitsTF" layoutX="443.0" layoutY="435.0" prefWidth="120.0" promptText="Points" />
 
 
     <!-- Buttons -->
 
-    <Button layoutX="60.0"
-            layoutY="520.0"
-            prefWidth="120.0"
-            text="Add Team"
-            onAction="#addteamrankOA"/>
+    <Button layoutX="60.0" layoutY="520.0" onAction="#addteamrankOA" prefWidth="120.0" text="Add Team" />
 
-    <Button layoutX="210.0"
-            layoutY="520.0"
-            prefWidth="140.0"
-            text="Update Rank"
-            onAction="#updaterankOA"/>
+    <Button layoutX="210.0" layoutY="520.0" onAction="#updaterankOA" prefWidth="140.0" text="Update Rank" />
 
-    <Button layoutX="380.0"
-            layoutY="520.0"
-            prefWidth="120.0"
-            text="Delete Team"
-            onAction="#deleteteamOA"/>
+    <Button layoutX="380.0" layoutY="520.0" onAction="#deleteteamOA" prefWidth="120.0" text="Delete Team" />
 
-    <Button layoutX="530.0"
-            layoutY="520.0"
-            prefWidth="100.0"
-            text="Refresh"
-            onAction="#refreshOA"/>
+    <Button layoutX="530.0" layoutY="520.0" onAction="#refreshOA" prefWidth="100.0" text="Refresh" />
 
-    <Button layoutX="660.0"
-            layoutY="520.0"
-            prefWidth="140.0"
-            text="Save"
-            onAction="#saveOA"/>
+    <Button layoutX="660.0" layoutY="520.0" onAction="#saveOA" prefWidth="140.0" text="Save" />
+   <Button layoutX="380.0" layoutY="580.0" mnemonicParsing="false" onAction="#backOA" text="Back" />
+
+    <Label fx:id="messageLabel"
+           layoutX="50.0"
+           layoutY="620.0"
+           prefWidth="500.0"
+           textFill="red"/>
 
 </AnchorPane>

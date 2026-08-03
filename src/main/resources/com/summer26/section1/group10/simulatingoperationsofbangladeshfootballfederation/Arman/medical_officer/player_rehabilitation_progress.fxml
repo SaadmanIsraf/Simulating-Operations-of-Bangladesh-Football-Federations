@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="596.0" prefWidth="830.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.player_rehabitation_progress_controller">
    <top>
       <HBox alignment="CENTER" prefHeight="69.0" prefWidth="600.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
@@ -47,25 +46,25 @@
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="169.0" layoutY="129.0" onAction="#recovery_percentage_combobox_on_action" prefWidth="150.0" />
+                  <ComboBox fx:id="recovery_percentage_combobox" layoutX="169.0" layoutY="129.0" onAction="#recovery_percentage_combobox_on_action" prefWidth="150.0" />
                   <Label layoutX="434.0" layoutY="38.0" text="Physical Condition Note :">
                      <font>
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <TextField layoutX="434.0" layoutY="63.0" onAction="#physical_condition_note_textfield_on_action" prefHeight="51.0" prefWidth="354.0" />
+                  <TextField fx:id="physical_condition_note_textfield" layoutX="434.0" layoutY="63.0" prefHeight="51.0" prefWidth="354.0" />
                   <Label layoutX="434.0" layoutY="131.0" prefHeight="16.0" prefWidth="236.0" text="Physiotherapy sessions completed :">
                      <font>
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="435.0" layoutY="159.0" onAction="#physiotherapy_sessions_completed_combobox_on_action" prefWidth="150.0" />
+                  <ComboBox fx:id="physiotherapy_sessions_completed_combobox" layoutX="435.0" layoutY="159.0" onAction="#physiotherapy_sessions_completed_combobox_on_action" prefWidth="150.0" />
                   <Label layoutX="27.0" layoutY="174.0" prefHeight="16.0" prefWidth="142.0" text="Updated fitness status :">
                      <font>
                         <Font name="Times New Roman Bold" size="14.0" />
                      </font>
                   </Label>
-                  <ComboBox layoutX="23.0" layoutY="203.0" onAction="#updated_fitness_status_combobox_on_action" prefWidth="150.0" />
+                  <ComboBox fx:id="updated_fitness_status_combobox" layoutX="23.0" layoutY="203.0" onAction="#updated_fitness_status_combobox_on_action" prefWidth="150.0" />
                   <Button layoutX="224.0" layoutY="203.0" mnemonicParsing="false" onAction="#save_button_on_action" text="Save" />
                   <TableView fx:id="player_rehabitation_tableview" layoutX="14.0" layoutY="252.0" prefHeight="200.0" prefWidth="802.0">
                     <columns>

@@ -1,439 +1,206 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import javafx.beans.property.SimpleStringProperty;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 public class federation_administrator_managematchesController {
 
-
     @FXML
-    private TableColumn<ObservableList<String>, String> awayTeamCol;
-
+    private TableColumn<?, ?> awayTeamCol;
     @FXML
     private ComboBox<String> cmbMatchStatus;
-
-    @FXML
-    private TextField txtMatchTime;
-
-    @FXML
-    private ComboBox<String> cmbCompetition;
-
-    @FXML
-    private TextField txtMatchId;
-
-    @FXML
-    private TableColumn<ObservableList<String>, String> homeTeamCol;
-
-    @FXML
-    private TableColumn<ObservableList<String>, String> competitionCol;
-
-    @FXML
-    private TableColumn<ObservableList<String>, String> matchIdCol;
-
-    @FXML
-    private TableColumn<ObservableList<String>, String> stadiumCol;
-
-    @FXML
-    private ComboBox<String> cmbAwayTeam;
-
-    @FXML
-    private TableColumn<ObservableList<String>, String> dateCol;
-
-    @FXML
-    private TableColumn<ObservableList<String>, String> statusCol;
-
-    @FXML
-    private TableView<ObservableList<String>> tblMatches;
-
-    @FXML
-    private ComboBox<String> cmbHomeTeam;
-
-    @FXML
-    private DatePicker dpMatchDate;
-
-    @FXML
-    private TableColumn<ObservableList<String>, String> timeCol;
-
-    @FXML
-    private ComboBox<String> cmbStadium;
-
     @FXML
     private TextField assignedOfficialTF;
-
     @FXML
-    private TableColumn<ObservableList<String>, String> officialCol;
-
-
-    private ObservableList<ObservableList<String>> matchList =
-            FXCollections.observableArrayList();
-
-
+    private TextField txtMatchTime;
+    @FXML
+    private ComboBox<String> cmbCompetition;
+    @FXML
+    private TextField txtMatchId;
+    @FXML
+    private TableColumn<?, ?> homeTeamCol;
+    @FXML
+    private TableColumn<?, ?> competitionCol;
+    @FXML
+    private TableColumn<?, ?> matchIdCol;
+    @FXML
+    private TableColumn<?, ?> stadiumCol;
+    @FXML
+    private ComboBox<String> cmbAwayTeam;
+    @FXML
+    private TableColumn<?, ?> dateCol;
+    @FXML
+    private TableColumn<?, ?> statusCol;
+    @FXML
+    private TableView<?> tblMatches;
+    @FXML
+    private ComboBox<String> cmbHomeTeam;
+    @FXML
+    private DatePicker dpMatchDate;
+    @FXML
+    private TableColumn<?, ?> timeCol;
+    @FXML
+    private TableColumn<?, ?> officialCol;
+    @FXML
+    private ComboBox<String> cmbStadium;
+    @FXML
+    private Label messageLabel;
 
     @FXML
     public void initialize() {
 
-
-        cmbMatchStatus.setItems(FXCollections.observableArrayList(
-                "Scheduled",
-                "Ongoing",
-                "Finished",
-                "Cancelled"
-        ));
-
-
-        cmbCompetition.setItems(FXCollections.observableArrayList(
+        cmbCompetition.getItems().addAll(
                 "Premier League",
                 "Federation Cup",
-                "National Championship"
-        ));
+                "Independence Cup"
+        );
 
-
-        cmbHomeTeam.setItems(FXCollections.observableArrayList(
-                "Abahani Limited",
-                "Mohammedan SC",
+        cmbHomeTeam.getItems().addAll(
+                "Abahani",
+                "Mohammedan",
                 "Bashundhara Kings",
-                "Sheikh Russel"
-        ));
+                "Brothers Union"
+        );
 
-
-        cmbAwayTeam.setItems(FXCollections.observableArrayList(
-                "Abahani Limited",
-                "Mohammedan SC",
+        cmbAwayTeam.getItems().addAll(
+                "Abahani",
+                "Mohammedan",
                 "Bashundhara Kings",
-                "Sheikh Russel"
-        ));
+                "Brothers Union"
+        );
 
-
-        cmbStadium.setItems(FXCollections.observableArrayList(
-                "Bangabandhu Stadium",
+        cmbStadium.getItems().addAll(
                 "National Stadium",
-                "Sylhet Stadium"
-        ));
+                "Army Stadium",
+                "Mymensingh Stadium"
+        );
 
-
-        cmbMatchStatus.setValue("Scheduled");
-
-
-        matchIdCol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(0)
-                ));
-
-
-        homeTeamCol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(1)
-                ));
-
-
-        awayTeamCol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(2)
-                ));
-
-
-        competitionCol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(3)
-                ));
-
-
-        stadiumCol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(4)
-                ));
-
-
-        dateCol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(5)
-                ));
-
-
-        timeCol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(6)
-                ));
-
-
-        statusCol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(7)
-                ));
-
-
-        officialCol.setCellValueFactory(data ->
-                new SimpleStringProperty(
-                        data.getValue().get(8)
-                ));
-
-
-        tblMatches.setItems(matchList);
-
+        cmbMatchStatus.getItems().addAll(
+                "Scheduled",
+                "Ongoing",
+                "Completed",
+                "Cancelled"
+        );
     }
 
+    private boolean validateInput() {
 
+        String matchId = txtMatchId.getText().trim();
+        String matchTime = txtMatchTime.getText().trim();
+        String official = assignedOfficialTF.getText().trim();
 
+        if (matchId.isEmpty()) {
+            messageLabel.setText("Match ID cannot be empty.");
+            txtMatchId.requestFocus();
+            return false;
+        }
+
+        if (!matchId.matches("\\d+")) {
+            messageLabel.setText("Match ID must contain only numbers.");
+            txtMatchId.requestFocus();
+            return false;
+        }
+
+        if (cmbCompetition.getValue() == null) {
+            messageLabel.setText("Please select a competition.");
+            cmbCompetition.requestFocus();
+            return false;
+        }
+
+        if (cmbHomeTeam.getValue() == null) {
+            messageLabel.setText("Please select the Home Team.");
+            cmbHomeTeam.requestFocus();
+            return false;
+        }
+
+        if (cmbAwayTeam.getValue() == null) {
+            messageLabel.setText("Please select the Away Team.");
+            cmbAwayTeam.requestFocus();
+            return false;
+        }
+
+        if (cmbHomeTeam.getValue().equals(cmbAwayTeam.getValue())) {
+            messageLabel.setText("Home Team and Away Team cannot be the same.");
+            cmbAwayTeam.requestFocus();
+            return false;
+        }
+
+        if (dpMatchDate.getValue() == null) {
+            messageLabel.setText("Please select the match date.");
+            dpMatchDate.requestFocus();
+            return false;
+        }
+
+        if (matchTime.isEmpty()) {
+            messageLabel.setText("Match time cannot be empty.");
+            txtMatchTime.requestFocus();
+            return false;
+        }
+
+        if (cmbStadium.getValue() == null) {
+            messageLabel.setText("Please select a stadium.");
+            cmbStadium.requestFocus();
+            return false;
+        }
+
+        if (official.isEmpty()) {
+            messageLabel.setText("Assigned Official cannot be empty.");
+            assignedOfficialTF.requestFocus();
+            return false;
+        }
+
+        if (!official.matches("[A-Za-z ]+")) {
+            messageLabel.setText("Official name can contain only letters and spaces.");
+            assignedOfficialTF.requestFocus();
+            return false;
+        }
+
+        if (cmbMatchStatus.getValue() == null) {
+            messageLabel.setText("Please select the match status.");
+            cmbMatchStatus.requestFocus();
+            return false;
+        }
+
+        messageLabel.setText("");
+        return true;
+    }
 
     @FXML
     public void createMatchOA(ActionEvent actionEvent) {
 
-
-        if(txtMatchId.getText().isEmpty()
-                || cmbHomeTeam.getValue() == null
-                || cmbAwayTeam.getValue() == null
-                || dpMatchDate.getValue() == null) {
-
-
-            showAlert(
-                    "Error",
-                    "Please fill all match information"
-            );
-
+        if (!validateInput()) {
             return;
         }
 
-
-
-        ObservableList<String> match =
-                FXCollections.observableArrayList();
-
-
-        match.add(txtMatchId.getText());
-
-        match.add(cmbHomeTeam.getValue());
-
-        match.add(cmbAwayTeam.getValue());
-
-        match.add(cmbCompetition.getValue());
-
-        match.add(cmbStadium.getValue());
-
-        match.add(dpMatchDate.getValue().toString());
-
-        match.add(txtMatchTime.getText());
-
-        match.add(cmbMatchStatus.getValue());
-
-        match.add(assignedOfficialTF.getText());
-
-
-
-        matchList.add(match);
-
-
-        tblMatches.refresh();
-
-
-
-        showAlert(
-                "Success",
-                "Match Created Successfully"
-        );
-
+        messageLabel.setText("Match created successfully.");
     }
-
-
-
-
-
-    @FXML
-    public void updateMatchOA(ActionEvent actionEvent) {
-
-
-        ObservableList<String> selected =
-                tblMatches.getSelectionModel()
-                        .getSelectedItem();
-
-
-        if(selected == null){
-
-            showAlert(
-                    "Error",
-                    "Select a match from table first"
-            );
-
-            return;
-        }
-
-
-
-        selected.set(0, txtMatchId.getText());
-        selected.set(1, cmbHomeTeam.getValue());
-        selected.set(2, cmbAwayTeam.getValue());
-        selected.set(3, cmbCompetition.getValue());
-        selected.set(4, cmbStadium.getValue());
-        selected.set(5, dpMatchDate.getValue().toString());
-        selected.set(6, txtMatchTime.getText());
-        selected.set(7, cmbMatchStatus.getValue());
-        selected.set(8, assignedOfficialTF.getText());
-
-
-
-        tblMatches.refresh();
-
-
-
-        showAlert(
-                "Updated",
-                "Match Updated Successfully"
-        );
-
-    }
-
-
-
-
-
-    @FXML
-    public void searchMatchOA(ActionEvent actionEvent) {
-
-
-        String id = txtMatchId.getText();
-
-
-
-        for(ObservableList<String> match : matchList){
-
-
-            if(match.get(0).equals(id)){
-
-
-                showAlert(
-                        "Found",
-                        "Match Found: "
-                                + match.get(1)
-                                + " vs "
-                                + match.get(2)
-                );
-
-
-                return;
-            }
-
-        }
-
-
-
-        showAlert(
-                "Not Found",
-                "No Match Found"
-        );
-
-    }
-
-
-
-
-
-    @FXML
-    public void cancelMatchOA(ActionEvent actionEvent) {
-
-
-        ObservableList<String> selected =
-                tblMatches.getSelectionModel()
-                        .getSelectedItem();
-
-
-
-        if(selected == null){
-
-            showAlert(
-                    "Error",
-                    "Select a match first"
-            );
-
-            return;
-        }
-
-
-
-        selected.set(7,"Cancelled");
-
-
-        tblMatches.refresh();
-
-
-
-        showAlert(
-                "Cancelled",
-                "Match Cancelled Successfully"
-        );
-
-    }
-
-
-
-
 
     @FXML
     public void clearOA(ActionEvent actionEvent) {
 
-
         txtMatchId.clear();
-
         txtMatchTime.clear();
-
         assignedOfficialTF.clear();
 
-
-        cmbHomeTeam.setValue(null);
-
-        cmbAwayTeam.setValue(null);
-
-        cmbCompetition.setValue(null);
-
-        cmbStadium.setValue(null);
-
-        cmbMatchStatus.setValue("Scheduled");
-
+        cmbCompetition.getSelectionModel().clearSelection();
+        cmbHomeTeam.getSelectionModel().clearSelection();
+        cmbAwayTeam.getSelectionModel().clearSelection();
+        cmbStadium.getSelectionModel().clearSelection();
+        cmbMatchStatus.getSelectionModel().clearSelection();
 
         dpMatchDate.setValue(null);
 
+        messageLabel.setText("");
     }
 
-
-
-
+    @FXML
+    public void cancelMatchOA(ActionEvent actionEvent) {
+        messageLabel.setText("Match cancelled.");
+    }
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
 
-
-        clearOA(actionEvent);
-
-
-        showAlert(
-                "Back",
-                "Returning to previous page"
-        );
-
     }
-
-
-
-
-
-    private void showAlert(String title, String message){
-
-
-        Alert alert =
-                new Alert(Alert.AlertType.INFORMATION);
-
-
-        alert.setTitle(title);
-
-        alert.setHeaderText(null);
-
-        alert.setContentText(message);
-
-
-        alert.showAndWait();
-
-    }
-
 }

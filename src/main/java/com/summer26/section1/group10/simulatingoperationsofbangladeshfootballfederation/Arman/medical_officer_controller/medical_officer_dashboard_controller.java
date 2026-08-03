@@ -2,6 +2,7 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
 
 public class medical_officer_dashboard_controller
 {
@@ -11,7 +12,7 @@ public class medical_officer_dashboard_controller
 
     @javafx.fxml.FXML
     public void injury_report_and_fitness_status_button_on_action(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("Arman/medical_officer/injury_report_and_fitness_status.fxml");
+        SceneSwitcher.switchTo("Arman/medical_officer/injury_report.fxml");
     }
 
     @javafx.fxml.FXML
@@ -21,11 +22,18 @@ public class medical_officer_dashboard_controller
 
     @javafx.fxml.FXML
     public void logout_button_on_action(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText(null);
+        alert.setContentText("Logged out successfully.");
+        alert.showAndWait();
+
+        SceneSwitcher.switchTo("login.fxml");
     }
 
     @javafx.fxml.FXML
     public void player_medically_fit_or_banned_button_on_action(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("Arman/medical_officer/player_medically_fit_or_banned.fxml");
+        SceneSwitcher.switchTo("Arman/medical_officer/player_medical_status.fxml");
     }
 
     @javafx.fxml.FXML

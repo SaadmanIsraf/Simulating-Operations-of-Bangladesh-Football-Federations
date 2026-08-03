@@ -1,116 +1,126 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 
 public class matchofficial_requestrefereereplacementController {
 
     @FXML
+    private TextField matchIdTF1;
+    @FXML
     private ComboBox<String> priorityCB;
-
     @FXML
     private TextField currentRefereeTF;
-
+    @FXML
+    private TableView<?> replacementRequestsTable;
+    @FXML
+    private TableColumn<?, ?> reasonCol;
     @FXML
     private TextField matchIdTF;
-
+    @FXML
+    private TableColumn<?, ?> detailsCol;
+    @FXML
+    private TableColumn<?, ?> priorityCol;
     @FXML
     private TextArea detailsTA;
-
     @FXML
-    private TextField matchIdTF1;
+    private TableColumn<?, ?> currentRefereeCol;
+    @FXML
+    private TableColumn<?, ?> matchIdCol;
+    @FXML
+    private Label messageLabel;
 
     @FXML
     public void initialize() {
 
-        priorityCB.setItems(
-                FXCollections.observableArrayList(
-                        "Low",
-                        "Medium",
-                        "High",
-                        "Urgent"
-                )
+        priorityCB.getItems().addAll(
+                "Low",
+                "Medium",
+                "High",
+                "Emergency"
         );
+    }
 
-        priorityCB.setValue("Medium");
+    private boolean validateInput() {
+
+        if (matchIdTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Match ID cannot be empty.");
+            matchIdTF.requestFocus();
+            return false;
+        }
+
+        if (!matchIdTF.getText().matches("\\d+")) {
+            messageLabel.setText("Match ID must contain only numbers.");
+            matchIdTF.requestFocus();
+            return false;
+        }
+
+        if (currentRefereeTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Current referee name cannot be empty.");
+            currentRefereeTF.requestFocus();
+            return false;
+        }
+
+        if (!currentRefereeTF.getText().matches("[A-Za-z ]+")) {
+            messageLabel.setText("Referee name can contain only letters.");
+            currentRefereeTF.requestFocus();
+            return false;
+        }
+
+        if (matchIdTF1.getText().trim().isEmpty()) {
+            messageLabel.setText("Reason cannot be empty.");
+            matchIdTF1.requestFocus();
+            return false;
+        }
+
+        if (!matchIdTF1.getText().matches("[A-Za-z ]+")) {
+            messageLabel.setText("Reason can contain only letters.");
+            matchIdTF1.requestFocus();
+            return false;
+        }
+
+        if (priorityCB.getValue() == null) {
+            messageLabel.setText("Select a priority.");
+            priorityCB.requestFocus();
+            return false;
+        }
+
+        if (detailsTA.getText().trim().isEmpty()) {
+            messageLabel.setText("Details cannot be empty.");
+            detailsTA.requestFocus();
+            return false;
+        }
+
+        messageLabel.setText("");
+        return true;
     }
 
     @FXML
     public void submitRequestOA(ActionEvent actionEvent) {
 
-        if (matchIdTF.getText().isEmpty()
-                || matchIdTF1.getText().isEmpty()
-                || currentRefereeTF.getText().isEmpty()
-                || detailsTA.getText().isEmpty()
-                || priorityCB.getValue() == null) {
-
-            showAlert(
-                    "Error",
-                    "Please complete all request details."
-            );
-
+        if (!validateInput()) {
             return;
         }
 
-        String request =
-                "Match ID: " + matchIdTF.getText()
-                        + "\nReplacement Referee ID: " + matchIdTF1.getText()
-                        + "\nCurrent Referee: " + currentRefereeTF.getText()
-                        + "\nPriority: " + priorityCB.getValue()
-                        + "\nReason: " + detailsTA.getText();
-
-        showAlert(
-                "Request Submitted",
-                "Referee replacement request submitted successfully.\n\n"
-                        + request
-        );
+        messageLabel.setText("Replacement request submitted successfully.");
     }
 
     @FXML
     public void clearOA(ActionEvent actionEvent) {
 
-        clearFields();
+        matchIdTF.clear();
+        currentRefereeTF.clear();
+        matchIdTF1.clear();
+        detailsTA.clear();
 
-        showAlert(
-                "Cleared",
-                "All fields have been cleared."
-        );
+        priorityCB.getSelectionModel().clearSelection();
+
+        messageLabel.setText("");
     }
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
 
-        clearFields();
-
-        showAlert(
-                "Back",
-                "Returning to previous page."
-        );
-    }
-
-    private void clearFields() {
-
-        matchIdTF.clear();
-        matchIdTF1.clear();
-        currentRefereeTF.clear();
-        detailsTA.clear();
-
-        priorityCB.setValue("Medium");
-    }
-
-    private void showAlert(String title, String message) {
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-
-        alert.showAndWait();
     }
 }
