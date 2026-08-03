@@ -11,7 +11,7 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         SceneSwitcher.stage = stage;
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("turjo/match_officials/matchofficialsdashboard.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("Login.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Bangladesh Football Federation");
         stage.setScene(scene);
