@@ -1,8 +1,15 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.ReplacementRef;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
 
 public class matchofficial_requestrefereereplacementController {
 
@@ -13,26 +20,39 @@ public class matchofficial_requestrefereereplacementController {
     @FXML
     private TextField currentRefereeTF;
     @FXML
-    private TableView<?> replacementRequestsTable;
+    private TableView<ReplacementRef> replacementRequestsTable;
     @FXML
-    private TableColumn<?, ?> reasonCol;
+    private TableColumn<ReplacementRef, String> reasonCol;
     @FXML
     private TextField matchIdTF;
     @FXML
-    private TableColumn<?, ?> detailsCol;
+    private TableColumn<ReplacementRef, String> detailsCol;
     @FXML
-    private TableColumn<?, ?> priorityCol;
+    private TableColumn<ReplacementRef, String> priorityCol;
     @FXML
     private TextArea detailsTA;
     @FXML
-    private TableColumn<?, ?> currentRefereeCol;
+    private TableColumn<ReplacementRef, String> currentRefereeCol;
     @FXML
-    private TableColumn<?, ?> matchIdCol;
+    private TableColumn<ReplacementRef, String> matchIdCol;
     @FXML
     private Label messageLabel;
 
     @FXML
     public void initialize() {
+
+        matchIdCol.setCellValueFactory(new PropertyValueFactory<ReplacementRef, String>("matchid"));
+        currentRefereeCol.setCellValueFactory(new PropertyValueFactory<ReplacementRef, String>("currentreferee"));
+        reasonCol.setCellValueFactory(new PropertyValueFactory<ReplacementRef, String>("reason"));
+        priorityCol.setCellValueFactory(new PropertyValueFactory<ReplacementRef, String>("priority"));
+        detailsCol.setCellValueFactory(new PropertyValueFactory<ReplacementRef, String>("details"));
+
+        ArrayList<Object> requestList = BinaryFileUtility.readObjects("ReplacementRefs.bin");
+        for (Object record : requestList) {
+            if (record instanceof ReplacementRef replacementRef) {
+                replacementRequestsTable.getItems().add(replacementRef);
+            }
+        }
 
         priorityCB.getItems().addAll(
                 "Low",
@@ -50,8 +70,8 @@ public class matchofficial_requestrefereereplacementController {
             return false;
         }
 
-        if (!matchIdTF.getText().matches("\\d+")) {
-            messageLabel.setText("Match ID must contain only numbers.");
+        if (matchIdTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Cant be empty");
             matchIdTF.requestFocus();
             return false;
         }
@@ -92,7 +112,7 @@ public class matchofficial_requestrefereereplacementController {
             return false;
         }
 
-        messageLabel.setText("");
+        messageLabel.setText("xxx");
         return true;
     }
 
@@ -102,6 +122,16 @@ public class matchofficial_requestrefereereplacementController {
         if (!validateInput()) {
             return;
         }
+
+        ReplacementRef replacementRef = new ReplacementRef(
+                matchIdTF.getText(),
+                currentRefereeTF.getText(),
+                matchIdTF1.getText(),
+                priorityCB.getValue(),
+                detailsTA.getText());
+
+        replacementRequestsTable.getItems().add(replacementRef);
+        BinaryFileUtility.writeObjects("ReplacementRef.bin", replacementRef);
 
         messageLabel.setText("Replacement request submitted successfully.");
     }
@@ -116,11 +146,11 @@ public class matchofficial_requestrefereereplacementController {
 
         priorityCB.getSelectionModel().clearSelection();
 
-        messageLabel.setText("");
+        messageLabel.setText("xxx");
     }
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
-
+        SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
     }
 }

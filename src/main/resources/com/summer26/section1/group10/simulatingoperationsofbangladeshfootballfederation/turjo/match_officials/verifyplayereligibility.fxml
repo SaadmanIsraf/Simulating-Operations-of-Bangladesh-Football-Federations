@@ -151,4 +151,11 @@
 
     </children>
 
+
+    <Label fx:id="messageLabel"
+           layoutX="70.0"
+           layoutY="590.0"
+           prefWidth="600.0"
+           textFill="red"/>
+
 </AnchorPane>

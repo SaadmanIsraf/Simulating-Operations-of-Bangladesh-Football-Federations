@@ -122,10 +122,12 @@ public class federation_administrator_manageuseraccountController {
         }
 
         int newId = (int) System.currentTimeMillis();
+        String generatedEmail = usernameTF.getText().trim().replaceAll("\\s+", "").toLowerCase() + "@federation.local";
 
         UserAccount userAccount = new UserAccount(
                 newId,
                 usernameTF.getText(),
+                generatedEmail,
                 "changeme123",
                 roleCB.getValue(),
                 statusCB.getValue(),
