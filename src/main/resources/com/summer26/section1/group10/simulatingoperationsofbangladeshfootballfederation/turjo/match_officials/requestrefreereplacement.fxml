@@ -88,6 +88,7 @@
             <TableColumn fx:id="detailsCol" prefWidth="150.0" text="Details" />
         </columns>
     </TableView>
+   <Label fx:id="messageLabel" alignment="CENTER" layoutX="149.0" layoutY="438.0" prefHeight="18.0" prefWidth="469.0" textFill="#1bbfe4" />
 
 
 </AnchorPane>

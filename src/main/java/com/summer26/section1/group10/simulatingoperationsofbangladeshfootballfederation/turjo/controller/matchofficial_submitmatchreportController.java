@@ -1,25 +1,31 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.model.MatchReport;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
 
 public class matchofficial_submitmatchreportController {
 
     @FXML
     private TextField cardsTF;
     @FXML
-    private TableColumn<?, ?> scoreCol;
+    private TableColumn<MatchReport, String> scoreCol;
     @FXML
-    private TableView<?> matchReportsTable;
+    private TableView<MatchReport> matchReportsTable;
     @FXML
-    private TableColumn<?, ?> cardsCol;
+    private TableColumn<MatchReport, Integer> cardsCol;
     @FXML
-    private TableColumn<?, ?> statusCol;
+    private TableColumn<MatchReport, String> statusCol;
     @FXML
     private TextField goalScorersTF;
     @FXML
-    private TableColumn<?, ?> matchBetweenCol;
+    private TableColumn<MatchReport, String> matchBetweenCol;
     @FXML
     private ComboBox<String> statusCB;
     @FXML
@@ -27,7 +33,7 @@ public class matchofficial_submitmatchreportController {
     @FXML
     private TextField scoreTF;
     @FXML
-    private TableColumn<?, ?> goalScorersCol;
+    private TableColumn<MatchReport, String> goalScorersCol;
     @FXML
     private TextField matchBetweenTF;
     @FXML
@@ -41,6 +47,19 @@ public class matchofficial_submitmatchreportController {
                 "Abandoned",
                 "Postponed"
         );
+
+        matchBetweenCol.setCellValueFactory(new PropertyValueFactory<>("matchBetween"));
+        scoreCol.setCellValueFactory(new PropertyValueFactory<>("score"));
+        goalScorersCol.setCellValueFactory(new PropertyValueFactory<>("goalScorers"));
+        cardsCol.setCellValueFactory(new PropertyValueFactory<>("cards"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        ArrayList<Object> reportList = BinaryFileUtility.readObjects("MatchReports.bin");
+        for (Object record : reportList) {
+            if (record instanceof MatchReport matchReport) {
+                matchReportsTable.getItems().add(matchReport);
+            }
+        }
     }
 
     private boolean validateInput() {
@@ -110,7 +129,20 @@ public class matchofficial_submitmatchreportController {
             return;
         }
 
+        MatchReport report = new MatchReport(
+                matchBetweenTF.getText().trim(),
+                scoreTF.getText().trim(),
+                goalScorersTF.getText().trim(),
+                Integer.parseInt(cardsTF.getText().trim()),
+                statusCB.getValue(),
+                summaryTA.getText().trim()
+        );
+
+        matchReportsTable.getItems().add(report);
+        BinaryFileUtility.writeObjects("MatchReports.bin", report);
+
         messageLabel.setText("Match report submitted successfully.");
+        clearOA(actionEvent);
     }
 
     @FXML
@@ -129,6 +161,6 @@ public class matchofficial_submitmatchreportController {
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
-
+        SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
     }
 }

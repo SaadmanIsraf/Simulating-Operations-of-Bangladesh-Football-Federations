@@ -10,10 +10,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-public class matchofficial_registerController  {
+public class matchofficial_registerController {
 
     @FXML
     private TableColumn<MatchOfficials, Integer> licenseCol;
@@ -45,19 +44,18 @@ public class matchofficial_registerController  {
     @FXML
     public void initialize() {
         nameCol.setCellValueFactory(new PropertyValueFactory<MatchOfficials, String>("name"));
-        licenseCol.setCellValueFactory(new PropertyValueFactory<MatchOfficials,Integer>("licenseNumber"));
+        licenseCol.setCellValueFactory(new PropertyValueFactory<MatchOfficials, Integer>("licenseNumber"));
         roleCol.setCellValueFactory(new PropertyValueFactory<>("matchOfficeRole"));
         experienceCol.setCellValueFactory(new PropertyValueFactory<>("exprerienceLevel"));
 
         ArrayList<Object> userList = BinaryFileUtility.readObjects("User.bin");
         for (Object user : userList) {
-            if(user instanceof MatchOfficials matchOfficials) {
-                if(matchOfficials.getRole().equals("Match Officials")) {
+            if (user instanceof MatchOfficials matchOfficials) {
+                if (matchOfficials.getRole().equals("Match Officials")) {
                     officialsTable.getItems().add(matchOfficials);
                 }
             }
         }
-
 
         roleCB.getItems().addAll(
                 "Referee",
@@ -88,6 +86,18 @@ public class matchofficial_registerController  {
             return false;
         }
 
+        if (newEmailTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Email cannot be empty.");
+            newEmailTF.requestFocus();
+            return false;
+        }
+
+        if (!newEmailTF.getText().matches("^[\\w.+-]+@[\\w-]+\\.[a-zA-Z]{2,}$")) {
+            messageLabel.setText("Invalid email format.");
+            newEmailTF.requestFocus();
+            return false;
+        }
+
         if (roleCB.getValue() == null) {
             messageLabel.setText("Select a role.");
             roleCB.requestFocus();
@@ -112,6 +122,12 @@ public class matchofficial_registerController  {
             return false;
         }
 
+        if (newPasswordTF.getText().trim().isEmpty()) {
+            messageLabel.setText("Password cannot be empty.");
+            newPasswordTF.requestFocus();
+            return false;
+        }
+
         messageLabel.setText("");
         return true;
     }
@@ -122,15 +138,23 @@ public class matchofficial_registerController  {
         if (!validateInput()) {
             return;
         }
-        if(!newPasswordTF.getText().equals(ConfirmPasswordTF.getText())) {
+
+        if (!newPasswordTF.getText().equals(ConfirmPasswordTF.getText())) {
             AlertGenerator.showAlert(Alert.AlertType.ERROR, "Passwords do not match", "Passwords do not match");
             return;
         }
 
         int newid = DatabaseAccessor.generateNewUniqueId("User.bin", "id");
-//        int id, String name, String password, String role, int licenseNumber, String exprerienceLevel, String matchOfficeRole
-        MatchOfficials matchOfficials = new MatchOfficials(1,nameTF.getText(),newPasswordTF.getText(),"Match Officials",Integer.parseInt(licenseTF.getText()), experienceCB.getValue(),roleCB.getValue());
 
+        MatchOfficials matchOfficials = new MatchOfficials(
+                newid,
+                nameTF.getText(),
+                newEmailTF.getText(),
+                newPasswordTF.getText(),
+                "Match Officials",
+                Integer.parseInt(licenseTF.getText().replaceAll("[^0-9]", "")),
+                experienceCB.getValue(),
+                roleCB.getValue());
 
         BinaryFileUtility.writeObjects("User.bin", matchOfficials);
         officialsTable.getItems().add(matchOfficials);
@@ -142,6 +166,9 @@ public class matchofficial_registerController  {
 
         nameTF.clear();
         licenseTF.clear();
+        newEmailTF.clear();
+        newPasswordTF.clear();
+        ConfirmPasswordTF.clear();
 
         roleCB.getSelectionModel().clearSelection();
         experienceCB.getSelectionModel().clearSelection();

@@ -8,8 +8,8 @@ public class UserAccount extends User {
     private String status;
     private String permission;
 
-    public UserAccount(int id, String name, String password, String role, String status, String permission) {
-        super(id, name, password, role);
+    public UserAccount(int id, String name, String email, String password, String role, String status, String permission) {
+        super(id, name, email, password, role);
         this.status = status;
         this.permission = permission;
     }
@@ -40,6 +40,7 @@ public class UserAccount extends User {
         return "UserAccount{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", status='" + status + '\'' +
                 ", permission='" + permission + '\'' +
