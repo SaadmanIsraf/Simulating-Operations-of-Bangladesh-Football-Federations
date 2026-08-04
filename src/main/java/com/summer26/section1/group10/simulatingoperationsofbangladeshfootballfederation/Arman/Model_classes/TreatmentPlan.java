@@ -1,9 +1,13 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.Model_classes;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 public class TreatmentPlan implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private int treatmentId;
     private int playerId;
@@ -11,37 +15,32 @@ public class TreatmentPlan implements Serializable {
     private String prescribedMedicines;
     private int physiotherapySessionsRequired;
     private int restDurationDays;
-    private String dietaryInstructions;
+    private String dietaryInstruction;
     private LocalDate followUpDate;
     private boolean active;
 
-    // Default Constructor
-    public TreatmentPlan() {
-    }
-
-    // Parameterized Constructor
-    public TreatmentPlan(int treatmentId,
-                         int playerId,
-                         int medicalOfficerId,
-                         String prescribedMedicines,
-                         int physiotherapySessionsRequired,
-                         int restDurationDays,
-                         String dietaryInstructions,
-                         LocalDate followUpDate,
-                         boolean active) {
+    public TreatmentPlan(
+            int treatmentId,
+            int playerId,
+            int medicalOfficerId,
+            String prescribedMedicines,
+            int physiotherapySessionsRequired,
+            int restDurationDays,
+            String dietaryInstruction,
+            LocalDate followUpDate,
+            boolean active) {
 
         this.treatmentId = treatmentId;
         this.playerId = playerId;
         this.medicalOfficerId = medicalOfficerId;
         this.prescribedMedicines = prescribedMedicines;
-        this.physiotherapySessionsRequired = physiotherapySessionsRequired;
+        this.physiotherapySessionsRequired =
+                physiotherapySessionsRequired;
         this.restDurationDays = restDurationDays;
-        this.dietaryInstructions = dietaryInstructions;
+        this.dietaryInstruction = dietaryInstruction;
         this.followUpDate = followUpDate;
         this.active = active;
     }
-
-    // Getters
 
     public int getTreatmentId() {
         return treatmentId;
@@ -67,8 +66,8 @@ public class TreatmentPlan implements Serializable {
         return restDurationDays;
     }
 
-    public String getDietaryInstructions() {
-        return dietaryInstructions;
+    public String getDietaryInstruction() {
+        return dietaryInstruction;
     }
 
     public LocalDate getFollowUpDate() {
@@ -78,8 +77,6 @@ public class TreatmentPlan implements Serializable {
     public boolean isActive() {
         return active;
     }
-
-    // Setters
 
     public void setTreatmentId(int treatmentId) {
         this.treatmentId = treatmentId;
@@ -93,20 +90,27 @@ public class TreatmentPlan implements Serializable {
         this.medicalOfficerId = medicalOfficerId;
     }
 
-    public void setPrescribedMedicines(String prescribedMedicines) {
+    public void setPrescribedMedicines(
+            String prescribedMedicines) {
+
         this.prescribedMedicines = prescribedMedicines;
     }
 
-    public void setPhysiotherapySessionsRequired(int physiotherapySessionsRequired) {
-        this.physiotherapySessionsRequired = physiotherapySessionsRequired;
+    public void setPhysiotherapySessionsRequired(
+            int physiotherapySessionsRequired) {
+
+        this.physiotherapySessionsRequired =
+                physiotherapySessionsRequired;
     }
 
     public void setRestDurationDays(int restDurationDays) {
         this.restDurationDays = restDurationDays;
     }
 
-    public void setDietaryInstructions(String dietaryInstructions) {
-        this.dietaryInstructions = dietaryInstructions;
+    public void setDietaryInstruction(
+            String dietaryInstruction) {
+
+        this.dietaryInstruction = dietaryInstruction;
     }
 
     public void setFollowUpDate(LocalDate followUpDate) {
@@ -123,12 +127,18 @@ public class TreatmentPlan implements Serializable {
                 "treatmentId=" + treatmentId +
                 ", playerId=" + playerId +
                 ", medicalOfficerId=" + medicalOfficerId +
-                ", prescribedMedicines='" + prescribedMedicines + '\'' +
-                ", physiotherapySessionsRequired=" + physiotherapySessionsRequired +
-                ", restDurationDays=" + restDurationDays +
-                ", dietaryInstructions='" + dietaryInstructions + '\'' +
-                ", followUpDate=" + followUpDate +
-                ", active=" + active +
+                ", prescribedMedicines='" +
+                prescribedMedicines + '\'' +
+                ", physiotherapySessionsRequired=" +
+                physiotherapySessionsRequired +
+                ", restDurationDays=" +
+                restDurationDays +
+                ", dietaryInstruction='" +
+                dietaryInstruction + '\'' +
+                ", followUpDate=" +
+                followUpDate +
+                ", active=" +
+                active +
                 '}';
     }
 }

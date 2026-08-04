@@ -17,4 +17,6 @@ module com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 
     opens com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.Model_classes
             to javafx.base, javafx.fxml;
+
+    opens com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.player_controller to javafx.fxml;
 }

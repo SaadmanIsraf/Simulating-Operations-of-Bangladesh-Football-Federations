@@ -1,90 +1,360 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.treatment_plan_controller">
-   <top>
-      <HBox alignment="CENTER" prefHeight="62.0" prefWidth="600.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
-         <children>
-            <Label text="Treatment Plan" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold" size="20.0" />
-               </font>
+<BorderPane prefHeight="760.0"
+            prefWidth="1050.0"
+            style="-fx-background-color: #F4F7F5;"
+            xmlns="http://javafx.com/javafx/26"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.treatment_plan_controller">
+
+    <top>
+        <HBox alignment="CENTER"
+              prefHeight="65.0"
+              style="-fx-background-color: #42AD60;">
+
+            <children>
+                <Label text="Treatment Plan"
+                       textFill="WHITE">
+
+                    <font>
+                        <Font name="Times New Roman Bold"
+                              size="21.0"/>
+                    </font>
+
+                </Label>
+            </children>
+
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="15.0">
+
+            <padding>
+                <Insets top="20.0"
+                        right="25.0"
+                        bottom="20.0"
+                        left="25.0"/>
+            </padding>
+
+            <HBox spacing="25.0"
+                  VBox.vgrow="NEVER">
+
+                <children>
+
+                    <VBox prefWidth="455.0"
+                          spacing="12.0"
+                          style="-fx-background-color: WHITE;
+                                 -fx-border-color: #C8D7CC;
+                                 -fx-border-radius: 5;
+                                 -fx-background-radius: 5;
+                                 -fx-padding: 18;">
+
+                        <children>
+
+                            <Label text="Search Player Treatment History"
+                                   textFill="#2F5638">
+
+                                <font>
+                                    <Font name="Times New Roman Bold"
+                                          size="16.0"/>
+                                </font>
+
+                            </Label>
+
+                            <HBox alignment="CENTER_LEFT"
+                                  spacing="10.0">
+
+                                <children>
+
+                                    <Label text="Player ID :">
+
+                                        <font>
+                                            <Font name="Times New Roman Bold"
+                                                  size="14.0"/>
+                                        </font>
+
+                                    </Label>
+
+                                    <TextField fx:id="search_player_id_textfield"
+                                               prefWidth="205.0"
+                                               promptText="Enter Player ID"/>
+
+                                    <Button mnemonicParsing="false"
+                                            onAction="#search_button_on_action"
+                                            prefWidth="75.0"
+                                            style="-fx-background-color: #42AD60;
+                                                   -fx-text-fill: white;
+                                                   -fx-font-weight: bold;"
+                                            text="Search"/>
+
+                                </children>
+
+                            </HBox>
+
+                            <TextArea fx:id="treatment_details_textarea"
+                                      editable="false"
+                                      prefHeight="275.0"
+                                      prefWidth="420.0"
+                                      promptText="Player information and treatment history will appear here..."
+                                      wrapText="true"/>
+
+                        </children>
+
+                    </VBox>
+
+                    <VBox prefWidth="500.0"
+                          spacing="12.0"
+                          style="-fx-background-color: WHITE;
+                                 -fx-border-color: #C8D7CC;
+                                 -fx-border-radius: 5;
+                                 -fx-background-radius: 5;
+                                 -fx-padding: 18;">
+
+                        <children>
+
+                            <Label text="Prescribe New Treatment"
+                                   textFill="#2F5638">
+
+                                <font>
+                                    <Font name="Times New Roman Bold"
+                                          size="16.0"/>
+                                </font>
+
+                            </Label>
+
+                            <GridPane hgap="15.0"
+                                      vgap="12.0">
+
+                                <children>
+
+                                    <Label text="Player ID :"
+                                           GridPane.columnIndex="0"
+                                           GridPane.rowIndex="0">
+
+                                        <font>
+                                            <Font name="Times New Roman Bold"
+                                                  size="14.0"/>
+                                        </font>
+
+                                    </Label>
+
+                                    <TextField fx:id="player_id_textfield"
+                                               prefWidth="245.0"
+                                               promptText="Enter Player ID"
+                                               GridPane.columnIndex="1"
+                                               GridPane.rowIndex="0"/>
+
+                                    <Label text="Medical Officer ID :"
+                                           GridPane.columnIndex="0"
+                                           GridPane.rowIndex="1">
+
+                                        <font>
+                                            <Font name="Times New Roman Bold"
+                                                  size="14.0"/>
+                                        </font>
+
+                                    </Label>
+
+                                    <TextField fx:id="medical_officer_id_textfield"
+                                               prefWidth="245.0"
+                                               promptText="Enter Officer ID"
+                                               GridPane.columnIndex="1"
+                                               GridPane.rowIndex="1"/>
+
+                                    <Label text="Prescribed Medicine :"
+                                           GridPane.columnIndex="0"
+                                           GridPane.rowIndex="2">
+
+                                        <font>
+                                            <Font name="Times New Roman Bold"
+                                                  size="14.0"/>
+                                        </font>
+
+                                    </Label>
+
+                                    <TextField fx:id="prescribed_medicine_textfield"
+                                               prefWidth="245.0"
+                                               promptText="Enter medicines"
+                                               GridPane.columnIndex="1"
+                                               GridPane.rowIndex="2"/>
+
+                                    <Label text="Physio Sessions :"
+                                           GridPane.columnIndex="0"
+                                           GridPane.rowIndex="3">
+
+                                        <font>
+                                            <Font name="Times New Roman Bold"
+                                                  size="14.0"/>
+                                        </font>
+
+                                    </Label>
+
+                                    <ComboBox fx:id="session_required_combobox"
+                                              onAction="#session_required_combobox_on_action"
+                                              prefWidth="245.0"
+                                              promptText="Select sessions"
+                                              GridPane.columnIndex="1"
+                                              GridPane.rowIndex="3"/>
+
+                                    <Label text="Rest Duration :"
+                                           GridPane.columnIndex="0"
+                                           GridPane.rowIndex="4">
+
+                                        <font>
+                                            <Font name="Times New Roman Bold"
+                                                  size="14.0"/>
+                                        </font>
+
+                                    </Label>
+
+                                    <TextField fx:id="rest_duration_textfield"
+                                               prefWidth="245.0"
+                                               promptText="Enter number of days"
+                                               GridPane.columnIndex="1"
+                                               GridPane.rowIndex="4"/>
+
+                                    <Label text="Dietary Instructions :"
+                                           GridPane.columnIndex="0"
+                                           GridPane.rowIndex="5">
+
+                                        <font>
+                                            <Font name="Times New Roman Bold"
+                                                  size="14.0"/>
+                                        </font>
+
+                                    </Label>
+
+                                    <TextField fx:id="dietary_ins_textfield"
+                                               prefWidth="245.0"
+                                               promptText="Enter dietary instructions"
+                                               GridPane.columnIndex="1"
+                                               GridPane.rowIndex="5"/>
+
+                                    <Label text="Follow-up Date :"
+                                           GridPane.columnIndex="0"
+                                           GridPane.rowIndex="6">
+
+                                        <font>
+                                            <Font name="Times New Roman Bold"
+                                                  size="14.0"/>
+                                        </font>
+
+                                    </Label>
+
+                                    <DatePicker fx:id="follow_up_datepicker"
+                                                prefWidth="245.0"
+                                                GridPane.columnIndex="1"
+                                                GridPane.rowIndex="6"/>
+
+                                </children>
+
+                            </GridPane>
+
+                            <HBox alignment="CENTER_RIGHT"
+                                  spacing="10.0">
+
+                                <children>
+
+                                    <Button mnemonicParsing="false"
+                                            onAction="#save_button_on_action"
+                                            prefHeight="34.0"
+                                            prefWidth="165.0"
+                                            style="-fx-background-color: #42AD60;
+                                                   -fx-text-fill: white;
+                                                   -fx-font-weight: bold;"
+                                            text="Save Treatment Plan"/>
+
+                                </children>
+
+                            </HBox>
+
+                        </children>
+
+                    </VBox>
+
+                </children>
+
+            </HBox>
+
+            <Label text="Treatment Plan History"
+                   textFill="#2F5638">
+
+                <font>
+                    <Font name="Times New Roman Bold"
+                          size="16.0"/>
+                </font>
+
             </Label>
-         </children>
-      </HBox>
-   </top>
-   <center>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane prefHeight="474.0" prefWidth="1050.0">
-               <children>
-                  <Label layoutX="52.0" layoutY="66.0" prefHeight="16.0" prefWidth="74.0" text="Player ID :">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="52.0" layoutY="113.0" prefHeight="16.0" prefWidth="74.0" text="Officer ID :">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <Label layoutX="52.0" layoutY="155.0" prefHeight="16.0" prefWidth="165.0" text="Prescribed Medicine :">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="player_id_textfield" layoutX="143.0" layoutY="61.0" />
-                  <TextField fx:id="medical_officer_id_textfield" layoutX="149.0" layoutY="108.0" />
-                  <TextField fx:id="prescribed_medicine_textfield" alignment="TOP_LEFT" layoutX="51.0" layoutY="189.0" prefHeight="42.0" prefWidth="336.0" />
-                  <Label layoutX="52.0" layoutY="255.0" prefHeight="16.0" prefWidth="234.0" text="Physiotherapy sessions required : ">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="session_required_combobox" layoutX="266.0" layoutY="250.0" onAction="#session_required_combobox_on_action" prefHeight="26.0" prefWidth="114.0" />
-                  <Label layoutX="51.0" layoutY="297.0" prefHeight="16.0" prefWidth="118.0" text="Rest Duration :">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="rest_duration_textfield" layoutX="158.0" layoutY="292.0" />
-                  <Label layoutX="51.0" layoutY="339.0" prefHeight="16.0" prefWidth="150.0" text="Dietary instructions :">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="dietary_ins_textfield" layoutX="191.0" layoutY="334.0" prefHeight="26.0" prefWidth="169.0" />
-                  <Label layoutX="53.0" layoutY="379.0" prefHeight="16.0" prefWidth="113.0" text="Follow-up Date :">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <DatePicker fx:id="follow_up_datepicker" layoutX="179.0" layoutY="374.0" />
-                  <TableView fx:id="Treatmentplan_tableview" layoutX="432.0" layoutY="50.0" prefHeight="200.0" prefWidth="582.0">
-                    <columns>
-                      <TableColumn fx:id="player_id_column" prefWidth="82.4000244140625" text="Player ID " />
-                      <TableColumn fx:id="medical_officer_id_column" prefWidth="87.20001220703125" text="Officer ID " />
-                        <TableColumn fx:id="prescribed_medicine_column" prefWidth="145.5999755859375" text="Prescribed Medicine" />
-                        <TableColumn fx:id="session_required_column" prefWidth="138.39996337890625" text="Session Required " />
-                        <TableColumn fx:id="rest_duration_column" prefWidth="129.5999755859375" text="Rest Duration" />
-                    </columns>
-                  </TableView>
-                  <Button layoutX="432.0" layoutY="374.0" mnemonicParsing="false" onAction="#save_button_on_action" prefHeight="26.0" prefWidth="68.0" text="Save" />
-                  <Button layoutX="53.0" layoutY="424.0" mnemonicParsing="false" onAction="#back_button_on_action" text="← Back" />
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-   </center>
+
+            <TableView fx:id="Treatmentplan_tableview"
+                       prefHeight="235.0"
+                       VBox.vgrow="ALWAYS">
+
+                <columns>
+
+                    <TableColumn fx:id="player_id_column"
+                                 prefWidth="90.0"
+                                 text="Player ID"/>
+
+                    <TableColumn fx:id="medical_officer_id_column"
+                                 prefWidth="100.0"
+                                 text="Officer ID"/>
+
+                    <TableColumn fx:id="prescribed_medicine_column"
+                                 prefWidth="175.0"
+                                 text="Prescribed Medicine"/>
+
+                    <TableColumn fx:id="session_required_column"
+                                 prefWidth="125.0"
+                                 text="Physio Sessions"/>
+
+                    <TableColumn fx:id="rest_duration_column"
+                                 prefWidth="105.0"
+                                 text="Rest Days"/>
+
+                    <TableColumn fx:id="dietary_instruction_column"
+                                 prefWidth="195.0"
+                                 text="Dietary Instructions"/>
+
+                    <TableColumn fx:id="follow_up_date_column"
+                                 prefWidth="130.0"
+                                 text="Follow-up Date"/>
+
+                </columns>
+
+            </TableView>
+
+            <HBox alignment="CENTER_LEFT">
+
+                <children>
+
+                    <Button mnemonicParsing="false"
+                            onAction="#back_button_on_action"
+                            prefWidth="85.0"
+                            text="← Back"/>
+
+                </children>
+
+            </HBox>
+
+        </VBox>
+    </center>
+
 </BorderPane>
