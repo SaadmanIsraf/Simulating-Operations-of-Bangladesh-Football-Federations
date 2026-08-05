@@ -2,33 +2,30 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="560.0"
-            prefWidth="760.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.player_controller.join_team_request_controller">
+<BorderPane prefHeight="760.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.player_controller.join_team_request_controller">
 
     <top>
-        <HBox alignment="CENTER"
-              prefHeight="81.0"
-              style="-fx-background-color: #42AD60;"
-              BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" prefHeight="82.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
 
-            <Label text="Request to Join a Team"
-                   textFill="WHITE">
+            <Label text="Transfer Request to Join a Team" textFill="WHITE">
 
                 <font>
-                    <Font name="Times New Roman Bold" size="20.0"/>
+                    <Font name="Times New Roman Bold" size="21.0" />
                 </font>
 
             </Label>
@@ -37,124 +34,140 @@
     </top>
 
     <center>
-        <VBox alignment="TOP_CENTER"
-              spacing="18.0"
-              style="-fx-background-color: #F4F7F5;">
+        <VBox alignment="TOP_CENTER" spacing="16.0" style="-fx-background-color: #F4F7F5;">
 
             <padding>
-                <Insets top="25.0"
-                        right="35.0"
-                        bottom="25.0"
-                        left="35.0"/>
+                <Insets bottom="22.0" left="32.0" right="32.0" top="22.0" />
             </padding>
 
-            <Label text="Search for a Team"
-                   textFill="#2F5638">
+            <Label text="Submit a Transfer Request" textFill="#2F5638">
 
                 <font>
-                    <Font name="Times New Roman Bold" size="17.0"/>
+                    <Font name="Times New Roman Bold" size="18.0" />
                 </font>
 
             </Label>
 
-            <GridPane alignment="CENTER"
-                      hgap="15.0"
-                      vgap="12.0">
+            <!-- Request Form -->
+            <VBox maxWidth="970.0" spacing="14.0" style="-fx-background-color: WHITE;                          -fx-background-radius: 10;                          -fx-border-color: #D5E3D8;                          -fx-border-radius: 10;">
 
-                <Label text="Team ID or Team Name:"
-                       GridPane.columnIndex="0"
-                       GridPane.rowIndex="0">
+                <padding>
+                    <Insets bottom="18.0" left="24.0" right="24.0" top="18.0" />
+                </padding>
+
+                <Label text="Transfer Request Information" textFill="#2F5638">
 
                     <font>
-                        <Font name="Times New Roman Bold" size="14.0"/>
+                        <Font name="Times New Roman Bold" size="16.0" />
                     </font>
 
                 </Label>
 
-                <TextField fx:id="team_search_textfield"
-                           prefWidth="280.0"
-                           promptText="Enter team ID or team name"
-                           GridPane.columnIndex="1"
-                           GridPane.rowIndex="0"/>
+                <GridPane hgap="18.0" vgap="14.0">
 
-                <Button mnemonicParsing="false"
-                        onAction="#search_team_button_on_action"
-                        prefWidth="90.0"
-                        style="-fx-background-color: #42AD60;
-                               -fx-text-fill: white;
-                               -fx-font-weight: bold;"
-                        text="Search"
-                        GridPane.columnIndex="2"
-                        GridPane.rowIndex="0"/>
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="145.0" prefWidth="165.0" />
 
-            </GridPane>
+                        <ColumnConstraints minWidth="290.0" prefWidth="330.0" />
 
-            <TableView fx:id="team_table"
-                       prefHeight="250.0"
-                       prefWidth="680.0">
+                        <ColumnConstraints minWidth="145.0" prefWidth="165.0" />
 
-                <columns>
+                        <ColumnConstraints minWidth="290.0" prefWidth="330.0" />
+                    </columnConstraints>
 
-                    <TableColumn fx:id="team_id_column"
-                                 prefWidth="110.0"
-                                 text="Team ID"/>
+                    <Label text="Player ID:" GridPane.columnIndex="0" GridPane.rowIndex="0">
 
-                    <TableColumn fx:id="team_name_column"
-                                 prefWidth="210.0"
-                                 text="Team Name"/>
+                        <font>
+                            <Font name="Times New Roman Bold" size="13.0" />
+                        </font>
 
-                    <TableColumn fx:id="coach_name_column"
-                                 prefWidth="190.0"
-                                 text="Coach"/>
+                    </Label>
 
-                    <TableColumn fx:id="team_status_column"
-                                 prefWidth="165.0"
-                                 text="Team Status"/>
+                    <TextField fx:id="player_id_textfield" prefWidth="320.0" promptText="Enter Player ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
 
-                </columns>
+                    <Label text="Requested Team:" GridPane.columnIndex="2" GridPane.rowIndex="0">
 
-            </TableView>
+                        <font>
+                            <Font name="Times New Roman Bold" size="13.0" />
+                        </font>
 
-            <Label fx:id="selected_team_label"
-                   alignment="CENTER"
-                   prefWidth="650.0"
-                   text="No team selected">
+                    </Label>
 
-                <font>
-                    <Font name="Times New Roman Bold" size="14.0"/>
-                </font>
+                    <ComboBox fx:id="team_name_combobox" onAction="#team_name_combobox_on_action" prefWidth="320.0" promptText="Select a team" GridPane.columnIndex="3" GridPane.rowIndex="0" />
 
-            </Label>
+                    <Label text="Request Message:" GridPane.columnIndex="0" GridPane.rowIndex="1">
 
-            <Label fx:id="information_label"
-                   alignment="CENTER"
-                   prefHeight="28.0"
-                   prefWidth="650.0"
-                   textFill="#C0392B">
+                        <font>
+                            <Font name="Times New Roman Bold" size="13.0" />
+                        </font>
 
-                <font>
-                    <Font name="Times New Roman Bold" size="13.0"/>
-                </font>
+                    </Label>
 
-            </Label>
+                    <TextArea fx:id="request_message_textarea" prefHeight="90.0" prefWidth="700.0" promptText="Write a short reason for your transfer request" wrapText="true" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+               <rowConstraints>
+                  <RowConstraints />
+                  <RowConstraints />
+               </rowConstraints>
 
-            <HBox alignment="CENTER"
-                  spacing="350.0">
+                </GridPane>
 
-                <Button mnemonicParsing="false"
-                        onAction="#back_button_on_action"
-                        prefWidth="90.0"
-                        text="← Back"/>
+                <HBox alignment="CENTER_RIGHT">
 
-                <Button fx:id="send_request_button"
-                        disable="true"
-                        mnemonicParsing="false"
-                        onAction="#send_request_button_on_action"
-                        prefWidth="140.0"
-                        style="-fx-background-color: #42AD60;
-                               -fx-text-fill: white;
-                               -fx-font-weight: bold;"
-                        text="Send Join Request"/>
+                    <Button mnemonicParsing="false" onAction="#send_request_button_on_action" prefWidth="185.0" style="-fx-background-color: #42AD60;                                    -fx-text-fill: white;                                    -fx-font-weight: bold;                                    -fx-background-radius: 5;" text="Send Transfer Request" />
+
+                </HBox>
+
+            </VBox>
+
+            <!-- Request History -->
+            <VBox maxWidth="970.0" spacing="9.0" style="-fx-background-color: WHITE;                          -fx-background-radius: 10;                          -fx-border-color: #D5E3D8;                          -fx-border-radius: 10;">
+
+                <padding>
+                    <Insets bottom="16.0" left="16.0" right="16.0" top="15.0" />
+                </padding>
+
+                <Label text="Submitted Transfer Requests" textFill="#2F5638">
+
+                    <font>
+                        <Font name="Times New Roman Bold" size="16.0" />
+                    </font>
+
+                </Label>
+
+                <TableView fx:id="transfer_request_tableview" prefHeight="320.0" prefWidth="935.0">
+
+                    <placeholder>
+                        <Label text="No transfer requests have been submitted yet." textFill="#657269" />
+                    </placeholder>
+
+                    <columns>
+
+                        <TableColumn fx:id="request_id_column" prefWidth="100.0" text="Request ID" />
+
+                        <TableColumn fx:id="player_id_column" prefWidth="100.0" text="Player ID" />
+
+                        <TableColumn fx:id="player_name_column" prefWidth="170.0" text="Player Name" />
+
+                        <TableColumn fx:id="current_team_column" prefWidth="170.0" text="Current Team" />
+
+                        <TableColumn fx:id="requested_team_column" prefWidth="170.0" text="Requested Team" />
+
+                        <TableColumn fx:id="request_date_column" prefWidth="120.0" text="Request Date" />
+
+                        <TableColumn fx:id="status_column" prefWidth="104.7999389648437" text="Status" />
+
+                    </columns>
+
+                </TableView>
+
+            </VBox>
+
+            <!-- Bottom Navigation -->
+            <HBox alignment="CENTER" maxWidth="970.0">
+
+                <Button mnemonicParsing="false" onAction="#back_button_on_action" prefWidth="105.0" text="← Back" />
+
+                <Region HBox.hgrow="ALWAYS" />
 
             </HBox>
 

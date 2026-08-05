@@ -9,121 +9,211 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="540.0" prefWidth="720.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.player_controller.coach_information_controller">
+<BorderPane prefHeight="560.0"
+            prefWidth="760.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.player_controller.coach_information_controller">
 
     <top>
-        <HBox alignment="CENTER" prefHeight="81.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER"
+              prefHeight="81.0"
+              style="-fx-background-color: #42AD60;"
+              BorderPane.alignment="CENTER">
 
-            <Label text="Coach Information" textFill="WHITE">
+            <Label text="Coach Information"
+                   textFill="WHITE">
 
                 <font>
-                    <Font name="Times New Roman Bold" size="20.0" />
+                    <Font name="Times New Roman Bold"
+                          size="20.0"/>
                 </font>
 
             </Label>
+
         </HBox>
     </top>
 
     <center>
-        <VBox alignment="TOP_CENTER" spacing="18.0" style="-fx-background-color: #F4F7F5;">
+        <VBox alignment="TOP_CENTER"
+              spacing="18.0"
+              style="-fx-background-color: #F4F7F5;">
 
             <padding>
-                <Insets bottom="25.0" left="40.0" right="40.0" top="25.0" />
+                <Insets top="25.0"
+                        right="40.0"
+                        bottom="25.0"
+                        left="40.0"/>
             </padding>
 
-            <Label text="View Assigned Team Coach" textFill="#2F5638">
+            <Label text="View Coach Information"
+                   textFill="#2F5638">
 
                 <font>
-                    <Font name="Times New Roman Bold" size="17.0" />
+                    <Font name="Times New Roman Bold"
+                          size="17.0"/>
                 </font>
+
             </Label>
 
-            <GridPane alignment="CENTER" hgap="20.0" vgap="15.0">
+            <VBox maxWidth="650.0"
+                  spacing="18.0"
+                  style="-fx-background-color: WHITE;
+                         -fx-background-radius: 10;
+                         -fx-border-color: #D5E3D8;
+                         -fx-border-radius: 10;">
 
-                <Label text="Player Team:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <padding>
+                    <Insets top="22.0"
+                            right="28.0"
+                            bottom="22.0"
+                            left="28.0"/>
+                </padding>
 
-                    <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                    </font>
-                </Label>
+                <HBox alignment="CENTER"
+                      spacing="15.0">
 
-                <Label fx:id="player_team_label" prefWidth="300.0" style="-fx-background-color: white;                               -fx-border-color: #B7C9BC;                               -fx-padding: 8;" text="Team Name" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                    <Label text="Select Coach:">
 
-                <Label text="Select Coach:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                        <font>
+                            <Font name="Times New Roman Bold"
+                                  size="14.0"/>
+                        </font>
 
-                    <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                    </font>
-                </Label>
+                    </Label>
 
-                <ComboBox onAction="#coach_combobox_on_action" prefWidth="300.0" promptText="Select an available coach" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                    <ComboBox fx:id="coach_combobox"
+                              onAction="#coach_combobox_on_action"
+                              prefWidth="300.0"
+                              promptText="Select an available coach"/>
 
-                <Label text="Coach Name:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+                    <Button mnemonicParsing="false"
+                            onAction="#view_details_button_on_action"
+                            prefWidth="115.0"
+                            style="-fx-background-color: #2F7D45;
+                                   -fx-text-fill: white;
+                                   -fx-font-weight: bold;"
+                            text="View Details"/>
 
-                    <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                    </font>
-                </Label>
+                </HBox>
 
-                <Label fx:id="coach_name_label" prefWidth="300.0" style="-fx-background-color: white;                               -fx-border-color: #B7C9BC;                               -fx-padding: 8;" text="-" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <GridPane alignment="CENTER"
+                          hgap="20.0"
+                          vgap="15.0">
 
-                <Label text="Contact Number:" GridPane.columnIndex="0" GridPane.rowIndex="3">
+                    <columnConstraints>
+                        <ColumnConstraints minWidth="150.0"
+                                           prefWidth="170.0"/>
 
-                    <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                    </font>
-                </Label>
+                        <ColumnConstraints minWidth="300.0"
+                                           prefWidth="340.0"/>
+                    </columnConstraints>
 
-                <Label fx:id="coach_contact_label" prefWidth="300.0" style="-fx-background-color: white;                               -fx-border-color: #B7C9BC;                               -fx-padding: 8;" text="-" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                    <rowConstraints>
+                        <RowConstraints minHeight="38.0"/>
+                        <RowConstraints minHeight="38.0"/>
+                        <RowConstraints minHeight="38.0"/>
+                        <RowConstraints minHeight="115.0"/>
+                    </rowConstraints>
 
-                <Label text="Specialization:" GridPane.columnIndex="0" GridPane.rowIndex="4">
+                    <Label text="Coach Name:"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="0">
 
-                    <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                    </font>
-                </Label>
+                        <font>
+                            <Font name="Times New Roman Bold"
+                                  size="14.0"/>
+                        </font>
 
-                <Label fx:id="coach_specialization_label" prefWidth="300.0" style="-fx-background-color: white;                               -fx-border-color: #B7C9BC;                               -fx-padding: 8;" text="-" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                    </Label>
 
-                <Label text="Available Schedule:" GridPane.columnIndex="0" GridPane.rowIndex="5">
+                    <Label fx:id="coach_name_label"
+                           prefWidth="320.0"
+                           style="-fx-background-color: white;
+                                  -fx-border-color: #B7C9BC;
+                                  -fx-padding: 8;"
+                           text="-"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="0"/>
 
-                    <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                    </font>
-                </Label>
+                    <Label text="Contact Number:"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="1">
 
-                <TextArea fx:id="coach_schedule_textarea" editable="false" prefHeight="100.0" prefWidth="300.0" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <columnConstraints>
-               <ColumnConstraints />
-               <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-               <RowConstraints />
-            </rowConstraints>
+                        <font>
+                            <Font name="Times New Roman Bold"
+                                  size="14.0"/>
+                        </font>
 
-            </GridPane>
+                    </Label>
 
-            <Label fx:id="information_label" alignment="CENTER" prefHeight="28.0" prefWidth="600.0" textFill="#C0392B">
+                    <Label fx:id="coach_contact_label"
+                           prefWidth="320.0"
+                           style="-fx-background-color: white;
+                                  -fx-border-color: #B7C9BC;
+                                  -fx-padding: 8;"
+                           text="-"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="1"/>
 
-                <font>
-                    <Font name="Times New Roman Bold" size="13.0" />
-                </font>
-            </Label>
+                    <Label text="Specialization:"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="2">
 
-            <HBox alignment="CENTER" spacing="360.0">
+                        <font>
+                            <Font name="Times New Roman Bold"
+                                  size="14.0"/>
+                        </font>
 
-                <Button mnemonicParsing="false" onAction="#back_button_on_action" prefWidth="90.0" text="← Back" />
+                    </Label>
 
-                <Button mnemonicParsing="false" onAction="#refresh_button_on_action" prefWidth="100.0" style="-fx-background-color: #42AD60;                                -fx-text-fill: white;                                -fx-font-weight: bold;" text="Refresh" />
+                    <Label fx:id="coach_specialization_label"
+                           prefWidth="320.0"
+                           style="-fx-background-color: white;
+                                  -fx-border-color: #B7C9BC;
+                                  -fx-padding: 8;"
+                           text="-"
+                           GridPane.columnIndex="1"
+                           GridPane.rowIndex="2"/>
+
+                    <Label text="Available Schedule:"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="3">
+
+                        <font>
+                            <Font name="Times New Roman Bold"
+                                  size="14.0"/>
+                        </font>
+
+                    </Label>
+
+                    <TextArea fx:id="coach_schedule_textarea"
+                              editable="false"
+                              prefHeight="105.0"
+                              prefWidth="320.0"
+                              promptText="Coach schedule will appear here."
+                              wrapText="true"
+                              GridPane.columnIndex="1"
+                              GridPane.rowIndex="3"/>
+
+                </GridPane>
+
+            </VBox>
+
+            <HBox alignment="CENTER"
+                  maxWidth="650.0">
+
+                <Button mnemonicParsing="false"
+                        onAction="#back_button_on_action"
+                        prefWidth="100.0"
+                        text="← Back"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
 
             </HBox>
 
