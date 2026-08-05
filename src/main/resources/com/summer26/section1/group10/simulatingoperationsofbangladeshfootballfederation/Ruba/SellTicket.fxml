@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="540.0" prefWidth="700.0" style="-fx-background-color: E6E8AC;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba.SellTicketController">
+    <children>
+        <Label layoutX="200.0" layoutY="20.0" text="Match Schedule &amp; Sell Tickets">
+            <font>
+                <Font size="22.0" />
+            </font>
+        </Label>
+
+        <TableView fx:id="scheduleTable" layoutX="40.0" layoutY="70.0" prefHeight="200.0" prefWidth="623.0">
+            <columns>
+                <TableColumn fx:id="matchColumn" prefWidth="230.0" text="Match" />
+                <TableColumn fx:id="dateColumn" prefWidth="130.0" text="Date" />
+                <TableColumn fx:id="venueColumn" prefWidth="150.0" text="Venue" />
+                <TableColumn fx:id="availableSeatsColumn" prefWidth="110.0" text="Available Seats" />
+            </columns>
+        </TableView>
+
+        <Label layoutX="40.0" layoutY="290.0" text="Match :" />
+        <ComboBox fx:id="matchComboBox" layoutX="110.0" layoutY="286.0" prefWidth="290.0" promptText="Select Match" />
+
+        <Label layoutX="420.0" layoutY="290.0" text="Quantity :" />
+        <TextField fx:id="quantityField" layoutX="490.0" layoutY="286.0" prefWidth="80.0" />
+
+        <Button layoutX="40.0" layoutY="330.0" mnemonicParsing="false" onAction="#confirmSale" text="Confirm Sale" />
+
+        <Label fx:id="statusLabel" layoutX="40.0" layoutY="375.0" prefWidth="600.0" text="" />
+
+        <Button layoutX="40.0" layoutY="480.0" mnemonicParsing="false" onAction="#backBtnOnAction" text="Back" />
+    </children>
+</AnchorPane>

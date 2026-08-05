@@ -3,6 +3,7 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.Model_classes.Player;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
@@ -20,46 +21,46 @@ import java.util.List;
 
 public class player_profile_controller {
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField player_age_textfield;
 
-    @javafx.fxml.FXML
+    @FXML
     private PasswordField new_password_field;
 
-    @javafx.fxml.FXML
+    @FXML
     private Label team_name_label;
 
-    @javafx.fxml.FXML
+    @FXML
     private Label playing_position_label;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField player_contact_textfield;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField player_name_textfield;
 
-    @javafx.fxml.FXML
+    @FXML
     private Label player_id_label;
 
-    @javafx.fxml.FXML
+    @FXML
     private Label information_label;
 
-    @javafx.fxml.FXML
+    @FXML
     private Label player_name_label;
 
-    @javafx.fxml.FXML
+    @FXML
     private Label player_age_label;
 
-    @javafx.fxml.FXML
+    @FXML
     private Label player_contact_label;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField player_id_textfield;
 
-    @javafx.fxml.FXML
+    @FXML
     private TextField team_name_textfield;
 
-    @javafx.fxml.FXML
+    @FXML
     private ComboBox<String> playing_position_combobox;
 
     private final List<Player> playerList = new ArrayList<>();
@@ -68,10 +69,10 @@ public class player_profile_controller {
 
     private static final String PLAYER_FILE_NAME = "players.bin";
 
-    @javafx.fxml.FXML
+    @FXML
     public void initialize() {
 
-        playing_position_combobox.getItems().addAll(
+        playing_position_combobox.getItems().setAll(
                 "Goalkeeper",
                 "Defender",
                 "Midfielder",
@@ -85,10 +86,22 @@ public class player_profile_controller {
             currentPlayer = playerList.get(0);
             displayPlayerInformation();
 
+            new_password_field.setDisable(true);
+            new_password_field.setPromptText(
+                    "Password cannot be changed here"
+            );
+
         } else {
+
+            currentPlayer = null;
 
             information_label.setText(
                     "No Player profile found. Fill in the form to create one."
+            );
+
+            new_password_field.setDisable(false);
+            new_password_field.setPromptText(
+                    "Enter password for new profile"
             );
         }
     }
@@ -150,7 +163,7 @@ public class player_profile_controller {
         information_label.setText("");
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void save_button_on_action(ActionEvent actionEvent) {
 
         String playerName =
@@ -171,7 +184,7 @@ public class player_profile_controller {
         String contactNumber =
                 player_contact_textfield.getText().trim();
 
-        String newPassword =
+        String password =
                 new_password_field.getText();
 
         if (playerName.isEmpty()
@@ -247,17 +260,6 @@ public class player_profile_controller {
             return;
         }
 
-        if (!newPassword.isEmpty()
-                && newPassword.length() < 8) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Invalid Password",
-                    "Password must contain at least 8 characters."
-            );
-            return;
-        }
-
         for (Player player : playerList) {
 
             if (player != currentPlayer
@@ -272,6 +274,7 @@ public class player_profile_controller {
             }
 
             if (player != currentPlayer
+                    && player.getContactNumber() != null
                     && player.getContactNumber().equals(contactNumber)) {
 
                 showAlert(
@@ -285,12 +288,22 @@ public class player_profile_controller {
 
         if (currentPlayer == null) {
 
-            if (newPassword.isEmpty()) {
+            if (password.isEmpty()) {
 
                 showAlert(
                         Alert.AlertType.ERROR,
                         "Password Required",
-                        "Password is required when creating the profile."
+                        "Password is required when creating a new profile."
+                );
+                return;
+            }
+
+            if (password.length() < 8) {
+
+                showAlert(
+                        Alert.AlertType.ERROR,
+                        "Invalid Password",
+                        "Password must contain at least 8 characters."
                 );
                 return;
             }
@@ -298,8 +311,7 @@ public class player_profile_controller {
             currentPlayer = new Player(
                     playerId,
                     playerName,
-                    "",
-                    newPassword,
+                    password,
                     "Player",
                     playerAge,
                     teamName,
@@ -313,16 +325,12 @@ public class player_profile_controller {
 
         } else {
 
-            currentPlayer.setId(playerId);
-            currentPlayer.setName(playerName);
+            currentPlayer.setPlayerId(playerId);
+            currentPlayer.setFullName(playerName);
             currentPlayer.setAge(playerAge);
             currentPlayer.setTeamName(teamName);
             currentPlayer.setPlayingPosition(playingPosition);
             currentPlayer.setContactNumber(contactNumber);
-
-            if (!newPassword.isEmpty()) {
-                currentPlayer.changePassword(newPassword);
-            }
         }
 
         if (!savePlayersToFile()) {
@@ -330,7 +338,12 @@ public class player_profile_controller {
         }
 
         displayPlayerInformation();
+
         new_password_field.clear();
+        new_password_field.setDisable(true);
+        new_password_field.setPromptText(
+                "Password cannot be changed here"
+        );
 
         information_label.setText(
                 "Player profile saved successfully."
@@ -343,13 +356,14 @@ public class player_profile_controller {
         );
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void playing_position_combobox_on_action(
             ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
-    public void back_button_on_action(ActionEvent actionEvent) {
+    @FXML
+    public void back_button_on_action(
+            ActionEvent actionEvent) {
 
         SceneSwitcher.switchTo(
                 "Arman/player/player_dashboard.fxml"
@@ -361,11 +375,13 @@ public class player_profile_controller {
 
         playerList.clear();
 
-        try (ObjectInputStream in =
+        try (ObjectInputStream inputStream =
                      new ObjectInputStream(
-                             new FileInputStream(PLAYER_FILE_NAME))) {
+                             new FileInputStream(
+                                     PLAYER_FILE_NAME
+                             ))) {
 
-            Object object = in.readObject();
+            Object object = inputStream.readObject();
 
             if (object instanceof ArrayList<?>) {
 
@@ -394,14 +410,16 @@ public class player_profile_controller {
 
     private boolean savePlayersToFile() {
 
-        try (ObjectOutputStream out =
+        try (ObjectOutputStream outputStream =
                      new ObjectOutputStream(
-                             new FileOutputStream(PLAYER_FILE_NAME))) {
+                             new FileOutputStream(
+                                     PLAYER_FILE_NAME
+                             ))) {
 
-            ArrayList<Player> tempList =
+            ArrayList<Player> savedPlayers =
                     new ArrayList<>(playerList);
 
-            out.writeObject(tempList);
+            outputStream.writeObject(savedPlayers);
             return true;
 
         } catch (IOException e) {

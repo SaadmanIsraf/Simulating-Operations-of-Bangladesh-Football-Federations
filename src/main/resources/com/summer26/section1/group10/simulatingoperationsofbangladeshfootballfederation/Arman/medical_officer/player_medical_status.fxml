@@ -1,64 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="563.0" prefWidth="802.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.player_medical_status_controller">
-   <top>
-      <HBox alignment="CENTER" prefHeight="69.0" prefWidth="600.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
-         <children>
+<BorderPane prefHeight="720.0" prefWidth="994.0" style="-fx-background-color: #F4F7F5;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_controller.player_medical_status_controller">
+
+    <top>
+        <HBox alignment="CENTER" prefHeight="70.0" style="-fx-background-color: #42AD60;">
+
             <Label text="Player Medical Fitness Status" textFill="WHITE">
-               <font>
-                  <Font name="Times New Roman Bold" size="19.0" />
-               </font>
+
+                <font>
+                    <Font name="Times New Roman Bold" size="20.0" />
+                </font>
+
             </Label>
-         </children>
-      </HBox>
-   </top>
-   <center>
-      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <AnchorPane prefHeight="468.0" prefWidth="842.0">
-               <children>
-                  <Label layoutX="107.0" layoutY="46.0" text="Player ID :">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="player_id_textfield" layoutX="189.0" layoutY="42.0" prefHeight="26.0" prefWidth="180.0" />
-                  <Label layoutX="107.0" layoutY="89.0" text="Match Date :">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <DatePicker fx:id="matchday_datepicker" layoutX="193.0" layoutY="85.0" />
-                  <Label layoutX="107.0" layoutY="129.0" text="Gameplay Declaration :">
-                     <font>
-                        <Font name="Times New Roman Bold" size="14.0" />
-                     </font>
-                  </Label>
-                  <ComboBox fx:id="gameplay_declaration_combobox" layoutX="104.0" layoutY="162.0" onAction="#gameplay_declaration_combobox_on_action" prefWidth="150.0" />
-                  <Button layoutX="332.0" layoutY="161.0" mnemonicParsing="false" onAction="#save_button_on_action" prefHeight="26.0" prefWidth="59.0" text="Save" />
-                  <TableView fx:id="player_medical_fitness_tableview" layoutX="104.0" layoutY="216.0" prefHeight="200.0" prefWidth="588.0">
-                    <columns>
-                      <TableColumn fx:id="player_id_column" prefWidth="181.6000213623047" text="Player ID" />
-                      <TableColumn fx:id="match_day_column" prefWidth="159.20001220703125" text="Match Date" />
-                        <TableColumn fx:id="declaration_status_column" prefWidth="247.20001220703125" text="Declaration Status" />
-                    </columns>
-                  </TableView>
-                  <Button layoutX="104.0" layoutY="438.0" mnemonicParsing="false" onAction="#back_button_on_action" prefHeight="26.0" prefWidth="59.0" text="← Back" />
-               </children>
-            </AnchorPane>
-         </children>
-      </HBox>
-   </center>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox prefHeight="650.0" prefWidth="1038.0" spacing="16.0">
+
+            <padding>
+                <Insets bottom="20.0" left="30.0" right="30.0" top="20.0" />
+            </padding>
+
+            <HBox spacing="25.0">
+
+                <VBox prefWidth="465.0" spacing="14.0" style="-fx-background-color: WHITE;                              -fx-border-color: #C8D7CC;                              -fx-border-radius: 6;                              -fx-background-radius: 6;                              -fx-padding: 18;">
+
+                    <Label text="Create Medical Fitness Declaration" textFill="#2F5638">
+
+                        <font>
+                            <Font name="Times New Roman Bold" size="16.0" />
+                        </font>
+                    </Label>
+
+                    <GridPane hgap="16.0" vgap="14.0">
+
+                        <Label text="Player ID:" GridPane.columnIndex="0" GridPane.rowIndex="0">
+
+                            <font>
+                                <Font name="Times New Roman Bold" size="14.0" />
+                            </font>
+                        </Label>
+
+                        <TextField fx:id="player_id_textfield" prefWidth="230.0" promptText="Enter Player ID" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+
+                        <Label text="Match Date:" GridPane.columnIndex="0" GridPane.rowIndex="1">
+
+                            <font>
+                                <Font name="Times New Roman Bold" size="14.0" />
+                            </font>
+                        </Label>
+
+                        <DatePicker fx:id="matchday_datepicker" prefWidth="230.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+                        <Label text="Gameplay Declaration:" GridPane.columnIndex="0" GridPane.rowIndex="2">
+
+                            <font>
+                                <Font name="Times New Roman Bold" size="14.0" />
+                            </font>
+                        </Label>
+
+                        <ComboBox fx:id="gameplay_declaration_combobox" onAction="#gameplay_declaration_combobox_on_action" prefWidth="230.0" promptText="Select declaration" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <columnConstraints>
+                     <ColumnConstraints />
+                     <ColumnConstraints />
+                  </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints />
+                     <RowConstraints />
+                     <RowConstraints />
+                  </rowConstraints>
+
+                    </GridPane>
+
+                    <HBox alignment="CENTER_RIGHT">
+
+                        <Button mnemonicParsing="false" onAction="#save_button_on_action" prefHeight="34.0" prefWidth="145.0" style="-fx-background-color: #42AD60;                                        -fx-text-fill: white;                                        -fx-font-weight: bold;" text="Save Declaration" />
+                    </HBox>
+                </VBox>
+
+                <VBox prefWidth="500.0" spacing="14.0" style="-fx-background-color: WHITE;                              -fx-border-color: #C8D7CC;                              -fx-border-radius: 6;                              -fx-background-radius: 6;                              -fx-padding: 18;">
+
+                    <Label text="Search Player Medical Status" textFill="#2F5638">
+
+                        <font>
+                            <Font name="Times New Roman Bold" size="16.0" />
+                        </font>
+                    </Label>
+
+                    <HBox alignment="CENTER_LEFT" spacing="10.0">
+
+                        <Label text="Player ID:">
+
+                            <font>
+                                <Font name="Times New Roman Bold" size="14.0" />
+                            </font>
+                        </Label>
+
+                        <TextField fx:id="search_player_id_textfield" prefWidth="250.0" promptText="Enter Player ID" />
+
+                        <Button mnemonicParsing="false" onAction="#search_button_on_action" prefWidth="80.0" style="-fx-background-color: #42AD60;                                        -fx-text-fill: white;                                        -fx-font-weight: bold;" text="Search" />
+                    </HBox>
+
+                    <TextArea fx:id="player_details_textarea" editable="false" prefHeight="185.0" prefWidth="460.0" promptText="Player details and medical declarations will appear here..." wrapText="true" />
+                </VBox>
+            </HBox>
+
+            <Label text="Medical Fitness Declaration History" textFill="#2F5638">
+
+                <font>
+                    <Font name="Times New Roman Bold" size="16.0" />
+                </font>
+            </Label>
+
+            <TableView fx:id="player_medical_fitness_tableview" prefHeight="270.0">
+
+                <columns>
+
+                    <TableColumn fx:id="player_id_column" prefWidth="180.0" text="Player ID" />
+
+                    <TableColumn fx:id="match_day_column" prefWidth="220.0" text="Match Date" />
+
+                    <TableColumn fx:id="declaration_status_column" prefWidth="580.0" text="Declaration Status" />
+
+                </columns>
+            </TableView>
+
+            <HBox alignment="CENTER_LEFT">
+
+                <Button mnemonicParsing="false" onAction="#back_button_on_action" prefWidth="85.0" text="← Back" />
+            </HBox>
+        </VBox>
+    </center>
+
 </BorderPane>

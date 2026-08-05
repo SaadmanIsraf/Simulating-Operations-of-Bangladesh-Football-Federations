@@ -50,9 +50,9 @@ public class LoginController
         dashboards.put("user4",
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Arman/player/player_dashboard.fxml");
         dashboards.put("user5",
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ruba/SpectatorDashboard.fxml");
         dashboards.put("user6",
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ruba/TicketManagerDashboard.fxml");
         dashboards.put("user7",
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
         dashboards.put("user8",

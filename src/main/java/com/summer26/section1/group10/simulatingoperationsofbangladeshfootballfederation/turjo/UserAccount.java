@@ -40,7 +40,6 @@ public class UserAccount extends User {
         return "UserAccount{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
                 ", role='" + role + '\'' +
                 ", status='" + status + '\'' +
                 ", permission='" + permission + '\'' +

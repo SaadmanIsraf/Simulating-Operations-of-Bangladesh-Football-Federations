@@ -19,7 +19,6 @@ public class Player extends User implements Serializable {
 
     public Player(int id,
                   String name,
-                  String email,
                   String password,
                   String role,
                   int age,
@@ -29,7 +28,7 @@ public class Player extends User implements Serializable {
                   String fitnessStatus,
                   String matchEligibilityStatus) {
 
-        super(id, name, email, password, role);
+        super(id, name, password, role);
 
         this.age = age;
         this.teamName = teamName;
@@ -79,10 +78,6 @@ public class Player extends User implements Serializable {
         setName(fullName);
     }
 
-    public void setEmail(String email) {
-        super.setEmail(email);
-    }
-
     public void setAge(int age) {
         this.age = age;
     }
@@ -107,10 +102,6 @@ public class Player extends User implements Serializable {
         this.matchEligibilityStatus = matchEligibilityStatus;
     }
 
-    public void changePassword(String newPassword) {
-        setPassword(newPassword);
-    }
-
     @Override
     public void updateUser() {
         System.out.println("Player information updated.");
@@ -121,7 +112,6 @@ public class Player extends User implements Serializable {
         return "Player{" +
                 "id=" + getId() +
                 ", name='" + getName() + '\'' +
-                ", email='" + getEmail() + '\'' +
                 ", role='" + getRole() + '\'' +
                 ", age=" + age +
                 ", teamName='" + teamName + '\'' +
