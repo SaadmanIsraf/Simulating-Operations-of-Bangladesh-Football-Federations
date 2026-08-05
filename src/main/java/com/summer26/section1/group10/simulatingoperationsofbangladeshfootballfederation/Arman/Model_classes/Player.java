@@ -8,31 +8,35 @@ import java.io.Serializable;
 public class Player extends User implements Serializable {
 
     @Serial
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
 
     private int age;
     private String teamName;
     private String playingPosition;
+    private String playerType;
     private String contactNumber;
     private String fitnessStatus;
     private String matchEligibilityStatus;
 
-    public Player(int id,
-                  String name,
-                  String password,
-                  String role,
-                  int age,
-                  String teamName,
-                  String playingPosition,
-                  String contactNumber,
-                  String fitnessStatus,
-                  String matchEligibilityStatus) {
-
+    public Player(
+            int id,
+            String name,
+            String password,
+            String role,
+            int age,
+            String teamName,
+            String playingPosition,
+            String playerType,
+            String contactNumber,
+            String fitnessStatus,
+            String matchEligibilityStatus
+    ) {
         super(id, name, password, role);
 
         this.age = age;
         this.teamName = teamName;
         this.playingPosition = playingPosition;
+        this.playerType = playerType;
         this.contactNumber = contactNumber;
         this.fitnessStatus = fitnessStatus;
         this.matchEligibilityStatus = matchEligibilityStatus;
@@ -56,6 +60,10 @@ public class Player extends User implements Serializable {
 
     public String getPlayingPosition() {
         return playingPosition;
+    }
+
+    public String getPlayerType() {
+        return playerType;
     }
 
     public String getContactNumber() {
@@ -90,6 +98,10 @@ public class Player extends User implements Serializable {
         this.playingPosition = playingPosition;
     }
 
+    public void setPlayerType(String playerType) {
+        this.playerType = playerType;
+    }
+
     public void setContactNumber(String contactNumber) {
         this.contactNumber = contactNumber;
     }
@@ -116,6 +128,7 @@ public class Player extends User implements Serializable {
                 ", age=" + age +
                 ", teamName='" + teamName + '\'' +
                 ", playingPosition='" + playingPosition + '\'' +
+                ", playerType='" + playerType + '\'' +
                 ", contactNumber='" + contactNumber + '\'' +
                 ", fitnessStatus='" + fitnessStatus + '\'' +
                 ", matchEligibilityStatus='" + matchEligibilityStatus + '\'' +
