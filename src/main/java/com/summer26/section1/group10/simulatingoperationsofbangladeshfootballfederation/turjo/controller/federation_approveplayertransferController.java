@@ -1,10 +1,14 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.PlayerTransfer;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.federation_administrator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.util.ArrayList;
 
-public class federation_approveplayertransferController {
+public class federation_approveplayertransferController implements UserReceiver {
 
     @FXML
     private ComboBox<String> decisionCB;
@@ -34,6 +38,16 @@ public class federation_approveplayertransferController {
     private TableColumn<PlayerTransfer, String> decisionCol;
     @FXML
     private TextField playerNameTF;
+    private federation_administrator loggedInUser;
+    @Override
+    public void setLoggedInUser(User user){
+        if (user instanceof federation_administrator f){
+            loggedInUser = f;
+        }
+        else {
+            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
+        }
+    }
 
     @FXML
     public void initialize() {

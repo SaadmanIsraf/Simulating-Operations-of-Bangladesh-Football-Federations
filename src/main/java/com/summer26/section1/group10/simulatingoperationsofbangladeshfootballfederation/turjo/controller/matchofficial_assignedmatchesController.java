@@ -1,7 +1,10 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.Managematch;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficials;
 
@@ -13,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class matchofficial_assignedmatchesController {
+public class matchofficial_assignedmatchesController implements UserReceiver {
 
     @FXML
     private TextField officialIdTF;
@@ -39,6 +42,17 @@ public class matchofficial_assignedmatchesController {
     private TableColumn<Managematch, String> statusCol;
     @FXML
     private Label messageLabel;
+    private MatchOfficials loggedInUser;
+    @Override
+    public void setLoggedInUser(User user){
+        if (user instanceof MatchOfficials m){
+            loggedInUser = m;
+        }
+        else {
+            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
+        }
+    }
+
 
     @FXML
     public void initialize() {

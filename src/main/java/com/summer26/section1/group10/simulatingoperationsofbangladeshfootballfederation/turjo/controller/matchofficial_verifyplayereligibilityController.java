@@ -1,7 +1,11 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficials;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.RecordFouls;
 
 import javafx.event.ActionEvent;
@@ -13,7 +17,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class matchofficial_verifyplayereligibilityController {
+public class matchofficial_verifyplayereligibilityController implements UserReceiver {
 
     @FXML
     private ComboBox<String> playerCB;
@@ -43,6 +47,17 @@ public class matchofficial_verifyplayereligibilityController {
     private ComboBox<Integer> yellowCardsCB;
     @FXML
     private Label messageLabel;
+    private MatchOfficials loggedInUser;
+    @Override
+    public void setLoggedInUser(User user){
+        if (user instanceof MatchOfficials m){
+            loggedInUser = m;
+        }
+        else {
+            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
+        }
+    }
+
 
     private ArrayList<RecordFouls> allFouls = new ArrayList<>();
     private ArrayList<PlayerCardSummary> manuallyAddedPlayers = new ArrayList<>();

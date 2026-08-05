@@ -1,8 +1,12 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.Managematch;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.federation_administrator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -11,7 +15,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
-public class federation_administrator_managematchesController {
+public class federation_administrator_managematchesController implements UserReceiver {
 
     @FXML
     private TableColumn<Managematch, String> awayTeamCol;
@@ -53,6 +57,17 @@ public class federation_administrator_managematchesController {
     private ComboBox<String> cmbStadium;
     @FXML
     private Label messageLabel;
+
+    private federation_administrator loggedInUser;
+    @Override
+    public void setLoggedInUser(User user){
+        if (user instanceof federation_administrator f){
+            loggedInUser = f;
+        }
+        else {
+            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
+        }
+    }
 
     @FXML
     public void initialize() {

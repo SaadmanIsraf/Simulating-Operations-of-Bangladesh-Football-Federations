@@ -1,6 +1,10 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.federation_administrator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
@@ -9,7 +13,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class federation_administrator_manageplayersController {
+public class federation_administrator_manageplayersController implements UserReceiver {
 
     @FXML
     private TextField clubTF;
@@ -37,6 +41,16 @@ public class federation_administrator_manageplayersController {
     private TableColumn<?, ?> playernamecol;
     @FXML
     private Label messageLabel;
+    private federation_administrator loggedInUser;
+    @Override
+    public void setLoggedInUser(User user){
+        if (user instanceof federation_administrator f){
+            loggedInUser = f;
+        }
+        else {
+            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
+        }
+    }
 
     @FXML
     public void initialize() {
