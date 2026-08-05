@@ -1,21 +1,22 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo;
 
-import javafx.scene.control.DatePicker;
-
 import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Managematch implements Serializable { private String matchId;
-private String hometeam;
-private String awayteam;
-private String competition;
-private String stadium;
-private LocalDate matchdate;
-private String matchtime;
-private String officials;
-private String status;
+public class Managematch implements Serializable {
+    private String matchId;
+    private String hometeam;
+    private String awayteam;
+    private String competition;
+    private String stadium;
+    private LocalDate matchdate;
+    private String matchtime;
+    private String officialId;
+    private String status;
 
-    public Managematch(String matchId, String hometeam, String awayteam, String competition, String stadium, LocalDate matchdate, String matchtime, String officials, String status) {
+    public Managematch(String matchId, String hometeam, String awayteam, String competition,
+                       String stadium, LocalDate matchdate, String matchtime,
+                       String officialId, String status) {
         this.matchId = matchId;
         this.hometeam = hometeam;
         this.awayteam = awayteam;
@@ -23,7 +24,7 @@ private String status;
         this.stadium = stadium;
         this.matchdate = matchdate;
         this.matchtime = matchtime;
-        this.officials = officials;
+        this.officialId = officialId;
         this.status = status;
     }
 
@@ -83,12 +84,12 @@ private String status;
         this.matchtime = matchtime;
     }
 
-    public String getOfficials() {
-        return officials;
+    public String getOfficialId() {
+        return officialId;
     }
 
-    public void setOfficials(String officials) {
-        this.officials = officials;
+    public void setOfficialId(String officialId) {
+        this.officialId = officialId;
     }
 
     public String getStatus() {
@@ -99,9 +100,3 @@ private String status;
         this.status = status;
     }
 }
-
-
-
-
-
-
