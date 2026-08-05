@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="500.0" style="-fx-background-color: E6E8AC;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba.TicketManagerDashboardController">
+    <children>
+        <Label layoutX="140.0" layoutY="30.0" text="Ticket Manager Dashboard">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </Label>
+
+        <Button layoutX="150.0" layoutY="100.0" prefWidth="200.0" mnemonicParsing="false" onAction="#openCreateTicket" text="Create Ticket" />
+        <Button layoutX="150.0" layoutY="150.0" prefWidth="200.0" mnemonicParsing="false" onAction="#openSalesReport" text="Sales Report / Summary" />
+        <Button layoutX="150.0" layoutY="200.0" prefWidth="200.0" mnemonicParsing="false" onAction="#openSeatManagement" text="Manage Seats" />
+        <Button layoutX="150.0" layoutY="250.0" prefWidth="200.0" mnemonicParsing="false" onAction="#openSellTicket" text="Match Schedule / Sell Tickets" />
+        <Button layoutX="150.0" layoutY="300.0" prefWidth="200.0" mnemonicParsing="false" onAction="#openBooking" text="Cancel / Refund Booking" />
+
+        <Button layoutX="150.0" layoutY="400.0" prefWidth="200.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
+    </children>
+</AnchorPane>

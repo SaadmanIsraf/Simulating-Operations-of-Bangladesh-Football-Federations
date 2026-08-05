@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="500.0" prefWidth="680.0" style="-fx-background-color: E6E8AC;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba.SeatManagementController">
+    <children>
+        <Label layoutX="200.0" layoutY="20.0" text="Seat Management">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Label>
+
+        <Label layoutX="40.0" layoutY="80.0" text="Match :" />
+        <ComboBox fx:id="matchComboBox" layoutX="120.0" layoutY="76.0" prefWidth="280.0" promptText="Select Match" />
+
+        <Label layoutX="40.0" layoutY="120.0" text="Available Seats :" />
+        <TextField fx:id="availableSeatsField" layoutX="170.0" layoutY="116.0" prefWidth="120.0" />
+
+        <Button layoutX="320.0" layoutY="116.0" mnemonicParsing="false" onAction="#updateSeats" text="Update" />
+
+        <Label fx:id="statusLabel" layoutX="40.0" layoutY="160.0" prefWidth="580.0" text="" />
+
+        <TableView fx:id="seatTable" layoutX="40.0" layoutY="200.0" prefHeight="220.0" prefWidth="580.0">
+            <columns>
+                <TableColumn fx:id="matchColumn" prefWidth="280.0" text="Match" />
+                <TableColumn fx:id="totalSeatsColumn" prefWidth="150.0" text="Total Seats" />
+                <TableColumn fx:id="availableSeatsColumn" prefWidth="150.0" text="Available Seats" />
+            </columns>
+        </TableView>
+
+        <Button layoutX="40.0" layoutY="440.0" mnemonicParsing="false" onAction="#backBtnOnAction" text="Back" />
+    </children>
+</AnchorPane>
