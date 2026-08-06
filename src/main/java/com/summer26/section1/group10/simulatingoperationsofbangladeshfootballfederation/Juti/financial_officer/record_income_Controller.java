@@ -35,7 +35,7 @@ public class record_income_Controller
     @javafx.fxml.FXML
     private TextField record_descriptionTF;
     @javafx.fxml.FXML
-    private TableColumn recordID_column;
+    private TableColumn<record_income,String> recordID_column;
     @javafx.fxml.FXML
     private TextField record_income_typeTF;
 
