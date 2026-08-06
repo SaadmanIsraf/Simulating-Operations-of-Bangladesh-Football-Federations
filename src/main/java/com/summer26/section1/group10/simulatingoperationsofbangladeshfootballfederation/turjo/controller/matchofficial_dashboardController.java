@@ -4,6 +4,7 @@ import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.match_official;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
@@ -11,17 +12,17 @@ import java.io.IOException;
 
 public class matchofficial_dashboardController implements UserReceiver {
 
-    private MatchOfficial loggedInUser;
+    private match_official loggedInUser;
 
     @Override
     public void setLoggedInUser(User user) {
 
-        if (user instanceof MatchOfficial) {
-            loggedInUser = (MatchOfficial) user;
+        if (user instanceof match_official m) {
+            loggedInUser = m;
         } else {
             AlertGenerator.showAlert(
                     "Error",
-                    "This is not a valid user for this page"
+                    "This is not a valid user for this page."
             );
         }
     }
@@ -37,8 +38,7 @@ public class matchofficial_dashboardController implements UserReceiver {
         SceneSwitcher.switchSceneWithData(
                 actionEvent,
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/register.fxml",
-                loggedInUser
-        );
+                loggedInUser);
     }
 
     @FXML
@@ -47,8 +47,7 @@ public class matchofficial_dashboardController implements UserReceiver {
         SceneSwitcher.switchSceneWithData(
                 actionEvent,
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/viewmatchschedule.fxml",
-                loggedInUser
-        );
+                loggedInUser);
     }
 
     @FXML
@@ -57,8 +56,7 @@ public class matchofficial_dashboardController implements UserReceiver {
         SceneSwitcher.switchSceneWithData(
                 actionEvent,
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/assignedmatches.fxml",
-                loggedInUser
-        );
+                loggedInUser);
     }
 
     @FXML
@@ -67,8 +65,7 @@ public class matchofficial_dashboardController implements UserReceiver {
         SceneSwitcher.switchSceneWithData(
                 actionEvent,
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/verifyplayereligibility.fxml",
-                loggedInUser
-        );
+                loggedInUser);
     }
 
     @FXML
@@ -77,8 +74,7 @@ public class matchofficial_dashboardController implements UserReceiver {
         SceneSwitcher.switchSceneWithData(
                 actionEvent,
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/recordfoulscards.fxml",
-                loggedInUser
-        );
+                loggedInUser);
     }
 
     @FXML
@@ -87,8 +83,7 @@ public class matchofficial_dashboardController implements UserReceiver {
         SceneSwitcher.switchSceneWithData(
                 actionEvent,
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/submitmatchreport.fxml",
-                loggedInUser
-        );
+                loggedInUser);
     }
 
     @FXML
@@ -97,8 +92,7 @@ public class matchofficial_dashboardController implements UserReceiver {
         SceneSwitcher.switchSceneWithData(
                 actionEvent,
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/logvarreport.fxml",
-                loggedInUser
-        );
+                loggedInUser);
     }
 
     @FXML
@@ -107,8 +101,7 @@ public class matchofficial_dashboardController implements UserReceiver {
         SceneSwitcher.switchSceneWithData(
                 actionEvent,
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/requestrefereereplacement.fxml",
-                loggedInUser
-        );
+                loggedInUser);
     }
 
     @FXML
