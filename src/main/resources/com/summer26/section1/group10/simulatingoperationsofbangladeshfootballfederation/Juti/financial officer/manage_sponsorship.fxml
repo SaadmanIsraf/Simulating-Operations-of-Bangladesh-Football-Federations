@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="666.0" prefWidth="814.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.manage_sponsorship_Controller">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="813.0" style="-fx-background-color: #1E90FF;">
+         <children>
+            <Label text="Manage Sponsorship" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button layoutX="390.0" layoutY="295.0" mnemonicParsing="false" onAction="#saveButtonOA" prefHeight="26.0" prefWidth="52.0" style="-fx-background-color: #1E90FF;" text="Save" />
+      <Text layoutX="47.0" layoutY="172.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sponsor ID: " />
+      <Text layoutX="38.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sponsor Name : " />
+      <Text layoutX="64.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Amount :" />
+      <Text layoutX="45.0" layoutY="342.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="506.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Sponsorship Type :" />
+      <Text layoutX="558.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Start Date  :" />
+      <TextField fx:id="sponsorIDTF" layoutX="137.0" layoutY="155.0" />
+      <TextField fx:id="sponsorNameTF" layoutX="138.0" layoutY="211.0" />
+      <TextField fx:id="amountTF" layoutX="137.0" layoutY="255.0" />
+      <DatePicker fx:id="startDatedatepicker" layoutX="635.0" layoutY="215.0" prefHeight="26.0" prefWidth="158.0" />
+      <DatePicker fx:id="endDatadatepicker" layoutX="643.0" layoutY="255.0" prefHeight="26.0" prefWidth="150.0" />
+      <ComboBox fx:id="sponsorshipTypeCB" layoutX="630.0" layoutY="170.0" prefWidth="150.0" />
+      <Text layoutX="562.0" layoutY="273.0" strokeType="OUTSIDE" strokeWidth="0.0" text="End Date :" />
+      <TableView fx:id="sponsorTV" layoutX="52.0" layoutY="345.0" prefHeight="200.0" prefWidth="738.0">
+        <columns>
+          <TableColumn fx:id="sponsorIDCol" prefWidth="103.99996566772461" text="Sponsor ID" />
+          <TableColumn fx:id="sponsorNameCol" prefWidth="153.6000518798828" text="Sponsor Name" />
+            <TableColumn fx:id="amountCol" prefWidth="146.4000244140625" text="Amount" />
+            <TableColumn fx:id="sponsorshipTypeCol" prefWidth="112.79998779296875" text="Sponsorship Type" />
+            <TableColumn fx:id="startDateCol" prefWidth="114.4000244140625" text="Start Date " />
+            <TableColumn fx:id="endDateCol" prefWidth="112.800048828125" text="End Date " />
+        </columns>
+      </TableView>
+      <Button layoutX="12.0" layoutY="626.0" mnemonicParsing="false" onAction="#backButtonOA" text="Back" />
+      <Button layoutX="396.0" layoutY="626.0" mnemonicParsing="false" onAction="#updateButtonOA" text="Update" />
+      <Button layoutX="728.0" layoutY="626.0" mnemonicParsing="false" onAction="#refreshButtonOA" text="Refresh" />
+      <Label layoutX="29.0" layoutY="568.0" prefHeight="18.0" prefWidth="326.0" />
+      <TextArea fx:id="sponsorshipStatusTA" layoutX="126.0" layoutY="563.0" prefHeight="46.0" prefWidth="200.0" />
+      <Text layoutX="10.0" layoutY="591.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sponsorship Status :" />
+   </children>
+</AnchorPane>

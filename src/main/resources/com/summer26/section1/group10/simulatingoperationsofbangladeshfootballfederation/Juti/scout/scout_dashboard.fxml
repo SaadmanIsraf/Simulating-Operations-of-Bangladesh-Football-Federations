@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="560.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.scout.scout_dashboard_Controller">
+   <children>
+      <Button layoutX="235.0" layoutY="267.0" mnemonicParsing="false" onAction="#createReportButton" prefHeight="26.0" prefWidth="162.0" text="Create Scouting Report" />
+      <Button layoutX="235.0" layoutY="227.0" mnemonicParsing="false" onAction="#recordPerformanceButton" prefHeight="26.0" prefWidth="162.0" text="Record Player Performance" />
+      <Button layoutX="233.0" layoutY="181.0" mnemonicParsing="false" onAction="#searchPlayersButton" text="Search and Shortlist Players" />
+      <Button layoutX="233.0" layoutY="133.0" mnemonicParsing="false" onAction="#viewAssignedMatchesButton" prefHeight="26.0" prefWidth="162.0" text="View Assigned Matches" />
+      <Button layoutX="232.0" layoutY="444.0" mnemonicParsing="false" onAction="#generatSummaryButton" text="Generate Scouting Summary" />
+      <Button layoutX="235.0" layoutY="401.0" mnemonicParsing="false" onAction="#recommenPlayersButton" prefHeight="26.0" prefWidth="162.0" text="Recommend Players" />
+      <Button layoutX="235.0" layoutY="354.0" mnemonicParsing="false" onAction="#updateReportButton" prefHeight="26.0" prefWidth="162.0" text="Update Scouting Report" />
+      <Button layoutX="235.0" layoutY="309.0" mnemonicParsing="false" onAction="#validateReportButton" prefHeight="26.0" prefWidth="162.0" text="Validate Scouting Report" />
+      <HBox alignment="CENTER" layoutY="-3.0" prefHeight="109.0" prefWidth="619.0" style="-fx-background-color: #1E90FF;">
+         <children>
+            <Label text="Scout DashBoardl" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
