@@ -1,6 +1,11 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo;
 
-public class TeamRanking {
+import java.io.Serializable;
+
+public class TeamRanking implements Serializable {
+
+
+
     private String rank;
     private String teamname;
     private String wins;
@@ -8,7 +13,13 @@ public class TeamRanking {
     private String losses;
     private String points;
 
-    public TeamRanking(String rank, String teamname, String wins, String draw, String losses, String points) {
+    public TeamRanking(String rank,
+                       String teamname,
+                       String wins,
+                       String draw,
+                       String losses,
+                       String points) {
+
         this.rank = rank;
         this.teamname = teamname;
         this.wins = wins;
@@ -65,4 +76,15 @@ public class TeamRanking {
         this.points = points;
     }
 
+    @Override
+    public String toString() {
+        return "TeamRanking{" +
+                "rank='" + rank + '\'' +
+                ", teamname='" + teamname + '\'' +
+                ", wins='" + wins + '\'' +
+                ", draw='" + draw + '\'' +
+                ", losses='" + losses + '\'' +
+                ", points='" + points + '\'' +
+                '}';
+    }
 }

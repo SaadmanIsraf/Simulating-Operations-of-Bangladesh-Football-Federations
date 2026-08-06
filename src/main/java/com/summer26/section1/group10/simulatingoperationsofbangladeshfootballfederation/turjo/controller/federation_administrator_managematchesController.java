@@ -79,7 +79,7 @@ public class federation_administrator_managematchesController implements UserRec
         stadiumCol.setCellValueFactory(new PropertyValueFactory<>("stadium"));
         dateCol.setCellValueFactory(new PropertyValueFactory<>("matchdate"));
         timeCol.setCellValueFactory(new PropertyValueFactory<>("matchtime"));
-        officialCol.setCellValueFactory(new PropertyValueFactory<>("officials"));
+        officialCol.setCellValueFactory(new PropertyValueFactory<>("officialId"));
         statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
 
         ArrayList managematch = BinaryFileUtility.readObjects("Managematches.bin");

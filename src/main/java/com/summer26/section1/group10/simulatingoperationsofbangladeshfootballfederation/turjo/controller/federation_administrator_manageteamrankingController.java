@@ -6,7 +6,6 @@ import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.TeamRanking;
-
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.federation_administrator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -48,31 +47,52 @@ public class federation_administrator_manageteamrankingController implements Use
     private TableColumn<TeamRanking, String> rankingtableviewrankcol;
     @FXML
     private Label messageLabel;
+
     private federation_administrator loggedInUser;
+
     @Override
-    public void setLoggedInUser(User user){
-        if (user instanceof federation_administrator f){
+    public void setLoggedInUser(User user) {
+
+        if (user instanceof federation_administrator f) {
             loggedInUser = f;
         }
         else {
-            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
+            AlertGenerator.showAlert(
+                    "Error",
+                    "This is not a valid user for this page"
+            );
         }
     }
 
     @FXML
     public void initialize() {
 
-        rankingtableviewrankcol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("rank"));
-        rankingtableviewteamnamecol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("teamname"));
-        rankingtableviewwinscol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("wins"));
-        rankingtableviewdrawcol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("draw"));
-        rankingtableviewlossescol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("losses"));
-        rankingtableviewpointscol.setCellValueFactory(new PropertyValueFactory<TeamRanking, String>("points"));
+        rankingtableviewrankcol.setCellValueFactory(
+                new PropertyValueFactory<>("rank"));
 
-        ArrayList<Object> rankingList = BinaryFileUtility.readObjects("Teamrankings.bin");
+        rankingtableviewteamnamecol.setCellValueFactory(
+                new PropertyValueFactory<>("teamname"));
+
+        rankingtableviewwinscol.setCellValueFactory(
+                new PropertyValueFactory<>("wins"));
+
+        rankingtableviewdrawcol.setCellValueFactory(
+                new PropertyValueFactory<>("draw"));
+
+        rankingtableviewlossescol.setCellValueFactory(
+                new PropertyValueFactory<>("losses"));
+
+        rankingtableviewpointscol.setCellValueFactory(
+                new PropertyValueFactory<>("points"));
+
+        ArrayList<Object> rankingList =
+                BinaryFileUtility.readObjects("Teamrankings.bin");
+
         for (Object record : rankingList) {
-            if (record instanceof TeamRanking teamranking) {
-                rankingtableview.getItems().add(teamranking);
+
+            if (record instanceof TeamRanking ranking) {
+
+                rankingtableview.getItems().add(ranking);
             }
         }
     }
@@ -80,79 +100,117 @@ public class federation_administrator_manageteamrankingController implements Use
     private boolean validateInput() {
 
         if (teamnameTF.getText().trim().isEmpty()) {
+
             messageLabel.setText("Enter team name.");
             teamnameTF.requestFocus();
             return false;
         }
 
         if (!teamnameTF.getText().matches("[A-Za-z ]+")) {
-            messageLabel.setText("Team name must contain only letters.");
+
+            messageLabel.setText(
+                    "Team name must contain only letters."
+            );
             teamnameTF.requestFocus();
             return false;
         }
 
         if (rankTF.getText().trim().isEmpty()) {
+
             messageLabel.setText("Enter rank.");
             rankTF.requestFocus();
             return false;
         }
 
         if (!rankTF.getText().matches("\\d+")) {
-            messageLabel.setText("Rank must contain only numbers.");
+
+            messageLabel.setText(
+                    "Rank must contain only numbers."
+            );
             rankTF.requestFocus();
             return false;
         }
 
         if (winsTF.getText().trim().isEmpty()) {
+
             messageLabel.setText("Enter wins.");
             winsTF.requestFocus();
             return false;
         }
 
         if (!winsTF.getText().matches("\\d+")) {
-            messageLabel.setText("Wins must contain only numbers.");
+
+            messageLabel.setText(
+                    "Wins must contain only numbers."
+            );
             winsTF.requestFocus();
             return false;
         }
 
         if (drawTF.getText().trim().isEmpty()) {
+
             messageLabel.setText("Enter draws.");
             drawTF.requestFocus();
             return false;
         }
 
         if (!drawTF.getText().matches("\\d+")) {
-            messageLabel.setText("Draws must contain only numbers.");
+
+            messageLabel.setText(
+                    "Draws must contain only numbers."
+            );
             drawTF.requestFocus();
             return false;
         }
 
         if (lossesTF.getText().trim().isEmpty()) {
+
             messageLabel.setText("Enter losses.");
             lossesTF.requestFocus();
             return false;
         }
 
         if (!lossesTF.getText().matches("\\d+")) {
-            messageLabel.setText("Losses must contain only numbers.");
+
+            messageLabel.setText(
+                    "Losses must contain only numbers."
+            );
             lossesTF.requestFocus();
             return false;
         }
 
         if (poitsTF.getText().trim().isEmpty()) {
+
             messageLabel.setText("Enter points.");
             poitsTF.requestFocus();
             return false;
         }
 
         if (!poitsTF.getText().matches("\\d+")) {
-            messageLabel.setText("Points must contain only numbers.");
+
+            messageLabel.setText(
+                    "Points must contain only numbers."
+            );
             poitsTF.requestFocus();
             return false;
         }
 
         messageLabel.setText("");
+
         return true;
+    }
+    private void saveAllRankings() {
+
+        ArrayList<Object> rankingList = new ArrayList<>();
+
+        for (TeamRanking ranking : rankingtableview.getItems()) {
+            rankingList.add(ranking);
+        }
+
+        BinaryFileUtility.overwriteObjects(
+                "Teamrankings.bin",
+                rankingList
+        );
     }
 
     @FXML
@@ -168,10 +226,15 @@ public class federation_administrator_manageteamrankingController implements Use
                 winsTF.getText(),
                 drawTF.getText(),
                 lossesTF.getText(),
-                poitsTF.getText());
+                poitsTF.getText()
+        );
 
         rankingtableview.getItems().add(teamranking);
-        BinaryFileUtility.writeObjects("Teamrankings.bin", teamranking);
+
+        BinaryFileUtility.writeObjects(
+                "Teamrankings.bin",
+                teamranking
+        );
 
         messageLabel.setText("Team ranking added successfully.");
     }
@@ -183,7 +246,8 @@ public class federation_administrator_manageteamrankingController implements Use
             return;
         }
 
-        TeamRanking selected = rankingtableview.getSelectionModel().getSelectedItem();
+        TeamRanking selected =
+                rankingtableview.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
             messageLabel.setText("Please select a team to update.");
@@ -199,6 +263,8 @@ public class federation_administrator_manageteamrankingController implements Use
 
         rankingtableview.refresh();
 
+        saveAllRankings();
+
         messageLabel.setText("Team ranking updated successfully.");
     }
 
@@ -209,19 +275,16 @@ public class federation_administrator_manageteamrankingController implements Use
             return;
         }
 
-        messageLabel.setText("Team ranking saved successfully.");
+        saveAllRankings();
+
+        messageLabel.setText("Team rankings saved successfully.");
     }
 
     @FXML
     public void deleteteamOA(ActionEvent actionEvent) {
 
-        if (teamnameTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Enter team name to delete.");
-            teamnameTF.requestFocus();
-            return;
-        }
-
-        TeamRanking selected = rankingtableview.getSelectionModel().getSelectedItem();
+        TeamRanking selected =
+                rankingtableview.getSelectionModel().getSelectedItem();
 
         if (selected == null) {
             messageLabel.setText("Please select a team to delete.");
@@ -229,6 +292,8 @@ public class federation_administrator_manageteamrankingController implements Use
         }
 
         rankingtableview.getItems().remove(selected);
+
+        saveAllRankings();
 
         messageLabel.setText("Team deleted successfully.");
     }
@@ -243,11 +308,15 @@ public class federation_administrator_manageteamrankingController implements Use
         lossesTF.clear();
         poitsTF.clear();
 
+        rankingtableview.refresh();
+
         messageLabel.setText("Form refreshed.");
     }
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("turjo/federation_administrator/dashboardView.fxml");
+        SceneSwitcher.switchTo(
+                "turjo/federation_administrator/dashboardView.fxml"
+        );
     }
 }
