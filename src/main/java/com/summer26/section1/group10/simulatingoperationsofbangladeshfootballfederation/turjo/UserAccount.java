@@ -1,48 +1,61 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
+import java.io.Serializable;
 
-public class UserAccount extends User {
+public class UserAccount implements Serializable {
 
+    private String username;
+    private String role;
     private String status;
-    private String permission;
 
-    public UserAccount(int id, String name, String email, String password, String role, String status, String permission) {
-        super(id, name, email, password, role);
+    // Default Constructor
+    public UserAccount() {
+    }
+
+    // Parameterized Constructor
+    public UserAccount(String username,
+                       String role,
+                       String status) {
+
+        this.username = username;
+        this.role = role;
         this.status = status;
-        this.permission = permission;
+    }
+
+    // Getters
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getRole() {
+        return role;
     }
 
     public String getStatus() {
         return status;
     }
 
+    // Setters
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public void setStatus(String status) {
         this.status = status;
-    }
-
-    public String getPermission() {
-        return permission;
-    }
-
-    public void setPermission(String permission) {
-        this.permission = permission;
-    }
-
-    @Override
-    public void updateUser() {
-        BinaryFileUtility.writeObjects("UserAccounts.bin", this);
     }
 
     @Override
     public String toString() {
         return "UserAccount{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
+                "username='" + username + '\'' +
                 ", role='" + role + '\'' +
                 ", status='" + status + '\'' +
-                ", permission='" + permission + '\'' +
                 '}';
     }
 }

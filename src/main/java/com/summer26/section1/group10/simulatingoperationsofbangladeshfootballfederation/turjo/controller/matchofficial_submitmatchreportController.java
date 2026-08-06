@@ -1,181 +1,223 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficials;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.model.MatchReport;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.SubmitMatchReport;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.SubmitMatchReportManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.ArrayList;
+import java.time.LocalDate;
 
-public class matchofficial_submitmatchreportController implements UserReceiver {
+public class matchofficial_submitmatchreportController {
 
-    @FXML
-    private TextField cardsTF;
-    @FXML
-    private TableColumn<MatchReport, String> scoreCol;
-    @FXML
-    private TableView<MatchReport> matchReportsTable;
-    @FXML
-    private TableColumn<MatchReport, Integer> cardsCol;
-    @FXML
-    private TableColumn<MatchReport, String> statusCol;
-    @FXML
-    private TextField goalScorersTF;
-    @FXML
-    private TableColumn<MatchReport, String> matchBetweenCol;
-    @FXML
-    private ComboBox<String> statusCB;
-    @FXML
-    private TextArea summaryTA;
     @FXML
     private TextField scoreTF;
+
     @FXML
-    private TableColumn<MatchReport, String> goalScorersCol;
+    private TextField goalScorersTF;
+
+    @FXML
+    private ComboBox<String> statusCB;
+
+    @FXML
+    private TextArea summaryTA;
+
+    @FXML
+    private TableColumn<SubmitMatchReport, String> scoreCol;
+
+    @FXML
+    private TableColumn<SubmitMatchReport, String> statusCol;
+    @FXML
+    private TableView matchReportsTable;
     @FXML
     private TextField matchBetweenTF;
     @FXML
     private Label messageLabel;
-    private MatchOfficials loggedInUser;
-    @Override
-    public void setLoggedInUser(User user){
-        if (user instanceof MatchOfficials m){
-            loggedInUser = m;
-        }
-        else {
-            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
-        }
-    }
-
+    @FXML
+    private TextField cardsTF;
+    @FXML
+    private TableColumn cardsCol;
+    @FXML
+    private TableColumn matchBetweenCol;
+    @FXML
+    private TableColumn goalScorersCol;
 
     @FXML
     public void initialize() {
 
         statusCB.getItems().addAll(
                 "Completed",
-                "Abandoned",
-                "Postponed"
+                "Postponed",
+                "Abandoned"
         );
 
-        matchBetweenCol.setCellValueFactory(new PropertyValueFactory<>("matchBetween"));
-        scoreCol.setCellValueFactory(new PropertyValueFactory<>("score"));
-        goalScorersCol.setCellValueFactory(new PropertyValueFactory<>("goalScorers"));
-        cardsCol.setCellValueFactory(new PropertyValueFactory<>("cards"));
-        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
+        matchIdCol.setCellValueFactory(
+                new PropertyValueFactory<>("matchId"));
 
-        ArrayList<Object> reportList = BinaryFileUtility.readObjects("MatchReports.bin");
-        for (Object record : reportList) {
-            if (record instanceof MatchReport matchReport) {
-                matchReportsTable.getItems().add(matchReport);
-            }
-        }
+        homeTeamCol.setCellValueFactory(
+                new PropertyValueFactory<>("homeTeam"));
+
+        awayTeamCol.setCellValueFactory(
+                new PropertyValueFactory<>("awayTeam"));
+
+        dateCol.setCellValueFactory(
+                new PropertyValueFactory<>("matchDate"));
+
+        scoreCol.setCellValueFactory(
+                new PropertyValueFactory<>("finalScore"));
+
+        yellowCardsCol.setCellValueFactory(
+                new PropertyValueFactory<>("yellowCards"));
+
+        redCardsCol.setCellValueFactory(
+                new PropertyValueFactory<>("redCards"));
+
+        statusCol.setCellValueFactory(
+                new PropertyValueFactory<>("matchStatus"));
+
+        loadMatchReports();
     }
 
-    private boolean validateInput() {
+    private void loadMatchReports() {
 
-        if (matchBetweenTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Match name cannot be empty.");
-            matchBetweenTF.requestFocus();
-            return false;
+        SubmitMatchReportManager.loadFromFile();
+
+        matchReportTable.getItems().setAll(
+                SubmitMatchReportManager.getMatchReportList());
+
+        matchReportTable.refresh();
+    }
+
+    @Deprecated
+    public void submitButtonOnAction(ActionEvent actionEvent) {
+
+        String matchId = matchIdTF.getText().trim();
+        String homeTeam = homeTeamTF.getText().trim();
+        String awayTeam = awayTeamTF.getText().trim();
+        LocalDate matchDate = matchDateDP.getValue();
+        String finalScore = scoreTF.getText().trim();
+        String goalScorers = goalScorersTF.getText().trim();
+        String yellowText = yellowCardsTF.getText().trim();
+        String redText = redCardsTF.getText().trim();
+        String status = statusCB.getValue();
+        String summary = summaryTA.getText().trim();
+
+        if (matchId.isEmpty()
+                || homeTeam.isEmpty()
+                || awayTeam.isEmpty()
+                || matchDate == null
+                || finalScore.isEmpty()
+                || goalScorers.isEmpty()
+                || yellowText.isEmpty()
+                || redText.isEmpty()
+                || status == null
+                || summary.isEmpty()) {
+
+            showAlert(
+                    Alert.AlertType.ERROR,
+                    "Missing Information",
+                    "Please fill in all fields."
+            );
+
+            return;
         }
 
-        if (!matchBetweenTF.getText().matches("[A-Za-z ]+")) {
-            messageLabel.setText("Match name can contain only letters.");
-            matchBetweenTF.requestFocus();
-            return false;
+        int yellowCards;
+        int redCards;
+
+        try {
+
+            yellowCards = Integer.parseInt(yellowText);
+            redCards = Integer.parseInt(redText);
+
+        } catch (NumberFormatException e) {
+
+            showAlert(
+                    Alert.AlertType.ERROR,
+                    "Invalid Input",
+                    "Yellow Cards and Red Cards must be numbers."
+            );
+
+            return;
         }
 
-        if (scoreTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Score cannot be empty.");
-            scoreTF.requestFocus();
-            return false;
-        }
+        SubmitMatchReport matchReport =
+                new SubmitMatchReport(
+                        matchId,
+                        homeTeam,
+                        awayTeam,
+                        matchDate,
+                        finalScore,
+                        goalScorers,
+                        yellowCards,
+                        redCards,
+                        summary,
+                        status
+                );
 
-        if (!scoreTF.getText().matches("\\d+-\\d+")) {
-            messageLabel.setText("Score must be in format 2-1.");
-            scoreTF.requestFocus();
-            return false;
-        }
+        SubmitMatchReportManager.addMatchReport(matchReport);
+        SubmitMatchReportManager.saveToFile();
 
-        if (goalScorersTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Goal scorers cannot be empty.");
-            goalScorersTF.requestFocus();
-            return false;
-        }
+        loadMatchReports();
 
-        if (cardsTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Cards field cannot be empty.");
-            cardsTF.requestFocus();
-            return false;
-        }
+        showAlert(
+                Alert.AlertType.INFORMATION,
+                "Success",
+                "Match report submitted successfully."
+        );
+    }
+    @Deprecated
+    public void clearButtonOnAction(ActionEvent actionEvent) {
 
-        if (!cardsTF.getText().matches("\\d+")) {
-            messageLabel.setText("Cards must contain only numbers.");
-            cardsTF.requestFocus();
-            return false;
-        }
+        clearFields();
+    }
 
-        if (statusCB.getValue() == null) {
-            messageLabel.setText("Select match status.");
-            statusCB.requestFocus();
-            return false;
-        }
+    @Deprecated
+    public void backButtonOnAction(ActionEvent actionEvent) {
 
-        if (summaryTA.getText().trim().isEmpty()) {
-            messageLabel.setText("Summary cannot be empty.");
-            summaryTA.requestFocus();
-            return false;
-        }
+        SceneSwitcher.switchTo(
+                "turjo/matchofficial/matchofficial_dashboard.fxml"
+        );
+    }
 
-        messageLabel.setText("");
-        return true;
+    private void clearFields() {
+
+        matchIdTF.clear();
+        homeTeamTF.clear();
+        awayTeamTF.clear();
+        matchDateDP.setValue(null);
+        scoreTF.clear();
+        goalScorersTF.clear();
+        yellowCardsTF.clear();
+        redCardsTF.clear();
+        statusCB.setValue(null);
+        summaryTA.clear();
+
+        matchReportTable.getSelectionModel().clearSelection();
+    }
+
+    private void showAlert(Alert.AlertType alertType,
+                           String title,
+                           String message) {
+
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 
     @FXML
     public void submitReportOA(ActionEvent actionEvent) {
-
-        if (!validateInput()) {
-            return;
-        }
-
-        MatchReport report = new MatchReport(
-                matchBetweenTF.getText().trim(),
-                scoreTF.getText().trim(),
-                goalScorersTF.getText().trim(),
-                Integer.parseInt(cardsTF.getText().trim()),
-                statusCB.getValue(),
-                summaryTA.getText().trim()
-        );
-
-        matchReportsTable.getItems().add(report);
-        BinaryFileUtility.writeObjects("MatchReports.bin", report);
-
-        messageLabel.setText("Match report submitted successfully.");
-        clearOA(actionEvent);
-    }
-
-    @FXML
-    public void clearOA(ActionEvent actionEvent) {
-
-        matchBetweenTF.clear();
-        scoreTF.clear();
-        goalScorersTF.clear();
-        cardsTF.clear();
-        summaryTA.clear();
-
-        statusCB.getSelectionModel().clearSelection();
-
-        messageLabel.setText("");
     }
 
     @FXML
     public void backOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
+    }
+
+    @FXML
+    public void clearOA(ActionEvent actionEvent) {
     }
 }

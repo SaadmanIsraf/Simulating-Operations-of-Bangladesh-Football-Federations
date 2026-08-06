@@ -1,229 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.DatePicker?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="900.0"
-            prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
+<AnchorPane prefHeight="650.0"
+            prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_logvarreportController">
 
+    <children>
 
-    <!-- Title -->
+        <Label layoutX="400.0"
+               layoutY="20.0"
+               text="Log VAR Report"
+               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-    <Label layoutX="300.0"
-           layoutY="30.0"
-           text="Log VAR Report"
-           textFill="#133799">
+        <VBox layoutX="20.0"
+              layoutY="60.0"
+              prefWidth="300.0"
+              spacing="10">
 
-        <font>
-            <Font size="28"/>
-        </font>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
 
-    </Label>
+            <Label text="Match ID"/>
+            <TextField fx:id="matchIdTF"
+                       promptText="Enter Match ID"/>
 
+            <Label text="Minute"/>
+            <TextField fx:id="minuteTF"
+                       promptText="e.g. 67"/>
 
+            <Label text="Player Name"/>
+            <TextField fx:id="playerNameTF"
+                       promptText="Enter Player Name"/>
 
-    <!-- Match Between -->
+            <Label text="Review Type"/>
+            <ComboBox fx:id="reviewTypeCB"/>
 
-    <Label layoutX="70.0"
-           layoutY="100.0"
-           text="Match Between"/>
+            <Label text="Decision"/>
+            <ComboBox fx:id="decisionCB"/>
 
-    <TextField fx:id="matchBetweenTF"
-               layoutX="70.0"
-               layoutY="125.0"
-               prefWidth="250"
-               promptText="Home Team vs Away Team"/>
+            <Label text="Report Details"/>
+            <TextArea fx:id="detailsTA"
+                      prefHeight="100"
+                      wrapText="true"
+                      promptText="Enter VAR report details"/>
 
+            <HBox spacing="10">
 
+                <Button text="Submit"
+                        prefWidth="90"
+                        onAction="#submitButtonOnAction"/>
 
+                <Button text="Clear"
+                        prefWidth="90"
+                        onAction="#clearButtonOnAction"/>
 
-    <!-- Match Day -->
+                <Button text="Back"
+                        prefWidth="90"
+                        onAction="#backButtonOnAction"/>
 
-    <Label layoutX="430.0"
-           layoutY="100.0"
-           text="Match Day"/>
+            </HBox>
 
-    <DatePicker fx:id="matchDayDP"
-                layoutX="430.0"
-                layoutY="125.0"
-                prefWidth="220"/>
+        </VBox>
 
+        <TableView fx:id="varReportTable"
+                   layoutX="340.0"
+                   layoutY="60.0"
+                   prefHeight="540.0"
+                   prefWidth="630.0">
 
+            <columns>
 
+                <TableColumn fx:id="matchIdCol"
+                             text="Match ID"
+                             prefWidth="90"/>
 
-    <!-- Match Minute -->
+                <TableColumn fx:id="minuteCol"
+                             text="Minute"
+                             prefWidth="70"/>
 
-    <Label layoutX="70.0"
-           layoutY="220.0"
-           text="Match Minute"/>
+                <TableColumn fx:id="playerNameCol"
+                             text="Player"
+                             prefWidth="140"/>
 
-    <TextField fx:id="minuteTF"
-               layoutX="70.0"
-               layoutY="245.0"
-               prefWidth="180"
-               promptText="Minute"/>
+                <TableColumn fx:id="reviewTypeCol"
+                             text="Review Type"
+                             prefWidth="130"/>
 
+                <TableColumn fx:id="decisionCol"
+                             text="Decision"
+                             prefWidth="100"/>
 
+                <TableColumn fx:id="detailsCol"
+                             text="Details"
+                             prefWidth="100"/>
 
+            </columns>
 
-    <!-- Review Type -->
+        </TableView>
 
-    <Label layoutX="330.0"
-           layoutY="220.0"
-           text="Review Type"/>
-
-    <ComboBox fx:id="reviewTypeCB"
-              layoutX="330.0"
-              layoutY="245.0"
-              prefWidth="220"
-              promptText="Select Review Type"/>
-
-
-
-
-    <!-- VAR Decision -->
-
-    <Label layoutX="600.0"
-           layoutY="220.0"
-           text="VAR Decision"/>
-
-    <ComboBox fx:id="varDecisionCB"
-              layoutX="600.0"
-              layoutY="245.0"
-              prefWidth="200"
-              promptText="Select Decision"/>
-
-
-
-
-    <!-- Player Involved -->
-
-    <Label layoutX="70.0"
-           layoutY="340.0"
-           text="Player Involved"/>
-
-    <TextField fx:id="playerNameTF"
-               layoutX="70.0"
-               layoutY="365.0"
-               prefWidth="220"
-               promptText="Player Name"/>
-
-
-
-
-    <!-- Final Decision -->
-
-    <Label layoutX="400.0"
-           layoutY="340.0"
-           text="Final Decision"/>
-
-    <TextField fx:id="decisionTF"
-               layoutX="400.0"
-               layoutY="365.0"
-               prefWidth="250"
-               promptText="Enter Final Decision"/>
-
-
-
-
-    <!-- VAR Report Details -->
-
-    <Label layoutX="70.0"
-           layoutY="450.0"
-           text="VAR Report Details"/>
-
-    <TextArea fx:id="detailsTA"
-              layoutX="70.0"
-              layoutY="475.0"
-              prefWidth="730"
-              prefHeight="70"
-              promptText="Describe VAR review"/>
-
-
-
-
-    <!-- Buttons -->
-
-    <Button layoutX="180.0"
-            layoutY="580.0"
-            prefWidth="150"
-            text="Submit Report"
-            onAction="#submitVARReportOA"/>
-
-
-    <Button layoutX="390.0"
-            layoutY="580.0"
-            prefWidth="120"
-            text="Clear"
-            onAction="#clearOA"/>
-
-
-    <Button layoutX="580.0"
-            layoutY="580.0"
-            prefWidth="120"
-            text="Back"
-            onAction="#backOA"/>
-
-
-
-    <!-- VAR Reports Table -->
-
-    <TableView fx:id="varReportsTable"
-               layoutX="70.0"
-               layoutY="630.0"
-               prefHeight="240.0"
-               prefWidth="760.0">
-
-        <columns>
-
-            <TableColumn fx:id="matchBetweenCol"
-                         text="Match"
-                         prefWidth="140"/>
-
-            <TableColumn fx:id="matchDayCol"
-                         text="Date"
-                         prefWidth="90"/>
-
-            <TableColumn fx:id="minuteCol"
-                         text="Minute"
-                         prefWidth="70"/>
-
-            <TableColumn fx:id="reviewTypeCol"
-                         text="Review Type"
-                         prefWidth="110"/>
-
-            <TableColumn fx:id="varDecisionCol"
-                         text="VAR Decision"
-                         prefWidth="110"/>
-
-            <TableColumn fx:id="playerNameCol"
-                         text="Player"
-                         prefWidth="100"/>
-
-            <TableColumn fx:id="finalDecisionCol"
-                         text="Final Decision"
-                         prefWidth="140"/>
-
-        </columns>
-
-    </TableView>
-
-    <Label fx:id="messageLabel"
-           layoutX="70.0"
-           layoutY="590.0"
-           prefWidth="600.0"
-           textFill="red"/>
-
+    </children>
 
 </AnchorPane>

@@ -1,175 +1,111 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.Managematch;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficials;
-
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.AssignedMatch;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.AssignedMatchManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-public class matchofficial_assignedmatchesController implements UserReceiver {
+public class matchofficial_assignedmatchesController {
 
     @FXML
-    private TextField officialIdTF;
-    @FXML
-    private TextField officialNameTF;
-    @FXML
-    private TableView<Managematch> assignedMatchesTable;
-    @FXML
-    private TableColumn<Managematch, String> matchIdCol;
-    @FXML
-    private TableColumn<Managematch, String> homeTeamCol;
-    @FXML
-    private TableColumn<Managematch, String> awayTeamCol;
-    @FXML
-    private TableColumn<Managematch, String> competitionCol;
-    @FXML
-    private TableColumn<Managematch, String> stadiumCol;
-    @FXML
-    private TableColumn<Managematch, LocalDate> dateCol;
-    @FXML
-    private TableColumn<Managematch, String> timeCol;
-    @FXML
-    private TableColumn<Managematch, String> statusCol;
-    @FXML
-    private Label messageLabel;
-    private MatchOfficials loggedInUser;
-    @Override
-    public void setLoggedInUser(User user){
-        if (user instanceof MatchOfficials m){
-            loggedInUser = m;
-        }
-        else {
-            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
-        }
-    }
+    private TableView<AssignedMatch> assignedMatchesTable;
 
+    @FXML
+    private TableColumn<AssignedMatch, String> matchIdCol;
+
+    @FXML
+    private TableColumn<AssignedMatch, String> homeTeamCol;
+
+    @FXML
+    private TableColumn<AssignedMatch, String> awayTeamCol;
+
+    @FXML
+    private TableColumn<AssignedMatch, String> timeCol;
+
+    @FXML
+    private TableColumn<AssignedMatch, String> venueCol;
+
+    @FXML
+    private TableColumn<AssignedMatch, String> roleCol;
+
+    @FXML
+    private TableColumn<AssignedMatch, java.time.LocalDate> dateCol;
+    @FXML
+    private Button refreshButton;
+    @FXML
+    private Button backButton;
 
     @FXML
     public void initialize() {
 
-        matchIdCol.setCellValueFactory(new PropertyValueFactory<Managematch, String>("matchId"));
-        homeTeamCol.setCellValueFactory(new PropertyValueFactory<Managematch, String>("hometeam"));
-        awayTeamCol.setCellValueFactory(new PropertyValueFactory<Managematch, String>("awayteam"));
-        competitionCol.setCellValueFactory(new PropertyValueFactory<Managematch, String>("competition"));
-        stadiumCol.setCellValueFactory(new PropertyValueFactory<Managematch, String>("stadium"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<Managematch, LocalDate>("matchdate"));
-        timeCol.setCellValueFactory(new PropertyValueFactory<Managematch, String>("matchtime"));
-        statusCol.setCellValueFactory(new PropertyValueFactory<Managematch, String>("status"));
+        matchIdCol.setCellValueFactory(
+                new PropertyValueFactory<>("matchId"));
+
+        homeTeamCol.setCellValueFactory(
+                new PropertyValueFactory<>("homeTeam"));
+
+        awayTeamCol.setCellValueFactory(
+                new PropertyValueFactory<>("awayTeam"));
+
+        dateCol.setCellValueFactory(
+                new PropertyValueFactory<>("matchDate"));
+
+        timeCol.setCellValueFactory(
+                new PropertyValueFactory<>("matchTime"));
+
+        venueCol.setCellValueFactory(
+                new PropertyValueFactory<>("venue"));
+
+        roleCol.setCellValueFactory(
+                new PropertyValueFactory<>("role"));
+
+        loadAssignedMatches();
     }
 
-    private boolean validateInput() {
+    private void loadAssignedMatches() {
 
-        if (officialIdTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Enter your Official ID.");
-            officialIdTF.requestFocus();
-            return false;
-        }
+        AssignedMatchManager.loadFromFile();
 
-        if (!officialIdTF.getText().trim().matches("\\d+")) {
-            messageLabel.setText("Official ID must contain only numbers.");
-            officialIdTF.requestFocus();
-            return false;
-        }
+        assignedMatchesTable.getItems().setAll(
+                AssignedMatchManager.getAssignedMatchList());
 
-        if (officialNameTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Enter your name.");
-            officialNameTF.requestFocus();
-            return false;
-        }
-
-        if (!officialNameTF.getText().trim().matches("[A-Za-z ]+")) {
-            messageLabel.setText("Name can contain only letters.");
-            officialNameTF.requestFocus();
-            return false;
-        }
-
-        messageLabel.setText("");
-        return true;
+        assignedMatchesTable.refresh();
     }
 
     @FXML
-    public void viewAssignedMatchesOA(ActionEvent actionEvent) {
+    public void refreshButtonOnAction(ActionEvent actionEvent) {
 
-        if (!validateInput()) {
-            return;
-        }
+        loadAssignedMatches();
 
-        String enteredId = officialIdTF.getText().trim();
-        String enteredName = officialNameTF.getText().trim();
-
-        MatchOfficials matchedOfficial = null;
-
-        ArrayList<Object> userList = BinaryFileUtility.readObjects("User.bin");
-        for (Object user : userList) {
-            if (user instanceof MatchOfficials official) {
-                if (String.valueOf(official.getId()).equals(enteredId) && official.getName().equalsIgnoreCase(enteredName)) {
-                    matchedOfficial = official;
-                    break;
-                }
-            }
-        }
-
-        if (matchedOfficial == null) {
-            messageLabel.setText("No official found with that ID and name.");
-            assignedMatchesTable.getItems().clear();
-            return;
-        }
-
-        assignedMatchesTable.getItems().clear();
-
-        String matchedOfficialId = String.valueOf(matchedOfficial.getId());
-
-        ArrayList<Object> matchList = BinaryFileUtility.readObjects("Managematches.bin");
-        for (Object record : matchList) {
-            if (record instanceof Managematch managematch) {
-                if (managematch.getOfficialId().equals(matchedOfficialId)) {
-                    assignedMatchesTable.getItems().add(managematch);
-                }
-            }
-        }
-
-        if (assignedMatchesTable.getItems().isEmpty()) {
-            messageLabel.setText("No matches currently assigned to you.");
-        } else {
-            messageLabel.setText("Showing matches assigned to " + matchedOfficial.getName() + ".");
-        }
+        showAlert(
+                Alert.AlertType.INFORMATION,
+                "Refreshed",
+                "Assigned matches loaded successfully."
+        );
     }
-
     @FXML
-    public void backOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
+    public void backButtonOnAction(ActionEvent actionEvent) {
+
+        SceneSwitcher.switchTo(
+                "turjo/matchofficial/matchofficial_dashboard.fxml"
+        );
     }
 
+    private void showAlert(Alert.AlertType alertType,
+                           String title,
+                           String message) {
 
-
-    public class SeedTestOfficial {
-
-        public static void main(String[] args) {
-
-            MatchOfficials testOfficial = new MatchOfficials(
-                    4821,
-                    "Rakib Hossain",
-                    "rakib.hossain@federation.local",
-                    "test1234",
-                    "Match Officials",
-                    123456,
-                    "3-5 Years",
-                    "Referee");
-
-            BinaryFileUtility.writeObjects("User.bin", testOfficial);
-
-            System.out.println("Test official saved: ID=4821, Name=Rakib Hossain");
-        }
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
+
 }
-

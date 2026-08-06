@@ -1,135 +1,115 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="900.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_highlightsController">
+<AnchorPane prefHeight="700.0"
+            prefWidth="1050.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_uploadmatchhighlightsController">
 
+    <children>
 
-    <!-- Title -->
+        <Label layoutX="370.0"
+               layoutY="20.0"
+               text="Upload Match Highlights"
+               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-    <Label layoutX="300.0" layoutY="25.0" text="Upload Match Highlights" textFill="#133799">
-        <font>
-            <Font size="26" />
-        </font>
-    </Label>
+        <VBox layoutX="20.0"
+              layoutY="60.0"
+              prefWidth="320.0"
+              spacing="10">
 
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
 
+            <Label text="Match ID"/>
+            <TextField fx:id="matchIdTF"
+                       promptText="Enter Match ID"/>
 
-    <!-- Match -->
+            <Label text="Highlight Title"/>
+            <TextField fx:id="titleTF"
+                       promptText="Highlight Title"/>
 
-    <Label layoutX="60.0" layoutY="100.0" text="Select Match" />
+            <Label text="Video Link"/>
+            <TextField fx:id="videoLinkTF"
+                       promptText="Paste Video URL"/>
 
-    <ComboBox fx:id="cmbMatch" layoutX="60.0" layoutY="125.0" prefWidth="250" promptText="Select Match" />
+            <Label text="Duration"/>
+            <TextField fx:id="durationTF"
+                       promptText="Example: 03:45"/>
 
+            <Label text="Highlight Type"/>
+            <ComboBox fx:id="highlightTypeCB"/>
 
+            <Label text="Publish Status"/>
+            <ComboBox fx:id="publishStatusCB"/>
 
-    <!-- Highlight Title -->
+            <Label text="Description"/>
+            <TextArea fx:id="descriptionTA"
+                      prefHeight="120"
+                      wrapText="true"
+                      promptText="Enter highlight description..."/>
 
-    <Label layoutX="370.0" layoutY="100.0" text="Highlight Title" />
+            <HBox spacing="10">
 
-    <TextField fx:id="txtHighlightTitle" layoutX="370.0" layoutY="125.0" prefWidth="250" promptText="Enter Highlight Title" />
+                <Button text="Upload"
+                        prefWidth="90"
+                        onAction="#uploadButtonOnAction"/>
 
+                <Button text="Clear"
+                        prefWidth="90"
+                        onAction="#clearButtonOnAction"/>
 
+                <Button text="Back"
+                        prefWidth="90"
+                        onAction="#backButtonOnAction"/>
 
-    <!-- Competition -->
+            </HBox>
 
-    <Label layoutX="680.0" layoutY="100.0" text="Competition" />
+        </VBox>
 
-    <ComboBox fx:id="cmbCompetition" layoutX="680.0" layoutY="125.0" prefWidth="220" promptText="Select Competition" />
+        <TableView fx:id="highlightTable"
+                   layoutX="360.0"
+                   layoutY="60.0"
+                   prefHeight="610.0"
+                   prefWidth="670.0">
 
+            <columns>
 
+                <TableColumn fx:id="matchIdCol"
+                             text="Match ID"
+                             prefWidth="90"/>
 
-    <!-- Video Link -->
+                <TableColumn fx:id="titleCol"
+                             text="Title"
+                             prefWidth="180"/>
 
-    <Label layoutX="60.0" layoutY="220.0" text="Video Link" />
+                <TableColumn fx:id="typeCol"
+                             text="Type"
+                             prefWidth="120"/>
 
-    <TextField fx:id="txtVideoLink" layoutX="60.0" layoutY="245.0" prefWidth="400" />
+                <TableColumn fx:id="durationCol"
+                             text="Duration"
+                             prefWidth="90"/>
 
+                <TableColumn fx:id="statusCol"
+                             text="Status"
+                             prefWidth="120"/>
 
+                <TableColumn fx:id="videoLinkCol"
+                             text="Video Link"
+                             prefWidth="170"/>
 
-    <!-- Duration -->
+            </columns>
 
-    <Label layoutX="520.0" layoutY="220.0" text="Duration" />
+        </TableView>
 
-    <TextField fx:id="txtDuration" layoutX="520.0" layoutY="245.0" prefWidth="150" />
-
-
-
-    <!-- Highlight Type -->
-
-    <Label layoutX="730.0" layoutY="220.0" text="Highlight Type" />
-
-    <ComboBox fx:id="cmbHighlightType" layoutX="730.0" layoutY="245.0" prefWidth="170" promptText="Select Type" />
-
-
-
-    <!-- Key Moments -->
-
-    <Label layoutX="60.0" layoutY="340.0" text="Key Moments" />
-
-    <TextArea fx:id="txtKeyMoments" layoutX="60.0" layoutY="365.0" prefHeight="100" prefWidth="400" />
-
-
-
-    <!-- Description -->
-
-    <Label layoutX="520.0" layoutY="340.0" text="Description" />
-
-    <TextArea fx:id="txtDescription" layoutX="520.0" layoutY="365.0" prefHeight="100" prefWidth="380" />
-
-
-    <Label fx:id="messageLabel"
-           layoutX="50.0"
-           layoutY="620.0"
-           prefWidth="500.0"
-           textFill="red"/>
-
-
-
-    <!-- Publish Status -->
-
-    <Label layoutX="60.0" layoutY="510.0" text="Status" />
-
-    <ComboBox fx:id="cmbPublishStatus" layoutX="60.0" layoutY="535.0" prefWidth="200" promptText="Draft / Published" />
-
-
-
-    <!-- Buttons -->
-
-    <Button layoutX="320.0" layoutY="535.0" onAction="#uploadHighlightOA" prefWidth="120" text="Upload" />
-
-
-    <Button layoutX="480.0" layoutY="535.0" onAction="#updateHighlightOA" prefWidth="120" text="Update" />
-
-
-    <Button layoutX="640.0" layoutY="535.0" onAction="#deleteHighlightOA" prefWidth="120" text="Delete" />
-
-
-    <Button layoutX="800.0" layoutY="535.0" onAction="#backOA" prefWidth="120" text="Back" />
-
-
-
-    <!-- Highlights Table -->
-
-    <TableView fx:id="highlightsTable" layoutX="60.0" layoutY="590.0" prefHeight="260.0" prefWidth="880.0">
-        <columns>
-            <TableColumn fx:id="matchCol" prefWidth="140.0" text="Match" />
-            <TableColumn fx:id="highlightTitleCol" prefWidth="130.0" text="Highlight Title" />
-            <TableColumn fx:id="competitionCol" prefWidth="110.0" text="Competition" />
-            <TableColumn fx:id="videoLinkCol" prefWidth="150.0" text="Video Link" />
-            <TableColumn fx:id="durationCol" prefWidth="80.0" text="Duration" />
-            <TableColumn fx:id="highlightTypeCol" prefWidth="120.0" text="Type" />
-            <TableColumn fx:id="publishStatusCol" prefWidth="100.0" text="Status" />
-        </columns>
-    </TableView>
-
+    </children>
 
 </AnchorPane>

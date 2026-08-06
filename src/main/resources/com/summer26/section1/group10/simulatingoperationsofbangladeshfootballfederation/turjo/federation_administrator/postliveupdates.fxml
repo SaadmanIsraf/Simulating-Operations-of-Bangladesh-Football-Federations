@@ -1,172 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="950.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_postliveupdatesController">
+<AnchorPane prefHeight="700.0"
+            prefWidth="1100.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_postliveupdateController">
 
+    <children>
 
-    <Label layoutX="300.0" layoutY="25.0" text="Post Live Match Updates" textFill="#133799">
+        <Label layoutX="420.0"
+               layoutY="20.0"
+               text="Post Live Update"
+               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-        <font>
-            <Font size="26" />
-        </font>
+        <VBox layoutX="20.0"
+              layoutY="60.0"
+              prefWidth="320.0"
+              spacing="10">
 
-    </Label>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
 
+            <Label text="Match ID"/>
+            <TextField fx:id="matchIdTF"
+                       promptText="Enter Match ID"/>
 
+            <Label text="Minute"/>
+            <TextField fx:id="minuteTF"
+                       promptText="e.g. 45+2"/>
 
-    <!-- Match Selection -->
+            <Label text="Event Type"/>
+            <ComboBox fx:id="eventTypeCB"/>
 
-    <Label layoutX="60.0" layoutY="90.0" text="Match" />
+            <Label text="Player Name"/>
+            <TextField fx:id="playerNameTF"
+                       promptText="Enter Player Name"/>
 
+            <Label text="Home Score"/>
+            <TextField fx:id="homeScoreTF"/>
 
-    <ComboBox fx:id="cmbMatch" layoutX="60.0" layoutY="115.0" prefWidth="220" promptText="Select Match" />
+            <Label text="Away Score"/>
+            <TextField fx:id="awayScoreTF"/>
 
+            <Label text="Update Details"/>
+            <TextArea fx:id="detailsTA"
+                      prefHeight="120"
+                      wrapText="true"
+                      promptText="Describe the live event..."/>
 
+            <HBox spacing="10">
 
-    <Label layoutX="370.0" layoutY="90.0" text="Match Minute" />
+                <Button text="Post"
+                        prefWidth="90"
+                        onAction="#postButtonOnAction"/>
 
+                <Button text="Clear"
+                        prefWidth="90"
+                        onAction="#clearButtonOnAction"/>
 
-    <TextField fx:id="txtMinute" layoutX="370.0" layoutY="115.0" prefWidth="150" />
+                <Button text="Back"
+                        prefWidth="90"
+                        onAction="#backButtonOnAction"/>
 
+            </HBox>
 
+        </VBox>
 
-    <Label layoutX="650.0" layoutY="90.0" text="Match Status" />
+        <TableView fx:id="liveUpdateTable"
+                   layoutX="360.0"
+                   layoutY="60.0"
+                   prefHeight="610.0"
+                   prefWidth="720.0">
 
+            <columns>
 
-    <ComboBox fx:id="cmbMatchStatus" layoutX="650.0" layoutY="115.0" prefWidth="220" promptText="Live / Half Time / Finished" />
+                <TableColumn fx:id="matchIdCol"
+                             text="Match ID"
+                             prefWidth="90"/>
 
+                <TableColumn fx:id="minuteCol"
+                             text="Minute"
+                             prefWidth="80"/>
 
+                <TableColumn fx:id="eventTypeCol"
+                             text="Event"
+                             prefWidth="130"/>
 
+                <TableColumn fx:id="playerNameCol"
+                             text="Player"
+                             prefWidth="150"/>
 
+                <TableColumn fx:id="scoreCol"
+                             text="Score"
+                             prefWidth="100"/>
 
-    <!-- Score -->
+                <TableColumn fx:id="detailsCol"
+                             text="Details"
+                             prefWidth="170"/>
 
-    <Label layoutX="60.0" layoutY="200.0" text="Home Team Score" />
+            </columns>
 
+        </TableView>
 
-    <TextField fx:id="txtHomeScore" layoutX="60.0" layoutY="225.0" prefWidth="150" promptText="Home Score" />
-
-
-
-    <Label layoutX="370.0" layoutY="200.0" text="Away Team Score" />
-
-
-    <TextField fx:id="txtAwayScore" layoutX="370.0" layoutY="225.0" prefWidth="150" promptText="Away Score" />
-
-
-
-
-
-    <!-- Goal Information -->
-
-    <Label layoutX="650.0" layoutY="200.0" text="Goal Scorer" />
-
-
-    <TextField fx:id="txtGoalScorer" layoutX="650.0" layoutY="225.0" prefWidth="220" promptText="Player Name" />
-
-
-
-
-    <Label layoutX="60.0" layoutY="310.0" text="Assist Player" />
-
-
-    <TextField fx:id="txtAssist" layoutX="60.0" layoutY="335.0" prefWidth="220" promptText="Assist By" />
-
-
-
-
-
-    <!-- Card -->
-
-    <Label layoutX="370.0" layoutY="310.0" text="Card Type" />
-
-
-    <ComboBox fx:id="cmbCardType" layoutX="370.0" layoutY="335.0" prefWidth="180" promptText="Yellow / Red" />
-
-
-
-    <Label layoutX="650.0" layoutY="310.0" text="Card Player" />
-
-
-    <TextField fx:id="txtCardPlayer" layoutX="650.0" layoutY="335.0" prefWidth="220" promptText="Player Name" />
-
-
-
-
-
-    <!-- Substitution -->
-
-    <Label layoutX="60.0" layoutY="420.0" text="Substitution" />
-
-
-    <TextField fx:id="txtSubstitution" layoutX="60.0" layoutY="445.0" prefWidth="300" promptText="Player In - Player Out" />
-
-
-
-
-
-    <!-- Commentary -->
-
-    <Label layoutX="430.0" layoutY="420.0" text="Live Commentary" />
-
-
-    <TextArea fx:id="txtCommentary" layoutX="430.0" layoutY="445.0" prefHeight="90" prefWidth="440" promptText="Write live update" />
-
-
-
-
-
-    <!-- Buttons -->
-
-
-    <Button layoutX="120.0" layoutY="600.0" onAction="#postUpdateOA" prefWidth="130" text="Post Update" />
-
-
-
-    <Button layoutX="395.0" layoutY="600.0" onAction="#clearOA" prefWidth="130" text="Clear" />
-
-
-
-    <Button layoutX="660.0" layoutY="600.0" onAction="#backOA" prefWidth="130" text="Back" />
-
-
-
-    <!-- Live Updates Table -->
-
-    <TableView fx:id="updatesTable" layoutX="60.0" layoutY="670.0" prefHeight="250.0" prefWidth="880.0">
-
-        <columns>
-
-            <TableColumn fx:id="minuteCol" prefWidth="80" text="Minute" />
-
-            <TableColumn fx:id="scoreCol" prefWidth="90" text="Score" />
-
-            <TableColumn fx:id="statusCol" prefWidth="110" text="Status" />
-
-            <TableColumn fx:id="goalScorerCol" prefWidth="120" text="Goal Scorer" />
-
-            <TableColumn fx:id="assistCol" prefWidth="110" text="Assist" />
-
-            <TableColumn fx:id="cardCol" prefWidth="120" text="Card" />
-
-            <TableColumn fx:id="substitutionCol" prefWidth="150" text="Substitution" />
-
-            <TableColumn fx:id="commentaryCol" prefWidth="260" text="Commentary" />
-
-        </columns>
-
-    </TableView>
-
-    <Label fx:id="messageLabel" layoutX="50.0" layoutY="650.0" prefWidth="500.0" textFill="red" />
-
+    </children>
 
 </AnchorPane>

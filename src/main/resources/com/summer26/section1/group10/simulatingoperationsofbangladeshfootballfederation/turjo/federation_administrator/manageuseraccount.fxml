@@ -1,99 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700.0" prefWidth="800.0"
-            xmlns="http://javafx.com/javafx/26"
+<AnchorPane prefHeight="650.0"
+            prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageuseraccountController">
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_manageuseraccountController">
 
-    <Label layoutX="280.0" layoutY="30.0"
-           style="-fx-font-size:24px; -fx-font-weight:bold;"
-           text="Manage User Account"
-           textFill="#100bae"/>
+    <children>
 
-    <Label layoutX="80.0" layoutY="100.0" text="Username"/>
-    <TextField fx:id="usernameTF"
-               layoutX="80.0"
-               layoutY="125.0"
-               prefWidth="220"/>
+        <Label layoutX="380.0"
+               layoutY="20.0"
+               text="Manage User Accounts"
+               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-    <Label layoutX="400.0" layoutY="100.0" text="Role"/>
-    <ComboBox fx:id="roleCB"
-              layoutX="400.0"
-              layoutY="125.0"
-              prefWidth="220"
-              promptText="Select Role"/>
+        <VBox layoutX="20.0"
+              layoutY="70.0"
+              prefWidth="300.0"
+              spacing="12">
 
-    <Label layoutX="80.0" layoutY="200.0" text="Account Status"/>
-    <ComboBox fx:id="statusCB"
-              layoutX="80.0"
-              layoutY="225.0"
-              prefWidth="220"
-              promptText="Active / Blocked"/>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
 
-    <Label layoutX="400.0" layoutY="200.0" text="Permission"/>
-    <ComboBox fx:id="permissionCB"
-              layoutX="400.0"
-              layoutY="225.0"
-              prefWidth="220"
-              promptText="Admin / User"/>
+            <Label text="Username"/>
+            <TextField fx:id="usernameTF"
+                       promptText="Enter Username"/>
 
-    <Label fx:id="messageLabel"
-           layoutX="80.0"
-           layoutY="300.0"
-           prefWidth="500.0"
-           textFill="red"/>
+            <Label text="Role"/>
+            <ComboBox fx:id="roleCB"
+                      prefWidth="250"/>
 
-    <Button layoutX="38.0"
-            layoutY="350.0"
-            prefWidth="100"
-            text="Add"
-            onAction="#addUserOA"/>
+            <Label text="Status"/>
+            <ComboBox fx:id="statusCB"
+                      prefWidth="250"/>
 
-    <Button layoutX="148.0"
-            layoutY="350.0"
-            text="Clear"
-            onAction="#clearOA"/>
+            <HBox spacing="10">
 
-    <Button layoutX="230.0"
-            layoutY="350.0"
-            prefWidth="120"
-            text="Update"
-            onAction="#updateUserOA"/>
+                <Button text="Add User"
+                        prefWidth="90"
+                        onAction="#addButtonOnAction"/>
 
-    <Button layoutX="390.0"
-            layoutY="350.0"
-            prefWidth="120"
-            text="Block"
-            onAction="#blockUserOA"/>
+                <Button text="Update"
+                        prefWidth="90"
+                        onAction="#updateButtonOnAction"/>
 
-    <Button layoutX="550.0"
-            layoutY="350.0"
-            prefWidth="120"
-            text="Activate"
-            onAction="#activateUserOA"/>
+            </HBox>
 
-    <Button layoutX="710.0"
-            layoutY="350.0"
-            prefWidth="100"
-            text="Back"
-            onAction="#backOA"/>
+            <HBox spacing="10">
 
-    <TableView fx:id="userTable"
-               layoutX="80.0"
-               layoutY="420.0"
-               prefHeight="240.0"
-               prefWidth="640.0">
+                <Button text="Clear"
+                        prefWidth="90"
+                        onAction="#clearButtonOnAction"/>
 
-        <columns>
-            <TableColumn fx:id="usernameCol" prefWidth="160.0" text="Username"/>
-            <TableColumn fx:id="roleCol" prefWidth="160.0" text="Role"/>
-            <TableColumn fx:id="statusCol" prefWidth="160.0" text="Status"/>
-            <TableColumn fx:id="permissionCol" prefWidth="160.0" text="Permission"/>
-        </columns>
+                <Button text="Back"
+                        prefWidth="90"
+                        onAction="#backButtonOnAction"/>
 
-    </TableView>
+            </HBox>
+
+        </VBox>
+
+        <TableView fx:id="userTable"
+                   layoutX="340.0"
+                   layoutY="70.0"
+                   prefHeight="540.0"
+                   prefWidth="620.0">
+
+            <columns>
+
+                <TableColumn fx:id="usernameCol"
+                             text="Username"
+                             prefWidth="220"/>
+
+                <TableColumn fx:id="roleCol"
+                             text="Role"
+                             prefWidth="220"/>
+
+                <TableColumn fx:id="statusCol"
+                             text="Status"
+                             prefWidth="180"/>
+
+            </columns>
+
+        </TableView>
+
+    </children>
 
 </AnchorPane>

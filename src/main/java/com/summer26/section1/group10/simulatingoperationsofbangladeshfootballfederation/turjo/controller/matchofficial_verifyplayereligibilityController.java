@@ -1,371 +1,188 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficials;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.RecordFouls;
-
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.VerifyPlayerEligibility;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.VerifyPlayerEligibilityManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.Map;
+public class matchofficial_verifyplayereligibilityController {
 
-public class matchofficial_verifyplayereligibilityController implements UserReceiver {
+    @FXML
+    private ComboBox<String> matchCB;
 
     @FXML
     private ComboBox<String> playerCB;
+
+    @FXML
+    private TextField yellowCardTF;
+
+    @FXML
+    private TextField redCardTF;
+
     @FXML
     private TextField eligibilityTF;
-    @FXML
-    private Button addPlayerBtn;
-    @FXML
-    private TableColumn<PlayerCardSummary, String> matchCol;
-    @FXML
-    private TableColumn<PlayerCardSummary, String> eligibilityCol;
-    @FXML
-    private Button removePlayerBtn;
-    @FXML
-    private TableColumn<PlayerCardSummary, Integer> yellowCardCol;
-    @FXML
-    private ComboBox<Integer> redCardsCB;
-    @FXML
-    private TableColumn<PlayerCardSummary, String> playerNameCol;
-    @FXML
-    private TableColumn<PlayerCardSummary, Integer> redCardCol;
-    @FXML
-    private ComboBox<String> matchCB;
-    @FXML
-    private TableView<PlayerCardSummary> playerTable;
-    @FXML
-    private ComboBox<Integer> yellowCardsCB;
-    @FXML
-    private Label messageLabel;
-    private MatchOfficials loggedInUser;
-    @Override
-    public void setLoggedInUser(User user){
-        if (user instanceof MatchOfficials m){
-            loggedInUser = m;
-        }
-        else {
-            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
-        }
-    }
 
+    @FXML
+    private TableView<VerifyPlayerEligibility> playerTable;
 
-    private ArrayList<RecordFouls> allFouls = new ArrayList<>();
-    private ArrayList<PlayerCardSummary> manuallyAddedPlayers = new ArrayList<>();
+    @FXML
+    private TableColumn<VerifyPlayerEligibility, String> playerNameCol;
+
+    @FXML
+    private TableColumn<VerifyPlayerEligibility, String> matchCol;
+
+    @FXML
+    private TableColumn<VerifyPlayerEligibility, Integer> yellowCardCol;
+
+    @FXML
+    private TableColumn<VerifyPlayerEligibility, Integer> redCardCol;
+
+    @FXML
+    private TableColumn<VerifyPlayerEligibility, String> eligibilityCol;
 
     @FXML
     public void initialize() {
 
         matchCB.getItems().addAll(
-                "Bangladesh vs India",
+                "Dhaka FC vs Chittagong FC",
                 "Abahani vs Mohammedan",
-                "Bashundhara Kings vs Rahmatganj"
+                "Brothers Union vs Rahmatganj",
+                "Bashundhara Kings vs Sheikh Russel"
         );
 
         playerCB.getItems().addAll(
-                "Rakib Hossain",
-                "Topu Barman",
+                "Rakib Hasan",
                 "Jamal Bhuyan",
-                "Sohel Rana"
+                "Topu Barman",
+                "Sohel Rana",
+                "Biplu Ahmed",
+                "Mamun Miah"
         );
 
-        yellowCardsCB.getItems().addAll(0, 1, 2, 3, 4, 5);
-        redCardsCB.getItems().addAll(0, 1, 2);
+        playerNameCol.setCellValueFactory(
+                new PropertyValueFactory<>("playerName"));
 
-        playerNameCol.setCellValueFactory(new PropertyValueFactory<PlayerCardSummary, String>("playerName"));
-        matchCol.setCellValueFactory(new PropertyValueFactory<PlayerCardSummary, String>("match"));
-        yellowCardCol.setCellValueFactory(new PropertyValueFactory<PlayerCardSummary, Integer>("yellowCount"));
-        redCardCol.setCellValueFactory(new PropertyValueFactory<PlayerCardSummary, Integer>("redCount"));
-        eligibilityCol.setCellValueFactory(new PropertyValueFactory<PlayerCardSummary, String>("eligibility"));
+        matchCol.setCellValueFactory(
+                new PropertyValueFactory<>("match"));
 
-        loadFoulsFromFile();
-        refreshPlayerTable();
+        yellowCardCol.setCellValueFactory(
+                new PropertyValueFactory<>("yellowCards"));
 
-        matchCB.valueProperty().addListener((obs, oldVal, newVal) -> refreshPlayerTable());
-    }
+        redCardCol.setCellValueFactory(
+                new PropertyValueFactory<>("redCards"));
 
-    private void loadFoulsFromFile() {
+        eligibilityCol.setCellValueFactory(
+                new PropertyValueFactory<>("eligibility"));
 
-        allFouls.clear();
-        ArrayList<Object> records = BinaryFileUtility.readObjects("RecordFouls.bin");
-
-        for (Object record : records) {
-            if (record instanceof RecordFouls recordFouls) {
-                allFouls.add(recordFouls);
-            }
-        }
-    }
-
-    private void refreshPlayerTable() {
-
-        playerTable.getItems().clear();
-
-        String selectedMatch = matchCB.getValue();
-
-        Map<String, PlayerCardSummary> summaryMap = new LinkedHashMap<>();
-
-        for (RecordFouls foul : allFouls) {
-
-            if (selectedMatch != null && !selectedMatch.equals(foul.getMatchbetween())) {
-                continue;
-            }
-
-            String player = foul.getPlayername();
-
-            PlayerCardSummary summary = summaryMap.get(player);
-            if (summary == null) {
-                summary = new PlayerCardSummary(player, foul.getMatchbetween(), 0, 0);
-                summaryMap.put(player, summary);
-            }
-
-            if ("Yellow Card".equalsIgnoreCase(foul.getCardType())) {
-                summary.setYellowCount(summary.getYellowCount() + 1);
-            } else if ("Red Card".equalsIgnoreCase(foul.getCardType())) {
-                summary.setRedCount(summary.getRedCount() + 1);
-            }
-
-            summary.setMatch(foul.getMatchbetween());
-        }
-
-        for (PlayerCardSummary manual : manuallyAddedPlayers) {
-
-            if (selectedMatch != null && !selectedMatch.equals(manual.getMatch())) {
-                continue;
-            }
-
-            if (!summaryMap.containsKey(manual.getPlayerName())) {
-                summaryMap.put(manual.getPlayerName(), manual);
-            }
-        }
-
-        for (PlayerCardSummary summary : summaryMap.values()) {
-            summary.setEligibility(computeEligibility(summary.getYellowCount(), summary.getRedCount()));
-            playerTable.getItems().add(summary);
-        }
-    }
-
-    private String computeEligibility(int yellow, int red) {
-        if (red >= 1 || yellow >= 2) {
-            return "Not Eligible";
-        }
-        return "Eligible";
-    }
-
-    private boolean validateInput() {
-
-        if (matchCB.getValue() == null) {
-            messageLabel.setText("Please select a match.");
-            matchCB.requestFocus();
-            return false;
-        }
-
-        if (playerCB.getValue() == null) {
-            messageLabel.setText("Please select a player.");
-            playerCB.requestFocus();
-            return false;
-        }
-
-        if (yellowCardsCB.getValue() == null) {
-            messageLabel.setText("Please select yellow cards.");
-            yellowCardsCB.requestFocus();
-            return false;
-        }
-
-        if (redCardsCB.getValue() == null) {
-            messageLabel.setText("Please select red cards.");
-            redCardsCB.requestFocus();
-            return false;
-        }
-
-        return true;
+        playerTable.getItems().setAll(
+                VerifyPlayerEligibilityManager.getEligibilityList());
     }
 
     @FXML
-    public void checkEligibilityOA(ActionEvent actionEvent) {
+    public void verifyButtonOnAction(ActionEvent actionEvent) {
 
-        if (playerCB.getValue() == null) {
-            messageLabel.setText("Please select a player.");
-            playerCB.requestFocus();
+        String match = matchCB.getValue();
+        String player = playerCB.getValue();
+
+        if (match == null || player == null) {
+
+            showAlert(
+                    Alert.AlertType.ERROR,
+                    "Missing Information",
+                    "Please select both Match and Player."
+            );
+
             return;
         }
 
-        String selectedPlayer = playerCB.getValue();
+        int yellowCards = (int) (Math.random() * 3);
+        int redCards = (int) (Math.random() * 2);
 
-        for (PlayerCardSummary summary : playerTable.getItems()) {
-            if (summary.getPlayerName().equals(selectedPlayer)) {
-                eligibilityTF.setText(summary.getEligibility());
-                messageLabel.setText("Eligibility checked successfully.");
-                return;
-            }
+        String eligibility;
+
+        if (redCards >= 1 || yellowCards >= 2) {
+            eligibility = "Not Eligible";
+        }
+        else {
+            eligibility = "Eligible";
         }
 
-        eligibilityTF.setText("Eligible");
-        messageLabel.setText("No card records found. Player is Eligible by default.");
+        yellowCardTF.setText(String.valueOf(yellowCards));
+        redCardTF.setText(String.valueOf(redCards));
+        eligibilityTF.setText(eligibility);
+
+        VerifyPlayerEligibility verifyPlayerEligibility =
+                new VerifyPlayerEligibility(
+                        player,
+                        match,
+                        yellowCards,
+                        redCards,
+                        eligibility
+                );
+
+        VerifyPlayerEligibilityManager.addEligibility(
+                verifyPlayerEligibility);
+
+        VerifyPlayerEligibilityManager.saveToFile();
+
+        playerTable.getItems().setAll(
+                VerifyPlayerEligibilityManager.getEligibilityList());
+
+        playerTable.refresh();
+
+        showAlert(
+                Alert.AlertType.INFORMATION,
+                "Verification Complete",
+                "Player eligibility verified successfully."
+        );
     }
-
     @FXML
-    public void updateCardsOA(ActionEvent actionEvent) {
+    public void clearButtonOnAction(ActionEvent actionEvent) {
 
-        loadFoulsFromFile();
-        refreshPlayerTable();
+        matchCB.setValue(null);
+        playerCB.setValue(null);
 
-        messageLabel.setText("Card records refreshed from file.");
-    }
-
-    @FXML
-    public void addPlayerOA(ActionEvent actionEvent) {
-
-        if (!validateInput()) {
-            return;
-        }
-
-        String playerName = playerCB.getValue();
-        String matchName = matchCB.getValue();
-        int yellow = yellowCardsCB.getValue();
-        int red = redCardsCB.getValue();
-
-        for (PlayerCardSummary summary : playerTable.getItems()) {
-            if (summary.getPlayerName().equals(playerName)) {
-                messageLabel.setText("Player already in the table.");
-                return;
-            }
-        }
-
-        PlayerCardSummary summary = new PlayerCardSummary(playerName, matchName, yellow, red);
-        summary.setEligibility(computeEligibility(yellow, red));
-
-        manuallyAddedPlayers.add(summary);
-        playerTable.getItems().add(summary);
-
-        eligibilityTF.setText(summary.getEligibility());
-        messageLabel.setText("Player added successfully.");
-    }
-
-    @FXML
-    public void removePlayerOA(ActionEvent actionEvent) {
-
-        if (playerCB.getValue() == null) {
-            messageLabel.setText("Select a player to remove.");
-            playerCB.requestFocus();
-            return;
-        }
-
-        String playerName = playerCB.getValue();
-
-        PlayerCardSummary toRemove = null;
-        for (PlayerCardSummary summary : playerTable.getItems()) {
-            if (summary.getPlayerName().equals(playerName)) {
-                toRemove = summary;
-                break;
-            }
-        }
-
-        if (toRemove == null) {
-            messageLabel.setText("Player not found in the table.");
-            return;
-        }
-
-        playerTable.getItems().remove(toRemove);
-        manuallyAddedPlayers.remove(toRemove);
-
-        messageLabel.setText("Player removed successfully.");
-    }
-
-    @FXML
-    public void viewCardsOA(ActionEvent actionEvent) {
-
-        if (matchCB.getValue() == null) {
-            messageLabel.setText("Showing all players' card records.");
-        } else {
-            messageLabel.setText("Showing card records for " + matchCB.getValue() + ".");
-        }
-
-        refreshPlayerTable();
-    }
-
-    @FXML
-    public void refreshOA(ActionEvent actionEvent) {
-
-        playerCB.getSelectionModel().clearSelection();
-        matchCB.getSelectionModel().clearSelection();
-        yellowCardsCB.getSelectionModel().clearSelection();
-        redCardsCB.getSelectionModel().clearSelection();
-
+        yellowCardTF.clear();
+        redCardTF.clear();
         eligibilityTF.clear();
-        messageLabel.setText("");
 
-        loadFoulsFromFile();
-        refreshPlayerTable();
+        playerTable.getSelectionModel().clearSelection();
     }
 
     @FXML
-    public void backOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
+    public void backButtonOnAction(ActionEvent actionEvent) {
+
+        SceneSwitcher.switchTo(
+                "turjo/matchofficial/matchofficial_dashboard.fxml"
+        );
     }
 
-    public static class PlayerCardSummary {
+    @FXML
+    public void matchCBOnAction(ActionEvent actionEvent) {
 
-        private String playerName;
-        private String match;
-        private int yellowCount;
-        private int redCount;
-        private String eligibility;
-
-        public PlayerCardSummary(String playerName, String match, int yellowCount, int redCount) {
-            this.playerName = playerName;
-            this.match = match;
-            this.yellowCount = yellowCount;
-            this.redCount = redCount;
-            this.eligibility = "Eligible";
-        }
-
-        public String getPlayerName() {
-            return playerName;
-        }
-
-        public void setPlayerName(String playerName) {
-            this.playerName = playerName;
-        }
-
-        public String getMatch() {
-            return match;
-        }
-
-        public void setMatch(String match) {
-            this.match = match;
-        }
-
-        public int getYellowCount() {
-            return yellowCount;
-        }
-
-        public void setYellowCount(int yellowCount) {
-            this.yellowCount = yellowCount;
-        }
-
-        public int getRedCount() {
-            return redCount;
-        }
-
-        public void setRedCount(int redCount) {
-            this.redCount = redCount;
-        }
-
-        public String getEligibility() {
-            return eligibility;
-        }
-
-        public void setEligibility(String eligibility) {
-            this.eligibility = eligibility;
-        }
     }
+
+    @FXML
+    public void playerCBOnAction(ActionEvent actionEvent) {
+
+    }
+
+    private void showAlert(Alert.AlertType alertType,
+                           String title,
+                           String message) {
+
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }

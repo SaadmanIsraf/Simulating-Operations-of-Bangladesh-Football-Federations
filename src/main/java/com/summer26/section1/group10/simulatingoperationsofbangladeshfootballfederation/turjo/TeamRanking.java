@@ -4,87 +4,82 @@ import java.io.Serializable;
 
 public class TeamRanking implements Serializable {
 
+    private String teamName;
+    private int wins;
+    private int draws;
+    private int losses;
+    private int points;
 
+    // Default Constructor
+    public TeamRanking() {
+    }
 
-    private String rank;
-    private String teamname;
-    private String wins;
-    private String draw;
-    private String losses;
-    private String points;
+    // Parameterized Constructor
+    public TeamRanking(String teamName,
+                       int wins,
+                       int draws,
+                       int losses,
+                       int points) {
 
-    public TeamRanking(String rank,
-                       String teamname,
-                       String wins,
-                       String draw,
-                       String losses,
-                       String points) {
-
-        this.rank = rank;
-        this.teamname = teamname;
+        this.teamName = teamName;
         this.wins = wins;
-        this.draw = draw;
+        this.draws = draws;
         this.losses = losses;
         this.points = points;
     }
 
-    public String getRank() {
-        return rank;
+    // Getters
+
+    public String getTeamName() {
+        return teamName;
     }
 
-    public void setRank(String rank) {
-        this.rank = rank;
-    }
-
-    public String getTeamname() {
-        return teamname;
-    }
-
-    public void setTeamname(String teamname) {
-        this.teamname = teamname;
-    }
-
-    public String getWins() {
+    public int getWins() {
         return wins;
     }
 
-    public void setWins(String wins) {
-        this.wins = wins;
+    public int getDraws() {
+        return draws;
     }
 
-    public String getDraw() {
-        return draw;
-    }
-
-    public void setDraw(String draw) {
-        this.draw = draw;
-    }
-
-    public String getLosses() {
+    public int getLosses() {
         return losses;
     }
 
-    public void setLosses(String losses) {
-        this.losses = losses;
-    }
-
-    public String getPoints() {
+    public int getPoints() {
         return points;
     }
 
-    public void setPoints(String points) {
+    // Setters
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
+    public void setPoints(int points) {
         this.points = points;
     }
 
     @Override
     public String toString() {
         return "TeamRanking{" +
-                "rank='" + rank + '\'' +
-                ", teamname='" + teamname + '\'' +
-                ", wins='" + wins + '\'' +
-                ", draw='" + draw + '\'' +
-                ", losses='" + losses + '\'' +
-                ", points='" + points + '\'' +
+                "teamName='" + teamName + '\'' +
+                ", wins=" + wins +
+                ", draws=" + draws +
+                ", losses=" + losses +
+                ", points=" + points +
                 '}';
     }
 }

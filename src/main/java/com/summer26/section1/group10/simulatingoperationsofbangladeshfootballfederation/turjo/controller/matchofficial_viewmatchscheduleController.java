@@ -1,97 +1,86 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.Managematch;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficials;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchSchedule;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchScheduleManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-
-public class matchofficial_viewmatchscheduleController implements UserReceiver {
+public class matchofficial_viewmatchscheduleController {
 
     @FXML
-    private TableColumn<Managematch, String> awayTeamCol;
-    @FXML
-    private TableColumn<Managematch, LocalDate> dateCol;
-    @FXML
-    private TableColumn<Managematch, String> venueCol;
-    @FXML
-    private TableView<Managematch> scheduleTable;
-    @FXML
-    private TableColumn<Managematch, String> homeTeamCol;
-    @FXML
-    private TableColumn<Managematch, String> timeCol;
-    @FXML
-    private Label messageLabel;
+    private TableView<MatchSchedule> scheduleTable;
 
-    private MatchOfficials loggedInUser;
+    @FXML
+    private TableColumn<MatchSchedule, String> matchIdCol;
 
-    @Override
-    public void setLoggedInUser(User user){
-        if (user instanceof MatchOfficials m){
-            loggedInUser = m;
-        }
-        else {
-            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
-        }
-    }
+    @FXML
+    private TableColumn<MatchSchedule, String> homeTeamCol;
+
+    @FXML
+    private TableColumn<MatchSchedule, String> awayTeamCol;
+
+    @FXML
+    private TableColumn<MatchSchedule, String> matchDateCol;
+
+    @FXML
+    private TableColumn<MatchSchedule, String> matchTimeCol;
+
+    @FXML
+    private TableColumn<MatchSchedule, String> venueCol;
+    @FXML
+    private Button refreshButton;
+    @FXML
+    private Button backButton;
 
     @FXML
     public void initialize() {
 
-        homeTeamCol.setCellValueFactory(new PropertyValueFactory<>("hometeam"));
-        awayTeamCol.setCellValueFactory(new PropertyValueFactory<>("awayteam"));
-        venueCol.setCellValueFactory(new PropertyValueFactory<>("stadium"));
-        dateCol.setCellValueFactory(new PropertyValueFactory<>("matchdate"));
-        timeCol.setCellValueFactory(new PropertyValueFactory<>("matchtime"));
+        matchIdCol.setCellValueFactory(
+                new PropertyValueFactory<>("matchId"));
 
-        loadMatches();
+        homeTeamCol.setCellValueFactory(
+                new PropertyValueFactory<>("homeTeam"));
+
+        awayTeamCol.setCellValueFactory(
+                new PropertyValueFactory<>("awayTeam"));
+
+        matchDateCol.setCellValueFactory(
+                new PropertyValueFactory<>("matchDate"));
+
+        matchTimeCol.setCellValueFactory(
+                new PropertyValueFactory<>("matchTime"));
+
+        venueCol.setCellValueFactory(
+                new PropertyValueFactory<>("venue"));
+
+        loadSchedules();
     }
 
-    private void loadMatches() {
+    private void loadSchedules() {
 
-        scheduleTable.getItems().clear();
+        MatchScheduleManager.loadFromFile();
 
-        ArrayList matches = BinaryFileUtility.readObjects("Managematches.bin");
+        scheduleTable.getItems().setAll(
+                MatchScheduleManager.getMatchScheduleList());
 
-        for (Object record : matches) {
-            if (record instanceof Managematch match) {
-                scheduleTable.getItems().add(match);
-            }
-        }
-
-        if (scheduleTable.getItems().isEmpty()) {
-            messageLabel.setText("No match schedule available.");
-        } else {
-            messageLabel.setText("");
-        }
-    }
-
-    @FXML
-    public void refreshOA(ActionEvent actionEvent) {
-
-        loadMatches();
-
-        if (scheduleTable.getItems().isEmpty()) {
-            messageLabel.setText("No match schedule available.");
-        } else {
-            messageLabel.setText("Match schedule refreshed successfully.");
-        }
+        scheduleTable.refresh();
     }
 
     @FXML
-    public void backOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
+    public void refreshButtonOnAction(ActionEvent actionEvent) {
 
-
-
+        loadSchedules();
     }
+    @FXML
+    public void backButtonOnAction(ActionEvent actionEvent) {
+
+        SceneSwitcher.switchTo(
+                "turjo/match_official/matchofficial_dashboard.fxml"
+        );
+    }
+
 }

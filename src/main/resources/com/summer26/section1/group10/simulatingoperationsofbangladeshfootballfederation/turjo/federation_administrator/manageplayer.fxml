@@ -1,121 +1,113 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="650.0" prefWidth="900.0"
-            xmlns="http://javafx.com/javafx/26"
+<AnchorPane prefHeight="600.0"
+            prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageplayersController">
 
-    <Label layoutX="330.0" layoutY="20.0"
-           style="-fx-font-size:26px; -fx-font-weight:bold;"
-           text="Manage Players"
-           textFill="#133799"/>
+    <children>
 
-    <!-- Table -->
-    <TableView fx:id="playertableview"
-               layoutX="40.0"
-               layoutY="70.0"
-               prefHeight="260.0"
-               prefWidth="820.0">
+        <Label layoutX="380.0"
+               layoutY="20.0"
+               text="Manage Players"
+               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-        <columns>
-            <TableColumn fx:id="playernamecol" prefWidth="127.2" text="Player Name"/>
-            <TableColumn fx:id="positioncol" prefWidth="128.0" text="Position"/>
-            <TableColumn fx:id="injurycol" prefWidth="219.2" text="Injury Status"/>
-            <TableColumn fx:id="clubcol" prefWidth="166.4" text="Current Club"/>
-            <TableColumn fx:id="valuecol" prefWidth="173.6" text="Current Value"/>
-            <TableColumn fx:id="playernamecol1" prefWidth="180.0" text="Player Name"/>
-        </columns>
+        <Label layoutX="30.0" layoutY="80.0" text="Player ID"/>
+        <TextField fx:id="playerIdTF"
+                   layoutX="150.0"
+                   layoutY="75.0"
+                   prefWidth="180"/>
 
-    </TableView>
+        <Label layoutX="30.0" layoutY="120.0" text="Player Name"/>
+        <TextField fx:id="playerNameTF"
+                   layoutX="150.0"
+                   layoutY="115.0"
+                   prefWidth="180"/>
 
-    <!-- Labels -->
-    <Label layoutX="60.0" layoutY="370.0" text="Player Name"/>
-    <Label layoutX="300.0" layoutY="370.0" text="Position"/>
-    <Label layoutX="520.0" layoutY="370.0" text="Injury Status"/>
-    <Label layoutX="60.0" layoutY="450.0" text="Current Club"/>
-    <Label layoutX="350.0" layoutY="450.0" text="Current Value"/>
+        <Label layoutX="30.0" layoutY="160.0" text="Position"/>
+        <ComboBox fx:id="positionCB"
+                  layoutX="150.0"
+                  layoutY="155.0"
+                  prefWidth="180"/>
 
-    <!-- TextFields -->
-    <TextField fx:id="playernameTF"
-               layoutX="60.0"
-               layoutY="400.0"
-               prefWidth="180.0"
-               promptText="Player Name"/>
+        <Label layoutX="30.0" layoutY="200.0" text="Current Club"/>
+        <TextField fx:id="clubTF"
+                   layoutX="150.0"
+                   layoutY="195.0"
+                   prefWidth="180"/>
 
-    <ComboBox fx:id="positionCB"
-              layoutX="300.0"
-              layoutY="400.0"
-              prefWidth="150.0"
-              promptText="Position"/>
+        <Label layoutX="30.0" layoutY="240.0" text="Player Type"/>
+        <ComboBox fx:id="playerTypeCB"
+                  layoutX="150.0"
+                  layoutY="235.0"
+                  prefWidth="180"/>
 
-    <ComboBox fx:id="injuryCB"
-              layoutX="520.0"
-              layoutY="400.0"
-              prefWidth="150.0"
-              promptText="Injury Status"/>
+        <Label layoutX="30.0" layoutY="280.0" text="Fitness Status"/>
+        <ComboBox fx:id="fitnessCB"
+                  layoutX="150.0"
+                  layoutY="275.0"
+                  prefWidth="180"/>
 
-    <TextField fx:id="clubTF"
-               layoutX="60.0"
-               layoutY="480.0"
-               prefWidth="220.0"
-               promptText="Current Club"/>
+        <Button layoutX="30.0"
+                layoutY="340.0"
+                prefWidth="80"
+                text="Add"
+                onAction="#addButtonOnAction"/>
 
-    <TextField fx:id="valueTF"
-               layoutX="350.0"
-               layoutY="480.0"
-               prefWidth="180.0"
-               promptText="Current Value"/>
+        <Button layoutX="120.0"
+                layoutY="340.0"
+                prefWidth="80"
+                text="Update"
+                onAction="#updateButtonOnAction"/>
 
-    <!-- Validation Message -->
-    <Label fx:id="messageLabel"
-           layoutX="60.0"
-           layoutY="530.0"
-           prefWidth="500.0"
-           textFill="red"/>
+        <Button layoutX="210.0"
+                layoutY="340.0"
+                prefWidth="80"
+                text="Delete"
+                onAction="#deleteButtonOnAction"/>
 
-    <!-- Buttons -->
-    <Button layoutX="70.0"
-            layoutY="570.0"
-            prefWidth="120.0"
-            text="Add Player"
-            onAction="#addplayerOA"/>
+        <Button layoutX="90.0"
+                layoutY="390.0"
+                prefWidth="150"
+                text="Clear"
+                onAction="#clearButtonOnAction"/>
 
-    <Button layoutX="240.0"
-            layoutY="570.0"
-            prefWidth="120.0"
-            text="Update Player"
-            onAction="#updateplayerOA"/>
+        <TableView fx:id="playerTable"
+                   layoutX="370.0"
+                   layoutY="70.0"
+                   prefHeight="500.0"
+                   prefWidth="600.0">
 
-    <Button layoutX="410.0"
-            layoutY="570.0"
-            prefWidth="120.0"
-            text="Delete Player"
-            onAction="#deleteplayerOA"/>
+            <columns>
 
-    <Button layoutX="580.0"
-            layoutY="570.0"
-            prefWidth="100.0"
-            text="Refresh"
-            onAction="#refreshOA"/>
+                <TableColumn fx:id="playerIdCol"
+                             text="ID"
+                             prefWidth="70"/>
 
-    <Button layoutX="720.0"
-            layoutY="570.0"
-            prefWidth="100.0"
-            text="Save"
-            onAction="#saveOA"/>
+                <TableColumn fx:id="playerNameCol"
+                             text="Player Name"
+                             prefWidth="150"/>
 
-    <Button layoutX="433.0"
-            layoutY="610.0"
-            prefWidth="100.0"
-            text="Back"
-            onAction="#backOA"/>
+                <TableColumn fx:id="positionCol"
+                             text="Position"
+                             prefWidth="120"/>
+
+                <TableColumn fx:id="clubCol"
+                             text="Current Club"
+                             prefWidth="140"/>
+
+                <TableColumn fx:id="fitnessCol"
+                             text="Fitness"
+                             prefWidth="120"/>
+
+            </columns>
+
+        </TableView>
+
+    </children>
 
 </AnchorPane>

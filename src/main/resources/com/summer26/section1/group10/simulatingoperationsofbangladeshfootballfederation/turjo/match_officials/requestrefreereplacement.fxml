@@ -1,94 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="800.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_requestrefereereplacementController">
+<AnchorPane prefHeight="650.0"
+            prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_requestrefereereplacementController">
 
+    <children>
 
-    <Label layoutX="240.0" layoutY="30.0" text="Request Referee Replacement" textFill="#133799">
+        <Label layoutX="330.0"
+               layoutY="20.0"
+               text="Request Referee Replacement"
+               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-        <font>
-            <Font size="26" />
-        </font>
+        <VBox layoutX="20.0"
+              layoutY="60.0"
+              prefWidth="310.0"
+              spacing="10">
 
-    </Label>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
 
+            <Label text="Match ID"/>
+            <TextField fx:id="matchIdTF"
+                       promptText="Enter Match ID"/>
 
+            <Label text="Current Referee"/>
+            <TextField fx:id="currentRefereeTF"
+                       promptText="Enter Referee Name"/>
 
-    <!-- Match -->
+            <Label text="Replacement Reason"/>
+            <TextArea fx:id="reasonTA"
+                      prefHeight="100"
+                      wrapText="true"
+                      promptText="Reason for replacement"/>
 
-    <Label layoutX="70.0" layoutY="100.0" text="Match ID" />
+            <Label text="Priority"/>
+            <ComboBox fx:id="priorityCB"/>
 
-    <TextField fx:id="matchIdTF" layoutX="70.0" layoutY="125.0" prefWidth="220" promptText="Enter Match ID" />
+            <Label text="Request Status"/>
+            <ComboBox fx:id="statusCB"/>
 
+            <HBox spacing="10">
 
+                <Button text="Submit"
+                        prefWidth="90"
+                        onAction="#submitButtonOnAction"/>
 
-    <!-- Current Referee -->
+                <Button text="Clear"
+                        prefWidth="90"
+                        onAction="#clearButtonOnAction"/>
 
-    <Label layoutX="400.0" layoutY="100.0" text="Current Referee" />
+                <Button text="Back"
+                        prefWidth="90"
+                        onAction="#backButtonOnAction"/>
 
-    <TextField fx:id="currentRefereeTF" layoutX="400.0" layoutY="125.0" prefWidth="220" promptText="Referee Name" />
+            </HBox>
 
+        </VBox>
 
+        <TableView fx:id="requestTable"
+                   layoutX="350.0"
+                   layoutY="60.0"
+                   prefHeight="550.0"
+                   prefWidth="620.0">
 
+            <columns>
 
-    <!-- Reason -->
+                <TableColumn fx:id="matchIdCol"
+                             text="Match ID"
+                             prefWidth="110"/>
 
-    <Label layoutX="70.0" layoutY="210.0" text="Replacement Reason" />
+                <TableColumn fx:id="refereeCol"
+                             text="Current Referee"
+                             prefWidth="170"/>
 
+                <TableColumn fx:id="reasonCol"
+                             text="Reason"
+                             prefWidth="170"/>
 
+                <TableColumn fx:id="priorityCol"
+                             text="Priority"
+                             prefWidth="80"/>
 
-    <!-- Priority -->
+                <TableColumn fx:id="statusCol"
+                             text="Status"
+                             prefWidth="90"/>
 
-    <Label layoutX="400.0" layoutY="210.0" text="Priority" />
+            </columns>
 
-    <ComboBox fx:id="priorityCB" layoutX="400.0" layoutY="235.0" prefWidth="220" promptText="Normal / Urgent" />
+        </TableView>
 
-
-
-
-    <!-- Details -->
-
-    <Label layoutX="70.0" layoutY="320.0" text="Additional Details" />
-
-    <TextArea fx:id="detailsTA" layoutX="70.0" layoutY="345.0" prefHeight="80" prefWidth="550" promptText="Explain replacement request" />
-
-
-
-
-    <!-- Buttons -->
-
-    <Button layoutX="150.0" layoutY="480.0" onAction="#submitRequestOA" prefWidth="150" text="Submit Request" />
-
-
-    <Button layoutX="370.0" layoutY="480.0" onAction="#clearOA" prefWidth="120" text="Clear" />
-
-
-    <Button layoutX="560.0" layoutY="480.0" onAction="#backOA" prefWidth="120" text="Back" />
-    <TextField fx:id="matchIdTF1" layoutX="70.0" layoutY="241.0" prefWidth="220" promptText="Reason for replacement" />
-
-
-
-    <!-- Replacement Requests Table -->
-
-    <TableView fx:id="replacementRequestsTable" layoutX="70.0" layoutY="540.0" prefHeight="230.0" prefWidth="650.0">
-        <columns>
-            <TableColumn fx:id="matchIdCol" prefWidth="100.0" text="Match ID" />
-            <TableColumn fx:id="currentRefereeCol" prefWidth="140.0" text="Current Referee" />
-            <TableColumn fx:id="reasonCol" prefWidth="140.0" text="Reason" />
-            <TableColumn fx:id="priorityCol" prefWidth="120.0" text="Priority" />
-            <TableColumn fx:id="detailsCol" prefWidth="150.0" text="Details" />
-        </columns>
-    </TableView>
-   <Label fx:id="messageLabel" alignment="CENTER" layoutX="149.0" layoutY="438.0" prefHeight="18.0" prefWidth="469.0" textFill="#1bbfe4" />
-
+    </children>
 
 </AnchorPane>

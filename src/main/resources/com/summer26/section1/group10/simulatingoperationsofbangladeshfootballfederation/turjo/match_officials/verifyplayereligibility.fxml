@@ -1,161 +1,136 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="680.0"
-            prefWidth="950.0"
-            xmlns="http://javafx.com/javafx/26"
+<AnchorPane prefHeight="750.0"
+            prefWidth="1100.0"
+            xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_verifyplayereligibilityController">
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_submitmatchreportController">
 
     <children>
 
-        <Text layoutX="250.0"
-              layoutY="45.0"
-              text="Verify Player Eligibility">
-            <font>
-                <Font size="30.0"/>
-            </font>
-        </Text>
+        <Label layoutX="400.0"
+               layoutY="20.0"
+               text="Submit Match Report"
+               style="-fx-font-size:24px; -fx-font-weight:bold;" />
 
-        <Label layoutX="50.0"
-               layoutY="90.0"
-               text="Match"/>
+        <VBox layoutX="20.0"
+              layoutY="60.0"
+              prefWidth="330.0"
+              spacing="10.0">
 
-        <ComboBox fx:id="matchCB"
-                  layoutX="150.0"
-                  layoutY="85.0"
-                  prefWidth="280.0"/>
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
 
-        <Label layoutX="50.0"
-               layoutY="140.0"
-               text="Player"/>
+            <Label text="Match ID"/>
+            <TextField fx:id="matchIdTF"
+                       promptText="Enter Match ID"/>
 
-        <ComboBox fx:id="playerCB"
-                  layoutX="150.0"
-                  layoutY="135.0"
-                  prefWidth="280.0"/>
+            <Label text="Home Team"/>
+            <TextField fx:id="homeTeamTF"
+                       promptText="Enter Home Team"/>
 
-        <Button fx:id="addPlayerBtn"
-                layoutX="470.0"
-                layoutY="135.0"
-                prefWidth="120.0"
-                text="Add Player"
-                onAction="#addPlayerOA"/>
+            <Label text="Away Team"/>
+            <TextField fx:id="awayTeamTF"
+                       promptText="Enter Away Team"/>
 
-        <Button fx:id="removePlayerBtn"
-                layoutX="620.0"
-                layoutY="135.0"
-                prefWidth="120.0"
-                text="Remove Player"
-                onAction="#removePlayerOA"/>
+            <Label text="Match Date"/>
+            <DatePicker fx:id="matchDateDP"/>
 
+            <Label text="Final Score"/>
+            <TextField fx:id="scoreTF"
+                       promptText="Example: 2-1"/>
 
-        <!-- Yellow / Red Cards + Eligibility -->
+            <Label text="Goal Scorers"/>
+            <TextField fx:id="goalScorersTF"
+                       promptText="Separate names with commas"/>
 
-        <Label layoutX="50.0"
-               layoutY="190.0"
-               text="Yellow Cards"/>
+            <Label text="Yellow Cards"/>
+            <TextField fx:id="yellowCardsTF"
+                       promptText="Enter total yellow cards"/>
 
-        <ComboBox fx:id="yellowCardsCB"
-                  layoutX="150.0"
-                  layoutY="185.0"
-                  prefWidth="120.0"
-                  promptText="0"/>
+            <Label text="Red Cards"/>
+            <TextField fx:id="redCardsTF"
+                       promptText="Enter total red cards"/>
 
-        <Label layoutX="300.0"
-               layoutY="190.0"
-               text="Red Cards"/>
+            <Label text="Match Status"/>
+            <ComboBox fx:id="statusCB"
+                      prefWidth="250.0"/>
 
-        <ComboBox fx:id="redCardsCB"
-                  layoutX="380.0"
-                  layoutY="185.0"
-                  prefWidth="120.0"
-                  promptText="0"/>
+            <Label text="Match Summary"/>
+            <TextArea fx:id="summaryTA"
+                      prefHeight="120.0"
+                      wrapText="true"
+                      promptText="Write match summary..."/>
 
-        <Label layoutX="530.0"
-               layoutY="190.0"
-               text="Eligibility"/>
+            <HBox spacing="10">
 
-        <TextField fx:id="eligibilityTF"
-                   layoutX="610.0"
-                   layoutY="185.0"
-                   prefWidth="180.0"
-                   promptText="Eligible / Suspended"/>
+                <Button text="Submit"
+                        prefWidth="90.0"
+                        onAction="#submitButtonOnAction"/>
 
+                <Button text="Clear"
+                        prefWidth="90.0"
+                        onAction="#clearButtonOnAction"/>
 
-        <TableView fx:id="playerTable"
-                   layoutX="40.0"
-                   layoutY="240.0"
-                   prefWidth="860.0"
-                   prefHeight="280.0">
+                <Button text="Back"
+                        prefWidth="90.0"
+                        onAction="#backButtonOnAction"/>
+
+            </HBox>
+
+        </VBox>
+
+        <TableView fx:id="matchReportTable"
+                   layoutX="370.0"
+                   layoutY="60.0"
+                   prefHeight="650.0"
+                   prefWidth="700.0">
 
             <columns>
 
-                <TableColumn fx:id="playerNameCol"
-                             text="Player Name"
-                             prefWidth="240.0"/>
+                <TableColumn fx:id="matchIdCol"
+                             text="Match ID"
+                             prefWidth="90.0"/>
 
-                <TableColumn fx:id="matchCol"
-                             text="Match"
-                             prefWidth="240.0"/>
-
-                <TableColumn fx:id="yellowCardCol"
-                             text="Yellow Cards"
+                <TableColumn fx:id="homeTeamCol"
+                             text="Home Team"
                              prefWidth="110.0"/>
 
-                <TableColumn fx:id="redCardCol"
-                             text="Red Cards"
+                <TableColumn fx:id="awayTeamCol"
+                             text="Away Team"
                              prefWidth="110.0"/>
 
-                <TableColumn fx:id="eligibilityCol"
-                             text="Eligibility"
-                             prefWidth="160.0"/>
+                <TableColumn fx:id="dateCol"
+                             text="Date"
+                             prefWidth="100.0"/>
+
+                <TableColumn fx:id="scoreCol"
+                             text="Score"
+                             prefWidth="80.0"/>
+
+                <TableColumn fx:id="yellowCardsCol"
+                             text="Yellow"
+                             prefWidth="80.0"/>
+
+                <TableColumn fx:id="redCardsCol"
+                             text="Red"
+                             prefWidth="70.0"/>
+
+                <TableColumn fx:id="statusCol"
+                             text="Status"
+                             prefWidth="120.0"/>
 
             </columns>
 
         </TableView>
 
-        <Button layoutX="70.0"
-                layoutY="560.0"
-                prefWidth="140.0"
-                text="View Cards"
-                onAction="#viewCardsOA"/>
-
-        <Button layoutX="240.0"
-                layoutY="560.0"
-                prefWidth="140.0"
-                text="Update Cards"
-                onAction="#updateCardsOA"/>
-
-        <Button layoutX="410.0"
-                layoutY="560.0"
-                prefWidth="170.0"
-                text="Check Eligibility"
-                onAction="#checkEligibilityOA"/>
-
-        <Button layoutX="610.0"
-                layoutY="560.0"
-                prefWidth="120.0"
-                text="Refresh"
-                onAction="#refreshOA"/>
-
-        <Button layoutX="760.0"
-                layoutY="560.0"
-                prefWidth="120.0"
-                text="Back"
-                onAction="#backOA"/>
-
     </children>
-
-
-    <Label fx:id="messageLabel"
-           layoutX="70.0"
-           layoutY="590.0"
-           prefWidth="600.0"
-           textFill="red"/>
 
 </AnchorPane>

@@ -1,210 +1,133 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.BinaryFileUtility;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficials;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.RecordFouls;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.recordfoulscards;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class matchofficial_recordfoulscardsController implements UserReceiver {
+public class matchofficial_recordfoulscardsController {
 
     @FXML
-    private TextField foulTypeTF;
+    private ComboBox<String> matchComboBox;
     @FXML
-    private TableColumn<RecordFouls, String> eventTypeCol;
-    @FXML
-    private TableColumn<RecordFouls, String> cardTypeCol;
-    @FXML
-    private TableColumn<RecordFouls, String> minuteCol;
-    @FXML
-    private TableColumn<RecordFouls, String> matchCol;
-    @FXML
-    private TextField minuteTF;
-    @FXML
-    private ComboBox<String> eventTypeCB;
-    @FXML
-    private TableView<RecordFouls> foulsCardsTable;
-    @FXML
-    private ComboBox<String> cardTypeCB;
-    @FXML
-    private TableColumn<RecordFouls, String> playerNameCol;
-    @FXML
-    private TextArea noteTA;
-    @FXML
-    private ComboBox<String> matchCB;
-    @FXML
-    private TableColumn<RecordFouls, String> foulTypeCol;
-    @FXML
-    private TextField playerNameTF;
-    @FXML
-    private Label messageLabel;
-    private MatchOfficials loggedInUser;
-    @Override
-    public void setLoggedInUser(User user){
-        if (user instanceof MatchOfficials m){
-            loggedInUser = m;
-        }
-        else {
-            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
-        }
-    }
+    private ComboBox<String> playerComboBox;
 
+    @FXML
+    private TableView<recordfoulscards> foulCardTable;
+
+    @FXML
+    private TableColumn<recordfoulscards, String> foulTypeColumn;
+    @FXML
+    private TableColumn<recordfoulscards, String> cardTypeColumn;
+    @FXML
+    private TableColumn<recordfoulscards, String> minuteColumn;
+
+    private final ArrayList<recordfoulscards> allRecords = new ArrayList<>();
 
     @FXML
     public void initialize() {
 
-        cardTypeCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("cardType"));
-        foulTypeCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("foulType"));
-        matchCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("matchbetween"));
-        playerNameCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("playerName"));
-        minuteCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("minute"));
-        eventTypeCol.setCellValueFactory(new PropertyValueFactory<RecordFouls,String>("notes"));
+        foulTypeColumn.setCellValueFactory(new PropertyValueFactory<>("foulType"));
+        cardTypeColumn.setCellValueFactory(new PropertyValueFactory<>("cardType"));
+        minuteColumn.setCellValueFactory(new PropertyValueFactory<>("minute"));
 
+        matchComboBox.getItems().addAll(
+                "Bashundhara Kings vs Abahani Limited",
+                "Mohammedan SC vs Sheikh Russel",
+                "Abahani Limited vs Rahmatganj"
+        );
 
-        ArrayList<Object> recordList = BinaryFileUtility.readObjects("RecordFouls.bin");
-        for (Object record : recordList) {
-            if(record instanceof RecordFouls recordsfoul) {
-                foulsCardsTable.getItems().add(recordsfoul);
-            }
-        }
+        playerComboBox.getItems().addAll(
+                "Rakib Hossain",
+                "Jamal Bhuyan",
+                "Sohel Rana",
+                "Topu Barman"
+        );
 
-
-
-
-        eventTypeCB.getItems().addAll(
-                "Foul",
+        allRecords.add(new recordfoulscards(
+                "Bashundhara Kings vs Abahani Limited",
+                "Rakib Hossain",
+                "Dangerous Tackle",
                 "Yellow Card",
-                "Goal"
-        );
+                "25'"
+        ));
 
-        cardTypeCB.getItems().addAll(
+        allRecords.add(new recordfoulscards(
+                "Bashundhara Kings vs Abahani Limited",
+                "Rakib Hossain",
+                "Handball",
                 "No Card",
-                "2nd Yellow",
-                "Red"
-        );
+                "70'"
+        ));
 
-        matchCB.getItems().addAll(
-                "Real Madrid VS Nepoli",
-                "Brazil VS Norway",
-                "Bangladesh vs Nepal",
-                "Bangladesh vs Maldives"
-        );
+        allRecords.add(new recordfoulscards(
+                "Mohammedan SC vs Sheikh Russel",
+                "Jamal Bhuyan",
+                "Serious Foul",
+                "Red Card",
+                "81'"
+        ));
+
+        allRecords.add(new recordfoulscards(
+                "Abahani Limited vs Rahmatganj",
+                "Topu Barman",
+                "Holding",
+                "Yellow Card",
+                "43'"
+        ));
+
+        foulCardTable.setItems(FXCollections.observableArrayList());
     }
-
-    private boolean validateInput() {
-
-        if (matchCB.getValue() == null) {
-            messageLabel.setText("Select a match.");
-            matchCB.requestFocus();
-            return false;
-        }
-
-        if (playerNameTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Player name cannot be empty.");
-            playerNameTF.requestFocus();
-            return false;
-        }
-
-        if (!playerNameTF.getText().matches("[A-Za-z ]+")) {
-            messageLabel.setText("Player name can contain only letters.");
-            playerNameTF.requestFocus();
-            return false;
-        }
-
-        if (minuteTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Minute cannot be empty.");
-            minuteTF.requestFocus();
-            return false;
-        }
-
-        if (!minuteTF.getText().matches("\\d+")) {
-            messageLabel.setText("Minute must contain only numbers.");
-            minuteTF.requestFocus();
-            return false;
-        }
-
-        int minute = Integer.parseInt(minuteTF.getText());
-
-        if (minute < 1 || minute > 120) {
-            messageLabel.setText("Minute must be between 1 and 120.");
-            minuteTF.requestFocus();
-            return false;
-        }
-
-        if (eventTypeCB.getValue() == null) {
-            messageLabel.setText("Select event type.");
-            eventTypeCB.requestFocus();
-            return false;
-        }
-
-        if (cardTypeCB.getValue() == null) {
-            messageLabel.setText("Select card type.");
-            cardTypeCB.requestFocus();
-            return false;
-        }
-
-        if (foulTypeTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Foul type cannot be empty.");
-            foulTypeTF.requestFocus();
-            return false;
-        }
-
-        if (!foulTypeTF.getText().matches("[A-Za-z ]+")) {
-            messageLabel.setText("Foul type can contain only letters.");
-            foulTypeTF.requestFocus();
-            return false;
-        }
-
-        if (noteTA.getText().trim().isEmpty()) {
-            messageLabel.setText("Notes cannot be empty.");
-            noteTA.requestFocus();
-            return false;
-        }
-
-        messageLabel.setText("");
-        return true;
-    }
-
 
     @FXML
-    public void saveRecordOA(ActionEvent actionEvent) {
+    public void searchRecord() {
 
-        if (!validateInput()) {
+        String selectedMatch = matchComboBox.getValue();
+        String selectedPlayer = playerComboBox.getValue();
+
+        if (selectedMatch == null || selectedPlayer == null) {
+            foulCardTable.setItems(FXCollections.observableArrayList());
             return;
         }
 
-        RecordFouls recordFouls = new RecordFouls(matchCB.getValue(),playerNameTF.getText(),minuteTF.getText(),eventTypeCB.getValue(),cardTypeCB.getValue(),foulTypeTF.getText(),noteTA.getText());
-        foulsCardsTable.getItems().add(recordFouls);
-        BinaryFileUtility.writeObjects("RecordFouls.bin", recordFouls);
-        messageLabel.setText("Official registered successfully.");
+        ArrayList<recordfoulscards> result = new ArrayList<>();
+
+        for (recordfoulscards record : allRecords) {
+
+            if (record.getMatchName().equals(selectedMatch)
+                    && record.getPlayerName().equals(selectedPlayer)) {
+
+                result.add(record);
+            }
+        }
+
+        foulCardTable.setItems(FXCollections.observableArrayList(result));
     }
 
     @FXML
-    public void clearOA(ActionEvent actionEvent) {
+    public void backBtnOnAction(ActionEvent actionEvent) throws IOException {
 
-        matchCB.getSelectionModel().clearSelection();
-        eventTypeCB.getSelectionModel().clearSelection();
-        cardTypeCB.getSelectionModel().clearSelection();
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_officials/matchofficialsdashboard.fxml"));
 
-        playerNameTF.clear();
-        minuteTF.clear();
-        foulTypeTF.clear();
-        noteTA.clear();
+        Parent home = loader.load();
 
-        messageLabel.setText("");
-    }
+        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
 
-    @FXML
-    public void backOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
-
+        stage.setScene(new Scene(home));
+        stage.setTitle("Match Official Dashboard");
+        stage.show();
     }
 }

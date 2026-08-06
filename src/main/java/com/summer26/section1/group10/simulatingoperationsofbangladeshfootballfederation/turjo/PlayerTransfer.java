@@ -3,48 +3,71 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 import java.io.Serializable;
 
 public class PlayerTransfer implements Serializable {
+
     private String playerName;
-    private String fromclubname;
-    private String toclubname;
-    private String transdecission;
+    private String fromClub;
+    private String toClub;
+    private String decision;
 
-
-    public PlayerTransfer(String playerName, String fromclubname, String toclubname, String transdecission) {
-        this.playerName = playerName;
-        this.fromclubname = fromclubname;
-        this.toclubname = toclubname;
-        this.transdecission = transdecission;
+    // Default Constructor
+    public PlayerTransfer() {
     }
+
+    // Parameterized Constructor
+    public PlayerTransfer(String playerName,
+                          String fromClub,
+                          String toClub,
+                          String decision) {
+
+        this.playerName = playerName;
+        this.fromClub = fromClub;
+        this.toClub = toClub;
+        this.decision = decision;
+    }
+
+    // Getters
 
     public String getPlayerName() {
         return playerName;
     }
 
+    public String getFromClub() {
+        return fromClub;
+    }
+
+    public String getToClub() {
+        return toClub;
+    }
+
+    public String getDecision() {
+        return decision;
+    }
+
+    // Setters
+
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
 
-    public String getFromclubname() {
-        return fromclubname;
+    public void setFromClub(String fromClub) {
+        this.fromClub = fromClub;
     }
 
-    public void setFromclubname(String fromclubname) {
-        this.fromclubname = fromclubname;
+    public void setToClub(String toClub) {
+        this.toClub = toClub;
     }
 
-    public String getToclubname() {
-        return toclubname;
+    public void setDecision(String decision) {
+        this.decision = decision;
     }
 
-    public void setToclubname(String toclubname) {
-        this.toclubname = toclubname;
-    }
-
-    public String getTransdecission() {
-        return transdecission;
-    }
-
-    public void setTransdecission(String transdecission) {
-        this.transdecission = transdecission;
+    @Override
+    public String toString() {
+        return "PlayerTransfer{" +
+                "playerName='" + playerName + '\'' +
+                ", fromClub='" + fromClub + '\'' +
+                ", toClub='" + toClub + '\'' +
+                ", decision='" + decision + '\'' +
+                '}';
     }
 }

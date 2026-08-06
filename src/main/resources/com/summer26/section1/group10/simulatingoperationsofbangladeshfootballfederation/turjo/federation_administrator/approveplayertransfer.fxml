@@ -1,57 +1,99 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="700.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_approveplayertransferController">
+<AnchorPane prefHeight="650.0"
+            prefWidth="1000.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_approveplayertransferController">
 
+    <children>
 
-    <Label layoutX="240.0" layoutY="30.0" style="-fx-font-size:22px; -fx-font-weight:bold;" text="Approve Player Transfer" textFill="#9e7c25" />
+        <Label layoutX="340.0"
+               layoutY="20.0"
+               text="Approve Player Transfer"
+               style="-fx-font-size:24px; -fx-font-weight:bold;" />
 
-    <Label fx:id="messageLabel" layoutX="230.0" layoutY="390.0" style="-fx-font-size:16px; -fx-font-weight:bold;" text="" />
-    <Label layoutX="60.0" layoutY="100.0" text="Player Name" />
+        <VBox layoutX="20.0"
+              layoutY="70.0"
+              prefWidth="300.0"
+              spacing="12.0">
 
-    <TextField fx:id="playerNameTF" layoutX="60.0" layoutY="125.0" prefWidth="200" />
+            <padding>
+                <Insets top="10" right="10" bottom="10" left="10"/>
+            </padding>
 
+            <Label text="Player Name"/>
 
-    <Label layoutX="350.0" layoutY="100.0" text="From Club" />
+            <TextField fx:id="playerNameTF"
+                       promptText="Enter Player Name"/>
 
-    <TextField fx:id="fromClubTF" layoutX="350.0" layoutY="125.0" prefWidth="200" />
+            <Label text="Current Club"/>
 
+            <TextField fx:id="fromClubTF"
+                       promptText="Current Club"/>
 
-    <Label layoutX="60.0" layoutY="190.0" text="To Club" />
+            <Label text="Transfer To Club"/>
 
-    <TextField fx:id="toClubTF" layoutX="60.0" layoutY="215.0" prefWidth="200" />
+            <TextField fx:id="toClubTF"
+                       promptText="New Club"/>
 
+            <Label text="Decision"/>
 
-    <Label layoutX="350.0" layoutY="190.0" text="Transfer Decision" />
+            <ComboBox fx:id="decisionCB"
+                      prefWidth="250.0"/>
 
-    <ComboBox fx:id="decisionCB" layoutX="350.0" layoutY="215.0" prefWidth="200" promptText="Select" />
+            <HBox spacing="10">
 
+                <Button text="Approve"
+                        prefWidth="90.0"
+                        onAction="#approveButtonOnAction"/>
 
-    <Button layoutX="74.0" layoutY="337.0" onAction="#saveOA" prefWidth="120" text="Save" />
+                <Button text="Clear"
+                        prefWidth="90.0"
+                        onAction="#clearButtonOnAction"/>
 
+                <Button text="Back"
+                        prefWidth="90.0"
+                        onAction="#backButtonOnAction"/>
 
-    <Button layoutX="457.0" layoutY="337.0" onAction="#clearOA" prefWidth="100" text="Clear" textFill="#991d1d" />
-    <Button layoutX="276.0" layoutY="337.0" onAction="#backOA" prefWidth="120" text="Back" />
+            </HBox>
 
+        </VBox>
 
+        <TableView fx:id="transferTable"
+                   layoutX="340.0"
+                   layoutY="70.0"
+                   prefHeight="540.0"
+                   prefWidth="630.0">
 
-    <!-- Table -->
+            <columns>
 
-    <TableView fx:id="transferTable" layoutX="60.0" layoutY="430.0" prefHeight="220.0" prefWidth="580.0">
-        <columns>
-            <TableColumn fx:id="playerNameCol" prefWidth="145.0" text="Player Name" />
-            <TableColumn fx:id="fromClubCol" prefWidth="145.0" text="From Club" />
-            <TableColumn fx:id="toClubCol" prefWidth="145.0" text="To Club" />
-            <TableColumn fx:id="decisionCol" prefWidth="145.0" text="Decision" />
-        </columns>
-    </TableView>
+                <TableColumn fx:id="playerNameCol"
+                             text="Player"
+                             prefWidth="170.0"/>
 
+                <TableColumn fx:id="fromClubCol"
+                             text="From Club"
+                             prefWidth="150.0"/>
+
+                <TableColumn fx:id="toClubCol"
+                             text="To Club"
+                             prefWidth="150.0"/>
+
+                <TableColumn fx:id="decisionCol"
+                             text="Decision"
+                             prefWidth="140.0"/>
+
+            </columns>
+
+        </TableView>
+
+    </children>
 
 </AnchorPane>

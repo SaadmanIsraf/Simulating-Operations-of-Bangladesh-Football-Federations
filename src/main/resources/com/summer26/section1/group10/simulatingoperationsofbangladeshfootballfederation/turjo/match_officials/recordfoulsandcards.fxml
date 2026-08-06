@@ -1,207 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="800.0"
-            prefWidth="850.0"
-            xmlns="http://javafx.com/javafx/26"
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_recordfoulscardsController">
 
+    <children>
 
-    <Label layoutX="260.0"
-           layoutY="30.0"
-           text="Record Fouls and Cards">
+        <VBox spacing="15.0"
+              AnchorPane.topAnchor="20.0"
+              AnchorPane.leftAnchor="20.0"
+              AnchorPane.rightAnchor="20.0"
+              AnchorPane.bottomAnchor="20.0">
 
-        <font>
-            <Font size="24"/>
-        </font>
+            <padding>
+                <Insets top="15" right="15" bottom="15" left="15"/>
+            </padding>
 
-    </Label>
+            <Label text="Record Fouls &amp; Cards"
+                   style="-fx-font-size:22px; -fx-font-weight:bold;"/>
 
+            <HBox spacing="15">
 
+                <VBox spacing="5">
+                    <Label text="Match"/>
+                    <ComboBox fx:id="matchComboBox"
+                              prefWidth="300"/>
+                </VBox>
 
-    <!-- Match -->
+                <VBox spacing="5">
+                    <Label text="Player"/>
+                    <ComboBox fx:id="playerComboBox"
+                              prefWidth="220"/>
+                </VBox>
 
-    <Label layoutX="60.0"
-           layoutY="100.0"
-           text="Match"/>
+                <Button text="Search"
+                        onAction="#searchRecord"
+                        prefHeight="30"
+                        prefWidth="100"/>
+            </HBox>
 
-    <ComboBox fx:id="matchCB"
-              layoutX="60.0"
-              layoutY="125.0"
-              prefWidth="220"
-              promptText="Select Match"/>
+            <TableView fx:id="foulCardTable" prefHeight="420">
 
+                <columns>
 
+                    <TableColumn fx:id="foulTypeColumn"
+                                 text="Foul Type"
+                                 prefWidth="280"/>
 
-    <!-- Player Name -->
+                    <TableColumn fx:id="cardTypeColumn"
+                                 text="Card"
+                                 prefWidth="220"/>
 
-    <Label layoutX="350.0"
-           layoutY="100.0"
-           text="Player Name"/>
+                    <TableColumn fx:id="minuteColumn"
+                                 text="Minute"
+                                 prefWidth="120"/>
 
-    <TextField fx:id="playerNameTF"
-               layoutX="350.0"
-               layoutY="125.0"
-               prefWidth="220"
-               promptText="Enter Player Name"/>
+                </columns>
 
+            </TableView>
 
+            <Button text="Back"
+                    onAction="#backBtnOnAction"
+                    prefWidth="120"/>
 
-    <!-- Minute -->
+        </VBox>
 
-    <Label layoutX="640.0"
-           layoutY="100.0"
-           text="Minute"/>
-
-    <TextField fx:id="minuteTF"
-               layoutX="640.0"
-               layoutY="125.0"
-               prefWidth="120"
-               promptText="Minute"/>
-
-
-
-
-    <!-- Event Type -->
-
-    <Label layoutX="60.0"
-           layoutY="220.0"
-           text="Event Type"/>
-
-    <ComboBox fx:id="eventTypeCB"
-              layoutX="60.0"
-              layoutY="245.0"
-              prefWidth="220"
-              promptText="Foul / Card"/>
-
-
-    <Label fx:id="messageLabel"
-           layoutX="40.0"
-           layoutY="520.0"
-           prefWidth="400.0"
-           textFill="red"/>
-
-
-
-
-    <!-- Card Type -->
-
-    <Label layoutX="350.0"
-           layoutY="220.0"
-           text="Card Type"/>
-
-    <ComboBox fx:id="cardTypeCB"
-              layoutX="350.0"
-              layoutY="245.0"
-              prefWidth="220"
-              promptText="Yellow / Red"/>
-
-
-
-
-    <!-- Foul Type -->
-
-    <Label layoutX="640.0"
-           layoutY="220.0"
-           text="Foul Type"/>
-
-    <TextField fx:id="foulTypeTF"
-               layoutX="640.0"
-               layoutY="245.0"
-               prefWidth="150"
-               promptText="Enter Foul"/>
-
-
-
-
-    <!-- Description -->
-
-    <Label layoutX="60.0"
-           layoutY="330.0"
-           text="Official Notes"/>
-
-    <TextArea fx:id="noteTA"
-              layoutX="60.0"
-              layoutY="355.0"
-              prefWidth="730"
-              prefHeight="80"
-              promptText="Write incident details"/>
-
-
-
-
-    <!-- Buttons -->
-
-    <Button layoutX="150.0"
-            layoutY="480.0"
-            prefWidth="150"
-            text="Save Record"
-            onAction="#saveRecordOA"/>
-
-
-    <Button layoutX="350.0"
-            layoutY="480.0"
-            prefWidth="150"
-            text="Clear"
-            onAction="#clearOA"/>
-
-
-    <Button layoutX="550.0"
-            layoutY="480.0"
-            prefWidth="120"
-            text="Back"
-            onAction="#backOA"/>
-
-
-
-    <!-- Fouls & Cards Table -->
-
-    <TableView fx:id="foulsCardsTable"
-               layoutX="60.0"
-               layoutY="540.0"
-               prefHeight="230.0"
-               prefWidth="730.0">
-
-        <columns>
-
-            <TableColumn fx:id="matchCol"
-                         text="Match"
-                         prefWidth="140"/>
-
-            <TableColumn fx:id="playerNameCol"
-                         text="Player"
-                         prefWidth="120"/>
-
-            <TableColumn fx:id="minuteCol"
-                         text="Minute"
-                         prefWidth="70"/>
-
-            <TableColumn fx:id="eventTypeCol"
-                         text="Event Type"
-                         prefWidth="100"/>
-
-            <TableColumn fx:id="cardTypeCol"
-                         text="Card Type"
-                         prefWidth="100"/>
-
-            <TableColumn fx:id="foulTypeCol"
-                         text="Foul Type"
-                         prefWidth="100"/>
-
-        </columns>
-
-    </TableView>
-
-
+    </children>
 
 </AnchorPane>

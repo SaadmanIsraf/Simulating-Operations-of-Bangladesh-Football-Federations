@@ -23,6 +23,27 @@ public class BinaryFileUtility {
             return objectsList;
         }
 
+        BinaryFileUtility.writeObjects("AssignedMatches.bin",
+                new com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.model.AssignedMatch("MO101",
+                        "Bangladesh vs India",
+                        "10-08-2026",
+                        "Dhaka Stadium",
+                        "SAFF Championship"));
+
+        BinaryFileUtility.writeObjects("AssignedMatches.bin",
+                new com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.model.AssignedMatch("MO101",
+                        "Bangladesh vs Nepal",
+                        "15-08-2026",
+                        "Sylhet Stadium",
+                        "Friendly"));
+
+        BinaryFileUtility.writeObjects("AssignedMatches.bin",
+                new com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.AssignedMatch("MO102",
+                        "India vs Nepal",
+                        "18-08-2026",
+                        "Chattogram Stadium",
+                        "SAFF Championship"));
+
         try (ObjectInputStream ois =
                      new ObjectInputStream(new FileInputStream(file))) {
 

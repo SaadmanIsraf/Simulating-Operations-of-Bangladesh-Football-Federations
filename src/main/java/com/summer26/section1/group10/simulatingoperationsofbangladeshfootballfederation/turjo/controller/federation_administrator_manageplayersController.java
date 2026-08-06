@@ -1,56 +1,42 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.federation_administrator;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.Model_classes.Player;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.PlayerManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-public class federation_administrator_manageplayersController implements UserReceiver {
+public class federation_administrator_manageplayersController {
 
+    @FXML
+    private TextField playerIdTF;
+    @FXML
+    private TextField playerNameTF;
     @FXML
     private TextField clubTF;
-    @FXML
-    private TableView<?> playertableview;
-    @FXML
-    private TextField playernameTF;
-    @FXML
-    private TableColumn<?, ?> injurycol;
-    @FXML
-    private ComboBox<String> injuryCB;
+
     @FXML
     private ComboBox<String> positionCB;
     @FXML
-    private TableColumn<?, ?> positioncol;
+    private ComboBox<String> playerTypeCB;
     @FXML
-    private TableColumn<?, ?> clubcol;
+    private ComboBox<String> fitnessCB;
+
     @FXML
-    private TableColumn<?, ?> playernamecol1;
+    private TableView<Player> playerTable;
+
     @FXML
-    private TableColumn<?, ?> valuecol;
+    private TableColumn<Player,Integer> playerIdCol;
     @FXML
-    private TextField valueTF;
+    private TableColumn<Player,String> playerNameCol;
     @FXML
-    private TableColumn<?, ?> playernamecol;
+    private TableColumn<Player,String> positionCol;
     @FXML
-    private Label messageLabel;
-    private federation_administrator loggedInUser;
-    @Override
-    public void setLoggedInUser(User user){
-        if (user instanceof federation_administrator f){
-            loggedInUser = f;
-        }
-        else {
-            AlertGenerator.showAlert("Error", "This is not a valid user for this page");
-        }
-    }
+    private TableColumn<Player,String> clubCol;
+    @FXML
+    private TableColumn<Player,String> fitnessCol;
 
     @FXML
     public void initialize() {
@@ -62,129 +48,183 @@ public class federation_administrator_manageplayersController implements UserRec
                 "Forward"
         );
 
-        injuryCB.getItems().addAll(
+        playerTypeCB.getItems().addAll(
+                "Local",
+                "Foreign"
+        );
+
+        fitnessCB.getItems().addAll(
                 "Fit",
-                "Minor Injury",
-                "Major Injury"
+                "Injured",
+                "Recovering"
+        );
+
+        playerIdCol.setCellValueFactory(new PropertyValueFactory<>("playerId"));
+        playerNameCol.setCellValueFactory(new PropertyValueFactory<>("fullName"));
+        positionCol.setCellValueFactory(new PropertyValueFactory<>("playingPosition"));
+        clubCol.setCellValueFactory(new PropertyValueFactory<>("teamName"));
+        fitnessCol.setCellValueFactory(new PropertyValueFactory<>("fitnessStatus"));
+
+        loadPlayers();
+    }
+
+    private void loadPlayers() {
+
+        PlayerManager.loadFromFile();
+
+        playerTable.getItems().setAll(PlayerManager.getPlayerList());
+
+        playerTable.refresh();
+    }
+
+    @FXML
+    public void addButtonOnAction(ActionEvent actionEvent) {
+
+        if (playerIdTF.getText().isEmpty()
+                || playerNameTF.getText().isEmpty()
+                || clubTF.getText().isEmpty()
+                || positionCB.getValue() == null
+                || playerTypeCB.getValue() == null
+                || fitnessCB.getValue() == null) {
+
+            showAlert(Alert.AlertType.ERROR,
+                    "Error",
+                    "Please fill all fields.");
+            return;
+        }
+
+        Player player = new Player(
+                Integer.parseInt(playerIdTF.getText()),
+                playerNameTF.getText(),
+                "1234",
+                "Player",
+                20,
+                clubTF.getText(),
+                positionCB.getValue(),
+                playerTypeCB.getValue(),
+                "",
+                fitnessCB.getValue(),
+                "Eligible"
+        );
+
+        PlayerManager.addPlayer(player);
+        PlayerManager.saveToFile();
+
+        loadPlayers();
+
+        clearFields();
+
+        showAlert(Alert.AlertType.INFORMATION,
+                "Success",
+                "Player added successfully.");
+    }
+    @FXML
+    public void updateButtonOnAction(ActionEvent actionEvent) {
+
+        Player selectedPlayer = playerTable.getSelectionModel().getSelectedItem();
+
+        if (selectedPlayer == null) {
+            showAlert(Alert.AlertType.WARNING,
+                    "Warning",
+                    "Select a player first.");
+            return;
+        }
+
+        selectedPlayer.setPlayerId(Integer.parseInt(playerIdTF.getText()));
+        selectedPlayer.setFullName(playerNameTF.getText());
+        selectedPlayer.setTeamName(clubTF.getText());
+        selectedPlayer.setPlayingPosition(positionCB.getValue());
+        selectedPlayer.setPlayerType(playerTypeCB.getValue());
+        selectedPlayer.setFitnessStatus(fitnessCB.getValue());
+
+        PlayerManager.saveToFile();
+
+        playerTable.refresh();
+
+        showAlert(Alert.AlertType.INFORMATION,
+                "Success",
+                "Player updated successfully.");
+    }
+
+    @FXML
+    public void deleteButtonOnAction(ActionEvent actionEvent) {
+
+        Player selectedPlayer = playerTable.getSelectionModel().getSelectedItem();
+
+        if (selectedPlayer == null) {
+            showAlert(Alert.AlertType.WARNING,
+                    "Warning",
+                    "Select a player first.");
+            return;
+        }
+
+        PlayerManager.removePlayer(selectedPlayer);
+        PlayerManager.saveToFile();
+
+        loadPlayers();
+
+        clearFields();
+
+        showAlert(Alert.AlertType.INFORMATION,
+                "Success",
+                "Player deleted successfully.");
+    }
+
+    @FXML
+    public void clearButtonOnAction(ActionEvent actionEvent) {
+
+        clearFields();
+    }
+
+    @FXML
+    public void backButtonOnAction(ActionEvent actionEvent) {
+
+        SceneSwitcher.switchTo(
+                "turjo/federation_administrator/dashboardView.fxml"
         );
     }
 
-    private boolean validateInput() {
-
-        String playerName = playernameTF.getText().trim();
-        String club = clubTF.getText().trim();
-        String value = valueTF.getText().trim();
-
-        if (playerName.isEmpty()) {
-            messageLabel.setText("Player name cannot be empty.");
-            playernameTF.requestFocus();
-            return false;
-        }
-
-        if (!playerName.matches("[A-Za-z ]+")) {
-            messageLabel.setText("Player name must contain only letters.");
-            playernameTF.requestFocus();
-            return false;
-        }
-
-        if (positionCB.getValue() == null) {
-            messageLabel.setText("Select a position.");
-            positionCB.requestFocus();
-            return false;
-        }
-
-        if (injuryCB.getValue() == null) {
-            messageLabel.setText("Select injury status.");
-            injuryCB.requestFocus();
-            return false;
-        }
-
-        if (club.isEmpty()) {
-            messageLabel.setText("Current club cannot be empty.");
-            clubTF.requestFocus();
-            return false;
-        }
-
-        if (!club.matches("[A-Za-z0-9 ]+")) {
-            messageLabel.setText("Invalid club name.");
-            clubTF.requestFocus();
-            return false;
-        }
-
-        if (value.isEmpty()) {
-            messageLabel.setText("Current value cannot be empty.");
-            valueTF.requestFocus();
-            return false;
-        }
-
-        if (!value.matches("\\d+")) {
-            messageLabel.setText("Current value must contain only numbers.");
-            valueTF.requestFocus();
-            return false;
-        }
-
-        messageLabel.setText("");
-        return true;
-    }
-
     @FXML
-    public void addplayerOA(ActionEvent actionEvent) {
+    public void tableMouseClicked() {
 
-        if (!validateInput()) {
+        Player player = playerTable.getSelectionModel().getSelectedItem();
+
+        if (player == null) {
             return;
         }
 
-        messageLabel.setText("Player added successfully.");
+        playerIdTF.setText(String.valueOf(player.getPlayerId()));
+        playerNameTF.setText(player.getFullName());
+        clubTF.setText(player.getTeamName());
+
+        positionCB.setValue(player.getPlayingPosition());
+        playerTypeCB.setValue(player.getPlayerType());
+        fitnessCB.setValue(player.getFitnessStatus());
     }
 
-    @FXML
-    public void updateplayerOA(ActionEvent actionEvent) {
+    private void clearFields() {
 
-        if (!validateInput()) {
-            return;
-        }
-
-        messageLabel.setText("Player updated successfully.");
-    }
-
-    @FXML
-    public void saveOA(ActionEvent actionEvent) {
-
-        if (!validateInput()) {
-            return;
-        }
-
-        messageLabel.setText("Player information saved successfully.");
-    }
-
-    @FXML
-    public void refreshOA(ActionEvent actionEvent) {
-
-        playernameTF.clear();
+        playerIdTF.clear();
+        playerNameTF.clear();
         clubTF.clear();
-        valueTF.clear();
 
-        positionCB.getSelectionModel().clearSelection();
-        injuryCB.getSelectionModel().clearSelection();
+        positionCB.setValue(null);
+        playerTypeCB.setValue(null);
+        fitnessCB.setValue(null);
 
-        messageLabel.setText("Form refreshed.");
+        playerTable.getSelectionModel().clearSelection();
     }
 
-    @FXML
-    public void deleteplayerOA(ActionEvent actionEvent) {
+    private void showAlert(Alert.AlertType type,
+                           String title,
+                           String message) {
 
-        if (playernameTF.getText().trim().isEmpty()) {
-            messageLabel.setText("Enter player name to delete.");
-            playernameTF.requestFocus();
-            return;
-        }
+        Alert alert = new Alert(type);
 
-        messageLabel.setText("Player deleted successfully.");
-    }
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
 
-    @FXML
-    public void backOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("turjo/federation_administrator/dashboardView.fxml");
-
+        alert.showAndWait();
     }
 }

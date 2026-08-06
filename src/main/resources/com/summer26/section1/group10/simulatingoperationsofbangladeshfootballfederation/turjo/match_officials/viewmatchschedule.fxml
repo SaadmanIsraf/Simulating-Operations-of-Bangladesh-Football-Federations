@@ -5,41 +5,72 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_viewmatchscheduleController">
+<AnchorPane prefHeight="600.0"
+            prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/21"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_viewmatchscheduleController">
 
+    <children>
 
-    <!-- Title -->
+        <Label layoutX="320.0"
+               layoutY="20.0"
+               text="View Match Schedule"
+               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-    <Label layoutX="350.0" layoutY="25.0" text="View Match Schedule" textFill="#133799">
-        <font>
-            <Font size="26" />
-        </font>
-    </Label>
+        <TableView fx:id="scheduleTable"
+                   layoutX="25.0"
+                   layoutY="70.0"
+                   prefHeight="450.0"
+                   prefWidth="850.0">
 
+            <columns>
 
+                <TableColumn fx:id="matchIdCol"
+                             text="Match ID"
+                             prefWidth="100"/>
 
-    <!-- Table -->
+                <TableColumn fx:id="homeTeamCol"
+                             text="Home Team"
+                             prefWidth="150"/>
 
-    <TableView fx:id="scheduleTable" layoutX="50.0" layoutY="90.0" prefHeight="450.0" prefWidth="900.0">
-        <columns>
-            <TableColumn fx:id="homeTeamCol" prefWidth="180.0" text="Home Team" />
-            <TableColumn fx:id="awayTeamCol" prefWidth="180.0" text="Away Team" />
-            <TableColumn fx:id="dateCol" prefWidth="150.0" text="Date" />
-            <TableColumn fx:id="timeCol" prefWidth="130.0" text="Time" />
-            <TableColumn fx:id="venueCol" prefWidth="250.0" text="Venue" />
-        </columns>
-    </TableView>
+                <TableColumn fx:id="awayTeamCol"
+                             text="Away Team"
+                             prefWidth="150"/>
 
+                <TableColumn fx:id="matchDateCol"
+                             text="Match Date"
+                             prefWidth="140"/>
 
+                <TableColumn fx:id="matchTimeCol"
+                             text="Match Time"
+                             prefWidth="120"/>
 
-    <!-- Buttons -->
+                <TableColumn fx:id="venueCol"
+                             text="Venue"
+                             prefWidth="190"/>
 
-    <Button layoutX="380.0" layoutY="570.0" onAction="#refreshOA" prefWidth="120" text="Refresh" />
+            </columns>
 
+        </TableView>
 
-    <Button layoutX="520.0" layoutY="570.0" onAction="#backOA" prefWidth="120" text="Back" />
+        <Button fx:id="refreshButton"
+                layoutX="290.0"
+                layoutY="540.0"
+                mnemonicParsing="false"
+                onAction="#refreshButtonOnAction"
+                prefWidth="120"
+                text="Refresh"/>
 
+        <Button fx:id="backButton"
+                layoutX="470.0"
+                layoutY="540.0"
+                mnemonicParsing="false"
+                onAction="#backButtonOnAction"
+                prefWidth="120"
+                text="Back"/>
+
+    </children>
 
 </AnchorPane>
