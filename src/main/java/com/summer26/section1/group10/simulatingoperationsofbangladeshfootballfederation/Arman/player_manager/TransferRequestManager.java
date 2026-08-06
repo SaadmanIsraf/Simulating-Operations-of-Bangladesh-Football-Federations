@@ -12,43 +12,28 @@ import java.util.List;
 
 public class TransferRequestManager {
 
-    private static final List<TransferRequest>
-            transferRequestList = new ArrayList<>();
-
-    private static final String FILE_NAME =
-            "transfer-requests.bin";
+    private static final List<TransferRequest> transferRequestList = new ArrayList<>();
+    private static final String FILE_NAME = "transfer-requests.bin";
 
     static {
         loadFromFile();
     }
 
-    public static List<TransferRequest>
-    getTransferRequestList() {
-
+    public static List<TransferRequest> getTransferRequestList() {
         return transferRequestList;
     }
 
-    public static void addTransferRequest(
-            TransferRequest transferRequest) {
-
+    public static void addTransferRequest(TransferRequest transferRequest) {
         transferRequestList.add(transferRequest);
     }
 
-    public static void removeTransferRequest(
-            TransferRequest transferRequest) {
-
+    public static void removeTransferRequest(TransferRequest transferRequest) {
         transferRequestList.remove(transferRequest);
     }
 
-    public static TransferRequest findByRequestId(
-            int requestId) {
-
-        for (TransferRequest transferRequest :
-                transferRequestList) {
-
-            if (transferRequest.getRequestId()
-                    == requestId) {
-
+    public static TransferRequest findByRequestId(int requestId) {
+        for (TransferRequest transferRequest : transferRequestList) {
+            if (transferRequest.getRequestId() == requestId) {
                 return transferRequest;
             }
         }
@@ -56,21 +41,12 @@ public class TransferRequestManager {
         return null;
     }
 
-    public static List<TransferRequest>
-    findByPlayerId(int playerId) {
+    public static List<TransferRequest> findByPlayerId(int playerId) {
+        List<TransferRequest> matchingRequests = new ArrayList<>();
 
-        List<TransferRequest> matchingRequests =
-                new ArrayList<>();
-
-        for (TransferRequest transferRequest :
-                transferRequestList) {
-
-            if (transferRequest.getPlayerId()
-                    == playerId) {
-
-                matchingRequests.add(
-                        transferRequest
-                );
+        for (TransferRequest transferRequest : transferRequestList) {
+            if (transferRequest.getPlayerId() == playerId) {
+                matchingRequests.add(transferRequest);
             }
         }
 
@@ -81,31 +57,19 @@ public class TransferRequestManager {
             int playerId,
             String requestedTeam) {
 
-        for (TransferRequest transferRequest :
-                transferRequestList) {
-
+        for (TransferRequest transferRequest : transferRequestList) {
             boolean samePlayer =
-                    transferRequest.getPlayerId()
-                            == playerId;
+                    transferRequest.getPlayerId() == playerId;
 
             boolean sameTeam =
-                    transferRequest.getRequestedTeam()
-                            != null
-                            && transferRequest
-                            .getRequestedTeam()
-                            .equalsIgnoreCase(
-                                    requestedTeam
-                            );
+                    transferRequest.getRequestedTeam() != null
+                            && transferRequest.getRequestedTeam()
+                            .equalsIgnoreCase(requestedTeam);
 
             boolean pending =
-                    "Pending".equalsIgnoreCase(
-                            transferRequest.getStatus()
-                    );
+                    "Pending".equalsIgnoreCase(transferRequest.getStatus());
 
-            if (samePlayer
-                    && sameTeam
-                    && pending) {
-
+            if (samePlayer && sameTeam && pending) {
                 return true;
             }
         }
@@ -114,17 +78,11 @@ public class TransferRequestManager {
     }
 
     public static int generateRequestId() {
-
         int highestRequestId = 0;
 
-        for (TransferRequest transferRequest :
-                transferRequestList) {
-
-            if (transferRequest.getRequestId()
-                    > highestRequestId) {
-
-                highestRequestId =
-                        transferRequest.getRequestId();
+        for (TransferRequest transferRequest : transferRequestList) {
+            if (transferRequest.getRequestId() > highestRequestId) {
+                highestRequestId = transferRequest.getRequestId();
             }
         }
 
@@ -133,18 +91,13 @@ public class TransferRequestManager {
 
     @SuppressWarnings("unchecked")
     private static void loadFromFile() {
-
         try (ObjectInputStream inputStream =
-                     new ObjectInputStream(
-                             new FileInputStream(
-                                     FILE_NAME
-                             ))) {
+                     new ObjectInputStream(new FileInputStream(FILE_NAME))) {
 
             transferRequestList.clear();
 
             transferRequestList.addAll(
-                    (ArrayList<TransferRequest>)
-                            inputStream.readObject()
+                    (ArrayList<TransferRequest>) inputStream.readObject()
             );
 
             System.out.println(
@@ -152,45 +105,26 @@ public class TransferRequestManager {
                             + transferRequestList.size()
             );
 
-        } catch (IOException |
-                 ClassNotFoundException e) {
-
-            System.out.println(
-                    "Could not load transfer request data."
-            );
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Could not load transfer request data.");
         }
     }
 
     public static void saveToFile() {
-
         try (ObjectOutputStream outputStream =
-                     new ObjectOutputStream(
-                             new FileOutputStream(
-                                     FILE_NAME
-                             ))) {
+                     new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
 
             ArrayList<TransferRequest> temporaryList =
-                    new ArrayList<>(
-                            transferRequestList
-                    );
+                    new ArrayList<>(transferRequestList);
 
-            outputStream.writeObject(
-                    temporaryList
-            );
-
+            outputStream.writeObject(temporaryList);
             outputStream.flush();
 
-            System.out.println(
-                    "Transfer requests saved successfully."
-            );
+            System.out.println("Transfer requests saved successfully.");
 
         } catch (IOException e) {
-
             e.printStackTrace();
-
-            System.out.println(
-                    "Could not save transfer request data."
-            );
+            System.out.println("Could not save transfer request data.");
         }
     }
 }

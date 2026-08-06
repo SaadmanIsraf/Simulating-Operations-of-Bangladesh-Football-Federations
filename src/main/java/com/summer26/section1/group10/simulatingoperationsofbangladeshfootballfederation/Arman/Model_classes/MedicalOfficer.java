@@ -14,13 +14,14 @@ public class MedicalOfficer extends User implements Serializable {
     private String specialization;
     private String contactNumber;
 
-    public MedicalOfficer(int id,
-                          String name,
-                          String password,
-                          String role,
-                          int age,
-                          String specialization,
-                          String contactNumber) {
+    public MedicalOfficer(
+            int id,
+            String name,
+            String password,
+            String role,
+            int age,
+            String specialization,
+            String contactNumber) {
 
         super(id, name, password, role);
 
@@ -33,20 +34,20 @@ public class MedicalOfficer extends User implements Serializable {
         return age;
     }
 
-    public String getSpecialization() {
-        return specialization;
-    }
-
-    public String getContactNumber() {
-        return contactNumber;
-    }
-
     public void setAge(int age) {
         this.age = age;
     }
 
+    public String getSpecialization() {
+        return specialization;
+    }
+
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
     }
 
     public void setContactNumber(String contactNumber) {

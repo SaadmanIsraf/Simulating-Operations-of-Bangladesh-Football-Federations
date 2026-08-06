@@ -2,7 +2,6 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.Model_classes.Player;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,7 +16,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
-
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
@@ -29,49 +27,31 @@ public class team_details_controller {
 
     @FXML
     private ComboBox<String> team_name_combobox;
-
     @FXML
     private Label team_name_label;
-
     @FXML
     private Label captain_name_label;
-
     @FXML
     private Label coach_name_label;
-
     @FXML
     private Label total_members_label;
-
     @FXML
     private Label team_members_information_label;
-
     @FXML
     private ListView<String> team_members_listview;
-
     @FXML
     private TextArea team_description_textarea;
 
-    private final List<Player> playerList =
-            new ArrayList<>();
+    private final List<Player> playerList = new ArrayList<>();
+    private final Map<String, String> coachMap = new LinkedHashMap<>();
+    private final Map<String, String> defaultCaptainMap = new LinkedHashMap<>();
+    private final Map<String, String> descriptionMap = new LinkedHashMap<>();
+    private final Map<String, List<String>> defaultMembersMap = new LinkedHashMap<>();
 
-    private final Map<String, String> coachMap =
-            new LinkedHashMap<>();
-
-    private final Map<String, String> defaultCaptainMap =
-            new LinkedHashMap<>();
-
-    private final Map<String, String> descriptionMap =
-            new LinkedHashMap<>();
-
-    private final Map<String, List<String>> defaultMembersMap =
-            new LinkedHashMap<>();
-
-    private static final String PLAYER_FILE_NAME =
-            "players.bin";
+    private static final String PLAYER_FILE_NAME = "players.bin";
 
     @FXML
     public void initialize() {
-
         initializeTeamNames();
         initializeDefaultCoaches();
         initializeDefaultCaptains();
@@ -79,12 +59,10 @@ public class team_details_controller {
         initializeDefaultMembers();
 
         team_description_textarea.setWrapText(true);
-
         clearDisplayedInformation();
     }
 
     private void initializeTeamNames() {
-
         team_name_combobox.getItems().setAll(
                 "Abahani Limited Dhaka",
                 "Bashundhara Kings",
@@ -101,123 +79,34 @@ public class team_details_controller {
     }
 
     private void initializeDefaultCoaches() {
-
-        coachMap.put(
-                "Abahani Limited Dhaka",
-                "Coach Mario Lemos"
-        );
-
-        coachMap.put(
-                "Bashundhara Kings",
-                "Coach Valeriu Tita"
-        );
-
-        coachMap.put(
-                "Mohammedan Sporting Club",
-                "Coach Alfaz Ahmed"
-        );
-
-        coachMap.put(
-                "Sheikh Russel KC",
-                "Coach Zulfiker Mahmud Mintu"
-        );
-
-        coachMap.put(
-                "Sheikh Jamal Dhanmondi Club",
-                "Coach Maruful Haque"
-        );
-
-        coachMap.put(
-                "Bangladesh Police FC",
-                "Coach Aristică Cioabă"
-        );
-
-        coachMap.put(
-                "Brothers Union",
-                "Coach Rezaul Karim"
-        );
-
-        coachMap.put(
-                "Rahmatganj MFS",
-                "Coach Kamal Babu"
-        );
-
-        coachMap.put(
-                "Fortis FC",
-                "Coach Masud Parvez Kaiser"
-        );
-
-        coachMap.put(
-                "Chittagong Abahani",
-                "Coach Saiful Bari Titu"
-        );
-
-        coachMap.put(
-                "No Current Team",
-                "Not assigned"
-        );
+        coachMap.put("Abahani Limited Dhaka", "Coach Mario Lemos");
+        coachMap.put("Bashundhara Kings", "Coach Valeriu Tita");
+        coachMap.put("Mohammedan Sporting Club", "Coach Alfaz Ahmed");
+        coachMap.put("Sheikh Russel KC", "Coach Zulfiker Mahmud Mintu");
+        coachMap.put("Sheikh Jamal Dhanmondi Club", "Coach Maruful Haque");
+        coachMap.put("Bangladesh Police FC", "Coach Aristică Cioabă");
+        coachMap.put("Brothers Union", "Coach Rezaul Karim");
+        coachMap.put("Rahmatganj MFS", "Coach Kamal Babu");
+        coachMap.put("Fortis FC", "Coach Masud Parvez Kaiser");
+        coachMap.put("Chittagong Abahani", "Coach Saiful Bari Titu");
+        coachMap.put("No Current Team", "Not assigned");
     }
 
     private void initializeDefaultCaptains() {
-
-        defaultCaptainMap.put(
-                "Abahani Limited Dhaka",
-                "Default Captain - Rahim"
-        );
-
-        defaultCaptainMap.put(
-                "Bashundhara Kings",
-                "Default Captain - Tariq"
-        );
-
-        defaultCaptainMap.put(
-                "Mohammedan Sporting Club",
-                "Default Captain - Jamal"
-        );
-
-        defaultCaptainMap.put(
-                "Sheikh Russel KC",
-                "Default Captain - Kabir"
-        );
-
-        defaultCaptainMap.put(
-                "Sheikh Jamal Dhanmondi Club",
-                "Default Captain - Hasan"
-        );
-
-        defaultCaptainMap.put(
-                "Bangladesh Police FC",
-                "Default Captain - Arif"
-        );
-
-        defaultCaptainMap.put(
-                "Brothers Union",
-                "Default Captain - Rafi"
-        );
-
-        defaultCaptainMap.put(
-                "Rahmatganj MFS",
-                "Default Captain - Sakib"
-        );
-
-        defaultCaptainMap.put(
-                "Fortis FC",
-                "Default Captain - Nayeem"
-        );
-
-        defaultCaptainMap.put(
-                "Chittagong Abahani",
-                "Default Captain - Fahim"
-        );
-
-        defaultCaptainMap.put(
-                "No Current Team",
-                "Not available"
-        );
+        defaultCaptainMap.put("Abahani Limited Dhaka", "Default Captain - Rahim");
+        defaultCaptainMap.put("Bashundhara Kings", "Default Captain - Tariq");
+        defaultCaptainMap.put("Mohammedan Sporting Club", "Default Captain - Jamal");
+        defaultCaptainMap.put("Sheikh Russel KC", "Default Captain - Kabir");
+        defaultCaptainMap.put("Sheikh Jamal Dhanmondi Club", "Default Captain - Hasan");
+        defaultCaptainMap.put("Bangladesh Police FC", "Default Captain - Arif");
+        defaultCaptainMap.put("Brothers Union", "Default Captain - Rafi");
+        defaultCaptainMap.put("Rahmatganj MFS", "Default Captain - Sakib");
+        defaultCaptainMap.put("Fortis FC", "Default Captain - Nayeem");
+        defaultCaptainMap.put("Chittagong Abahani", "Default Captain - Fahim");
+        defaultCaptainMap.put("No Current Team", "Not available");
     }
 
     private void initializeTeamDescriptions() {
-
         descriptionMap.put(
                 "Abahani Limited Dhaka",
                 "Abahani Limited Dhaka is one of the established football "
@@ -294,7 +183,6 @@ public class team_details_controller {
     }
 
     private void initializeDefaultMembers() {
-
         defaultMembersMap.put(
                 "Abahani Limited Dhaka",
                 new ArrayList<>(List.of(
@@ -385,37 +273,23 @@ public class team_details_controller {
                 ))
         );
 
-        defaultMembersMap.put(
-                "No Current Team",
-                new ArrayList<>()
-        );
+        defaultMembersMap.put("No Current Team", new ArrayList<>());
     }
 
     @FXML
-    public void search_button_on_action(
-            ActionEvent actionEvent) {
+    public void search_button_on_action(ActionEvent actionEvent) {
+        String selectedTeam = team_name_combobox.getValue();
 
-        String selectedTeam =
-                team_name_combobox.getValue();
-
-        if (selectedTeam == null
-                || selectedTeam.isBlank()) {
-
+        if (selectedTeam == null || selectedTeam.isBlank()) {
             showAlert(
                     Alert.AlertType.ERROR,
                     "Team Not Selected",
                     "Please select a team before searching."
             );
-
             return;
         }
 
-        /*
-         * Reload players.bin each time so changes made from
-         * Player Profile immediately appear in Team Details.
-         */
         loadPlayersFromFile();
-
         displayTeamInformation(selectedTeam);
 
         showAlert(
@@ -425,17 +299,9 @@ public class team_details_controller {
         );
     }
 
-    private void displayTeamInformation(
-            String selectedTeam) {
-
+    private void displayTeamInformation(String selectedTeam) {
         team_name_label.setText(selectedTeam);
-
-        coach_name_label.setText(
-                coachMap.getOrDefault(
-                        selectedTeam,
-                        "Not available"
-                )
-        );
+        coach_name_label.setText(coachMap.getOrDefault(selectedTeam, "Not available"));
 
         team_description_textarea.setText(
                 descriptionMap.getOrDefault(
@@ -444,25 +310,15 @@ public class team_details_controller {
                 )
         );
 
-        /*
-         * LinkedHashSet keeps insertion order and prevents
-         * duplicate member entries.
-         */
-        Set<String> displayedMembers =
-                new LinkedHashSet<>();
-
-        List<String> defaultMembers =
-                defaultMembersMap.get(selectedTeam);
+        Set<String> displayedMembers = new LinkedHashSet<>();
+        List<String> defaultMembers = defaultMembersMap.get(selectedTeam);
 
         if (defaultMembers != null) {
             displayedMembers.addAll(defaultMembers);
         }
 
         String captainName =
-                defaultCaptainMap.getOrDefault(
-                        selectedTeam,
-                        "Not available"
-                );
+                defaultCaptainMap.getOrDefault(selectedTeam, "Not available");
 
         for (Player player : playerList) {
 
@@ -470,9 +326,7 @@ public class team_details_controller {
                 continue;
             }
 
-            if (!player.getTeamName()
-                    .equalsIgnoreCase(selectedTeam)) {
-
+            if (!player.getTeamName().equalsIgnoreCase(selectedTeam)) {
                 continue;
             }
 
@@ -483,55 +337,32 @@ public class team_details_controller {
                             + " - "
                             + safePlayerType(player);
 
-            displayedMembers.add(
-                    memberInformation
-            );
+            displayedMembers.add(memberInformation);
 
-            if ("Captain".equalsIgnoreCase(
-                    player.getPlayerType())) {
-
-                captainName =
-                        player.getName()
-                                + " (Saved Player)";
+            if ("Captain".equalsIgnoreCase(player.getPlayerType())) {
+                captainName = player.getName() + " (Saved Player)";
             }
         }
 
         captain_name_label.setText(captainName);
-
-        team_members_listview.getItems().setAll(
-                displayedMembers
-        );
-
-        total_members_label.setText(
-                String.valueOf(
-                        displayedMembers.size()
-                )
-        );
+        team_members_listview.getItems().setAll(displayedMembers);
+        total_members_label.setText(String.valueOf(displayedMembers.size()));
 
         if (displayedMembers.isEmpty()) {
-
             team_members_information_label.setText(
                     "No team members are available for this team."
             );
-
         } else {
-
             team_members_information_label.setText(
-                    "Showing "
-                            + displayedMembers.size()
-                            + " team member(s)."
+                    "Showing " + displayedMembers.size() + " team member(s)."
             );
         }
     }
 
     private String safePlayerType(Player player) {
+        String playerType = player.getPlayerType();
 
-        String playerType =
-                player.getPlayerType();
-
-        if (playerType == null
-                || playerType.isBlank()) {
-
+        if (playerType == null || playerType.isBlank()) {
             return "Regular Player";
         }
 
@@ -540,11 +371,9 @@ public class team_details_controller {
 
     @SuppressWarnings("unchecked")
     private boolean loadPlayersFromFile() {
-
         playerList.clear();
 
-        File playerFile =
-                new File(PLAYER_FILE_NAME);
+        File playerFile = new File(PLAYER_FILE_NAME);
 
         System.out.println(
                 "Loading players from: "
@@ -552,37 +381,25 @@ public class team_details_controller {
         );
 
         if (!playerFile.exists()) {
-
-            System.out.println(
-                    "players.bin does not exist yet."
-            );
-
+            System.out.println("players.bin does not exist yet.");
             return false;
         }
 
         try (ObjectInputStream inputStream =
-                     new ObjectInputStream(
-                             new FileInputStream(
-                                     playerFile
-                             ))) {
+                     new ObjectInputStream(new FileInputStream(playerFile))) {
 
-            Object savedObject =
-                    inputStream.readObject();
+            Object savedObject = inputStream.readObject();
 
-            if (!(savedObject
-                    instanceof ArrayList<?> loadedList)) {
-
+            if (!(savedObject instanceof ArrayList<?> loadedList)) {
                 showAlert(
                         Alert.AlertType.ERROR,
                         "Invalid Player File",
                         "players.bin does not contain valid Player data."
                 );
-
                 return false;
             }
 
             for (Object item : loadedList) {
-
                 if (item instanceof Player player) {
                     playerList.add(player);
                 }
@@ -596,7 +413,6 @@ public class team_details_controller {
             return true;
 
         } catch (InvalidClassException e) {
-
             e.printStackTrace();
 
             showAlert(
@@ -607,14 +423,9 @@ public class team_details_controller {
             );
 
         } catch (FileNotFoundException e) {
+            System.out.println("players.bin could not be found.");
 
-            System.out.println(
-                    "players.bin could not be found."
-            );
-
-        } catch (IOException |
-                 ClassNotFoundException e) {
-
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
 
             showAlert(
@@ -629,52 +440,24 @@ public class team_details_controller {
     }
 
     private void clearDisplayedInformation() {
-
-        team_name_label.setText(
-                "Not selected"
-        );
-
-        captain_name_label.setText(
-                "Not available"
-        );
-
-        coach_name_label.setText(
-                "Not available"
-        );
-
-        total_members_label.setText(
-                "0"
-        );
-
-        team_members_listview
-                .getItems()
-                .clear();
-
-        team_description_textarea
-                .clear();
-
+        team_name_label.setText("Not selected");
+        captain_name_label.setText("Not available");
+        coach_name_label.setText("Not available");
+        total_members_label.setText("0");
+        team_members_listview.getItems().clear();
+        team_description_textarea.clear();
         team_members_information_label.setText(
                 "Select a team to view its members."
         );
     }
 
     @FXML
-    public void team_name_combobox_on_action(
-            ActionEvent actionEvent) {
-
-        /*
-         * Details are intentionally loaded only after
-         * the Search button is clicked.
-         */
+    public void team_name_combobox_on_action(ActionEvent actionEvent) {
     }
 
     @FXML
-    public void back_button_on_action(
-            ActionEvent actionEvent) {
-
-        SceneSwitcher.switchTo(
-                "Arman/player/player_dashboard.fxml"
-        );
+    public void back_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/player/player_dashboard.fxml");
     }
 
     private void showAlert(
@@ -682,9 +465,7 @@ public class team_details_controller {
             String title,
             String message) {
 
-        Alert alert =
-                new Alert(alertType);
-
+        Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

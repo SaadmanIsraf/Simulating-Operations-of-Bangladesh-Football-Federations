@@ -12,43 +12,28 @@ import java.util.List;
 
 public class PersonalStatsManager {
 
-    private static final List<PersonalStats>
-            personalStatsList = new ArrayList<>();
-
-    private static final String FILE_NAME =
-            "personal-stats.bin";
+    private static final List<PersonalStats> personalStatsList = new ArrayList<>();
+    private static final String FILE_NAME = "personal-stats.bin";
 
     static {
         loadFromFile();
     }
 
-    public static List<PersonalStats>
-    getPersonalStatsList() {
-
+    public static List<PersonalStats> getPersonalStatsList() {
         return personalStatsList;
     }
 
-    public static void addPersonalStats(
-            PersonalStats personalStats) {
-
+    public static void addPersonalStats(PersonalStats personalStats) {
         personalStatsList.add(personalStats);
     }
 
-    public static void removePersonalStats(
-            PersonalStats personalStats) {
-
+    public static void removePersonalStats(PersonalStats personalStats) {
         personalStatsList.remove(personalStats);
     }
 
-    public static PersonalStats findByPlayerId(
-            int playerId) {
-
-        for (PersonalStats personalStats :
-                personalStatsList) {
-
-            if (personalStats.getPlayerId()
-                    == playerId) {
-
+    public static PersonalStats findByPlayerId(int playerId) {
+        for (PersonalStats personalStats : personalStatsList) {
+            if (personalStats.getPlayerId() == playerId) {
                 return personalStats;
             }
         }
@@ -56,60 +41,31 @@ public class PersonalStatsManager {
         return null;
     }
 
-    public static void updatePersonalStats(
-            PersonalStats personalStats) {
-
+    public static void updatePersonalStats(PersonalStats personalStats) {
         PersonalStats existingStats =
-                findByPlayerId(
-                        personalStats.getPlayerId()
-                );
+                findByPlayerId(personalStats.getPlayerId());
 
         if (existingStats == null) {
-
             addPersonalStats(personalStats);
-
         } else {
-
-            existingStats.setPlayerName(
-                    personalStats.getPlayerName()
-            );
-
-            existingStats.setGoals(
-                    personalStats.getGoals()
-            );
-
-            existingStats.setAssists(
-                    personalStats.getAssists()
-            );
-
-            existingStats.setMatchesPlayed(
-                    personalStats.getMatchesPlayed()
-            );
-
-            existingStats.setMedicalCondition(
-                    personalStats.getMedicalCondition()
-            );
-
-            existingStats.setLastUpdated(
-                    personalStats.getLastUpdated()
-            );
+            existingStats.setPlayerName(personalStats.getPlayerName());
+            existingStats.setGoals(personalStats.getGoals());
+            existingStats.setAssists(personalStats.getAssists());
+            existingStats.setMatchesPlayed(personalStats.getMatchesPlayed());
+            existingStats.setMedicalCondition(personalStats.getMedicalCondition());
+            existingStats.setLastUpdated(personalStats.getLastUpdated());
         }
     }
 
     @SuppressWarnings("unchecked")
     private static void loadFromFile() {
-
         try (ObjectInputStream inputStream =
-                     new ObjectInputStream(
-                             new FileInputStream(
-                                     FILE_NAME
-                             ))) {
+                     new ObjectInputStream(new FileInputStream(FILE_NAME))) {
 
             personalStatsList.clear();
 
             personalStatsList.addAll(
-                    (ArrayList<PersonalStats>)
-                            inputStream.readObject()
+                    (ArrayList<PersonalStats>) inputStream.readObject()
             );
 
             System.out.println(
@@ -117,45 +73,26 @@ public class PersonalStatsManager {
                             + personalStatsList.size()
             );
 
-        } catch (IOException |
-                 ClassNotFoundException e) {
-
-            System.out.println(
-                    "Could not load personal statistics data."
-            );
+        } catch (IOException | ClassNotFoundException e) {
+            System.out.println("Could not load personal statistics data.");
         }
     }
 
     public static void saveToFile() {
-
         try (ObjectOutputStream outputStream =
-                     new ObjectOutputStream(
-                             new FileOutputStream(
-                                     FILE_NAME
-                             ))) {
+                     new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
 
             ArrayList<PersonalStats> temporaryList =
-                    new ArrayList<>(
-                            personalStatsList
-                    );
+                    new ArrayList<>(personalStatsList);
 
-            outputStream.writeObject(
-                    temporaryList
-            );
-
+            outputStream.writeObject(temporaryList);
             outputStream.flush();
 
-            System.out.println(
-                    "Personal statistics saved successfully."
-            );
+            System.out.println("Personal statistics saved successfully.");
 
         } catch (IOException e) {
-
             e.printStackTrace();
-
-            System.out.println(
-                    "Could not save personal statistics data."
-            );
+            System.out.println("Could not save personal statistics data.");
         }
     }
 }

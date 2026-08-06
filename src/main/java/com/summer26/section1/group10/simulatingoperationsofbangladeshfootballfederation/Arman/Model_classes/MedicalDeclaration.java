@@ -12,17 +12,16 @@ public class MedicalDeclaration implements Serializable {
     private String declarationStatus;
     private String remarks;
 
-    // Default Constructor
     public MedicalDeclaration() {
     }
 
-    // Parameterized Constructor
-    public MedicalDeclaration(int declarationId,
-                              int playerId,
-                              int medicalOfficerId,
-                              LocalDate declarationDate,
-                              String declarationStatus,
-                              String remarks) {
+    public MedicalDeclaration(
+            int declarationId,
+            int playerId,
+            int medicalOfficerId,
+            LocalDate declarationDate,
+            String declarationStatus,
+            String remarks) {
 
         this.declarationId = declarationId;
         this.playerId = playerId;
@@ -32,52 +31,48 @@ public class MedicalDeclaration implements Serializable {
         this.remarks = remarks;
     }
 
-    // Getters
-
     public int getDeclarationId() {
         return declarationId;
+    }
+
+    public void setDeclarationId(int declarationId) {
+        this.declarationId = declarationId;
     }
 
     public int getPlayerId() {
         return playerId;
     }
 
-    public int getMedicalOfficerId() {
-        return medicalOfficerId;
-    }
-
-    public LocalDate getDeclarationDate() {
-        return declarationDate;
-    }
-
-    public String getDeclarationStatus() {
-        return declarationStatus;
-    }
-
-    public String getRemarks() {
-        return remarks;
-    }
-
-    // Setters
-
-    public void setDeclarationId(int declarationId) {
-        this.declarationId = declarationId;
-    }
-
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
+    }
+
+    public int getMedicalOfficerId() {
+        return medicalOfficerId;
     }
 
     public void setMedicalOfficerId(int medicalOfficerId) {
         this.medicalOfficerId = medicalOfficerId;
     }
 
+    public LocalDate getDeclarationDate() {
+        return declarationDate;
+    }
+
     public void setDeclarationDate(LocalDate declarationDate) {
         this.declarationDate = declarationDate;
     }
 
+    public String getDeclarationStatus() {
+        return declarationStatus;
+    }
+
     public void setDeclarationStatus(String declarationStatus) {
         this.declarationStatus = declarationStatus;
+    }
+
+    public String getRemarks() {
+        return remarks;
     }
 
     public void setRemarks(String remarks) {

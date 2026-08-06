@@ -27,8 +27,8 @@ public class PersonalStats implements Serializable {
             int assists,
             int matchesPlayed,
             String medicalCondition,
-            LocalDate lastUpdated
-    ) {
+            LocalDate lastUpdated) {
+
         this.playerId = playerId;
         this.playerName = playerName;
         this.goals = goals;
@@ -42,52 +42,52 @@ public class PersonalStats implements Serializable {
         return playerId;
     }
 
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public int getGoals() {
-        return goals;
-    }
-
-    public int getAssists() {
-        return assists;
-    }
-
-    public int getMatchesPlayed() {
-        return matchesPlayed;
-    }
-
-    public String getMedicalCondition() {
-        return medicalCondition;
-    }
-
-    public LocalDate getLastUpdated() {
-        return lastUpdated;
-    }
-
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
     }
 
+    public int getGoals() {
+        return goals;
+    }
+
     public void setGoals(int goals) {
         this.goals = goals;
+    }
+
+    public int getAssists() {
+        return assists;
     }
 
     public void setAssists(int assists) {
         this.assists = assists;
     }
 
+    public int getMatchesPlayed() {
+        return matchesPlayed;
+    }
+
     public void setMatchesPlayed(int matchesPlayed) {
         this.matchesPlayed = matchesPlayed;
     }
 
+    public String getMedicalCondition() {
+        return medicalCondition;
+    }
+
     public void setMedicalCondition(String medicalCondition) {
         this.medicalCondition = medicalCondition;
+    }
+
+    public LocalDate getLastUpdated() {
+        return lastUpdated;
     }
 
     public void setLastUpdated(LocalDate lastUpdated) {
@@ -97,8 +97,8 @@ public class PersonalStats implements Serializable {
     public void addStatistics(
             int addedGoals,
             int addedAssists,
-            int addedMatchesPlayed
-    ) {
+            int addedMatchesPlayed) {
+
         this.goals += addedGoals;
         this.assists += addedAssists;
         this.matchesPlayed += addedMatchesPlayed;

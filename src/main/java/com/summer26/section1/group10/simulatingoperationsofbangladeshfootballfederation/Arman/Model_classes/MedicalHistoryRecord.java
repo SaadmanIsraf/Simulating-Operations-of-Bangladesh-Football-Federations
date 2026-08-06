@@ -15,12 +15,13 @@ public class MedicalHistoryRecord implements Serializable {
     public MedicalHistoryRecord() {
     }
 
-    public MedicalHistoryRecord(int playerId,
-                                String playerName,
-                                String injuryReport,
-                                LocalDate date,
-                                String treatmentPlan,
-                                String matchDayIncident) {
+    public MedicalHistoryRecord(
+            int playerId,
+            String playerName,
+            String injuryReport,
+            LocalDate date,
+            String treatmentPlan,
+            String matchDayIncident) {
 
         this.playerId = playerId;
         this.playerName = playerName;

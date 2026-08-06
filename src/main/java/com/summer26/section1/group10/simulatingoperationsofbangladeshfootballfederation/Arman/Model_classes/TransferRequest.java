@@ -29,8 +29,8 @@ public class TransferRequest implements Serializable {
             String requestedTeam,
             String requestMessage,
             LocalDate requestDate,
-            String status
-    ) {
+            String status) {
+
         this.requestId = requestId;
         this.playerId = playerId;
         this.playerName = playerName;
@@ -45,60 +45,60 @@ public class TransferRequest implements Serializable {
         return requestId;
     }
 
-    public int getPlayerId() {
-        return playerId;
-    }
-
-    public String getPlayerName() {
-        return playerName;
-    }
-
-    public String getCurrentTeam() {
-        return currentTeam;
-    }
-
-    public String getRequestedTeam() {
-        return requestedTeam;
-    }
-
-    public String getRequestMessage() {
-        return requestMessage;
-    }
-
-    public LocalDate getRequestDate() {
-        return requestDate;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
     public void setRequestId(int requestId) {
         this.requestId = requestId;
+    }
+
+    public int getPlayerId() {
+        return playerId;
     }
 
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
     }
 
+    public String getPlayerName() {
+        return playerName;
+    }
+
     public void setPlayerName(String playerName) {
         this.playerName = playerName;
+    }
+
+    public String getCurrentTeam() {
+        return currentTeam;
     }
 
     public void setCurrentTeam(String currentTeam) {
         this.currentTeam = currentTeam;
     }
 
+    public String getRequestedTeam() {
+        return requestedTeam;
+    }
+
     public void setRequestedTeam(String requestedTeam) {
         this.requestedTeam = requestedTeam;
+    }
+
+    public String getRequestMessage() {
+        return requestMessage;
     }
 
     public void setRequestMessage(String requestMessage) {
         this.requestMessage = requestMessage;
     }
 
+    public LocalDate getRequestDate() {
+        return requestDate;
+    }
+
     public void setRequestDate(LocalDate requestDate) {
         this.requestDate = requestDate;
+    }
+
+    public String getStatus() {
+        return status;
     }
 
     public void setStatus(String status) {

@@ -4,7 +4,6 @@ import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.Model_classes.TransferRequest;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.player_manager.TransferRequestManager;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -28,44 +27,32 @@ public class join_team_request_controller {
 
     @FXML
     private TextField player_id_textfield;
-
     @FXML
     private ComboBox<String> team_name_combobox;
-
     @FXML
     private TextArea request_message_textarea;
-
     @FXML
     private TableView<TransferRequest> transfer_request_tableview;
-
     @FXML
     private TableColumn<TransferRequest, Integer> request_id_column;
-
     @FXML
     private TableColumn<TransferRequest, Integer> player_id_column;
-
     @FXML
     private TableColumn<TransferRequest, String> player_name_column;
-
     @FXML
     private TableColumn<TransferRequest, String> current_team_column;
-
     @FXML
     private TableColumn<TransferRequest, String> requested_team_column;
-
     @FXML
     private TableColumn<TransferRequest, LocalDate> request_date_column;
-
     @FXML
     private TableColumn<TransferRequest, String> status_column;
 
     private final List<Player> playerList = new ArrayList<>();
-
     private static final String PLAYER_FILE_NAME = "players.bin";
 
     @FXML
     public void initialize() {
-
         initializeTeamComboBox();
         initializeTableColumns();
 
@@ -74,7 +61,6 @@ public class join_team_request_controller {
     }
 
     private void initializeTeamComboBox() {
-
         team_name_combobox.getItems().setAll(
                 "Abahani Limited Dhaka",
                 "Bashundhara Kings",
@@ -90,57 +76,25 @@ public class join_team_request_controller {
     }
 
     private void initializeTableColumns() {
-
-        request_id_column.setCellValueFactory(
-                new PropertyValueFactory<>("requestId")
-        );
-
-        player_id_column.setCellValueFactory(
-                new PropertyValueFactory<>("playerId")
-        );
-
-        player_name_column.setCellValueFactory(
-                new PropertyValueFactory<>("playerName")
-        );
-
-        current_team_column.setCellValueFactory(
-                new PropertyValueFactory<>("currentTeam")
-        );
-
-        requested_team_column.setCellValueFactory(
-                new PropertyValueFactory<>("requestedTeam")
-        );
-
-        request_date_column.setCellValueFactory(
-                new PropertyValueFactory<>("requestDate")
-        );
-
-        status_column.setCellValueFactory(
-                new PropertyValueFactory<>("status")
-        );
+        request_id_column.setCellValueFactory(new PropertyValueFactory<>("requestId"));
+        player_id_column.setCellValueFactory(new PropertyValueFactory<>("playerId"));
+        player_name_column.setCellValueFactory(new PropertyValueFactory<>("playerName"));
+        current_team_column.setCellValueFactory(new PropertyValueFactory<>("currentTeam"));
+        requested_team_column.setCellValueFactory(new PropertyValueFactory<>("requestedTeam"));
+        request_date_column.setCellValueFactory(new PropertyValueFactory<>("requestDate"));
+        status_column.setCellValueFactory(new PropertyValueFactory<>("status"));
     }
 
     private void refreshTransferRequestTable() {
-
-        transfer_request_tableview.getItems().setAll(
-                TransferRequestManager.getTransferRequestList()
-        );
-
+        transfer_request_tableview.getItems().setAll(TransferRequestManager.getTransferRequestList());
         transfer_request_tableview.refresh();
     }
 
     @FXML
-    public void send_request_button_on_action(
-            ActionEvent actionEvent) {
-
-        String playerIdText =
-                player_id_textfield.getText().trim();
-
-        String requestedTeam =
-                team_name_combobox.getValue();
-
-        String requestMessage =
-                request_message_textarea.getText().trim();
+    public void send_request_button_on_action(ActionEvent actionEvent) {
+        String playerIdText = player_id_textfield.getText().trim();
+        String requestedTeam = team_name_combobox.getValue();
+        String requestMessage = request_message_textarea.getText().trim();
 
         if (playerIdText.isEmpty()
                 || requestedTeam == null
@@ -151,102 +105,76 @@ public class join_team_request_controller {
                     "Empty Field",
                     "Please enter Player ID, select a team and write a request message."
             );
-
             return;
         }
 
         int playerId;
 
         try {
-
             playerId = Integer.parseInt(playerIdText);
-
         } catch (NumberFormatException e) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Invalid Player ID",
                     "Player ID must be a whole number."
             );
-
             return;
         }
 
         if (playerId <= 0) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Invalid Player ID",
                     "Player ID must be greater than zero."
             );
-
             return;
         }
 
         if (requestMessage.length() < 10) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Message Too Short",
                     "Please write at least 10 characters explaining your transfer request."
             );
-
             return;
         }
 
         if (requestMessage.length() > 500) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Message Too Long",
                     "The request message cannot contain more than 500 characters."
             );
-
             return;
         }
 
-        /*
-         * Reload players.bin before submitting so the latest
-         * Player Profile information is used.
-         */
         if (!loadPlayersFromFile()) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Player Data Error",
                     "Could not load player data from players.bin."
             );
-
             return;
         }
 
-        Player foundPlayer =
-                findPlayerById(playerId);
+        Player foundPlayer = findPlayerById(playerId);
 
         if (foundPlayer == null) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Player Not Found",
-                    "No player exists with Player ID: "
-                            + playerId
+                    "No player exists with Player ID: " + playerId
             );
-
             return;
         }
 
-        String currentTeam =
-                foundPlayer.getTeamName();
+        String currentTeam = foundPlayer.getTeamName();
 
-        if (currentTeam == null
-                || currentTeam.isBlank()) {
-
+        if (currentTeam == null || currentTeam.isBlank()) {
             currentTeam = "No Current Team";
         }
 
-        if (currentTeam.equalsIgnoreCase(
-                requestedTeam)) {
-
+        if (currentTeam.equalsIgnoreCase(requestedTeam)) {
             showAlert(
                     Alert.AlertType.ERROR,
                     "Same Team Selected",
@@ -254,7 +182,6 @@ public class join_team_request_controller {
                             + requestedTeam
                             + ". Please select another team."
             );
-
             return;
         }
 
@@ -265,7 +192,6 @@ public class join_team_request_controller {
                 );
 
         if (pendingRequestExists) {
-
             showAlert(
                     Alert.AlertType.WARNING,
                     "Request Already Submitted",
@@ -273,12 +199,10 @@ public class join_team_request_controller {
                             + requestedTeam
                             + "."
             );
-
             return;
         }
 
-        int requestId =
-                TransferRequestManager.generateRequestId();
+        int requestId = TransferRequestManager.generateRequestId();
 
         TransferRequest transferRequest =
                 new TransferRequest(
@@ -292,10 +216,7 @@ public class join_team_request_controller {
                         "Pending"
                 );
 
-        TransferRequestManager.addTransferRequest(
-                transferRequest
-        );
-
+        TransferRequestManager.addTransferRequest(transferRequest);
         TransferRequestManager.saveToFile();
 
         refreshTransferRequestTable();
@@ -304,8 +225,7 @@ public class join_team_request_controller {
                 .getSelectionModel()
                 .select(transferRequest);
 
-        transfer_request_tableview
-                .scrollTo(transferRequest);
+        transfer_request_tableview.scrollTo(transferRequest);
 
         showAlert(
                 Alert.AlertType.INFORMATION,
@@ -327,9 +247,7 @@ public class join_team_request_controller {
     }
 
     private Player findPlayerById(int playerId) {
-
         for (Player player : playerList) {
-
             if (player.getId() == playerId) {
                 return player;
             }
@@ -339,77 +257,53 @@ public class join_team_request_controller {
     }
 
     @FXML
-    public void team_name_combobox_on_action(
-            ActionEvent actionEvent) {
-
-        /*
-         * No immediate action is required.
-         * The selected team is processed when the
-         * Send Transfer Request button is clicked.
-         */
+    public void team_name_combobox_on_action(ActionEvent actionEvent) {
     }
 
     @FXML
-    public void back_button_on_action(
-            ActionEvent actionEvent) {
-
-        SceneSwitcher.switchTo(
-                "Arman/player/player_dashboard.fxml"
-        );
+    public void back_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/player/player_dashboard.fxml");
     }
 
     @SuppressWarnings("unchecked")
     private boolean loadPlayersFromFile() {
-
         playerList.clear();
 
-        File playerFile =
-                new File(PLAYER_FILE_NAME);
+        File playerFile = new File(PLAYER_FILE_NAME);
 
         if (!playerFile.exists()) {
-
             System.out.println(
                     "players.bin was not found at: "
                             + playerFile.getAbsolutePath()
             );
-
             return false;
         }
 
         try (ObjectInputStream inputStream =
                      new ObjectInputStream(
-                             new FileInputStream(
-                                     playerFile
-                             ))) {
+                             new FileInputStream(playerFile)
+                     )) {
 
-            Object savedObject =
-                    inputStream.readObject();
+            Object savedObject = inputStream.readObject();
 
-            if (!(savedObject
-                    instanceof ArrayList<?> loadedList)) {
-
+            if (!(savedObject instanceof ArrayList<?> loadedList)) {
                 showAlert(
                         Alert.AlertType.ERROR,
                         "Invalid Player File",
                         "players.bin does not contain valid player data."
                 );
-
                 return false;
             }
 
             for (Object item : loadedList) {
-
                 if (item instanceof Player player) {
-
                     playerList.add(player);
                 }
             }
 
             return !playerList.isEmpty();
 
-        } catch (InvalidClassException e) {
-
-            e.printStackTrace();
+        } catch (InvalidClassException e) {e.printStackTrace();
 
             showAlert(
                     Alert.AlertType.ERROR,
@@ -418,9 +312,7 @@ public class join_team_request_controller {
                             + "Delete players.bin and save the Player profile again."
             );
 
-        } catch (IOException |
-                 ClassNotFoundException e) {
-
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
 
             showAlert(
@@ -435,7 +327,6 @@ public class join_team_request_controller {
     }
 
     private void clearInputFields() {
-
         player_id_textfield.clear();
         team_name_combobox.setValue(null);
         request_message_textarea.clear();
@@ -446,9 +337,7 @@ public class join_team_request_controller {
             String title,
             String message) {
 
-        Alert alert =
-                new Alert(alertType);
-
+        Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

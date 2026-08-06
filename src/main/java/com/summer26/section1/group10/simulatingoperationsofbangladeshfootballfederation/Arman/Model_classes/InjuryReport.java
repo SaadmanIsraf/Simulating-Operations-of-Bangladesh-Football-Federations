@@ -15,20 +15,19 @@ public class InjuryReport implements Serializable {
     private String additionalNotes;
     private boolean active;
 
-    // Default Constructor
     public InjuryReport() {
     }
 
-    // Parameterized Constructor
-    public InjuryReport(int reportId,
-                        int playerId,
-                        String injuryType,
-                        LocalDate injuryDate,
-                        String affectedBodyPart,
-                        String severity,
-                        String fitnessStatus,
-                        String additionalNotes,
-                        boolean active) {
+    public InjuryReport(
+            int reportId,
+            int playerId,
+            String injuryType,
+            LocalDate injuryDate,
+            String affectedBodyPart,
+            String severity,
+            String fitnessStatus,
+            String additionalNotes,
+            boolean active) {
 
         this.reportId = reportId;
         this.playerId = playerId;
@@ -41,76 +40,72 @@ public class InjuryReport implements Serializable {
         this.active = active;
     }
 
-    // Getters
-
     public int getReportId() {
         return reportId;
+    }
+
+    public void setReportId(int reportId) {
+        this.reportId = reportId;
     }
 
     public int getPlayerId() {
         return playerId;
     }
 
-    public String getInjuryType() {
-        return injuryType;
-    }
-
-    public LocalDate getInjuryDate() {
-        return injuryDate;
-    }
-
-    public String getAffectedBodyPart() {
-        return affectedBodyPart;
-    }
-
-    public String getSeverity() {
-        return severity;
-    }
-
-    public String getFitnessStatus() {
-        return fitnessStatus;
-    }
-
-    public String getAdditionalNotes() {
-        return additionalNotes;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    // Setters
-
-    public void setReportId(int reportId) {
-        this.reportId = reportId;
-    }
-
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
+    }
+
+    public String getInjuryType() {
+        return injuryType;
     }
 
     public void setInjuryType(String injuryType) {
         this.injuryType = injuryType;
     }
 
+    public LocalDate getInjuryDate() {
+        return injuryDate;
+    }
+
     public void setInjuryDate(LocalDate injuryDate) {
         this.injuryDate = injuryDate;
+    }
+
+    public String getAffectedBodyPart() {
+        return affectedBodyPart;
     }
 
     public void setAffectedBodyPart(String affectedBodyPart) {
         this.affectedBodyPart = affectedBodyPart;
     }
 
+    public String getSeverity() {
+        return severity;
+    }
+
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    public String getFitnessStatus() {
+        return fitnessStatus;
     }
 
     public void setFitnessStatus(String fitnessStatus) {
         this.fitnessStatus = fitnessStatus;
     }
 
+    public String getAdditionalNotes() {
+        return additionalNotes;
+    }
+
     public void setAdditionalNotes(String additionalNotes) {
         this.additionalNotes = additionalNotes;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     public void setActive(boolean active) {

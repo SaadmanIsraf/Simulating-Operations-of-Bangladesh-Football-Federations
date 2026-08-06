@@ -34,8 +34,7 @@ public class TreatmentPlan implements Serializable {
         this.playerId = playerId;
         this.medicalOfficerId = medicalOfficerId;
         this.prescribedMedicines = prescribedMedicines;
-        this.physiotherapySessionsRequired =
-                physiotherapySessionsRequired;
+        this.physiotherapySessionsRequired = physiotherapySessionsRequired;
         this.restDurationDays = restDurationDays;
         this.dietaryInstruction = dietaryInstruction;
         this.followUpDate = followUpDate;
@@ -46,75 +45,68 @@ public class TreatmentPlan implements Serializable {
         return treatmentId;
     }
 
-    public int getPlayerId() {
-        return playerId;
-    }
-
-    public int getMedicalOfficerId() {
-        return medicalOfficerId;
-    }
-
-    public String getPrescribedMedicines() {
-        return prescribedMedicines;
-    }
-
-    public int getPhysiotherapySessionsRequired() {
-        return physiotherapySessionsRequired;
-    }
-
-    public int getRestDurationDays() {
-        return restDurationDays;
-    }
-
-    public String getDietaryInstruction() {
-        return dietaryInstruction;
-    }
-
-    public LocalDate getFollowUpDate() {
-        return followUpDate;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
     public void setTreatmentId(int treatmentId) {
         this.treatmentId = treatmentId;
+    }
+
+    public int getPlayerId() {
+        return playerId;
     }
 
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
     }
 
+    public int getMedicalOfficerId() {
+        return medicalOfficerId;
+    }
+
     public void setMedicalOfficerId(int medicalOfficerId) {
         this.medicalOfficerId = medicalOfficerId;
     }
 
-    public void setPrescribedMedicines(
-            String prescribedMedicines) {
+    public String getPrescribedMedicines() {
+        return prescribedMedicines;
+    }
 
+    public void setPrescribedMedicines(String prescribedMedicines) {
         this.prescribedMedicines = prescribedMedicines;
     }
 
-    public void setPhysiotherapySessionsRequired(
-            int physiotherapySessionsRequired) {
+    public int getPhysiotherapySessionsRequired() {
+        return physiotherapySessionsRequired;
+    }
 
-        this.physiotherapySessionsRequired =
-                physiotherapySessionsRequired;
+    public void setPhysiotherapySessionsRequired(int physiotherapySessionsRequired) {
+        this.physiotherapySessionsRequired = physiotherapySessionsRequired;
+    }
+
+    public int getRestDurationDays() {
+        return restDurationDays;
     }
 
     public void setRestDurationDays(int restDurationDays) {
         this.restDurationDays = restDurationDays;
     }
 
-    public void setDietaryInstruction(
-            String dietaryInstruction) {
+    public String getDietaryInstruction() {
+        return dietaryInstruction;
+    }
 
+    public void setDietaryInstruction(String dietaryInstruction) {
         this.dietaryInstruction = dietaryInstruction;
+    }
+
+    public LocalDate getFollowUpDate() {
+        return followUpDate;
     }
 
     public void setFollowUpDate(LocalDate followUpDate) {
         this.followUpDate = followUpDate;
+    }
+
+    public boolean isActive() {
+        return active;
     }
 
     public void setActive(boolean active) {
@@ -127,18 +119,12 @@ public class TreatmentPlan implements Serializable {
                 "treatmentId=" + treatmentId +
                 ", playerId=" + playerId +
                 ", medicalOfficerId=" + medicalOfficerId +
-                ", prescribedMedicines='" +
-                prescribedMedicines + '\'' +
-                ", physiotherapySessionsRequired=" +
-                physiotherapySessionsRequired +
-                ", restDurationDays=" +
-                restDurationDays +
-                ", dietaryInstruction='" +
-                dietaryInstruction + '\'' +
-                ", followUpDate=" +
-                followUpDate +
-                ", active=" +
-                active +
+                ", prescribedMedicines='" + prescribedMedicines + '\'' +
+                ", physiotherapySessionsRequired=" + physiotherapySessionsRequired +
+                ", restDurationDays=" + restDurationDays +
+                ", dietaryInstruction='" + dietaryInstruction + '\'' +
+                ", followUpDate=" + followUpDate +
+                ", active=" + active +
                 '}';
     }
 }

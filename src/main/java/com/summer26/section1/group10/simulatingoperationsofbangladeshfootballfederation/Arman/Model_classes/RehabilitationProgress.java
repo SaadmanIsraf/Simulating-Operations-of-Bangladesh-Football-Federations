@@ -13,18 +13,17 @@ public class RehabilitationProgress implements Serializable {
     private String physicalConditionNotes;
     private String updatedFitnessStatus;
 
-    // Default Constructor
     public RehabilitationProgress() {
     }
 
-    // Parameterized Constructor
-    public RehabilitationProgress(int progressId,
-                                  int playerId,
-                                  LocalDate progressDate,
-                                  double recoveryPercentage,
-                                  int physiotherapySessionsCompleted,
-                                  String physicalConditionNotes,
-                                  String updatedFitnessStatus) {
+    public RehabilitationProgress(
+            int progressId,
+            int playerId,
+            LocalDate progressDate,
+            double recoveryPercentage,
+            int physiotherapySessionsCompleted,
+            String physicalConditionNotes,
+            String updatedFitnessStatus) {
 
         this.progressId = progressId;
         this.playerId = playerId;
@@ -35,60 +34,56 @@ public class RehabilitationProgress implements Serializable {
         this.updatedFitnessStatus = updatedFitnessStatus;
     }
 
-    // Getters
-
     public int getProgressId() {
         return progressId;
+    }
+
+    public void setProgressId(int progressId) {
+        this.progressId = progressId;
     }
 
     public int getPlayerId() {
         return playerId;
     }
 
-    public LocalDate getProgressDate() {
-        return progressDate;
-    }
-
-    public double getRecoveryPercentage() {
-        return recoveryPercentage;
-    }
-
-    public int getPhysiotherapySessionsCompleted() {
-        return physiotherapySessionsCompleted;
-    }
-
-    public String getPhysicalConditionNotes() {
-        return physicalConditionNotes;
-    }
-
-    public String getUpdatedFitnessStatus() {
-        return updatedFitnessStatus;
-    }
-
-    // Setters
-
-    public void setProgressId(int progressId) {
-        this.progressId = progressId;
-    }
-
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
+    }
+
+    public LocalDate getProgressDate() {
+        return progressDate;
     }
 
     public void setProgressDate(LocalDate progressDate) {
         this.progressDate = progressDate;
     }
 
+    public double getRecoveryPercentage() {
+        return recoveryPercentage;
+    }
+
     public void setRecoveryPercentage(double recoveryPercentage) {
         this.recoveryPercentage = recoveryPercentage;
+    }
+
+    public int getPhysiotherapySessionsCompleted() {
+        return physiotherapySessionsCompleted;
     }
 
     public void setPhysiotherapySessionsCompleted(int physiotherapySessionsCompleted) {
         this.physiotherapySessionsCompleted = physiotherapySessionsCompleted;
     }
 
+    public String getPhysicalConditionNotes() {
+        return physicalConditionNotes;
+    }
+
     public void setPhysicalConditionNotes(String physicalConditionNotes) {
         this.physicalConditionNotes = physicalConditionNotes;
+    }
+
+    public String getUpdatedFitnessStatus() {
+        return updatedFitnessStatus;
     }
 
     public void setUpdatedFitnessStatus(String updatedFitnessStatus) {
