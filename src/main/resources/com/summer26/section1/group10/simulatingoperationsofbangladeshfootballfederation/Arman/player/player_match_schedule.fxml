@@ -7,26 +7,19 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="516.0"
-            prefWidth="720.0"
-            xmlns="http://javafx.com/javafx/26"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.player_controller.player_match_schedule_controller">
+<BorderPane prefHeight="760.0" prefWidth="1120.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.player_controller.player_match_schedule_controller">
 
     <top>
-        <HBox alignment="CENTER"
-              prefHeight="81.0"
-              style="-fx-background-color: #42AD60;"
-              BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" prefHeight="82.0" style="-fx-background-color: #42AD60;" BorderPane.alignment="CENTER">
 
-            <Label text="Player Match Schedule"
-                   textFill="WHITE">
+            <Label text="Player Match Schedule" textFill="WHITE">
 
                 <font>
-                    <Font name="Times New Roman Bold" size="20.0"/>
+                    <Font name="Times New Roman Bold" size="21.0" />
                 </font>
 
             </Label>
@@ -35,83 +28,96 @@
     </top>
 
     <center>
-        <VBox alignment="TOP_CENTER"
-              spacing="18.0"
-              style="-fx-background-color: #F4F7F5;">
+        <VBox alignment="TOP_CENTER" spacing="16.0" style="-fx-background-color: #F4F7F5;">
 
             <padding>
-                <Insets top="25.0"
-                        right="30.0"
-                        bottom="25.0"
-                        left="30.0"/>
+                <Insets bottom="22.0" left="32.0" right="32.0" top="22.0" />
             </padding>
 
-            <Label text="Upcoming Matches"
-                   textFill="#2F5638">
+            <Label text="View Match Fixtures and Updates" textFill="#2F5638">
 
                 <font>
-                    <Font name="Times New Roman Bold" size="17.0"/>
+                    <Font name="Times New Roman Bold" size="18.0" />
                 </font>
 
             </Label>
 
-            <TableView fx:id="match_schedule_table"
-                       prefHeight="290.0"
-                       prefWidth="660.0">
+            <!-- Summary card -->
+            <HBox alignment="CENTER_LEFT" maxWidth="1040.0" spacing="18.0" style="-fx-background-color: #E7F0E9;                          -fx-background-radius: 9;                          -fx-border-color: #D2E0D5;                          -fx-border-radius: 9;">
 
-                <columns>
+                <padding>
+                    <Insets bottom="14.0" left="18.0" right="18.0" top="14.0" />
+                </padding>
 
-                    <TableColumn fx:id="opponent_column"
-                                 prefWidth="145.0"
-                                 text="Opponent"/>
+                <VBox spacing="4.0">
 
-                    <TableColumn fx:id="match_date_column"
-                                 prefWidth="110.0"
-                                 text="Match Date"/>
+                    <Label text="Available Match Schedule" textFill="#2F5638">
 
-                    <TableColumn fx:id="match_time_column"
-                                 prefWidth="100.0"
-                                 text="Match Time"/>
+                        <font>
+                            <Font name="Times New Roman Bold" size="15.0" />
+                        </font>
 
-                    <TableColumn fx:id="venue_column"
-                                 prefWidth="145.0"
-                                 text="Venue"/>
+                    </Label>
 
-                    <TableColumn fx:id="tournament_column"
-                                 prefWidth="155.0"
-                                 text="Tournament"/>
+                    <Label text="The table combines default fixtures with the latest updates saved by Match Officials." textFill="#5C6F61" />
 
-                </columns>
+                </VBox>
 
-            </TableView>
+                <Region HBox.hgrow="ALWAYS" />
 
-            <Label fx:id="information_label"
-                   alignment="CENTER"
-                   prefHeight="28.0"
-                   prefWidth="620.0"
-                   textFill="#C0392B">
+            </HBox>
 
-                <font>
-                    <Font name="Times New Roman Bold" size="13.0"/>
-                </font>
+            <!-- Match schedule table card -->
+            <VBox maxWidth="1040.0" spacing="9.0" style="-fx-background-color: WHITE;                          -fx-background-radius: 10;                          -fx-border-color: #D5E3D8;                          -fx-border-radius: 10;">
 
-            </Label>
+                <padding>
+                    <Insets bottom="16.0" left="16.0" right="16.0" top="15.0" />
+                </padding>
 
-            <HBox alignment="CENTER"
-                  spacing="380.0">
+                <Label text="Match Fixtures" textFill="#2F5638">
 
-                <Button mnemonicParsing="false"
-                        onAction="#back_button_on_action"
-                        prefWidth="90.0"
-                        text="← Back"/>
+                    <font>
+                        <Font name="Times New Roman Bold" size="16.0" />
+                    </font>
 
-                <Button mnemonicParsing="false"
-                        onAction="#refresh_button_on_action"
-                        prefWidth="100.0"
-                        style="-fx-background-color: #42AD60;
-                               -fx-text-fill: white;
-                               -fx-font-weight: bold;"
-                        text="Refresh"/>
+                </Label>
+
+                <TableView fx:id="player_match_schedule_tableview" prefHeight="350.0" prefWidth="1005.0">
+
+                    <placeholder>
+                        <Label text="No match schedule is currently available." textFill="#657269" />
+                    </placeholder>
+
+                    <columns>
+
+                        <TableColumn fx:id="match_id_column" prefWidth="95.0" text="Match ID" />
+
+                        <TableColumn fx:id="home_team_column" prefWidth="170.0" text="Home Team" />
+
+                        <TableColumn fx:id="away_team_column" prefWidth="170.0" text="Away Team" />
+
+                        <TableColumn fx:id="competition_column" prefWidth="150.0" text="Competition" />
+
+                        <TableColumn fx:id="stadium_column" prefWidth="165.0" text="Stadium" />
+
+                        <TableColumn fx:id="match_date_column" prefWidth="128.79998779296875" text="Match Date" />
+
+                        <TableColumn fx:id="match_time_column" prefWidth="132.800048828125" text="Match Time" />
+
+                        <TableColumn fx:id="status_column" prefWidth="84.00006103515625" text="Status" />
+
+                    </columns>
+
+                </TableView>
+
+            </VBox>
+
+            <!-- Bottom navigation -->
+            <HBox alignment="CENTER" maxWidth="1040.0">
+
+                <Button mnemonicParsing="false" onAction="#back_button_on_action" prefWidth="105.0" text="← Back" />
+
+                <Region HBox.hgrow="ALWAYS" />
 
             </HBox>
 

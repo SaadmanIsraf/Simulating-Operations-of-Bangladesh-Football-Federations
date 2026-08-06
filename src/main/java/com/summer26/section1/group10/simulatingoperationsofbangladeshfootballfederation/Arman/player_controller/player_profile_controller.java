@@ -2,18 +2,20 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.Model_classes.Player;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InvalidClassException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
@@ -22,10 +24,13 @@ import java.util.List;
 public class player_profile_controller {
 
     @FXML
-    private TextField player_age_textfield;
+    private Label player_name_label;
 
     @FXML
-    private PasswordField new_password_field;
+    private Label player_id_label;
+
+    @FXML
+    private Label player_age_label;
 
     @FXML
     private Label team_name_label;
@@ -34,34 +39,32 @@ public class player_profile_controller {
     private Label playing_position_label;
 
     @FXML
-    private TextField player_contact_textfield;
+    private Label player_type_label;
+
+    @FXML
+    private Label player_contact_label;
+
 
     @FXML
     private TextField player_name_textfield;
 
     @FXML
-    private Label player_id_label;
-
-    @FXML
-    private Label information_label;
-
-    @FXML
-    private Label player_name_label;
-
-    @FXML
-    private Label player_age_label;
-
-    @FXML
-    private Label player_contact_label;
-
-    @FXML
     private TextField player_id_textfield;
 
     @FXML
-    private TextField team_name_textfield;
+    private TextField player_age_textfield;
+
+    @FXML
+    private TextField player_contact_textfield;
+
+    @FXML
+    private ComboBox<String> team_name_combobox;
 
     @FXML
     private ComboBox<String> playing_position_combobox;
+
+    @FXML
+    private ComboBox<String> player_type_combobox;
 
     private final List<Player> playerList = new ArrayList<>();
 
@@ -72,11 +75,30 @@ public class player_profile_controller {
     @FXML
     public void initialize() {
 
+        team_name_combobox.getItems().setAll(
+                "Abahani Limited Dhaka",
+                "Bashundhara Kings",
+                "Mohammedan Sporting Club",
+                "Sheikh Russel KC",
+                "Sheikh Jamal Dhanmondi Club",
+                "Bangladesh Police FC",
+                "Brothers Union",
+                "Rahmatganj MFS",
+                "Fortis FC",
+                "Chittagong Abahani",
+                "No Current Team"
+        );
+
         playing_position_combobox.getItems().setAll(
                 "Goalkeeper",
                 "Defender",
                 "Midfielder",
                 "Forward"
+        );
+
+        player_type_combobox.getItems().setAll(
+                "Captain",
+                "Regular Player"
         );
 
         loadPlayersFromFile();
@@ -86,22 +108,14 @@ public class player_profile_controller {
             currentPlayer = playerList.get(0);
             displayPlayerInformation();
 
-            new_password_field.setDisable(true);
-            new_password_field.setPromptText(
-                    "Password cannot be changed here"
-            );
-
         } else {
 
             currentPlayer = null;
 
-            information_label.setText(
-                    "No Player profile found. Fill in the form to create one."
-            );
-
-            new_password_field.setDisable(false);
-            new_password_field.setPromptText(
-                    "Enter password for new profile"
+            showAlert(
+                    Alert.AlertType.INFORMATION,
+                    "Player Profile",
+                    "No player profile found.\nCreate one by filling in the form."
             );
         }
     }
@@ -132,6 +146,10 @@ public class player_profile_controller {
                 currentPlayer.getPlayingPosition()
         );
 
+        player_type_label.setText(
+                currentPlayer.getPlayerType()
+        );
+
         player_contact_label.setText(
                 currentPlayer.getContactNumber()
         );
@@ -148,7 +166,7 @@ public class player_profile_controller {
                 String.valueOf(currentPlayer.getAge())
         );
 
-        team_name_textfield.setText(
+        team_name_combobox.setValue(
                 currentPlayer.getTeamName()
         );
 
@@ -156,11 +174,14 @@ public class player_profile_controller {
                 currentPlayer.getPlayingPosition()
         );
 
+        player_type_combobox.setValue(
+                currentPlayer.getPlayerType()
+        );
+
         player_contact_textfield.setText(
                 currentPlayer.getContactNumber()
         );
 
-        information_label.setText("");
     }
 
     @FXML
@@ -176,22 +197,23 @@ public class player_profile_controller {
                 player_age_textfield.getText().trim();
 
         String teamName =
-                team_name_textfield.getText().trim();
+                team_name_combobox.getValue();
 
         String playingPosition =
                 playing_position_combobox.getValue();
 
+        String playerType =
+                player_type_combobox.getValue();
+
         String contactNumber =
                 player_contact_textfield.getText().trim();
-
-        String password =
-                new_password_field.getText();
 
         if (playerName.isEmpty()
                 || playerIdText.isEmpty()
                 || playerAgeText.isEmpty()
-                || teamName.isEmpty()
+                || teamName == null
                 || playingPosition == null
+                || playerType == null
                 || contactNumber.isEmpty()) {
 
             showAlert(
@@ -260,6 +282,17 @@ public class player_profile_controller {
             return;
         }
 
+        if (playerType.equals("Captain")
+                && teamName.equals("No Current Team")) {
+
+            showAlert(
+                    Alert.AlertType.ERROR,
+                    "Invalid Player Type",
+                    "A captain must belong to a team."
+            );
+            return;
+        }
+
         for (Player player : playerList) {
 
             if (player != currentPlayer
@@ -284,38 +317,32 @@ public class player_profile_controller {
                 );
                 return;
             }
+
+            if (player != currentPlayer
+                    && playerType.equals("Captain")
+                    && teamName.equals(player.getTeamName())
+                    && "Captain".equals(player.getPlayerType())) {
+
+                showAlert(
+                        Alert.AlertType.ERROR,
+                        "Captain Already Exists",
+                        "The selected team already has a captain."
+                );
+                return;
+            }
         }
 
         if (currentPlayer == null) {
 
-            if (password.isEmpty()) {
-
-                showAlert(
-                        Alert.AlertType.ERROR,
-                        "Password Required",
-                        "Password is required when creating a new profile."
-                );
-                return;
-            }
-
-            if (password.length() < 8) {
-
-                showAlert(
-                        Alert.AlertType.ERROR,
-                        "Invalid Password",
-                        "Password must contain at least 8 characters."
-                );
-                return;
-            }
-
             currentPlayer = new Player(
                     playerId,
                     playerName,
-                    password,
+                    "",
                     "Player",
                     playerAge,
                     teamName,
                     playingPosition,
+                    playerType,
                     contactNumber,
                     "Fit",
                     "Eligible"
@@ -330,6 +357,7 @@ public class player_profile_controller {
             currentPlayer.setAge(playerAge);
             currentPlayer.setTeamName(teamName);
             currentPlayer.setPlayingPosition(playingPosition);
+            currentPlayer.setPlayerType(playerType);
             currentPlayer.setContactNumber(contactNumber);
         }
 
@@ -339,25 +367,26 @@ public class player_profile_controller {
 
         displayPlayerInformation();
 
-        new_password_field.clear();
-        new_password_field.setDisable(true);
-        new_password_field.setPromptText(
-                "Password cannot be changed here"
-        );
-
-        information_label.setText(
-                "Player profile saved successfully."
-        );
 
         showAlert(
                 Alert.AlertType.INFORMATION,
                 "Successful",
-                "Player Profile Updated Successfully!"
+                "Player profile updated successfully."
         );
     }
 
     @FXML
+    public void team_name_combobox_on_action(
+            ActionEvent actionEvent) {
+    }
+
+    @FXML
     public void playing_position_combobox_on_action(
+            ActionEvent actionEvent) {
+    }
+
+    @FXML
+    public void player_type_combobox_on_action(
             ActionEvent actionEvent) {
     }
 
@@ -371,24 +400,67 @@ public class player_profile_controller {
     }
 
     @SuppressWarnings("unchecked")
-    private void loadPlayersFromFile() {
+    private boolean loadPlayersFromFile() {
 
         playerList.clear();
 
+        File playerFile = new File(PLAYER_FILE_NAME);
+
+        System.out.println(
+                "Loading players from: "
+                        + playerFile.getAbsolutePath()
+        );
+
+        if (!playerFile.exists()) {
+
+            System.out.println(
+                    "players.bin does not exist yet."
+            );
+
+            return false;
+        }
+
         try (ObjectInputStream inputStream =
                      new ObjectInputStream(
-                             new FileInputStream(
-                                     PLAYER_FILE_NAME
-                             ))) {
+                             new FileInputStream(playerFile))) {
 
             Object object = inputStream.readObject();
 
-            if (object instanceof ArrayList<?>) {
+            if (!(object instanceof ArrayList<?> loadedList)) {
 
-                playerList.addAll(
-                        (ArrayList<Player>) object
+                showAlert(
+                        Alert.AlertType.ERROR,
+                        "Invalid Player File",
+                        "players.bin does not contain valid Player data."
                 );
+
+                return false;
             }
+
+            for (Object item : loadedList) {
+
+                if (item instanceof Player player) {
+                    playerList.add(player);
+                }
+            }
+
+            System.out.println(
+                    "Players loaded successfully: "
+                            + playerList.size()
+            );
+
+            return true;
+
+        } catch (InvalidClassException e) {
+
+            e.printStackTrace();
+
+            showAlert(
+                    Alert.AlertType.ERROR,
+                    "Incompatible Player File",
+                    "players.bin was created using an older Player class.\n\n"
+                            + "Delete players.bin and create the Player profile again."
+            );
 
         } catch (FileNotFoundException e) {
 
@@ -403,23 +475,33 @@ public class player_profile_controller {
             showAlert(
                     Alert.AlertType.ERROR,
                     "File Error",
-                    "Could not load Player profile data."
+                    "Could not load Player profile data.\n\n"
+                            + e.getMessage()
             );
         }
+
+        return false;
     }
 
     private boolean savePlayersToFile() {
 
+        File playerFile = new File(PLAYER_FILE_NAME);
+
         try (ObjectOutputStream outputStream =
                      new ObjectOutputStream(
-                             new FileOutputStream(
-                                     PLAYER_FILE_NAME
-                             ))) {
+                             new FileOutputStream(playerFile))) {
 
             ArrayList<Player> savedPlayers =
                     new ArrayList<>(playerList);
 
             outputStream.writeObject(savedPlayers);
+            outputStream.flush();
+
+            System.out.println(
+                    "Players saved successfully to: "
+                            + playerFile.getAbsolutePath()
+            );
+
             return true;
 
         } catch (IOException e) {
@@ -429,7 +511,8 @@ public class player_profile_controller {
             showAlert(
                     Alert.AlertType.ERROR,
                     "File Error",
-                    "Could not save Player profile."
+                    "Could not save Player profile.\n\n"
+                            + e.getMessage()
             );
 
             return false;
