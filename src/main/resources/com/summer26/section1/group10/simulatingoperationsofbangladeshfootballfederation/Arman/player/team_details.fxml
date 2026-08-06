@@ -229,7 +229,6 @@
 
             </VBox>
 
-            <!-- Team members section -->
             <VBox maxWidth="820.0"
                   spacing="8.0">
 
@@ -255,7 +254,6 @@
 
             </VBox>
 
-            <!-- Team description section -->
             <VBox maxWidth="820.0"
                   spacing="8.0">
 
@@ -278,7 +276,6 @@
 
             </VBox>
 
-            <!-- Back button -->
             <HBox alignment="CENTER"
                   maxWidth="820.0">
 

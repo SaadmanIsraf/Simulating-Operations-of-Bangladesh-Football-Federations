@@ -42,7 +42,6 @@
 
             </Label>
 
-            <!-- Summary card -->
             <HBox alignment="CENTER_LEFT" maxWidth="1040.0" spacing="18.0" style="-fx-background-color: #E7F0E9;                          -fx-background-radius: 9;                          -fx-border-color: #D2E0D5;                          -fx-border-radius: 9;">
 
                 <padding>
@@ -67,7 +66,6 @@
 
             </HBox>
 
-            <!-- Match schedule table card -->
             <VBox maxWidth="1040.0" spacing="9.0" style="-fx-background-color: WHITE;                          -fx-background-radius: 10;                          -fx-border-color: #D5E3D8;                          -fx-border-radius: 10;">
 
                 <padding>
@@ -112,7 +110,6 @@
 
             </VBox>
 
-            <!-- Bottom navigation -->
             <HBox alignment="CENTER" maxWidth="1040.0">
 
                 <Button mnemonicParsing="false" onAction="#back_button_on_action" prefWidth="105.0" text="← Back" />
