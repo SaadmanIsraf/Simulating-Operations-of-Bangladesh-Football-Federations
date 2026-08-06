@@ -139,7 +139,7 @@ public class matchofficial_requestrefereereplacementController {
     public void backButtonOnAction(ActionEvent actionEvent) {
 
         SceneSwitcher.switchTo(
-                "turjo/match_official/matchofficialsdashboard.fxml"
+                "turjo/match_officials/matchofficialsdashboard.fxml"
         );
     }
 

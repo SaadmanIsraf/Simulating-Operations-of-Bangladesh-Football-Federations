@@ -159,8 +159,9 @@ public class matchofficial_verifyplayereligibilityController {
     @FXML
     public void backButtonOnAction(ActionEvent actionEvent) {
 
+
         SceneSwitcher.switchTo(
-                "turjo/matchofficial/matchofficialsdashboard.fxml"
+                "turjo/match_official/matchofficialsdashboard.fxml"
         );
     }
 

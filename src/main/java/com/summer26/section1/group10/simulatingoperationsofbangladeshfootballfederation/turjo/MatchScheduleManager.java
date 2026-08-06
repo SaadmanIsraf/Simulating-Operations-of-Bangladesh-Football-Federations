@@ -7,32 +7,31 @@ public class MatchScheduleManager {
 
     private static final String FILE_NAME = "matchschedule.bin";
 
-    private static ArrayList<MatchSchedule> matchScheduleList =
-            new ArrayList<>();
+    private static ArrayList<MatchSchedule> scheduleList = new ArrayList<>();
 
     static {
         loadFromFile();
     }
 
-    public static ArrayList<MatchSchedule> getMatchScheduleList() {
-        return matchScheduleList;
+    public static ArrayList<MatchSchedule> getScheduleList() {
+        return scheduleList;
     }
 
-    public static void addMatchSchedule(MatchSchedule matchSchedule) {
-        matchScheduleList.add(matchSchedule);
+    public static void addSchedule(MatchSchedule schedule) {
+        scheduleList.add(schedule);
     }
 
-    public static void removeMatchSchedule(MatchSchedule matchSchedule) {
-        matchScheduleList.remove(matchSchedule);
+    public static void removeSchedule(MatchSchedule schedule) {
+        scheduleList.remove(schedule);
     }
 
     public static void saveToFile() {
 
         try (ObjectOutputStream outputStream =
-                     new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+                     new ObjectOutputStream(
+                             new FileOutputStream(FILE_NAME))) {
 
-            outputStream.writeObject(matchScheduleList);
-            outputStream.flush();
+            outputStream.writeObject(scheduleList);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,23 +44,21 @@ public class MatchScheduleManager {
         File file = new File(FILE_NAME);
 
         if (!file.exists()) {
-            matchScheduleList = new ArrayList<>();
+            scheduleList = new ArrayList<>();
             return;
         }
 
         try (ObjectInputStream inputStream =
-                     new ObjectInputStream(new FileInputStream(file))) {
+                     new ObjectInputStream(
+                             new FileInputStream(file))) {
 
-            Object object = inputStream.readObject();
-
-            if (object instanceof ArrayList<?>) {
-                matchScheduleList =
-                        (ArrayList<MatchSchedule>) object;
-            }
+            scheduleList =
+                    (ArrayList<MatchSchedule>) inputStream.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
+
+            scheduleList = new ArrayList<>();
             e.printStackTrace();
-            matchScheduleList = new ArrayList<>();
         }
     }
 }
