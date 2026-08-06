@@ -6,14 +6,8 @@ import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.federation_administrator;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.net.URL;
 
 public class federation_administrator_dashboardviewController
 implements UserReceiver {
@@ -34,7 +28,8 @@ implements UserReceiver {
     }
 
     @javafx.fxml.FXML
-    public void managematchesOA(ActionEvent actionEvent) throws IOException {        SceneSwitcher.switchSceneWithData(actionEvent, "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/managematches.fxml", loggedInUser);
+    public void managematchesOA(ActionEvent actionEvent) throws IOException {
+        SceneSwitcher.switchSceneWithData(actionEvent, "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/managematches.fxml", loggedInUser);
 
     }
 

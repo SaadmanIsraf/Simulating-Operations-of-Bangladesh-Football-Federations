@@ -39,8 +39,11 @@ public class LoginController
         users.put("user8", "7777");
         users.put("user9", "8888");
         users.put("user10", "9999");
+        users.put("user11", "911");
+        users.put("user12", "1212");
 
         // Username -> Dashboard
+
         dashboards.put("user1",
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
         dashboards.put("user2",
@@ -61,6 +64,10 @@ public class LoginController
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
         dashboards.put("user10",
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
+        dashboards.put("user11",
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/dashboardView.fxml");
+        dashboards.put("user12",
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_officials/matchofficialsdashboard.fxml");
 
     }
 

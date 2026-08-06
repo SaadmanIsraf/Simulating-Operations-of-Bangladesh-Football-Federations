@@ -212,8 +212,7 @@ public class federation_administrator_managematchesController implements UserRec
             return;
         }
 
-        Managematch managematch = new Managematch(
-                txtMatchId.getText(),
+        Managematch newMatch = loggedInUser.manageMatchControl(txtMatchId.getText(),
                 cmbHomeTeam.getValue(),
                 cmbAwayTeam.getValue(),
                 cmbCompetition.getValue(),
@@ -221,10 +220,11 @@ public class federation_administrator_managematchesController implements UserRec
                 dpMatchDate.getValue(),
                 txtMatchTime.getText(),
                 assignedOfficialTF.getText(),
-                cmbMatchStatus.getValue());
+                cmbMatchStatus.getValue()
+        );
 
-        tblMatches.getItems().add(managematch);
-        BinaryFileUtility.writeObjects("Managematches.bin", managematch);
+
+        tblMatches.getItems().add(newMatch);
 
         messageLabel.setText("Match created successfully.");
     }
