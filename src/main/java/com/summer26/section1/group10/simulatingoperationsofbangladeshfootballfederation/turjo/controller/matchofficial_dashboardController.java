@@ -1,31 +1,11 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.match_official;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 
-import java.io.IOException;
-
-public class matchofficial_dashboardController implements UserReceiver {
-
-    private match_official loggedInUser;
-
-    @Override
-    public void setLoggedInUser(User user) {
-
-        if (user instanceof match_official m) {
-            loggedInUser = m;
-        } else {
-            AlertGenerator.showAlert(
-                    "Error",
-                    "This is not a valid user for this page."
-            );
-        }
-    }
+public class matchofficial_dashboardController {
 
     @FXML
     public void initialize() {
@@ -33,79 +13,53 @@ public class matchofficial_dashboardController implements UserReceiver {
     }
 
     @FXML
-    public void registerOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/register.fxml",
-                loggedInUser);
+    public void registerOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/match_officials/registarasmatchofficial.fxml");
     }
 
     @FXML
-    public void viewmatchscheduleOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/viewmatchschedule.fxml",
-                loggedInUser);
+    public void viewmatchscheduleOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/match_officials/viewmatchschedule.fxml");
     }
 
     @FXML
-    public void assignedmatchesOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/assignedmatches.fxml",
-                loggedInUser);
+    public void assignedmatchesOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/match_officials/assignedmatches.fxml");
     }
 
     @FXML
-    public void verifyplayereligibilityOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/verifyplayereligibility.fxml",
-                loggedInUser);
+    public void verifyplayereligibilityOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/match_officials/verifyplayereligibility.fxml");
     }
 
     @FXML
-    public void recordfoulscardsOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/recordfoulscards.fxml",
-                loggedInUser);
+    public void recordfoulscardsOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/match_officials/recordfoulsandcards.fxml");
     }
 
     @FXML
-    public void submitmatchreportOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/submitmatchreport.fxml",
-                loggedInUser);
+    public void submitmatchreportOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/match_officials/SubmitMatchReport.fxml");
     }
 
     @FXML
-    public void logvarreportOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/logvarreport.fxml",
-                loggedInUser);
+    public void logvarreportOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/match_officials/logvarreport.fxml");
     }
 
     @FXML
-    public void requestrefereereplacementOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_official/requestrefereereplacement.fxml",
-                loggedInUser);
+    public void requestrefereereplacementOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/match_officials/requestrefreereplacement.fxml");
     }
 
     @FXML
     public void logoutOA(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText(null);
+        alert.setContentText("Logged out successfully.");
+        alert.showAndWait();
 
         SceneSwitcher.switchTo("Login.fxml");
     }

@@ -176,7 +176,7 @@ public class federation_administrator_manageplayersController {
         clearFields();
     }
 
-    @Deprecated
+    @FXML
     public void backButtonOnAction(ActionEvent actionEvent) {
 
         SceneSwitcher.switchTo(

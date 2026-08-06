@@ -4,50 +4,70 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0"
+<AnchorPane prefHeight="600.0"
+            prefWidth="900.0"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_dashboardController">
 
     <children>
 
-        <Label layoutX="320" layoutY="20"
+        <Label layoutX="300.0"
+               layoutY="30.0"
                text="Match Official Dashboard"
-               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+               style="-fx-font-size:24px; -fx-font-weight:bold;" />
 
-        <Button layoutX="70" layoutY="90" prefWidth="300"
+        <Button layoutX="70.0"
+                layoutY="90.0"
+                prefWidth="300.0"
                 text="Register as Match Official"
                 onAction="#registerOA"/>
 
-        <Button layoutX="70" layoutY="150" prefWidth="300"
+        <Button layoutX="70.0"
+                layoutY="150.0"
+                prefWidth="300.0"
                 text="View Match Schedule"
                 onAction="#viewmatchscheduleOA"/>
 
-        <Button layoutX="70" layoutY="210" prefWidth="300"
+        <Button layoutX="70.0"
+                layoutY="210.0"
+                prefWidth="300.0"
                 text="View Assigned Matches"
                 onAction="#assignedmatchesOA"/>
 
-        <Button layoutX="70" layoutY="270" prefWidth="300"
+        <Button layoutX="70.0"
+                layoutY="270.0"
+                prefWidth="300.0"
                 text="Verify Player Eligibility"
                 onAction="#verifyplayereligibilityOA"/>
 
-        <Button layoutX="500" layoutY="90" prefWidth="300"
-                text="Record Fouls & Cards"
+        <Button layoutX="500.0"
+                layoutY="90.0"
+                prefWidth="300.0"
+                text="Record Fouls &amp; Cards"
                 onAction="#recordfoulscardsOA"/>
 
-        <Button layoutX="500" layoutY="150" prefWidth="300"
+        <Button layoutX="500.0"
+                layoutY="150.0"
+                prefWidth="300.0"
                 text="Submit Match Report"
                 onAction="#submitmatchreportOA"/>
 
-        <Button layoutX="500" layoutY="210" prefWidth="300"
+        <Button layoutX="500.0"
+                layoutY="210.0"
+                prefWidth="300.0"
                 text="Log VAR Report"
                 onAction="#logvarreportOA"/>
 
-        <Button layoutX="500" layoutY="270" prefWidth="300"
+        <Button layoutX="500.0"
+                layoutY="270.0"
+                prefWidth="300.0"
                 text="Request Referee Replacement"
                 onAction="#requestrefereereplacementOA"/>
 
-        <Button layoutX="300" layoutY="380" prefWidth="300"
+        <Button layoutX="300.0"
+                layoutY="380.0"
+                prefWidth="300.0"
                 text="Logout"
                 onAction="#logoutOA"/>
 

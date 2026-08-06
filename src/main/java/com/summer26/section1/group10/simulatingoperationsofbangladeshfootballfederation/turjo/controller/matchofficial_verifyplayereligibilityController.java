@@ -160,7 +160,7 @@ public class matchofficial_verifyplayereligibilityController {
     public void backButtonOnAction(ActionEvent actionEvent) {
 
         SceneSwitcher.switchTo(
-                "turjo/matchofficial/matchofficial_dashboard.fxml"
+                "turjo/matchofficial/matchofficialsdashboard.fxml"
         );
     }
 

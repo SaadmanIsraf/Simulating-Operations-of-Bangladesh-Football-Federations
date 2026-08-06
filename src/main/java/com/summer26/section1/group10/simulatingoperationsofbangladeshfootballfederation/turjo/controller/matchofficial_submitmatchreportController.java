@@ -1,19 +1,18 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.SubmitMatchReport;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.SubmitMatchReportManager;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.time.LocalDate;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
 public class matchofficial_submitmatchreportController {
 
     @FXML
-    private TextField scoreTF;
+    private TextField cardsTF;
 
     @FXML
     private TextField goalScorersTF;
@@ -25,199 +24,103 @@ public class matchofficial_submitmatchreportController {
     private TextArea summaryTA;
 
     @FXML
-    private TableColumn<SubmitMatchReport, String> scoreCol;
+    private TextField scoreTF;
 
     @FXML
-    private TableColumn<SubmitMatchReport, String> statusCol;
-    @FXML
-    private TableView matchReportsTable;
-    @FXML
     private TextField matchBetweenTF;
-    @FXML
-    private Label messageLabel;
-    @FXML
-    private TextField cardsTF;
-    @FXML
-    private TableColumn cardsCol;
-    @FXML
-    private TableColumn matchBetweenCol;
-    @FXML
-    private TableColumn goalScorersCol;
 
     @FXML
     public void initialize() {
 
-        statusCB.getItems().addAll(
-                "Completed",
-                "Postponed",
-                "Abandoned"
+        statusCB.setItems(
+                FXCollections.observableArrayList(
+                        "Completed",
+                        "Postponed",
+                        "Abandoned",
+                        "Cancelled"
+                )
         );
 
-        matchIdCol.setCellValueFactory(
-                new PropertyValueFactory<>("matchId"));
-
-        homeTeamCol.setCellValueFactory(
-                new PropertyValueFactory<>("homeTeam"));
-
-        awayTeamCol.setCellValueFactory(
-                new PropertyValueFactory<>("awayTeam"));
-
-        dateCol.setCellValueFactory(
-                new PropertyValueFactory<>("matchDate"));
-
-        scoreCol.setCellValueFactory(
-                new PropertyValueFactory<>("finalScore"));
-
-        yellowCardsCol.setCellValueFactory(
-                new PropertyValueFactory<>("yellowCards"));
-
-        redCardsCol.setCellValueFactory(
-                new PropertyValueFactory<>("redCards"));
-
-        statusCol.setCellValueFactory(
-                new PropertyValueFactory<>("matchStatus"));
-
-        loadMatchReports();
+        statusCB.setValue("Completed");
     }
 
-    private void loadMatchReports() {
+    @FXML
+    public void submitReportOA(ActionEvent actionEvent) {
 
-        SubmitMatchReportManager.loadFromFile();
-
-        matchReportTable.getItems().setAll(
-                SubmitMatchReportManager.getMatchReportList());
-
-        matchReportTable.refresh();
-    }
-
-    @Deprecated
-    public void submitButtonOnAction(ActionEvent actionEvent) {
-
-        String matchId = matchIdTF.getText().trim();
-        String homeTeam = homeTeamTF.getText().trim();
-        String awayTeam = awayTeamTF.getText().trim();
-        LocalDate matchDate = matchDateDP.getValue();
-        String finalScore = scoreTF.getText().trim();
-        String goalScorers = goalScorersTF.getText().trim();
-        String yellowText = yellowCardsTF.getText().trim();
-        String redText = redCardsTF.getText().trim();
-        String status = statusCB.getValue();
-        String summary = summaryTA.getText().trim();
-
-        if (matchId.isEmpty()
-                || homeTeam.isEmpty()
-                || awayTeam.isEmpty()
-                || matchDate == null
-                || finalScore.isEmpty()
-                || goalScorers.isEmpty()
-                || yellowText.isEmpty()
-                || redText.isEmpty()
-                || status == null
-                || summary.isEmpty()) {
+        if (matchBetweenTF.getText().isEmpty()
+                || scoreTF.getText().isEmpty()
+                || goalScorersTF.getText().isEmpty()
+                || cardsTF.getText().isEmpty()
+                || summaryTA.getText().isEmpty()
+                || statusCB.getValue() == null) {
 
             showAlert(
-                    Alert.AlertType.ERROR,
-                    "Missing Information",
-                    "Please fill in all fields."
+                    "Error",
+                    "Please fill in all match report details."
             );
 
             return;
         }
 
-        int yellowCards;
-        int redCards;
-
-        try {
-
-            yellowCards = Integer.parseInt(yellowText);
-            redCards = Integer.parseInt(redText);
-
-        } catch (NumberFormatException e) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Invalid Input",
-                    "Yellow Cards and Red Cards must be numbers."
-            );
-
-            return;
-        }
-
-        SubmitMatchReport matchReport =
-                new SubmitMatchReport(
-                        matchId,
-                        homeTeam,
-                        awayTeam,
-                        matchDate,
-                        finalScore,
-                        goalScorers,
-                        yellowCards,
-                        redCards,
-                        summary,
-                        status
-                );
-
-        SubmitMatchReportManager.addMatchReport(matchReport);
-        SubmitMatchReportManager.saveToFile();
-
-        loadMatchReports();
+        String report =
+                "Match: " + matchBetweenTF.getText()
+                        + "\nScore: " + scoreTF.getText()
+                        + "\nGoal Scorers: " + goalScorersTF.getText()
+                        + "\nCards: " + cardsTF.getText()
+                        + "\nStatus: " + statusCB.getValue()
+                        + "\nSummary: " + summaryTA.getText();
 
         showAlert(
-                Alert.AlertType.INFORMATION,
-                "Success",
-                "Match report submitted successfully."
+                "Report Submitted",
+                "Match report submitted successfully.\n\n" + report
         );
     }
-    @Deprecated
-    public void clearButtonOnAction(ActionEvent actionEvent) {
+
+    @FXML
+    public void clearOA(ActionEvent actionEvent) {
 
         clearFields();
+
+        showAlert(
+                "Cleared",
+                "All fields have been cleared."
+        );
     }
 
-    @Deprecated
-    public void backButtonOnAction(ActionEvent actionEvent) {
+    @FXML
+    public void backOA(ActionEvent actionEvent) {
+
+        clearFields();
+
+        showAlert(
+                "Back",
+                "Returning to previous page."
+        );
 
         SceneSwitcher.switchTo(
-                "turjo/matchofficial/matchofficial_dashboard.fxml"
+                "turjo/match_official/matchofficialsdashboard.fxml"
         );
     }
 
     private void clearFields() {
 
-        matchIdTF.clear();
-        homeTeamTF.clear();
-        awayTeamTF.clear();
-        matchDateDP.setValue(null);
+        matchBetweenTF.clear();
         scoreTF.clear();
         goalScorersTF.clear();
-        yellowCardsTF.clear();
-        redCardsTF.clear();
-        statusCB.setValue(null);
+        cardsTF.clear();
         summaryTA.clear();
 
-        matchReportTable.getSelectionModel().clearSelection();
+        statusCB.setValue("Completed");
     }
 
-    private void showAlert(Alert.AlertType alertType,
-                           String title,
-                           String message) {
+    private void showAlert(String title, String message) {
 
-        Alert alert = new Alert(alertType);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+
         alert.showAndWait();
-    }
-
-    @FXML
-    public void submitReportOA(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void backOA(ActionEvent actionEvent) {
-    }
-
-    @FXML
-    public void clearOA(ActionEvent actionEvent) {
     }
 }

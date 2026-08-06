@@ -93,7 +93,7 @@ public class matchofficial_assignedmatchesController {
     public void backButtonOnAction(ActionEvent actionEvent) {
 
         SceneSwitcher.switchTo(
-                "turjo/matchofficial/matchofficial_dashboard.fxml"
+                "turjo/matchofficial/dashboardView.fxml"
         );
     }
 

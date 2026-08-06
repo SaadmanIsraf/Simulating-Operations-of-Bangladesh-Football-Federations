@@ -1,31 +1,11 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.AlertGenerator;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.User;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Utility.UserReceiver;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.federation_administrator;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 
-import java.io.IOException;
-
-public class federation_administrator_dashboardviewController implements UserReceiver {
-
-    private federation_administrator loggedInUser;
-
-    @Override
-    public void setLoggedInUser(User user) {
-
-        if (user instanceof federation_administrator f) {
-            loggedInUser = f;
-        } else {
-            AlertGenerator.showAlert(
-                    "Error",
-                    "This is not a valid user for this page."
-            );
-        }
-    }
+public class federation_administrator_dashboardviewController {
 
     @FXML
     public void initialize() {
@@ -33,79 +13,53 @@ public class federation_administrator_dashboardviewController implements UserRec
     }
 
     @FXML
-    public void managematchesOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/managematches.fxml",
-                loggedInUser);
+    public void managematchesOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/federation_administrator/managematches.fxml");
     }
 
     @FXML
-    public void manageplayersOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/manageplayers.fxml",
-                loggedInUser);
+    public void manageplayersOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/federation_administrator/manageplayer.fxml");
     }
 
     @FXML
-    public void approveplayertransferOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/approveplayertransfer.fxml",
-                loggedInUser);
+    public void manageteamrankingOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/federation_administrator/teamranking.fxml");
     }
 
     @FXML
-    public void manageteamrankingOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/manageteamranking.fxml",
-                loggedInUser);
+    public void manageuseraccountOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/federation_administrator/manageuseraccount.fxml");
     }
 
     @FXML
-    public void manageuseraccountOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/manageuseraccount.fxml",
-                loggedInUser);
+    public void approveplayertransferOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/federation_administrator/approveplayertransfer.fxml");
     }
 
     @FXML
-    public void uploadmatchhighlightsOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/uploadmatchhighlights.fxml",
-                loggedInUser);
+    public void publishannounceOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/federation_administrator/publishannouncement.fxml");
     }
 
     @FXML
-    public void publishannounceOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/publishannouncement.fxml",
-                loggedInUser);
+    public void uploadmatchhighlightsOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/federation_administrator/uploadmatchhighlights.fxml");
     }
 
     @FXML
-    public void postliveupdatesOA(ActionEvent actionEvent) throws IOException {
-
-        SceneSwitcher.switchSceneWithData(
-                actionEvent,
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/postliveupdates.fxml",
-                loggedInUser);
+    public void postliveupdatesOA(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("turjo/federation_administrator/postliveupdates.fxml");
     }
 
     @FXML
     public void logoutOA(ActionEvent actionEvent) {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Logout");
+        alert.setHeaderText(null);
+        alert.setContentText("Logged out successfully.");
+        alert.showAndWait();
 
         SceneSwitcher.switchTo("Login.fxml");
     }

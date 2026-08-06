@@ -1,11 +1,14 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficial;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchOfficialManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+
+import java.util.ArrayList;
 
 public class matchofficial_registerController {
 
@@ -41,6 +44,8 @@ public class matchofficial_registerController {
 
     @FXML
     private TableColumn<MatchOfficial, String> experienceCol;
+
+    ArrayList<MatchOfficial> matchOfficials;
 
     @FXML
     public void initialize() {
@@ -132,7 +137,7 @@ public class matchofficial_registerController {
     public void backButtonOnAction(ActionEvent actionEvent) {
 
         SceneSwitcher.switchTo(
-                "turjo/match_official/matchofficial_dashboard.fxml"
+                "turjo/match_official/matchofficialsdashboard.fxml"
         );
     }
 

@@ -1,122 +1,89 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="720.0"
-            prefWidth="1100.0"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_publishannouncementController">
+<AnchorPane prefHeight="720.0" prefWidth="1100.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_publishannouncementController">
 
     <children>
 
-        <Label layoutX="390.0"
-               layoutY="20.0"
-               text="Publish Announcement"
-               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+        <Label layoutX="390.0" layoutY="20.0" style="-fx-font-size:24px; -fx-font-weight:bold;" text="Publish Announcement" />
 
-        <VBox layoutX="20.0"
-              layoutY="60.0"
-              prefWidth="330.0"
-              spacing="10">
+        <VBox layoutX="20.0" layoutY="60.0" prefWidth="330.0" spacing="10">
 
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
+                <Insets bottom="10" left="10" right="10" top="10" />
             </padding>
 
-            <Label text="Announcement ID"/>
-            <TextField fx:id="announcementIdTF"
-                       promptText="Enter Announcement ID"/>
+            <Label text="Announcement ID" />
+            <TextField fx:id="announcementIdTF" promptText="Enter Announcement ID" />
 
-            <Label text="Announcement Title"/>
-            <TextField fx:id="titleTF"
-                       promptText="Enter Title"/>
+            <Label text="Announcement Title" />
+            <TextField fx:id="titleTF" promptText="Enter Title" />
 
-            <Label text="Competition"/>
-            <ComboBox fx:id="competitionCB"/>
+            <Label text="Competition" />
+            <ComboBox fx:id="competitionCB" />
 
-            <Label text="Match"/>
-            <TextField fx:id="matchTF"
-                       promptText="Home Team vs Away Team"/>
+            <Label text="Match" />
+            <TextField fx:id="matchTF" promptText="Home Team vs Away Team" />
 
-            <Label text="Venue"/>
-            <TextField fx:id="venueTF"/>
+            <Label text="Venue" />
+            <TextField fx:id="venueTF" />
 
-            <Label text="Match Date"/>
-            <DatePicker fx:id="matchDateDP"/>
+            <Label text="Match Date" />
+            <DatePicker fx:id="matchDateDP" />
 
-            <Label text="Match Time"/>
-            <TextField fx:id="matchTimeTF"/>
+            <Label text="Match Time" />
+            <TextField fx:id="matchTimeTF" />
 
-            <Label text="Sponsor"/>
-            <TextField fx:id="sponsorTF"/>
+            <Label text="Sponsor" />
+            <TextField fx:id="sponsorTF" />
 
-            <Label text="Announcement Details"/>
-            <TextArea fx:id="detailsTA"
-                      prefHeight="120"
-                      wrapText="true"
-                      promptText="Write announcement details..."/>
+            <Label text="Announcement Details" />
+            <TextArea fx:id="detailsTA" prefHeight="0.0" prefWidth="271.0" promptText="Write announcement details..." wrapText="true" />
 
-            <Label text="Publish Status"/>
-            <ComboBox fx:id="statusCB"/>
+            <Label text="Publish Status" />
+            <ComboBox fx:id="statusCB" />
 
             <HBox spacing="10">
 
-                <Button text="Publish"
-                        prefWidth="90"
-                        onAction="#publishButtonOnAction"/>
-
-                <Button text="Clear"
-                        prefWidth="90"
-                        onAction="#clearButtonOnAction"/>
-
-                <Button text="Back"
-                        prefWidth="90"
-                        onAction="#backButtonOnAction"/>
+                <Button onAction="#publishButtonOnAction" prefWidth="90" text="Publish" />
+   
+                   <Button onAction="#clearButtonOnAction" prefWidth="90" text="Clear" />
+   
+                <Button onAction="#backButtonOnAction" prefWidth="90" text="Back" />
 
             </HBox>
 
         </VBox>
 
-        <TableView fx:id="announcementTable"
-                   layoutX="370.0"
-                   layoutY="60.0"
-                   prefHeight="630.0"
-                   prefWidth="700.0">
+        <TableView fx:id="announcementTable" layoutX="370.0" layoutY="60.0" prefHeight="630.0" prefWidth="700.0">
 
             <columns>
 
-                <TableColumn fx:id="announcementIdCol"
-                             text="ID"
-                             prefWidth="70"/>
+                <TableColumn fx:id="announcementIdCol" prefWidth="70" text="ID" />
 
-                <TableColumn fx:id="titleCol"
-                             text="Title"
-                             prefWidth="170"/>
+                <TableColumn fx:id="titleCol" prefWidth="170" text="Title" />
 
-                <TableColumn fx:id="competitionCol"
-                             text="Competition"
-                             prefWidth="120"/>
+                <TableColumn fx:id="competitionCol" prefWidth="120" text="Competition" />
 
-                <TableColumn fx:id="matchCol"
-                             text="Match"
-                             prefWidth="140"/>
+                <TableColumn fx:id="matchCol" prefWidth="140" text="Match" />
 
-                <TableColumn fx:id="dateCol"
-                             text="Date"
-                             prefWidth="100"/>
+                <TableColumn fx:id="dateCol" prefWidth="100" text="Date" />
 
-                <TableColumn fx:id="venueCol"
-                             text="Venue"
-                             prefWidth="120"/>
+                <TableColumn fx:id="venueCol" prefWidth="120" text="Venue" />
 
-                <TableColumn fx:id="statusCol"
-                             text="Status"
-                             prefWidth="90"/>
+                <TableColumn fx:id="statusCol" prefWidth="90" text="Status" />
 
             </columns>
 

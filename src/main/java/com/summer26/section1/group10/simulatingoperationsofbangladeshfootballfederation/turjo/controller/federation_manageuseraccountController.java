@@ -147,7 +147,7 @@ public class federation_manageuseraccountController {
     public void backButtonOnAction(ActionEvent actionEvent) {
 
         SceneSwitcher.switchTo(
-                "turjo/federation_administrator/federation_dashboard.fxml"
+                "turjo/federation_administrator/dashboardView.fxml"
         );
     }
 

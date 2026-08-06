@@ -80,7 +80,7 @@ public class matchofficial_viewmatchscheduleController {
     public void backButtonOnAction(ActionEvent actionEvent) {
 
         SceneSwitcher.switchTo(
-                "turjo/match_official/matchofficial_dashboard.fxml"
+                "turjo/match_official/matchofficialsdashboard.fxml"
         );
     }
 

@@ -1,112 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="600.0"
-            prefWidth="1000.0"
-            xmlns="http://javafx.com/javafx/21"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageplayersController">
+<AnchorPane prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_manageplayersController">
 
     <children>
 
-        <Label layoutX="380.0"
-               layoutY="20.0"
-               text="Manage Players"
-               style="-fx-font-size:24px; -fx-font-weight:bold;"/>
+        <Label layoutX="380.0" layoutY="20.0" style="-fx-font-size:24px; -fx-font-weight:bold;" text="Manage Players" />
 
-        <Label layoutX="30.0" layoutY="80.0" text="Player ID"/>
-        <TextField fx:id="playerIdTF"
-                   layoutX="150.0"
-                   layoutY="75.0"
-                   prefWidth="180"/>
+        <Label layoutX="30.0" layoutY="80.0" text="Player ID" />
+        <TextField fx:id="playerIdTF" layoutX="150.0" layoutY="75.0" prefWidth="180" />
 
-        <Label layoutX="30.0" layoutY="120.0" text="Player Name"/>
-        <TextField fx:id="playerNameTF"
-                   layoutX="150.0"
-                   layoutY="115.0"
-                   prefWidth="180"/>
+        <Label layoutX="30.0" layoutY="120.0" text="Player Name" />
+        <TextField fx:id="playerNameTF" layoutX="150.0" layoutY="115.0" prefWidth="180" />
 
-        <Label layoutX="30.0" layoutY="160.0" text="Position"/>
-        <ComboBox fx:id="positionCB"
-                  layoutX="150.0"
-                  layoutY="155.0"
-                  prefWidth="180"/>
+        <Label layoutX="30.0" layoutY="160.0" text="Position" />
+        <ComboBox fx:id="positionCB" layoutX="150.0" layoutY="155.0" prefWidth="180" />
 
-        <Label layoutX="30.0" layoutY="200.0" text="Current Club"/>
-        <TextField fx:id="clubTF"
-                   layoutX="150.0"
-                   layoutY="195.0"
-                   prefWidth="180"/>
+        <Label layoutX="30.0" layoutY="200.0" text="Current Club" />
+        <TextField fx:id="clubTF" layoutX="150.0" layoutY="195.0" prefWidth="180" />
 
-        <Label layoutX="30.0" layoutY="240.0" text="Player Type"/>
-        <ComboBox fx:id="playerTypeCB"
-                  layoutX="150.0"
-                  layoutY="235.0"
-                  prefWidth="180"/>
+        <Label layoutX="30.0" layoutY="240.0" text="Player Type" />
+        <ComboBox fx:id="playerTypeCB" layoutX="150.0" layoutY="235.0" prefWidth="180" />
 
-        <Label layoutX="30.0" layoutY="280.0" text="Fitness Status"/>
-        <ComboBox fx:id="fitnessCB"
-                  layoutX="150.0"
-                  layoutY="275.0"
-                  prefWidth="180"/>
+        <Label layoutX="30.0" layoutY="280.0" text="Fitness Status" />
+        <ComboBox fx:id="fitnessCB" layoutX="150.0" layoutY="275.0" prefWidth="180" />
 
-        <Button layoutX="30.0"
-                layoutY="340.0"
-                prefWidth="80"
-                text="Add"
-                onAction="#addButtonOnAction"/>
+        <Button layoutX="30.0" layoutY="340.0" onAction="#addButtonOnAction" prefWidth="80" text="Add" />
 
-        <Button layoutX="120.0"
-                layoutY="340.0"
-                prefWidth="80"
-                text="Update"
-                onAction="#updateButtonOnAction"/>
+        <Button layoutX="120.0" layoutY="340.0" onAction="#updateButtonOnAction" prefWidth="80" text="Update" />
 
-        <Button layoutX="210.0"
-                layoutY="340.0"
-                prefWidth="80"
-                text="Delete"
-                onAction="#deleteButtonOnAction"/>
+        <Button layoutX="210.0" layoutY="340.0" onAction="#deleteButtonOnAction" prefWidth="80" text="Delete" />
 
-        <Button layoutX="90.0"
-                layoutY="390.0"
-                prefWidth="150"
-                text="Clear"
-                onAction="#clearButtonOnAction"/>
+        <Button layoutX="90.0" layoutY="390.0" onAction="#clearButtonOnAction" prefWidth="150" text="Clear" />
 
-        <TableView fx:id="playerTable"
-                   layoutX="370.0"
-                   layoutY="70.0"
-                   prefHeight="500.0"
-                   prefWidth="600.0">
+        <TableView fx:id="playerTable" layoutX="370.0" layoutY="70.0" prefHeight="500.0" prefWidth="600.0">
 
             <columns>
 
-                <TableColumn fx:id="playerIdCol"
-                             text="ID"
-                             prefWidth="70"/>
+                <TableColumn fx:id="playerIdCol" prefWidth="70" text="ID" />
 
-                <TableColumn fx:id="playerNameCol"
-                             text="Player Name"
-                             prefWidth="150"/>
+                <TableColumn fx:id="playerNameCol" prefWidth="150" text="Player Name" />
 
-                <TableColumn fx:id="positionCol"
-                             text="Position"
-                             prefWidth="120"/>
+                <TableColumn fx:id="positionCol" prefWidth="120" text="Position" />
 
-                <TableColumn fx:id="clubCol"
-                             text="Current Club"
-                             prefWidth="140"/>
+                <TableColumn fx:id="clubCol" prefWidth="140" text="Current Club" />
 
-                <TableColumn fx:id="fitnessCol"
-                             text="Fitness"
-                             prefWidth="120"/>
+                <TableColumn fx:id="fitnessCol" prefWidth="120" text="Fitness" />
 
             </columns>
 
         </TableView>
+      <Button layoutX="85.0" layoutY="493.0" onAction="#backButtonOnAction" prefWidth="150" text="Back" />
 
     </children>
 
