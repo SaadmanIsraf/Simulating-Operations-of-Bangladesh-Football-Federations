@@ -1,14 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.ClubLicensingController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="443.0" prefWidth="886.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.ClubLicensingController">
+   <children>
+      <Text layoutX="87.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club ID:" />
+      <TextField fx:id="clubIdTF" layoutX="151.0" layoutY="63.0" />
+      <Text layoutX="77.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Name:" />
+      <TextField fx:id="clubNameTF" layoutX="151.0" layoutY="100.0" />
+      <Text layoutX="71.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Address:" />
+      <TextField fx:id="clubAddressTF" layoutX="151.0" layoutY="141.0" prefHeight="25.0" prefWidth="185.0" />
+      <Text layoutX="476.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Category:" />
+      <ComboBox fx:id="clubCategoryCB" layoutX="571.0" layoutY="63.0" prefHeight="25.0" prefWidth="98.0" />
+      <Text layoutX="473.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manager Name:" />
+      <TextField layoutX="571.0" layoutY="100.0" />
+      <Text layoutX="470.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number:" />
+      <TextField fx:id="contactTF" layoutX="571.0" layoutY="141.0" />
+      <TableView fx:id="RegisterClubTV" layoutX="57.0" layoutY="243.0" prefHeight="200.0" prefWidth="548.0">
+        <columns>
+          <TableColumn fx:id="clubIdTC" prefWidth="75.0" text="Club ID" />
+          <TableColumn fx:id="clubNameTC" prefWidth="92.0" text="Club Name" />
+            <TableColumn fx:id="clubCategoryTC" prefWidth="92.0" text="Club Category" />
+            <TableColumn fx:id="clubAddressTC" prefWidth="92.0" text="Club Address" />
+            <TableColumn fx:id="managerNameTC" prefWidth="92.0" text="Manager Name" />
+            <TableColumn fx:id="contactTC" prefWidth="104.0" text="Contact Number" />
+        </columns>
+      </TableView>
+      <Button layoutX="244.0" layoutY="199.0" mnemonicParsing="false" onAction="#registerButton" text="Register Club" />
+      <Button layoutX="348.0" layoutY="199.0" mnemonicParsing="false" onAction="#updateButton" text="Update Registration" />
+      <Button fx:id="DisplayRegButton" layoutX="620.0" layoutY="404.0" mnemonicParsing="false" text="Display Registration" />
+      <Button layoutX="485.0" layoutY="199.0" mnemonicParsing="false" onAction="#uploadButton" text="Upload Document" />
+      <TextArea fx:id="DisplayRegTA" layoutX="620.0" layoutY="199.0" prefHeight="200.0" prefWidth="228.0" />
+      <Button layoutX="28.0" layoutY="22.0" mnemonicParsing="false" text="Back" />
+   </children>
 </AnchorPane>
