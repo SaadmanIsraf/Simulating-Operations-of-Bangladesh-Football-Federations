@@ -7,8 +7,7 @@ public class AssignedMatchManager {
 
     private static final String FILE_NAME = "assignedmatches.bin";
 
-    private static ArrayList<AssignedMatch> assignedMatchList =
-            new ArrayList<>();
+    private static ArrayList<AssignedMatch> assignedMatchList = new ArrayList<>();
 
     static {
         loadFromFile();
@@ -32,7 +31,6 @@ public class AssignedMatchManager {
                      new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
 
             outputStream.writeObject(assignedMatchList);
-            outputStream.flush();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -52,16 +50,13 @@ public class AssignedMatchManager {
         try (ObjectInputStream inputStream =
                      new ObjectInputStream(new FileInputStream(file))) {
 
-            Object object = inputStream.readObject();
-
-            if (object instanceof ArrayList<?>) {
-                assignedMatchList =
-                        (ArrayList<AssignedMatch>) object;
-            }
+            assignedMatchList =
+                    (ArrayList<AssignedMatch>) inputStream.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+
             assignedMatchList = new ArrayList<>();
+            e.printStackTrace();
         }
     }
 }

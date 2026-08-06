@@ -1,133 +1,216 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.recordfoulscards;
-import javafx.collections.FXCollections;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.RecordFoulsCardsManager;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.matchofficial_recordfoulscards;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class matchofficial_recordfoulscardsController {
 
     @FXML
-    private ComboBox<String> matchComboBox;
+    private TextField matchTF;
     @FXML
-    private ComboBox<String> playerComboBox;
+    private TextField playerNameTF;
+    @FXML
+    private TextField minuteTF;
 
     @FXML
-    private TableView<recordfoulscards> foulCardTable;
+    private ComboBox<String> foulTypeCB;
+    @FXML
+    private ComboBox<String> cardTypeCB;
 
     @FXML
-    private TableColumn<recordfoulscards, String> foulTypeColumn;
-    @FXML
-    private TableColumn<recordfoulscards, String> cardTypeColumn;
-    @FXML
-    private TableColumn<recordfoulscards, String> minuteColumn;
+    private TableView<matchofficial_recordfoulscards> recordTable;
 
-    private final ArrayList<recordfoulscards> allRecords = new ArrayList<>();
+    @FXML
+    private TableColumn<matchofficial_recordfoulscards, String> matchCol;
+    @FXML
+    private TableColumn<matchofficial_recordfoulscards, String> playerCol;
+    @FXML
+    private TableColumn<matchofficial_recordfoulscards, String> foulCol;
+    @FXML
+    private TableColumn<matchofficial_recordfoulscards, String> cardCol;
+    @FXML
+    private TableColumn<matchofficial_recordfoulscards, Integer> minuteCol;
 
     @FXML
     public void initialize() {
 
-        foulTypeColumn.setCellValueFactory(new PropertyValueFactory<>("foulType"));
-        cardTypeColumn.setCellValueFactory(new PropertyValueFactory<>("cardType"));
-        minuteColumn.setCellValueFactory(new PropertyValueFactory<>("minute"));
-
-        matchComboBox.getItems().addAll(
-                "Bashundhara Kings vs Abahani Limited",
-                "Mohammedan SC vs Sheikh Russel",
-                "Abahani Limited vs Rahmatganj"
-        );
-
-        playerComboBox.getItems().addAll(
-                "Rakib Hossain",
-                "Jamal Bhuyan",
-                "Sohel Rana",
-                "Topu Barman"
-        );
-
-        allRecords.add(new recordfoulscards(
-                "Bashundhara Kings vs Abahani Limited",
-                "Rakib Hossain",
-                "Dangerous Tackle",
-                "Yellow Card",
-                "25'"
-        ));
-
-        allRecords.add(new recordfoulscards(
-                "Bashundhara Kings vs Abahani Limited",
-                "Rakib Hossain",
+        foulTypeCB.getItems().addAll(
                 "Handball",
-                "No Card",
-                "70'"
-        ));
-
-        allRecords.add(new recordfoulscards(
-                "Mohammedan SC vs Sheikh Russel",
-                "Jamal Bhuyan",
-                "Serious Foul",
-                "Red Card",
-                "81'"
-        ));
-
-        allRecords.add(new recordfoulscards(
-                "Abahani Limited vs Rahmatganj",
-                "Topu Barman",
+                "Dangerous Tackle",
                 "Holding",
-                "Yellow Card",
-                "43'"
-        ));
+                "Push",
+                "Simulation"
+        );
 
-        foulCardTable.setItems(FXCollections.observableArrayList());
+        cardTypeCB.getItems().addAll(
+                "No Card",
+                "Yellow Card",
+                "Red Card"
+        );
+
+        matchCol.setCellValueFactory(new PropertyValueFactory<>("match"));
+        playerCol.setCellValueFactory(new PropertyValueFactory<>("playerName"));
+        foulCol.setCellValueFactory(new PropertyValueFactory<>("foulType"));
+        cardCol.setCellValueFactory(new PropertyValueFactory<>("cardType"));
+        minuteCol.setCellValueFactory(new PropertyValueFactory<>("minute"));
+
+        loadRecords();
+    }
+
+    private void loadRecords() {
+        RecordFoulsCardsManager.loadFromFile();
+        recordTable.getItems().setAll(RecordFoulsCardsManager.getRecordList());
+        recordTable.refresh();
     }
 
     @FXML
-    public void searchRecord() {
+    public void addButtonOnAction(ActionEvent event) {
 
-        String selectedMatch = matchComboBox.getValue();
-        String selectedPlayer = playerComboBox.getValue();
+        if (matchTF.getText().isEmpty()
+                || playerNameTF.getText().isEmpty()
+                || minuteTF.getText().isEmpty()
+                || foulTypeCB.getValue() == null
+                || cardTypeCB.getValue() == null) {
 
-        if (selectedMatch == null || selectedPlayer == null) {
-            foulCardTable.setItems(FXCollections.observableArrayList());
+            showAlert(Alert.AlertType.ERROR,
+                    "Error",
+                    "Please fill all fields.");
             return;
         }
 
-        ArrayList<recordfoulscards> result = new ArrayList<>();
+        matchofficial_recordfoulscards record =
+                new matchofficial_recordfoulscards(
+                        matchTF.getText(),
+                        playerNameTF.getText(),
+                        foulTypeCB.getValue(),
+                        cardTypeCB.getValue(),
+                        Integer.parseInt(minuteTF.getText())
+                );
 
-        for (recordfoulscards record : allRecords) {
+        RecordFoulsCardsManager.addRecord(record);
+        RecordFoulsCardsManager.saveToFile();
 
-            if (record.getMatchName().equals(selectedMatch)
-                    && record.getPlayerName().equals(selectedPlayer)) {
+        loadRecords();
+        clearFields();
 
-                result.add(record);
-            }
+        showAlert(Alert.AlertType.INFORMATION,
+                "Success",
+                "Record added successfully.");
+    }
+    @FXML
+    public void updateButtonOnAction(ActionEvent event) {
+
+        matchofficial_recordfoulscards record =
+                recordTable.getSelectionModel().getSelectedItem();
+
+        if (record == null) {
+            showAlert(Alert.AlertType.WARNING,
+                    "Warning",
+                    "Please select a record.");
+            return;
         }
 
-        foulCardTable.setItems(FXCollections.observableArrayList(result));
+        record.setMatch(matchTF.getText());
+        record.setPlayerName(playerNameTF.getText());
+        record.setFoulType(foulTypeCB.getValue());
+        record.setCardType(cardTypeCB.getValue());
+        record.setMinute(Integer.parseInt(minuteTF.getText()));
+
+        RecordFoulsCardsManager.saveToFile();
+
+        recordTable.refresh();
+
+        showAlert(Alert.AlertType.INFORMATION,
+                "Success",
+                "Record updated successfully.");
     }
 
     @FXML
-    public void backBtnOnAction(ActionEvent actionEvent) throws IOException {
+    public void deleteButtonOnAction(ActionEvent event) {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource(
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_officials/matchofficialsdashboard.fxml"));
+        matchofficial_recordfoulscards record =
+                recordTable.getSelectionModel().getSelectedItem();
 
-        Parent home = loader.load();
+        if (record == null) {
+            showAlert(Alert.AlertType.WARNING,
+                    "Warning",
+                    "Please select a record.");
+            return;
+        }
 
-        Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
+        RecordFoulsCardsManager.removeRecord(record);
+        RecordFoulsCardsManager.saveToFile();
 
-        stage.setScene(new Scene(home));
-        stage.setTitle("Match Official Dashboard");
-        stage.show();
+        loadRecords();
+        clearFields();
+
+        showAlert(Alert.AlertType.INFORMATION,
+                "Success",
+                "Record deleted successfully.");
+    }
+
+    @FXML
+    public void clearButtonOnAction(ActionEvent event) {
+        clearFields();
+    }
+
+    @FXML
+    public void tableMouseClicked() {
+
+        matchofficial_recordfoulscards record =
+                recordTable.getSelectionModel().getSelectedItem();
+
+        if (record == null) {
+            return;
+        }
+
+        matchTF.setText(record.getMatch());
+        playerNameTF.setText(record.getPlayerName());
+        foulTypeCB.setValue(record.getFoulType());
+        cardTypeCB.setValue(record.getCardType());
+        minuteTF.setText(String.valueOf(record.getMinute()));
+    }
+
+    private void clearFields() {
+
+        matchTF.clear();
+        playerNameTF.clear();
+        minuteTF.clear();
+
+        foulTypeCB.setValue(null);
+        cardTypeCB.setValue(null);
+
+        recordTable.getSelectionModel().clearSelection();
+    }
+
+    private void showAlert(Alert.AlertType type,
+                           String title,
+                           String message) {
+
+        Alert alert = new Alert(type);
+
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+
+        alert.showAndWait();
+    }
+
+
+    @FXML
+    public void backButtonOnAction(ActionEvent actionEvent) throws IOException {
+
+        SceneSwitcher.switchTo(
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_officials/matchofficialsdashboard.fxml"
+        );
     }
 }
+
+

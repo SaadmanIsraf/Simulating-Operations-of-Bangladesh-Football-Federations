@@ -34,7 +34,7 @@ public class matchofficial_dashboardController {
 
     @FXML
     public void recordfoulscardsOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("turjo/match_officials/recordfoulsandcards.fxml");
+        SceneSwitcher.switchTo("turjo/match_officials/recordfoulscards.fxml");
     }
 
     @FXML

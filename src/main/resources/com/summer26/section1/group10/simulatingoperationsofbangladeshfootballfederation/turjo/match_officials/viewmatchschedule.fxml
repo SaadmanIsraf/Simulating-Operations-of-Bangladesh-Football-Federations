@@ -91,5 +91,10 @@
         </TableView>
 
     </children>
+    <Button layoutX="110"
+            layoutY="390"
+            prefWidth="120"
+            text="Back"
+            onAction="#backButtonOnAction"/>
 
 </AnchorPane>

@@ -151,7 +151,7 @@ public class matchofficial_logvarreportController {
     public void backButtonOnAction(ActionEvent actionEvent) {
 
         SceneSwitcher.switchTo(
-                "turjo/match_official/matchofficialsdashboard.fxml"
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_officials/matchofficialsdashboard.fxml"
         );
     }
 

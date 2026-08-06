@@ -7,23 +7,22 @@ public class VerifyPlayerEligibilityManager {
 
     private static final String FILE_NAME = "verifyplayereligibility.bin";
 
-    private static ArrayList<VerifyPlayerEligibility> eligibilityList =
-            new ArrayList<>();
+    private static ArrayList<VerifyPlayerEligibility> playerList = new ArrayList<>();
 
     static {
         loadFromFile();
     }
 
-    public static ArrayList<VerifyPlayerEligibility> getEligibilityList() {
-        return eligibilityList;
+    public static ArrayList<VerifyPlayerEligibility> getPlayerList() {
+        return playerList;
     }
 
-    public static void addEligibility(VerifyPlayerEligibility eligibility) {
-        eligibilityList.add(eligibility);
+    public static void addPlayer(VerifyPlayerEligibility player) {
+        playerList.add(player);
     }
 
-    public static void removeEligibility(VerifyPlayerEligibility eligibility) {
-        eligibilityList.remove(eligibility);
+    public static void removePlayer(VerifyPlayerEligibility player) {
+        playerList.remove(player);
     }
 
     public static void saveToFile() {
@@ -31,8 +30,7 @@ public class VerifyPlayerEligibilityManager {
         try (ObjectOutputStream outputStream =
                      new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
 
-            outputStream.writeObject(eligibilityList);
-            outputStream.flush();
+            outputStream.writeObject(playerList);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -45,23 +43,20 @@ public class VerifyPlayerEligibilityManager {
         File file = new File(FILE_NAME);
 
         if (!file.exists()) {
-            eligibilityList = new ArrayList<>();
+            playerList = new ArrayList<>();
             return;
         }
 
         try (ObjectInputStream inputStream =
                      new ObjectInputStream(new FileInputStream(file))) {
 
-            Object object = inputStream.readObject();
-
-            if (object instanceof ArrayList<?>) {
-                eligibilityList =
-                        (ArrayList<VerifyPlayerEligibility>) object;
-            }
+            playerList =
+                    (ArrayList<VerifyPlayerEligibility>) inputStream.readObject();
 
         } catch (IOException | ClassNotFoundException e) {
+
+            playerList = new ArrayList<>();
             e.printStackTrace();
-            eligibilityList = new ArrayList<>();
         }
     }
 }

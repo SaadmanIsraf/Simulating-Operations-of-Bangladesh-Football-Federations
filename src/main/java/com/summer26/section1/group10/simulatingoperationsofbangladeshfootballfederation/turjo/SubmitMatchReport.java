@@ -9,123 +9,117 @@ public class SubmitMatchReport implements Serializable {
     private String homeTeam;
     private String awayTeam;
     private LocalDate matchDate;
-    private String finalScore;
+    private String score;
     private String goalScorers;
     private int yellowCards;
     private int redCards;
-    private String matchSummary;
-    private String matchStatus;
+    private String status;
+    private String summary;
 
-    // Default Constructor
     public SubmitMatchReport() {
     }
 
-    // Parameterized Constructor
     public SubmitMatchReport(String matchId,
                              String homeTeam,
                              String awayTeam,
                              LocalDate matchDate,
-                             String finalScore,
+                             String score,
                              String goalScorers,
                              int yellowCards,
                              int redCards,
-                             String matchSummary,
-                             String matchStatus) {
+                             String status,
+                             String summary) {
 
         this.matchId = matchId;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
         this.matchDate = matchDate;
-        this.finalScore = finalScore;
+        this.score = score;
         this.goalScorers = goalScorers;
         this.yellowCards = yellowCards;
         this.redCards = redCards;
-        this.matchSummary = matchSummary;
-        this.matchStatus = matchStatus;
+        this.status = status;
+        this.summary = summary;
     }
-
-    // Getters
 
     public String getMatchId() {
         return matchId;
+    }
+
+    public void setMatchId(String matchId) {
+        this.matchId = matchId;
     }
 
     public String getHomeTeam() {
         return homeTeam;
     }
 
-    public String getAwayTeam() {
-        return awayTeam;
-    }
-
-    public LocalDate getMatchDate() {
-        return matchDate;
-    }
-
-    public String getFinalScore() {
-        return finalScore;
-    }
-
-    public String getGoalScorers() {
-        return goalScorers;
-    }
-
-    public int getYellowCards() {
-        return yellowCards;
-    }
-
-    public int getRedCards() {
-        return redCards;
-    }
-
-    public String getMatchSummary() {
-        return matchSummary;
-    }
-
-    public String getMatchStatus() {
-        return matchStatus;
-    }
-
-    // Setters
-
-    public void setMatchId(String matchId) {
-        this.matchId = matchId;
-    }
-
     public void setHomeTeam(String homeTeam) {
         this.homeTeam = homeTeam;
+    }
+
+    public String getAwayTeam() {
+        return awayTeam;
     }
 
     public void setAwayTeam(String awayTeam) {
         this.awayTeam = awayTeam;
     }
 
+    public LocalDate getMatchDate() {
+        return matchDate;
+    }
+
     public void setMatchDate(LocalDate matchDate) {
         this.matchDate = matchDate;
     }
 
-    public void setFinalScore(String finalScore) {
-        this.finalScore = finalScore;
+    public String getScore() {
+        return score;
+    }
+
+    public void setScore(String score) {
+        this.score = score;
+    }
+
+    public String getGoalScorers() {
+        return goalScorers;
     }
 
     public void setGoalScorers(String goalScorers) {
         this.goalScorers = goalScorers;
     }
 
+    public int getYellowCards() {
+        return yellowCards;
+    }
+
     public void setYellowCards(int yellowCards) {
         this.yellowCards = yellowCards;
+    }
+
+    public int getRedCards() {
+        return redCards;
     }
 
     public void setRedCards(int redCards) {
         this.redCards = redCards;
     }
 
-    public void setMatchSummary(String matchSummary) {
-        this.matchSummary = matchSummary;
+    public String getStatus() {
+        return status;
     }
 
-    public void setMatchStatus(String matchStatus) {
-        this.matchStatus = matchStatus;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getSummary() {
+        return summary;
+    }
+
+    public void setSummary(String summary) {
+        this.summary = summary;
     }
 
     @Override
@@ -135,12 +129,12 @@ public class SubmitMatchReport implements Serializable {
                 ", homeTeam='" + homeTeam + '\'' +
                 ", awayTeam='" + awayTeam + '\'' +
                 ", matchDate=" + matchDate +
-                ", finalScore='" + finalScore + '\'' +
+                ", score='" + score + '\'' +
                 ", goalScorers='" + goalScorers + '\'' +
                 ", yellowCards=" + yellowCards +
                 ", redCards=" + redCards +
-                ", matchSummary='" + matchSummary + '\'' +
-                ", matchStatus='" + matchStatus + '\'' +
+                ", status='" + status + '\'' +
+                ", summary='" + summary + '\'' +
                 '}';
     }
 }

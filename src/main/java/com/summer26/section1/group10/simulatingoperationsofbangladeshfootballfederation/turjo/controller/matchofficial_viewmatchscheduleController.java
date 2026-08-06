@@ -120,9 +120,7 @@ public class matchofficial_viewmatchscheduleController {
 
     @FXML
     public void backButtonOnAction(ActionEvent event) {
-        SceneSwitcher.switchTo(
-                "turjo/match_official/matchofficialsdashboard.fxml"
-        );
+       SceneSwitcher.switchTo("turjo/match_officials/matchofficialsdashboard.fxml");
     }
 
     private void clearFields() {

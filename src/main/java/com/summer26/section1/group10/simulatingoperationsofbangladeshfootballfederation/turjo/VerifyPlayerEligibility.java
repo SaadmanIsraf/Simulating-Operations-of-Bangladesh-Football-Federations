@@ -4,68 +4,73 @@ import java.io.Serializable;
 
 public class VerifyPlayerEligibility implements Serializable {
 
+    private String playerId;
     private String playerName;
-    private String match;
+    private String team;
     private int yellowCards;
     private int redCards;
     private String eligibility;
 
-    // Default Constructor
     public VerifyPlayerEligibility() {
     }
 
-    // Parameterized Constructor
-    public VerifyPlayerEligibility(String playerName,
-                                   String match,
+    public VerifyPlayerEligibility(String playerId,
+                                   String playerName,
+                                   String team,
                                    int yellowCards,
                                    int redCards,
                                    String eligibility) {
 
+        this.playerId = playerId;
         this.playerName = playerName;
-        this.match = match;
+        this.team = team;
         this.yellowCards = yellowCards;
         this.redCards = redCards;
         this.eligibility = eligibility;
     }
 
-    // Getters
+    public String getPlayerId() {
+        return playerId;
+    }
+
+    public void setPlayerId(String playerId) {
+        this.playerId = playerId;
+    }
 
     public String getPlayerName() {
         return playerName;
     }
 
-    public String getMatch() {
-        return match;
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getTeam() {
+        return team;
+    }
+
+    public void setTeam(String team) {
+        this.team = team;
     }
 
     public int getYellowCards() {
         return yellowCards;
     }
 
-    public int getRedCards() {
-        return redCards;
-    }
-
-    public String getEligibility() {
-        return eligibility;
-    }
-
-    // Setters
-
-    public void setPlayerName(String playerName) {
-        this.playerName = playerName;
-    }
-
-    public void setMatch(String match) {
-        this.match = match;
-    }
-
     public void setYellowCards(int yellowCards) {
         this.yellowCards = yellowCards;
     }
 
+    public int getRedCards() {
+        return redCards;
+    }
+
     public void setRedCards(int redCards) {
         this.redCards = redCards;
+    }
+
+    public String getEligibility() {
+        return eligibility;
     }
 
     public void setEligibility(String eligibility) {
@@ -75,8 +80,9 @@ public class VerifyPlayerEligibility implements Serializable {
     @Override
     public String toString() {
         return "VerifyPlayerEligibility{" +
-                "playerName='" + playerName + '\'' +
-                ", match='" + match + '\'' +
+                "playerId='" + playerId + '\'' +
+                ", playerName='" + playerName + '\'' +
+                ", team='" + team + '\'' +
                 ", yellowCards=" + yellowCards +
                 ", redCards=" + redCards +
                 ", eligibility='" + eligibility + '\'' +

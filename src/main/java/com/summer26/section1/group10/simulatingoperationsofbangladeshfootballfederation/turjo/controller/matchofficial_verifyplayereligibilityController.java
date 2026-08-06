@@ -5,27 +5,21 @@ import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.VerifyPlayerEligibilityManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class matchofficial_verifyplayereligibilityController {
 
     @FXML
-    private ComboBox<String> matchCB;
-
+    private TextField playerIdTF;
     @FXML
-    private ComboBox<String> playerCB;
-
+    private TextField playerNameTF;
+    @FXML
+    private TextField teamTF;
     @FXML
     private TextField yellowCardTF;
-
     @FXML
     private TextField redCardTF;
-
     @FXML
     private TextField eligibilityTF;
 
@@ -33,122 +27,190 @@ public class matchofficial_verifyplayereligibilityController {
     private TableView<VerifyPlayerEligibility> playerTable;
 
     @FXML
-    private TableColumn<VerifyPlayerEligibility, String> playerNameCol;
-
+    private TableColumn<VerifyPlayerEligibility, String> playerIdCol;
     @FXML
-    private TableColumn<VerifyPlayerEligibility, String> matchCol;
-
+    private TableColumn<VerifyPlayerEligibility, String> playerNameCol;
+    @FXML
+    private TableColumn<VerifyPlayerEligibility, String> teamCol;
     @FXML
     private TableColumn<VerifyPlayerEligibility, Integer> yellowCardCol;
-
     @FXML
     private TableColumn<VerifyPlayerEligibility, Integer> redCardCol;
-
     @FXML
     private TableColumn<VerifyPlayerEligibility, String> eligibilityCol;
 
     @FXML
     public void initialize() {
 
-        matchCB.getItems().addAll(
-                "Dhaka FC vs Chittagong FC",
-                "Abahani vs Mohammedan",
-                "Brothers Union vs Rahmatganj",
-                "Bashundhara Kings vs Sheikh Russel"
-        );
+        playerIdCol.setCellValueFactory(new PropertyValueFactory<>("playerId"));
+        playerNameCol.setCellValueFactory(new PropertyValueFactory<>("playerName"));
+        teamCol.setCellValueFactory(new PropertyValueFactory<>("team"));
+        yellowCardCol.setCellValueFactory(new PropertyValueFactory<>("yellowCards"));
+        redCardCol.setCellValueFactory(new PropertyValueFactory<>("redCards"));
+        eligibilityCol.setCellValueFactory(new PropertyValueFactory<>("eligibility"));
 
-        playerCB.getItems().addAll(
-                "Rakib Hasan",
-                "Jamal Bhuyan",
-                "Topu Barman",
-                "Sohel Rana",
-                "Biplu Ahmed",
-                "Mamun Miah"
-        );
+        loadPlayers();
+    }
 
-        playerNameCol.setCellValueFactory(
-                new PropertyValueFactory<>("playerName"));
-
-        matchCol.setCellValueFactory(
-                new PropertyValueFactory<>("match"));
-
-        yellowCardCol.setCellValueFactory(
-                new PropertyValueFactory<>("yellowCards"));
-
-        redCardCol.setCellValueFactory(
-                new PropertyValueFactory<>("redCards"));
-
-        eligibilityCol.setCellValueFactory(
-                new PropertyValueFactory<>("eligibility"));
-
-        playerTable.getItems().setAll(
-                VerifyPlayerEligibilityManager.getEligibilityList());
+    private void loadPlayers() {
+        VerifyPlayerEligibilityManager.loadFromFile();
+        playerTable.getItems().setAll(VerifyPlayerEligibilityManager.getPlayerList());
     }
 
     @FXML
-    public void verifyButtonOnAction(ActionEvent actionEvent) {
+    public void verifyButtonOnAction(ActionEvent event) {
 
-        String match = matchCB.getValue();
-        String player = playerCB.getValue();
+        try {
 
-        if (match == null || player == null) {
+            int yellow = Integer.parseInt(yellowCardTF.getText());
+            int red = Integer.parseInt(redCardTF.getText());
 
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Missing Information",
-                    "Please select both Match and Player."
-            );
+            if (red >= 1 || yellow >= 2) {
+                eligibilityTF.setText("Suspended");
+            } else {
+                eligibilityTF.setText("Eligible");
+            }
 
+        } catch (NumberFormatException e) {
+
+            showAlert(Alert.AlertType.ERROR,
+                    "Error",
+                    "Yellow Cards and Red Cards must be numbers.");
+        }
+    }
+
+    @FXML
+    public void addButtonOnAction(ActionEvent event) {
+
+        try {
+
+            int yellow = Integer.parseInt(yellowCardTF.getText());
+            int red = Integer.parseInt(redCardTF.getText());
+
+            String eligibility =
+                    (red >= 1 || yellow >= 2)
+                            ? "Suspended"
+                            : "Eligible";
+
+            eligibilityTF.setText(eligibility);
+
+            VerifyPlayerEligibility player =
+                    new VerifyPlayerEligibility(
+                            playerIdTF.getText(),
+                            playerNameTF.getText(),
+                            teamTF.getText(),
+                            yellow,
+                            red,
+                            eligibility
+                    );
+
+            VerifyPlayerEligibilityManager.addPlayer(player);
+            VerifyPlayerEligibilityManager.saveToFile();
+
+            loadPlayers();
+            clearFields();
+
+            showAlert(Alert.AlertType.INFORMATION,
+                    "Success",
+                    "Player added successfully.");
+
+        } catch (Exception e) {
+
+            showAlert(Alert.AlertType.ERROR,
+                    "Error",
+                    "Please enter valid values.");
+        }
+    }
+
+    @FXML
+    public void updateButtonOnAction(ActionEvent event) {
+
+        VerifyPlayerEligibility player =
+                playerTable.getSelectionModel().getSelectedItem();
+
+        if (player == null) {
+            showAlert(Alert.AlertType.WARNING,
+                    "Warning",
+                    "Select a player first.");
             return;
         }
 
-        int yellowCards = (int) (Math.random() * 3);
-        int redCards = (int) (Math.random() * 2);
+        int yellow = Integer.parseInt(yellowCardTF.getText());
+        int red = Integer.parseInt(redCardTF.getText());
 
-        String eligibility;
+        String eligibility =
+                (red >= 1 || yellow >= 2)
+                        ? "Suspended"
+                        : "Eligible";
 
-        if (redCards >= 1 || yellowCards >= 2) {
-            eligibility = "Not Eligible";
-        }
-        else {
-            eligibility = "Eligible";
-        }
-
-        yellowCardTF.setText(String.valueOf(yellowCards));
-        redCardTF.setText(String.valueOf(redCards));
-        eligibilityTF.setText(eligibility);
-
-        VerifyPlayerEligibility verifyPlayerEligibility =
-                new VerifyPlayerEligibility(
-                        player,
-                        match,
-                        yellowCards,
-                        redCards,
-                        eligibility
-                );
-
-        VerifyPlayerEligibilityManager.addEligibility(
-                verifyPlayerEligibility);
+        player.setPlayerId(playerIdTF.getText());
+        player.setPlayerName(playerNameTF.getText());
+        player.setTeam(teamTF.getText());
+        player.setYellowCards(yellow);
+        player.setRedCards(red);
+        player.setEligibility(eligibility);
 
         VerifyPlayerEligibilityManager.saveToFile();
-
-        playerTable.getItems().setAll(
-                VerifyPlayerEligibilityManager.getEligibilityList());
-
         playerTable.refresh();
 
-        showAlert(
-                Alert.AlertType.INFORMATION,
-                "Verification Complete",
-                "Player eligibility verified successfully."
+        showAlert(Alert.AlertType.INFORMATION,
+                "Success",
+                "Player updated.");
+    }
+
+    @FXML
+    public void deleteButtonOnAction(ActionEvent event) {
+
+        VerifyPlayerEligibility player =
+                playerTable.getSelectionModel().getSelectedItem();
+
+        if (player == null) {
+            return;
+        }
+
+        VerifyPlayerEligibilityManager.removePlayer(player);
+        VerifyPlayerEligibilityManager.saveToFile();
+
+        loadPlayers();
+        clearFields();
+    }
+
+    @FXML
+    public void clearButtonOnAction(ActionEvent event) {
+        clearFields();
+    }
+
+    @FXML
+    public void tableMouseClicked() {
+
+        VerifyPlayerEligibility player =
+                playerTable.getSelectionModel().getSelectedItem();
+
+        if (player == null) {
+            return;
+        }
+
+        playerIdTF.setText(player.getPlayerId());
+        playerNameTF.setText(player.getPlayerName());
+        teamTF.setText(player.getTeam());
+        yellowCardTF.setText(String.valueOf(player.getYellowCards()));
+        redCardTF.setText(String.valueOf(player.getRedCards()));
+        eligibilityTF.setText(player.getEligibility());
+    }
+
+    @FXML
+    public void backButtonOnAction(ActionEvent event) {
+
+        SceneSwitcher.switchTo(
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_officials/matchofficialsdashboard.fxml"
         );
     }
-    @FXML
-    public void clearButtonOnAction(ActionEvent actionEvent) {
 
-        matchCB.setValue(null);
-        playerCB.setValue(null);
+    private void clearFields() {
 
+        playerIdTF.clear();
+        playerNameTF.clear();
+        teamTF.clear();
         yellowCardTF.clear();
         redCardTF.clear();
         eligibilityTF.clear();
@@ -156,34 +218,14 @@ public class matchofficial_verifyplayereligibilityController {
         playerTable.getSelectionModel().clearSelection();
     }
 
-    @FXML
-    public void backButtonOnAction(ActionEvent actionEvent) {
-
-
-        SceneSwitcher.switchTo(
-                "turjo/match_official/matchofficialsdashboard.fxml"
-        );
-    }
-
-    @FXML
-    public void matchCBOnAction(ActionEvent actionEvent) {
-
-    }
-
-    @FXML
-    public void playerCBOnAction(ActionEvent actionEvent) {
-
-    }
-
-    private void showAlert(Alert.AlertType alertType,
+    private void showAlert(Alert.AlertType type,
                            String title,
                            String message) {
 
-        Alert alert = new Alert(alertType);
+        Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }

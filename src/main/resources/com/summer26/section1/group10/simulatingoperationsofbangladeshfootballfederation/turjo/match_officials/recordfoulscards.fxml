@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="600.0" prefWidth="950.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.matchofficial_recordfoulscardsController">
+
+    <children>
+
+        <Label layoutX="320.0" layoutY="20.0" style="-fx-font-size:24px; -fx-font-weight:bold;" text="Record Fouls &amp; Cards" />
+
+        <Label layoutX="30.0" layoutY="80.0" text="Match" />
+        <TextField fx:id="matchTF" layoutX="150.0" layoutY="75.0" prefWidth="180.0" />
+
+        <Label layoutX="30.0" layoutY="120.0" text="Player Name" />
+        <TextField fx:id="playerNameTF" layoutX="150.0" layoutY="115.0" prefWidth="180.0" />
+
+        <Label layoutX="30.0" layoutY="160.0" text="Foul Type" />
+        <ComboBox fx:id="foulTypeCB" layoutX="150.0" layoutY="155.0" prefWidth="180.0" />
+
+        <Label layoutX="30.0" layoutY="200.0" text="Card Type" />
+        <ComboBox fx:id="cardTypeCB" layoutX="150.0" layoutY="195.0" prefWidth="180.0" />
+
+        <Label layoutX="30.0" layoutY="240.0" text="Minute" />
+        <TextField fx:id="minuteTF" layoutX="150.0" layoutY="235.0" prefWidth="180.0" />
+
+        <Button layoutX="40.0" layoutY="300.0" onAction="#addButtonOnAction" prefWidth="80.0" text="Add" />
+
+        <Button layoutX="130.0" layoutY="300.0" onAction="#updateButtonOnAction" prefWidth="80.0" text="Update" />
+
+        <Button layoutX="220.0" layoutY="300.0" onAction="#deleteButtonOnAction" prefWidth="80.0" text="Delete" />
+
+        <Button layoutX="100.0" layoutY="350.0" onAction="#clearButtonOnAction" prefWidth="120.0" text="Clear" />
+
+        <TableView fx:id="recordTable" layoutX="370.0" layoutY="70.0" onMouseClicked="#tableMouseClicked" prefHeight="470.0" prefWidth="550.0">
+
+            <columns>
+
+                <TableColumn fx:id="matchCol" prefWidth="120.0" text="Match" />
+
+                <TableColumn fx:id="playerCol" prefWidth="120.0" text="Player" />
+
+                <TableColumn fx:id="foulCol" prefWidth="110.0" text="Foul Type" />
+
+                <TableColumn fx:id="cardCol" prefWidth="100.0" text="Card Type" />
+
+                <TableColumn fx:id="minuteCol" prefWidth="80.0" text="Minute" />
+
+            </columns>
+
+        </TableView>
+      <Button layoutX="100.0" layoutY="399.0" onAction="#backButtonOnAction" prefWidth="120.0" text="Back" />
+
+    </children>
+
+</AnchorPane>
