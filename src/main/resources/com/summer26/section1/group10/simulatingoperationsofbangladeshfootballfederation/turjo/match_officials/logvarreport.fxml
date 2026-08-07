@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="650.0"
+<AnchorPane prefHeight="700.0"
             prefWidth="1000.0"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
@@ -14,93 +11,110 @@
 
     <children>
 
-        <Label layoutX="400.0"
+        <Label layoutX="380.0"
                layoutY="20.0"
                text="Log VAR Report"
                style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-        <VBox layoutX="20.0"
-              layoutY="60.0"
-              prefWidth="300.0"
-              spacing="10">
+        <Label layoutX="30.0" layoutY="80.0" text="Match ID"/>
+        <TextField fx:id="matchIdTF"
+                   layoutX="150.0"
+                   layoutY="75.0"
+                   prefWidth="180.0"/>
 
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
+        <Label layoutX="30.0" layoutY="120.0" text="Minute"/>
+        <TextField fx:id="minuteTF"
+                   layoutX="150.0"
+                   layoutY="115.0"
+                   prefWidth="180.0"/>
 
-            <Label text="Match ID"/>
-            <TextField fx:id="matchIdTF"
-                       promptText="Enter Match ID"/>
+        <Label layoutX="30.0" layoutY="160.0" text="Player Name"/>
+        <TextField fx:id="playerNameTF"
+                   layoutX="150.0"
+                   layoutY="155.0"
+                   prefWidth="180.0"/>
 
-            <Label text="Minute"/>
-            <TextField fx:id="minuteTF"
-                       promptText="e.g. 67"/>
+        <Label layoutX="30.0" layoutY="200.0" text="Incident"/>
+        <ComboBox fx:id="incidentCB"
+                  layoutX="150.0"
+                  layoutY="195.0"
+                  prefWidth="180.0"/>
 
-            <Label text="Player Name"/>
-            <TextField fx:id="playerNameTF"
-                       promptText="Enter Player Name"/>
+        <Label layoutX="30.0" layoutY="240.0" text="VAR Decision"/>
+        <ComboBox fx:id="decisionCB"
+                  layoutX="150.0"
+                  layoutY="235.0"
+                  prefWidth="180.0"/>
 
-            <Label text="Review Type"/>
-            <ComboBox fx:id="reviewTypeCB"/>
+        <Label layoutX="30.0" layoutY="280.0" text="Comments"/>
+        <TextArea fx:id="commentsTA"
+                  layoutX="150.0"
+                  layoutY="275.0"
+                  prefWidth="180.0"
+                  prefHeight="120.0"/>
 
-            <Label text="Decision"/>
-            <ComboBox fx:id="decisionCB"/>
+        <Button layoutX="20.0"
+                layoutY="430.0"
+                prefWidth="80.0"
+                text="Add"
+                onAction="#addButtonOnAction"/>
 
-            <Label text="Report Details"/>
-            <TextArea fx:id="detailsTA"
-                      prefHeight="100"
-                      wrapText="true"
-                      promptText="Enter VAR report details"/>
+        <Button layoutX="110.0"
+                layoutY="430.0"
+                prefWidth="80.0"
+                text="Update"
+                onAction="#updateButtonOnAction"/>
 
-            <HBox spacing="10">
+        <Button layoutX="200.0"
+                layoutY="430.0"
+                prefWidth="80.0"
+                text="Delete"
+                onAction="#deleteButtonOnAction"/>
 
-                <Button text="Submit"
-                        prefWidth="90"
-                        onAction="#submitButtonOnAction"/>
+        <Button layoutX="20.0"
+                layoutY="480.0"
+                prefWidth="120.0"
+                text="Clear"
+                onAction="#clearButtonOnAction"/>
 
-                <Button text="Clear"
-                        prefWidth="90"
-                        onAction="#clearButtonOnAction"/>
+        <Button layoutX="160.0"
+                layoutY="480.0"
+                prefWidth="120.0"
+                text="Back"
+                onAction="#backButtonOnAction"/>
 
-                <Button text="Back"
-                        prefWidth="90"
-                        onAction="#backButtonOnAction"/>
-
-            </HBox>
-
-        </VBox>
-
-        <TableView fx:id="varReportTable"
-                   layoutX="340.0"
-                   layoutY="60.0"
-                   prefHeight="540.0"
-                   prefWidth="630.0">
+        <TableView fx:id="varTable"
+                   layoutX="370.0"
+                   layoutY="70.0"
+                   prefWidth="600.0"
+                   prefHeight="560.0"
+                   onMouseClicked="#tableMouseClicked">
 
             <columns>
 
                 <TableColumn fx:id="matchIdCol"
                              text="Match ID"
-                             prefWidth="90"/>
+                             prefWidth="80.0"/>
 
                 <TableColumn fx:id="minuteCol"
                              text="Minute"
-                             prefWidth="70"/>
+                             prefWidth="70.0"/>
 
                 <TableColumn fx:id="playerNameCol"
                              text="Player"
-                             prefWidth="140"/>
+                             prefWidth="120.0"/>
 
-                <TableColumn fx:id="reviewTypeCol"
-                             text="Review Type"
-                             prefWidth="130"/>
+                <TableColumn fx:id="incidentCol"
+                             text="Incident"
+                             prefWidth="120.0"/>
 
                 <TableColumn fx:id="decisionCol"
                              text="Decision"
-                             prefWidth="100"/>
+                             prefWidth="120.0"/>
 
-                <TableColumn fx:id="detailsCol"
-                             text="Details"
-                             prefWidth="100"/>
+                <TableColumn fx:id="commentsCol"
+                             text="Comments"
+                             prefWidth="180.0"/>
 
             </columns>
 

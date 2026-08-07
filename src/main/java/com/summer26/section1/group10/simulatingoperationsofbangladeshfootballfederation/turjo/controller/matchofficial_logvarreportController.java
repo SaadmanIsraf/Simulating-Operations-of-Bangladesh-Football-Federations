@@ -1,8 +1,8 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.VARReport;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.VARReportManager;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.LogVARReport;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.LogVARReportManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -12,146 +12,177 @@ public class matchofficial_logvarreportController {
 
     @FXML
     private TextField matchIdTF;
-
     @FXML
     private TextField minuteTF;
-
     @FXML
     private TextField playerNameTF;
-
     @FXML
-    private ComboBox<String> reviewTypeCB;
-
+    private ComboBox<String> incidentCB;
     @FXML
     private ComboBox<String> decisionCB;
+    @FXML
+    private TextArea commentsTA;
 
     @FXML
-    private TextArea detailsTA;
+    private TableView<LogVARReport> varTable;
 
     @FXML
-    private TableView<VARReport> varReportTable;
-
+    private TableColumn<LogVARReport, String> matchIdCol;
     @FXML
-    private TableColumn<VARReport, String> matchIdCol;
-
+    private TableColumn<LogVARReport, Integer> minuteCol;
     @FXML
-    private TableColumn<VARReport, String> minuteCol;
-
+    private TableColumn<LogVARReport, String> playerNameCol;
     @FXML
-    private TableColumn<VARReport, String> playerNameCol;
-
+    private TableColumn<LogVARReport, String> incidentCol;
     @FXML
-    private TableColumn<VARReport, String> reviewTypeCol;
-
+    private TableColumn<LogVARReport, String> decisionCol;
     @FXML
-    private TableColumn<VARReport, String> decisionCol;
-
-    @FXML
-    private TableColumn<VARReport, String> detailsCol;
+    private TableColumn<LogVARReport, String> commentsCol;
 
     @FXML
     public void initialize() {
 
-        reviewTypeCB.getItems().addAll(
+        incidentCB.getItems().addAll(
                 "Goal Review",
                 "Penalty Review",
                 "Red Card Review",
-                "Offside Review"
+                "Offside Review",
+                "Handball Review"
         );
 
         decisionCB.getItems().addAll(
                 "Confirmed",
                 "Overturned",
-                "No Review Needed"
+                "No Review",
+                "Review Complete"
         );
 
-        matchIdCol.setCellValueFactory(
-                new PropertyValueFactory<>("matchId"));
+        matchIdCol.setCellValueFactory(new PropertyValueFactory<>("matchId"));
+        minuteCol.setCellValueFactory(new PropertyValueFactory<>("minute"));
+        playerNameCol.setCellValueFactory(new PropertyValueFactory<>("playerName"));
+        incidentCol.setCellValueFactory(new PropertyValueFactory<>("incident"));
+        decisionCol.setCellValueFactory(new PropertyValueFactory<>("decision"));
+        commentsCol.setCellValueFactory(new PropertyValueFactory<>("comments"));
 
-        minuteCol.setCellValueFactory(
-                new PropertyValueFactory<>("minute"));
-
-        playerNameCol.setCellValueFactory(
-                new PropertyValueFactory<>("playerName"));
-
-        reviewTypeCol.setCellValueFactory(
-                new PropertyValueFactory<>("reviewType"));
-
-        decisionCol.setCellValueFactory(
-                new PropertyValueFactory<>("decision"));
-
-        detailsCol.setCellValueFactory(
-                new PropertyValueFactory<>("details"));
-
-        loadVarReports();
+        loadTable();
     }
 
-    private void loadVarReports() {
-
-        VARReportManager.loadFromFile();
-
-        varReportTable.getItems().setAll(
-                VARReportManager.getVarReportList());
-
-        varReportTable.refresh();
+    private void loadTable() {
+        LogVARReportManager.loadFromFile();
+        varTable.getItems().setAll(LogVARReportManager.getReportList());
+        varTable.refresh();
     }
 
     @FXML
-    public void submitButtonOnAction(ActionEvent actionEvent) {
+    public void addButtonOnAction(ActionEvent event) {
 
-        String matchId = matchIdTF.getText().trim();
-        String minute = minuteTF.getText().trim();
-        String playerName = playerNameTF.getText().trim();
-        String reviewType = reviewTypeCB.getValue();
-        String decision = decisionCB.getValue();
-        String details = detailsTA.getText().trim();
+        if (matchIdTF.getText().isEmpty()
+                || minuteTF.getText().isEmpty()
+                || playerNameTF.getText().isEmpty()
+                || incidentCB.getValue() == null
+                || decisionCB.getValue() == null
+                || commentsTA.getText().isEmpty()) {
 
-        if (matchId.isEmpty()
-                || minute.isEmpty()
-                || playerName.isEmpty()
-                || reviewType == null
-                || decision == null
-                || details.isEmpty()) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Missing Information",
-                    "Please fill in all fields."
-            );
+            showAlert(Alert.AlertType.ERROR, "Please fill all fields.");
             return;
         }
 
-        VARReport report = new VARReport(
-                matchId,
-                minute,
-                playerName,
-                reviewType,
-                decision,
-                details
+        LogVARReport report = new LogVARReport(
+                matchIdTF.getText(),
+                Integer.parseInt(minuteTF.getText()),
+                playerNameTF.getText(),
+                incidentCB.getValue(),
+                decisionCB.getValue(),
+                commentsTA.getText()
         );
 
-        VARReportManager.addVarReport(report);
-        VARReportManager.saveToFile();
+        LogVARReportManager.addReport(report);
+        LogVARReportManager.saveToFile();
 
-        loadVarReports();
+        loadTable();
+        clearFields();
 
-        showAlert(
-                Alert.AlertType.INFORMATION,
-                "Success",
-                "VAR report submitted successfully."
-        );
+        showAlert(Alert.AlertType.INFORMATION,
+                "VAR report added successfully.");
     }
-    @FXML
-    public void clearButtonOnAction(ActionEvent actionEvent) {
 
+    @FXML
+    public void updateButtonOnAction(ActionEvent event) {
+
+        LogVARReport report =
+                varTable.getSelectionModel().getSelectedItem();
+
+        if (report == null) {
+            showAlert(Alert.AlertType.WARNING,
+                    "Please select a report.");
+            return;
+        }
+
+        report.setMatchId(matchIdTF.getText());
+        report.setMinute(Integer.parseInt(minuteTF.getText()));
+        report.setPlayerName(playerNameTF.getText());
+        report.setIncident(incidentCB.getValue());
+        report.setDecision(decisionCB.getValue());
+        report.setComments(commentsTA.getText());
+
+        LogVARReportManager.saveToFile();
+
+        loadTable();
+
+        showAlert(Alert.AlertType.INFORMATION,
+                "VAR report updated successfully.");
+    }
+
+    @FXML
+    public void deleteButtonOnAction(ActionEvent event) {
+
+        LogVARReport report =
+                varTable.getSelectionModel().getSelectedItem();
+
+        if (report == null) {
+            showAlert(Alert.AlertType.WARNING,
+                    "Please select a report.");
+            return;
+        }
+
+        LogVARReportManager.removeReport(report);
+        LogVARReportManager.saveToFile();
+
+        loadTable();
+        clearFields();
+
+        showAlert(Alert.AlertType.INFORMATION,
+                "VAR report deleted successfully.");
+    }
+
+    @FXML
+    public void clearButtonOnAction(ActionEvent event) {
         clearFields();
     }
 
     @FXML
-    public void backButtonOnAction(ActionEvent actionEvent) {
+    public void tableMouseClicked() {
+
+        LogVARReport report =
+                varTable.getSelectionModel().getSelectedItem();
+
+        if (report == null) {
+            return;
+        }
+
+        matchIdTF.setText(report.getMatchId());
+        minuteTF.setText(String.valueOf(report.getMinute()));
+        playerNameTF.setText(report.getPlayerName());
+        incidentCB.setValue(report.getIncident());
+        decisionCB.setValue(report.getDecision());
+        commentsTA.setText(report.getComments());
+    }
+
+    @FXML
+    public void backButtonOnAction(ActionEvent event) {
 
         SceneSwitcher.switchTo(
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/match_officials/matchofficialsdashboard.fxml"
+                "turjo/match_officials/matchofficialdashboard.fxml"
         );
     }
 
@@ -160,24 +191,22 @@ public class matchofficial_logvarreportController {
         matchIdTF.clear();
         minuteTF.clear();
         playerNameTF.clear();
+        commentsTA.clear();
 
-        reviewTypeCB.setValue(null);
+        incidentCB.setValue(null);
         decisionCB.setValue(null);
 
-        detailsTA.clear();
-
-        varReportTable.getSelectionModel().clearSelection();
+        varTable.getSelectionModel().clearSelection();
     }
 
-    private void showAlert(Alert.AlertType alertType,
-                           String title,
+    private void showAlert(Alert.AlertType type,
                            String message) {
 
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
+        Alert alert = new Alert(type);
+
         alert.setHeaderText(null);
         alert.setContentText(message);
+
         alert.showAndWait();
     }
-
 }

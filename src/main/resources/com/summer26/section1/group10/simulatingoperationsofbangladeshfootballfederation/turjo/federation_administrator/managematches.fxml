@@ -1,114 +1,130 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="700.0"
-            prefWidth="1150.0"
+            prefWidth="1050.0"
             xmlns="http://javafx.com/javafx/21"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_managematchesController">
+            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller.federation_administrator_managematchesController">
 
     <children>
 
-        <Label layoutX="430.0"
+        <Label layoutX="390.0"
                layoutY="20.0"
                text="Manage Matches"
                style="-fx-font-size:24px; -fx-font-weight:bold;"/>
 
-        <VBox layoutX="20.0"
-              layoutY="60.0"
-              prefWidth="320.0"
-              spacing="10">
+        <Label layoutX="30.0" layoutY="80.0" text="Match ID"/>
+        <TextField fx:id="matchIdTF"
+                   layoutX="140.0"
+                   layoutY="75.0"
+                   prefWidth="180.0"/>
 
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10"/>
-            </padding>
+        <Label layoutX="30.0" layoutY="120.0" text="Home Team"/>
+        <ComboBox fx:id="homeTeamCB"
+                  layoutX="140.0"
+                  layoutY="115.0"
+                  prefWidth="180.0"/>
 
-            <Label text="Match ID"/>
-            <TextField fx:id="matchIdTF"/>
+        <Label layoutX="30.0" layoutY="160.0" text="Away Team"/>
+        <ComboBox fx:id="awayTeamCB"
+                  layoutX="140.0"
+                  layoutY="155.0"
+                  prefWidth="180.0"/>
 
-            <Label text="Competition"/>
-            <ComboBox fx:id="competitionCB"/>
+        <Label layoutX="30.0" layoutY="200.0" text="Venue"/>
+        <TextField fx:id="venueTF"
+                   layoutX="140.0"
+                   layoutY="195.0"
+                   prefWidth="180.0"/>
 
-            <Label text="Home Team"/>
-            <TextField fx:id="homeTeamTF"/>
+        <Label layoutX="30.0" layoutY="240.0" text="Match Date"/>
+        <DatePicker fx:id="matchDateDP"
+                    layoutX="140.0"
+                    layoutY="235.0"
+                    prefWidth="180.0"/>
 
-            <Label text="Away Team"/>
-            <TextField fx:id="awayTeamTF"/>
+        <Label layoutX="30.0" layoutY="280.0" text="Match Time"/>
+        <TextField fx:id="matchTimeTF"
+                   layoutX="140.0"
+                   layoutY="275.0"
+                   prefWidth="180.0"
+                   promptText="04:00 PM"/>
 
-            <Label text="Match Date"/>
-            <DatePicker fx:id="matchDateDP"/>
+        <Label layoutX="30.0" layoutY="320.0" text="Status"/>
+        <ComboBox fx:id="statusCB"
+                  layoutX="140.0"
+                  layoutY="315.0"
+                  prefWidth="180.0"/>
 
-            <Label text="Match Time"/>
-            <TextField fx:id="matchTimeTF"/>
+        <Button layoutX="20.0"
+                layoutY="380.0"
+                prefWidth="80.0"
+                text="Add"
+                onAction="#addButtonOnAction"/>
 
-            <Label text="Stadium"/>
-            <TextField fx:id="stadiumTF"/>
+        <Button layoutX="110.0"
+                layoutY="380.0"
+                prefWidth="80.0"
+                text="Update"
+                onAction="#updateButtonOnAction"/>
 
-            <Label text="Match Status"/>
-            <ComboBox fx:id="statusCB"/>
+        <Button layoutX="200.0"
+                layoutY="380.0"
+                prefWidth="80.0"
+                text="Delete"
+                onAction="#deleteButtonOnAction"/>
 
-            <HBox spacing="10">
+        <Button layoutX="20.0"
+                layoutY="430.0"
+                prefWidth="120.0"
+                text="Clear"
+                onAction="#clearButtonOnAction"/>
 
-                <Button text="Add Match"
-                        prefWidth="100"
-                        onAction="#addButtonOnAction"/>
-
-                <Button text="Clear"
-                        prefWidth="80"
-                        onAction="#clearButtonOnAction"/>
-
-                <Button text="Back"
-                        prefWidth="80"
-                        onAction="#backButtonOnAction"/>
-
-            </HBox>
-
-        </VBox>
+        <Button layoutX="160.0"
+                layoutY="430.0"
+                prefWidth="120.0"
+                text="Back"
+                onAction="#backButtonOnAction"/>
 
         <TableView fx:id="matchTable"
                    layoutX="360.0"
-                   layoutY="60.0"
-                   prefHeight="610.0"
-                   prefWidth="760.0">
+                   layoutY="70.0"
+                   prefWidth="660.0"
+                   prefHeight="560.0"
+                   onMouseClicked="#tableMouseClicked">
 
             <columns>
 
                 <TableColumn fx:id="matchIdCol"
                              text="Match ID"
-                             prefWidth="90"/>
-
-                <TableColumn fx:id="competitionCol"
-                             text="Competition"
-                             prefWidth="120"/>
+                             prefWidth="80.0"/>
 
                 <TableColumn fx:id="homeTeamCol"
                              text="Home Team"
-                             prefWidth="120"/>
+                             prefWidth="120.0"/>
 
                 <TableColumn fx:id="awayTeamCol"
                              text="Away Team"
-                             prefWidth="120"/>
+                             prefWidth="120.0"/>
 
-                <TableColumn fx:id="dateCol"
+                <TableColumn fx:id="venueCol"
+                             text="Venue"
+                             prefWidth="110.0"/>
+
+                <TableColumn fx:id="matchDateCol"
                              text="Date"
-                             prefWidth="100"/>
+                             prefWidth="100.0"/>
 
-                <TableColumn fx:id="timeCol"
+                <TableColumn fx:id="matchTimeCol"
                              text="Time"
-                             prefWidth="80"/>
-
-                <TableColumn fx:id="stadiumCol"
-                             text="Stadium"
-                             prefWidth="140"/>
+                             prefWidth="80.0"/>
 
                 <TableColumn fx:id="statusCol"
                              text="Status"
-                             prefWidth="100"/>
+                             prefWidth="100.0"/>
 
             </columns>
 

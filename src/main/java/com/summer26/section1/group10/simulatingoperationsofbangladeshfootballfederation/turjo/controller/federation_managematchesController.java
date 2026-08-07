@@ -1,183 +1,195 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.controller;
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.ManageMatch;
-import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.ManageMatchManager;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.Match;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.turjo.MatchManager;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.time.LocalDate;
-
 public class federation_managematchesController {
 
     @FXML
     private TextField matchIdTF;
-
     @FXML
-    private ComboBox<String> competitionCB;
-
+    private ComboBox<String> homeTeamCB;
     @FXML
-    private TextField homeTeamTF;
-
+    private ComboBox<String> awayTeamCB;
     @FXML
-    private TextField awayTeamTF;
-
+    private TextField venueTF;
     @FXML
     private DatePicker matchDateDP;
-
     @FXML
     private TextField matchTimeTF;
-
-    @FXML
-    private TextField stadiumTF;
-
     @FXML
     private ComboBox<String> statusCB;
 
     @FXML
-    private TableView<ManageMatch> matchTable;
+    private TableView<Match> matchTable;
 
     @FXML
-    private TableColumn<ManageMatch, String> matchIdCol;
-
+    private TableColumn<Match, String> matchIdCol;
     @FXML
-    private TableColumn<ManageMatch, String> competitionCol;
-
+    private TableColumn<Match, String> homeTeamCol;
     @FXML
-    private TableColumn<ManageMatch, String> homeTeamCol;
-
+    private TableColumn<Match, String> awayTeamCol;
     @FXML
-    private TableColumn<ManageMatch, String> awayTeamCol;
-
+    private TableColumn<Match, String> venueCol;
     @FXML
-    private TableColumn<ManageMatch, LocalDate> dateCol;
-
+    private TableColumn<Match, ?> matchDateCol;
     @FXML
-    private TableColumn<ManageMatch, String> timeCol;
-
+    private TableColumn<Match, String> matchTimeCol;
     @FXML
-    private TableColumn<ManageMatch, String> stadiumCol;
-
-    @FXML
-    private TableColumn<ManageMatch, String> statusCol;
+    private TableColumn<Match, String> statusCol;
 
     @FXML
     public void initialize() {
 
-        competitionCB.getItems().addAll(
-                "Bangladesh Premier League",
-                "Federation Cup",
-                "Independence Cup",
-                "International Friendly"
+        homeTeamCB.getItems().addAll(
+                "Abahani",
+                "Mohammedan",
+                "Bashundhara Kings",
+                "Sheikh Russel",
+                "Rahmatganj",
+                "Brothers Union"
+        );
+
+        awayTeamCB.getItems().addAll(
+                "Abahani",
+                "Mohammedan",
+                "Bashundhara Kings",
+                "Sheikh Russel",
+                "Rahmatganj",
+                "Brothers Union"
         );
 
         statusCB.getItems().addAll(
                 "Scheduled",
-                "Live",
+                "Ongoing",
                 "Completed",
-                "Postponed",
                 "Cancelled"
         );
 
-        matchIdCol.setCellValueFactory(
-                new PropertyValueFactory<>("matchId"));
+        matchIdCol.setCellValueFactory(new PropertyValueFactory<>("matchId"));
+        homeTeamCol.setCellValueFactory(new PropertyValueFactory<>("homeTeam"));
+        awayTeamCol.setCellValueFactory(new PropertyValueFactory<>("awayTeam"));
+        venueCol.setCellValueFactory(new PropertyValueFactory<>("venue"));
+        matchDateCol.setCellValueFactory(new PropertyValueFactory<>("matchDate"));
+        matchTimeCol.setCellValueFactory(new PropertyValueFactory<>("matchTime"));
+        statusCol.setCellValueFactory(new PropertyValueFactory<>("status"));
 
-        competitionCol.setCellValueFactory(
-                new PropertyValueFactory<>("competition"));
-
-        homeTeamCol.setCellValueFactory(
-                new PropertyValueFactory<>("homeTeam"));
-
-        awayTeamCol.setCellValueFactory(
-                new PropertyValueFactory<>("awayTeam"));
-
-        dateCol.setCellValueFactory(
-                new PropertyValueFactory<>("matchDate"));
-
-        timeCol.setCellValueFactory(
-                new PropertyValueFactory<>("matchTime"));
-
-        stadiumCol.setCellValueFactory(
-                new PropertyValueFactory<>("stadium"));
-
-        statusCol.setCellValueFactory(
-                new PropertyValueFactory<>("matchStatus"));
-
-        loadMatches();
+        loadTable();
     }
 
-    private void loadMatches() {
-
-        ManageMatchManager.loadFromFile();
-
-        matchTable.getItems().setAll(
-                ManageMatchManager.getMatchList());
-
+    private void loadTable() {
+        MatchManager.loadFromFile();
+        matchTable.getItems().setAll(MatchManager.getMatchList());
         matchTable.refresh();
     }
 
     @FXML
-    public void addButtonOnAction(ActionEvent actionEvent) {
+    public void addButtonOnAction(ActionEvent event) {
 
-        String matchId = matchIdTF.getText().trim();
-        String competition = competitionCB.getValue();
-        String homeTeam = homeTeamTF.getText().trim();
-        String awayTeam = awayTeamTF.getText().trim();
-        LocalDate matchDate = matchDateDP.getValue();
-        String matchTime = matchTimeTF.getText().trim();
-        String stadium = stadiumTF.getText().trim();
-        String status = statusCB.getValue();
+        if (matchIdTF.getText().isEmpty()
+                || homeTeamCB.getValue() == null
+                || awayTeamCB.getValue() == null
+                || venueTF.getText().isEmpty()
+                || matchDateDP.getValue() == null
+                || matchTimeTF.getText().isEmpty()
+                || statusCB.getValue() == null) {
 
-        if (matchId.isEmpty()
-                || competition == null
-                || homeTeam.isEmpty()
-                || awayTeam.isEmpty()
-                || matchDate == null
-                || matchTime.isEmpty()
-                || stadium.isEmpty()
-                || status == null) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Missing Information",
-                    "Please fill in all fields."
-            );
-
+            showAlert(Alert.AlertType.ERROR, "Please fill all fields.");
             return;
         }
 
-        ManageMatch manageMatch = new ManageMatch(
-                matchId,
-                competition,
-                homeTeam,
-                awayTeam,
-                matchDate,
-                matchTime,
-                stadium,
-                status
+        Match match = new Match(
+                matchIdTF.getText(),
+                homeTeamCB.getValue(),
+                awayTeamCB.getValue(),
+                venueTF.getText(),
+                matchDateDP.getValue(),
+                matchTimeTF.getText(),
+                statusCB.getValue()
         );
 
-        ManageMatchManager.addMatch(manageMatch);
-        ManageMatchManager.saveToFile();
+        MatchManager.addMatch(match);
+        MatchManager.saveToFile();
 
-        loadMatches();
+        loadTable();
+        clearFields();
 
-        showAlert(
-                Alert.AlertType.INFORMATION,
-                "Success",
-                "Match added successfully."
-        );
+        showAlert(Alert.AlertType.INFORMATION, "Match added successfully.");
     }
-    @FXML
-    public void clearButtonOnAction(ActionEvent actionEvent) {
 
+    @FXML
+    public void updateButtonOnAction(ActionEvent event) {
+
+        Match match = matchTable.getSelectionModel().getSelectedItem();
+
+        if (match == null) {
+            showAlert(Alert.AlertType.WARNING, "Select a match first.");
+            return;
+        }
+
+        match.setMatchId(matchIdTF.getText());
+        match.setHomeTeam(homeTeamCB.getValue());
+        match.setAwayTeam(awayTeamCB.getValue());
+        match.setVenue(venueTF.getText());
+        match.setMatchDate(matchDateDP.getValue());
+        match.setMatchTime(matchTimeTF.getText());
+        match.setStatus(statusCB.getValue());
+
+        MatchManager.saveToFile();
+        loadTable();
+
+        showAlert(Alert.AlertType.INFORMATION, "Match updated successfully.");
+    }
+
+    @FXML
+    public void deleteButtonOnAction(ActionEvent event) {
+
+        Match match = matchTable.getSelectionModel().getSelectedItem();
+
+        if (match == null) {
+            showAlert(Alert.AlertType.WARNING, "Select a match first.");
+            return;
+        }
+
+        MatchManager.removeMatch(match);
+        MatchManager.saveToFile();
+
+        loadTable();
+        clearFields();
+
+        showAlert(Alert.AlertType.INFORMATION, "Match deleted successfully.");
+    }
+
+    @FXML
+    public void clearButtonOnAction(ActionEvent event) {
         clearFields();
     }
 
     @FXML
-    public void backButtonOnAction(ActionEvent actionEvent) {
+    public void tableMouseClicked() {
+
+        Match match = matchTable.getSelectionModel().getSelectedItem();
+
+        if (match == null) {
+            return;
+        }
+
+        matchIdTF.setText(match.getMatchId());
+        homeTeamCB.setValue(match.getHomeTeam());
+        awayTeamCB.setValue(match.getAwayTeam());
+        venueTF.setText(match.getVenue());
+        matchDateDP.setValue(match.getMatchDate());
+        matchTimeTF.setText(match.getMatchTime());
+        statusCB.setValue(match.getStatus());
+    }
+
+    @FXML
+    public void backButtonOnAction(ActionEvent event) {
 
         SceneSwitcher.switchTo(
                 "turjo/federation_administrator/dashboardView.fxml"
@@ -187,26 +199,21 @@ public class federation_managematchesController {
     private void clearFields() {
 
         matchIdTF.clear();
-        competitionCB.setValue(null);
-        homeTeamTF.clear();
-        awayTeamTF.clear();
+        homeTeamCB.setValue(null);
+        awayTeamCB.setValue(null);
+        venueTF.clear();
         matchDateDP.setValue(null);
         matchTimeTF.clear();
-        stadiumTF.clear();
         statusCB.setValue(null);
 
         matchTable.getSelectionModel().clearSelection();
     }
 
-    private void showAlert(Alert.AlertType alertType,
-                           String title,
-                           String message) {
+    private void showAlert(Alert.AlertType type, String message) {
 
-        Alert alert = new Alert(alertType);
-        alert.setTitle(title);
+        Alert alert = new Alert(type);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
     }
-
 }

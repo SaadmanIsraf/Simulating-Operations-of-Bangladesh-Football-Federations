@@ -14,7 +14,9 @@ public class federation_administrator_dashboardviewController {
 
     @FXML
     public void managematchesOA(ActionEvent actionEvent) {
-        SceneSwitcher.switchTo("turjo/federation_administrator/managematches.fxml");
+        SceneSwitcher.switchTo(
+                "turjo/federation_administrator/managematches.fxml"
+        );
     }
 
     @FXML
