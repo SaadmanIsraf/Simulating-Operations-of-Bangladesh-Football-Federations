@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="638.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.finance_officer_dashboard_Controller">
+<AnchorPane prefHeight="638.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.financial_officer_dashboard_Controller">
    <children>
       <HBox alignment="CENTER" prefHeight="77.0" prefWidth="600.0" style="-fx-background-color: #1E90FF;">
          <children>
@@ -27,7 +27,7 @@
             <Font size="14.0" />
          </font>
       </Button>
-      <Button layoutX="253.0" layoutY="266.0" mnemonicParsing="false" onAction="#record_incomeButtonOA" prefHeight="30.0" prefWidth="166.0" text="Record Expense">
+      <Button layoutX="253.0" layoutY="266.0" mnemonicParsing="false" onAction="#record_expenseButtonOA" prefHeight="30.0" prefWidth="166.0" text="Record Expense">
          <font>
             <Font size="14.0" />
          </font>

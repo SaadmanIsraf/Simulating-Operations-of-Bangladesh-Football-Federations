@@ -6,17 +6,17 @@ public class financial_audit {
     private String auditId;
     private String recordType;
     private String recordId;
-    private double amount;
-    private LocalDate date;
-    private String status;
+    private LocalDate auditYear,auditMonth;
+    private String status,amount;
 
-    public financial_audit(String auditId, String recordType, String recordId, double amount, LocalDate date, String status) {
+    public financial_audit(String auditId, String recordType, String recordId, LocalDate auditYear, LocalDate auditMonth, String status, String amount) {
         this.auditId = auditId;
         this.recordType = recordType;
         this.recordId = recordId;
-        this.amount = amount;
-        this.date = date;
+        this.auditYear = auditYear;
+        this.auditMonth = auditMonth;
         this.status = status;
+        this.amount = amount;
     }
 
     public String getAuditId() {
@@ -43,20 +43,20 @@ public class financial_audit {
         this.recordId = recordId;
     }
 
-    public double getAmount() {
-        return amount;
+    public LocalDate getAuditYear() {
+        return auditYear;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setAuditYear(LocalDate auditYear) {
+        this.auditYear = auditYear;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public LocalDate getAuditMonth() {
+        return auditMonth;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setAuditMonth(LocalDate auditMonth) {
+        this.auditMonth = auditMonth;
     }
 
     public String getStatus() {
@@ -67,16 +67,24 @@ public class financial_audit {
         this.status = status;
     }
 
+    public String getAmount() {
+        return amount;
+    }
+
+    public void setAmount(String amount) {
+        this.amount = amount;
+    }
+
     @Override
     public String toString() {
         return "financial_audit{" +
                 "auditId='" + auditId + '\'' +
                 ", recordType='" + recordType + '\'' +
                 ", recordId='" + recordId + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
+                ", auditYear=" + auditYear +
+                ", auditMonth=" + auditMonth +
                 ", status='" + status + '\'' +
+                ", amount='" + amount + '\'' +
                 '}';
     }
-
 }

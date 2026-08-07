@@ -6,24 +6,25 @@ import javafx.scene.control.TextField;
 public class financial_officer_profile_Controller
 {
     @javafx.fxml.FXML
-    private TextField financialOfficerFullNameTF;
+    private TextField officerIDTF;
     @javafx.fxml.FXML
-    private TextField financialOfficerDepartmentTF;
+    private TextField newPasswordTF;
     @javafx.fxml.FXML
-    private TextField financialOfficerPositionTF;
+    private TextField fullNameTF;
     @javafx.fxml.FXML
-    private TextField financialOfficerEmailTF;
+    private TextField contactNumberTF;
     @javafx.fxml.FXML
-    private TextField financialOfficerIDTF;
+    private TextField emailTF;
     @javafx.fxml.FXML
-    private TextField financialOfficerNewPasswordTF;
+    private TextField currentPasswordTF;
     @javafx.fxml.FXML
-    private TextField financialOfficerContactNumberTF;
+    private TextField positionTF;
     @javafx.fxml.FXML
-    private TextField financialOfficerCurrentPasswordTF;
+    private TextField departmentTF;
 
     @javafx.fxml.FXML
     public void initialize() {
+
     }
 
     @javafx.fxml.FXML
