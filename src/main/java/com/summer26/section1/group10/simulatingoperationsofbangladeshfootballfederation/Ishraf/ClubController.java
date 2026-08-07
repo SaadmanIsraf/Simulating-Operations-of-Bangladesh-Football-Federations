@@ -37,4 +37,8 @@ public class ClubController
     @javafx.fxml.FXML
     public void removeplayerButton(ActionEvent actionEvent) {
     }
+
+    @javafx.fxml.FXML
+    public void backButton(ActionEvent actionEvent) {
+    }
 }

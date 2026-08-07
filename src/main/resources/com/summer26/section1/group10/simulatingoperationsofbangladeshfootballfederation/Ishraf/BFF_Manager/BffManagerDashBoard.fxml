@@ -9,7 +9,6 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="631.0" prefWidth="1199.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.BffManagerDashBoardController">
    <children>
       <Text layoutX="103.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ManagerID::" />
@@ -19,45 +18,45 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
-      <TableView layoutX="79.0" layoutY="245.0" prefHeight="186.0" prefWidth="302.0">
+      <TableView fx:id="recentActivityTV" layoutX="79.0" layoutY="245.0" prefHeight="186.0" prefWidth="302.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Activity" />
-          <TableColumn prefWidth="75.0" text="User" />
-            <TableColumn prefWidth="75.0" text="Date" />
-            <TableColumn prefWidth="75.0" text="Time" />
+          <TableColumn fx:id="activityTC" prefWidth="75.0" text="Activity" />
+          <TableColumn fx:id="userTC" prefWidth="75.0" text="User" />
+            <TableColumn fx:id="activitydateTC" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="timeTC" prefWidth="75.0" text="Time" />
             <TableColumn prefWidth="75.0" text="Time" />
         </columns>
       </TableView>
-      <Button layoutX="102.0" layoutY="92.0" mnemonicParsing="false" text="Manage National Team" />
-      <Button layoutX="909.0" layoutY="92.0" mnemonicParsing="false" text="Create Youth Program" />
-      <Button layoutX="1050.0" layoutY="92.0" mnemonicParsing="false" text="Register Club" />
-      <Button layoutX="251.0" layoutY="92.0" mnemonicParsing="false" text="Manage Academy" />
-      <Button layoutX="799.0" layoutY="92.0" mnemonicParsing="false" text="Manage Referee" />
-      <Button layoutX="375.0" layoutY="92.0" mnemonicParsing="false" text="Manage Club" />
-      <Button layoutX="471.0" layoutY="92.0" mnemonicParsing="false" text="Manage Sponsorship" />
+      <Button layoutX="102.0" layoutY="92.0" mnemonicParsing="false" onAction="#ManageNationalTeamButton" text="Manage National Team" />
+      <Button layoutX="909.0" layoutY="92.0" mnemonicParsing="false" onAction="#CreateYouthProgramButton" text="Create Youth Program" />
+      <Button layoutX="1050.0" layoutY="92.0" mnemonicParsing="false" onAction="#RegisterClubButton" text="Register Club" />
+      <Button layoutX="251.0" layoutY="92.0" mnemonicParsing="false" onAction="#ManageAcademyButton" text="Manage Academy" />
+      <Button layoutX="799.0" layoutY="92.0" mnemonicParsing="false" onAction="#ManageRefereeButton" text="Manage Referee" />
+      <Button layoutX="375.0" layoutY="92.0" mnemonicParsing="false" onAction="#ManageClubButton" text="Manage Club" />
+      <Button layoutX="471.0" layoutY="92.0" mnemonicParsing="false" onAction="#ManageSponsorshipButton" text="Manage Sponsorship" />
       <Text layoutX="98.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Player Added:" />
-      <Button layoutX="610.0" layoutY="92.0" mnemonicParsing="false" text="Manage Women Development" />
+      <Button layoutX="610.0" layoutY="92.0" mnemonicParsing="false" onAction="#ManageWomenDevelopmentButton" text="Manage Women Development" />
       <Text layoutX="98.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coach deleted:" />
       <Text layoutX="375.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Match Schedfuled:" />
       <Text layoutX="375.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tournament Created:" />
-      <TextField layoutX="177.0" layoutY="129.0" prefHeight="16.0" prefWidth="157.0" />
-      <TextField layoutX="177.0" layoutY="153.0" prefHeight="16.0" prefWidth="157.0" />
-      <TextField layoutX="476.0" layoutY="129.0" prefHeight="16.0" prefWidth="157.0" />
-      <TextField layoutX="489.0" layoutY="153.0" prefHeight="16.0" prefWidth="157.0" />
+      <TextField fx:id="playerAddedTF" layoutX="177.0" layoutY="129.0" prefHeight="16.0" prefWidth="157.0" />
+      <TextField fx:id="coachDeletedTF" layoutX="177.0" layoutY="153.0" prefHeight="16.0" prefWidth="157.0" />
+      <TextField fx:id="matchScheduledTF" layoutX="476.0" layoutY="129.0" prefHeight="16.0" prefWidth="157.0" />
+      <TextField fx:id="tournamentCreatedTF" layoutX="489.0" layoutY="153.0" prefHeight="16.0" prefWidth="157.0" />
       <Text layoutX="79.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Recent Activity:" />
-      <TableView layoutX="417.0" layoutY="245.0" prefHeight="186.0" prefWidth="440.0">
+      <TableView fx:id="upcomingMatchesTV" layoutX="417.0" layoutY="245.0" prefHeight="186.0" prefWidth="440.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="Match ID" />
-            <TableColumn prefWidth="75.0" text="Home Team" />
-            <TableColumn prefWidth="75.0" text="Away Team" />
-            <TableColumn prefWidth="75.0" text="Date" />
-            <TableColumn prefWidth="75.0" text="Stadium" />
-            <TableColumn prefWidth="75.0" text="Status" />
+            <TableColumn fx:id="matchIdTC" prefWidth="75.0" text="Match ID" />
+            <TableColumn fx:id="homeTeamTC" prefWidth="75.0" text="Home Team" />
+            <TableColumn fx:id="awayTeamTC" prefWidth="75.0" text="Away Team" />
+            <TableColumn fx:id="matchdateTC" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="stadiumTC" prefWidth="75.0" text="Stadium" />
+            <TableColumn fx:id="statusTC" prefWidth="75.0" text="Status" />
          </columns>
       </TableView>
       <Text layoutX="417.0" layoutY="234.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Upcoming Matches" />
-      <TextField layoutX="206.0" layoutY="61.0" prefHeight="16.0" prefWidth="157.0" promptText="Search Player" />
-      <Button layoutX="374.0" layoutY="61.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="64.0" text="Search" />
-      <Button layoutX="1126.0" layoutY="26.0" mnemonicParsing="false" text="Back" />
+      <TextField fx:id="managerIdTF" layoutX="206.0" layoutY="61.0" prefHeight="16.0" prefWidth="157.0" promptText="Search Player" />
+      <Button layoutX="374.0" layoutY="61.0" mnemonicParsing="false" onAction="#searchButton" prefHeight="25.0" prefWidth="64.0" text="Search" />
+      <Button layoutX="1126.0" layoutY="26.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
    </children>
 </AnchorPane>

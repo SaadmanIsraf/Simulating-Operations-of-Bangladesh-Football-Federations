@@ -26,4 +26,8 @@ public class CoachController
     @javafx.fxml.FXML
     public void updateProfileButton(ActionEvent actionEvent) {
     }
+
+    @javafx.fxml.FXML
+    public void backButton(ActionEvent actionEvent) {
+    }
 }

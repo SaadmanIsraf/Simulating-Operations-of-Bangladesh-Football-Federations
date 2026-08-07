@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="450.0" prefWidth="1190.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.FootballAcademicsController">
    <children>
       <Text layoutX="78.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academy ID:" />
@@ -26,7 +25,7 @@
       <TextField fx:id="headCoachTF" layoutX="475.0" layoutY="82.0" />
       <TextField fx:id="coachNumberTF" layoutX="475.0" layoutY="113.0" />
       <Text layoutX="635.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Players:" />
-      <TextField fx:id="numberOfplayersTF" layoutX="742.0" layoutY="44.0" prefHeight="25.0" prefWidth="54.0" />
+      <TextField fx:id="numberOfPlayersTF" layoutX="742.0" layoutY="44.0" prefHeight="25.0" prefWidth="54.0" />
       <Button layoutX="72.0" layoutY="156.0" mnemonicParsing="false" onAction="#registerButton" text="Register Academy" />
       <Button layoutX="196.0" layoutY="156.0" mnemonicParsing="false" onAction="#updateAcademyButton" text="Update Academy" />
       <Button layoutX="831.0" layoutY="175.0" mnemonicParsing="false" onAction="#displayAcademyButton" text="Display Academy" />
@@ -46,5 +45,6 @@
       </TableView>
       <Label fx:id="messageLabel2" layoutX="964.0" layoutY="125.0" prefHeight="63.0" prefWidth="149.0" text="Label" />
       <Label fx:id="messageLabel1" layoutX="536.0" layoutY="142.0" prefHeight="57.0" prefWidth="173.0" text="Label" />
+      <Button layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" text="back" />
    </children>
 </AnchorPane>

@@ -34,5 +34,6 @@
       <Label fx:id="messageLabel" layoutX="572.0" layoutY="98.0" prefHeight="36.0" prefWidth="124.0" text="Label" />
       <Label fx:id="registerLabel" layoutX="472.0" layoutY="266.0" prefHeight="56.0" prefWidth="149.0" text="Label" />
       <ComboBox fx:id="skillTF" layoutX="491.0" layoutY="54.0" prefHeight="25.0" prefWidth="63.0" />
+      <Button layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" text="back" />
    </children>
 </AnchorPane>

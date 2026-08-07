@@ -20,7 +20,7 @@
       <Text layoutX="476.0" layoutY="80.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Club Category:" />
       <ComboBox fx:id="clubCategoryCB" layoutX="571.0" layoutY="63.0" prefHeight="25.0" prefWidth="98.0" />
       <Text layoutX="473.0" layoutY="117.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Manager Name:" />
-      <TextField layoutX="571.0" layoutY="100.0" />
+      <TextField fx:id="managerNameTF" layoutX="571.0" layoutY="100.0" />
       <Text layoutX="470.0" layoutY="158.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number:" />
       <TextField fx:id="contactTF" layoutX="571.0" layoutY="141.0" />
       <TableView fx:id="RegisterClubTV" layoutX="57.0" layoutY="243.0" prefHeight="200.0" prefWidth="548.0">
@@ -35,9 +35,9 @@
       </TableView>
       <Button layoutX="244.0" layoutY="199.0" mnemonicParsing="false" onAction="#registerButton" text="Register Club" />
       <Button layoutX="348.0" layoutY="199.0" mnemonicParsing="false" onAction="#updateButton" text="Update Registration" />
-      <Button fx:id="DisplayRegButton" layoutX="620.0" layoutY="404.0" mnemonicParsing="false" text="Display Registration" />
+      <Button layoutX="620.0" layoutY="404.0" mnemonicParsing="false" onAction="#DisplayRegButton" text="Display Registration" />
       <Button layoutX="485.0" layoutY="199.0" mnemonicParsing="false" onAction="#uploadButton" text="Upload Document" />
       <TextArea fx:id="DisplayRegTA" layoutX="620.0" layoutY="199.0" prefHeight="200.0" prefWidth="228.0" />
-      <Button layoutX="28.0" layoutY="22.0" mnemonicParsing="false" text="Back" />
+      <Button layoutX="28.0" layoutY="22.0" mnemonicParsing="false" onAction="#backButton" text="Back" />
    </children>
 </AnchorPane>

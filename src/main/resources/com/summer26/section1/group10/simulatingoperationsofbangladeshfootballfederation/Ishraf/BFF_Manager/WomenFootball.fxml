@@ -29,7 +29,7 @@
       <Button layoutX="660.0" layoutY="206.0" mnemonicParsing="false" onAction="#generateProgressButton" text="generate progress report" />
       <TableView fx:id="createProgramTV" layoutX="60.0" layoutY="272.0" prefHeight="200.0" prefWidth="567.0">
         <columns>
-          <TableColumn fx:id="programidTC" prefWidth="75.0" text="Program id" />
+          <TableColumn fx:id="programIdTC" prefWidth="75.0" text="Program id" />
           <TableColumn fx:id="programNameTC" prefWidth="98.0" text="Program name" />
             <TableColumn fx:id="ageTC" prefWidth="98.0" text="age" />
             <TableColumn fx:id="teamNameTC" prefWidth="98.0" text="team name" />
@@ -38,7 +38,7 @@
         </columns>
       </TableView>
       <TextArea fx:id="generateProgressTA" layoutX="660.0" layoutY="239.0" prefHeight="200.0" prefWidth="297.0" />
-      <Button layoutX="43.0" layoutY="24.0" mnemonicParsing="false" text="back" />
+      <Button layoutX="43.0" layoutY="24.0" mnemonicParsing="false" onAction="#backButton" text="back" />
       <Label fx:id="messageLabel" layoutX="448.0" layoutY="212.0" prefHeight="54.0" prefWidth="166.0" text="Label" />
    </children>
 </AnchorPane>
