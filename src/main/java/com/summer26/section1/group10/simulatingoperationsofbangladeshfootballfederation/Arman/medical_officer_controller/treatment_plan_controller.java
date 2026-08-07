@@ -8,16 +8,9 @@ import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_manager.MedicalOfficerManager;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_manager.TreatmentPlanManager;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.FileInputStream;
@@ -31,57 +24,40 @@ public class treatment_plan_controller {
 
     @FXML
     private TextField search_player_id_textfield;
-
     @FXML
     private TextArea treatment_details_textarea;
-
     @FXML
     private TextField player_id_textfield;
-
     @FXML
     private TextField medical_officer_id_textfield;
-
     @FXML
     private TextField prescribed_medicine_textfield;
-
     @FXML
     private ComboBox<Integer> session_required_combobox;
-
     @FXML
     private TextField rest_duration_textfield;
-
     @FXML
     private TextField dietary_ins_textfield;
-
     @FXML
     private DatePicker follow_up_datepicker;
-
     @FXML
     private TableView<TreatmentPlan> Treatmentplan_tableview;
-
     @FXML
     private TableColumn<TreatmentPlan, Integer> player_id_column;
-
     @FXML
     private TableColumn<TreatmentPlan, Integer> medical_officer_id_column;
-
     @FXML
     private TableColumn<TreatmentPlan, String> prescribed_medicine_column;
-
     @FXML
     private TableColumn<TreatmentPlan, Integer> session_required_column;
-
     @FXML
     private TableColumn<TreatmentPlan, Integer> rest_duration_column;
-
     @FXML
     private TableColumn<TreatmentPlan, String> dietary_instruction_column;
-
     @FXML
     private TableColumn<TreatmentPlan, LocalDate> follow_up_date_column;
 
     private final List<Player> playerList = new ArrayList<>();
-
     private static final String PLAYER_FILE_NAME = "players.bin";
 
     @FXML
@@ -167,7 +143,6 @@ public class treatment_plan_controller {
         int playerId;
 
         try {
-
             playerId = Integer.parseInt(playerIdText);
 
         } catch (NumberFormatException e) {
@@ -380,14 +355,9 @@ public class treatment_plan_controller {
         int restDuration;
 
         try {
-
             playerId = Integer.parseInt(playerIdText);
-
-            medicalOfficerId =
-                    Integer.parseInt(medicalOfficerIdText);
-
-            restDuration =
-                    Integer.parseInt(restDurationText);
+            medicalOfficerId = Integer.parseInt(medicalOfficerIdText);
+            restDuration = Integer.parseInt(restDurationText);
 
         } catch (NumberFormatException e) {
 
@@ -435,8 +405,7 @@ public class treatment_plan_controller {
 
         loadPlayersFromFile();
 
-        Player foundPlayer =
-                findPlayerById(playerId);
+        Player foundPlayer = findPlayerById(playerId);
 
         if (foundPlayer == null) {
 
@@ -455,7 +424,6 @@ public class treatment_plan_controller {
                 MedicalOfficerManager.getMedicalOfficerList()) {
 
             if (medicalOfficer.getId() == medicalOfficerId) {
-
                 foundMedicalOfficer = medicalOfficer;
                 break;
             }

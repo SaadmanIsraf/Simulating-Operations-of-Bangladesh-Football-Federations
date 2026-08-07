@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.log_in_Controller">
+   <children>
+      <TextField fx:id="userIDTF" layoutX="225.0" layoutY="110.0" promptText="Enter User ID" />
+      <Button layoutX="272.0" layoutY="283.0" mnemonicParsing="false" onAction="#loginButtonOA" prefHeight="34.0" prefWidth="56.0" text="Log in" />
+      <PasswordField fx:id="passwordTF" layoutX="225.0" layoutY="176.0" promptText=" Enter Password" />
+      <Text layoutX="166.0" layoutY="127.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User ID :" />
+      <Text layoutX="155.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password :" />
+   </children>
+</AnchorPane>

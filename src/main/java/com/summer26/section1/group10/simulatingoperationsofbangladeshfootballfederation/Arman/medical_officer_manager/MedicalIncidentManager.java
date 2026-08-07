@@ -2,14 +2,17 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.Model_classes.MatchDayMedicalIncident;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MedicalIncidentManager {
 
     private static final List<MatchDayMedicalIncident> incidentList = new ArrayList<>();
-
     private static final String FILE_NAME = "medical-incidents.bin";
 
     static {
@@ -24,13 +27,16 @@ public class MedicalIncidentManager {
         incidentList.add(incident);
     }
 
+    @SuppressWarnings("unchecked")
     private static void loadFromFile() {
 
         try (ObjectInputStream in =
                      new ObjectInputStream(new FileInputStream(FILE_NAME))) {
 
             incidentList.clear();
-            incidentList.addAll((ArrayList<MatchDayMedicalIncident>) in.readObject());
+            incidentList.addAll(
+                    (ArrayList<MatchDayMedicalIncident>) in.readObject()
+            );
 
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Could not load medical incidents.");

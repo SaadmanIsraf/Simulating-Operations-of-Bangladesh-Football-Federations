@@ -18,4 +18,7 @@ module com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
             to javafx.base, javafx.fxml;
     opens com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba
             to javafx.base, javafx.fxml;
+    opens com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf to javafx.fxml;
+    exports com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf to javafx.fxml;
+
 }

@@ -6,21 +6,10 @@ import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InvalidClassException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,367 +17,198 @@ import java.util.List;
 public class medical_incident_controller {
 
     @FXML
-    private TableColumn<MatchDayMedicalIncident, String>
-            incident_type_column;
-
+    private TableColumn<MatchDayMedicalIncident, String> incident_type_column;
     @FXML
-    private TableView<MatchDayMedicalIncident>
-            medical_incident_tableview;
-
+    private TableView<MatchDayMedicalIncident> medical_incident_tableview;
     @FXML
-    private TableColumn<MatchDayMedicalIncident, Integer>
-            player_id_column;
-
+    private TableColumn<MatchDayMedicalIncident, Integer> player_id_column;
     @FXML
     private TextField player_id_textfield;
-
     @FXML
-    private TableColumn<MatchDayMedicalIncident, String>
-            action_taken_column;
-
+    private TableColumn<MatchDayMedicalIncident, String> action_taken_column;
     @FXML
-    private TableColumn<MatchDayMedicalIncident, String>
-            severity_column;
-
+    private TableColumn<MatchDayMedicalIncident, String> severity_column;
     @FXML
     private DatePicker match_date_datepicker;
-
     @FXML
-    private TableColumn<MatchDayMedicalIncident, LocalDate>
-            match_date_column;
-
+    private TableColumn<MatchDayMedicalIncident, LocalDate> match_date_column;
     @FXML
     private ComboBox<String> incident_type_combobox;
-
     @FXML
     private ComboBox<String> action_taken_combobox;
-
     @FXML
     private ComboBox<String> severity_combobox;
-
     @FXML
     private TextField search_player_id_textfield;
-
     @FXML
     private TextArea player_incident_details_textarea;
 
-    private final List<Player> playerList =
-            new ArrayList<>();
-
-    private static final String PLAYER_FILE_NAME =
-            "players.bin";
+    private final ArrayList<Player> playerList = new ArrayList<>();
+    private static final String PLAYER_FILE_NAME = "players.bin";
 
     @FXML
     public void initialize() {
 
-        incident_type_combobox.getItems().setAll(
+        incident_type_combobox.getItems().addAll(
                 "Injury",
                 "Cramp",
                 "Concussion",
                 "Emergency"
         );
 
-        severity_combobox.getItems().setAll(
+        severity_combobox.getItems().addAll(
                 "Minor",
                 "Moderate",
                 "Severe"
         );
 
-        action_taken_combobox.getItems().setAll(
+        action_taken_combobox.getItems().addAll(
                 "First Aid",
                 "Substitution",
                 "Hospitalization"
         );
 
-        player_id_column.setCellValueFactory(
-                new PropertyValueFactory<>("playerId")
-        );
+        player_id_column.setCellValueFactory(new PropertyValueFactory<>("playerId"));
+        match_date_column.setCellValueFactory(new PropertyValueFactory<>("matchDate"));
+        incident_type_column.setCellValueFactory(new PropertyValueFactory<>("incidentType"));
+        severity_column.setCellValueFactory(new PropertyValueFactory<>("severity"));
+        action_taken_column.setCellValueFactory(new PropertyValueFactory<>("actionTaken"));
 
-        match_date_column.setCellValueFactory(
-                new PropertyValueFactory<>("matchDate")
-        );
-
-        incident_type_column.setCellValueFactory(
-                new PropertyValueFactory<>("incidentType")
-        );
-
-        severity_column.setCellValueFactory(
-                new PropertyValueFactory<>("severity")
-        );
-
-        action_taken_column.setCellValueFactory(
-                new PropertyValueFactory<>("actionTaken")
-        );
-
-        medical_incident_tableview.getItems().setAll(
-                MedicalIncidentManager.getIncidentList()
-        );
-
+        medical_incident_tableview.getItems().setAll(MedicalIncidentManager.getIncidentList());
         player_incident_details_textarea.setWrapText(true);
 
         loadPlayersFromFile();
     }
 
     @FXML
-    public void submit_button_on_action(
-            ActionEvent actionEvent) {
+    public void submit_button_on_action(ActionEvent actionEvent) {
 
         if (!loadPlayersFromFile()) {
             return;
         }
 
-        String playerIdText =
-                player_id_textfield.getText().trim();
+        String playerIdText = player_id_textfield.getText().trim();
+        LocalDate matchDate = match_date_datepicker.getValue();
+        String incidentType = incident_type_combobox.getValue();
+        String severity = severity_combobox.getValue();
+        String actionTaken = action_taken_combobox.getValue();
 
-        LocalDate matchDate =
-                match_date_datepicker.getValue();
-
-        String incidentType =
-                incident_type_combobox.getValue();
-
-        String severity =
-                severity_combobox.getValue();
-
-        String actionTaken =
-                action_taken_combobox.getValue();
-
-        if (playerIdText.isEmpty()
-                || matchDate == null
-                || incidentType == null
-                || severity == null
-                || actionTaken == null) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Empty Field",
-                    "Please fill in all incident fields."
-            );
+        if (playerIdText.isEmpty()) {showAlert(Alert.AlertType.ERROR, "Empty Field", "Player ID cannot be empty.");
+            player_id_textfield.requestFocus();
             return;
         }
 
-        int playerId;
-
-        try {
-
-            playerId = Integer.parseInt(playerIdText);
-
-        } catch (NumberFormatException e) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Invalid Player ID",
-                    "Player ID must be a valid whole number."
-            );
+        if (!playerIdText.matches("\\d+")) {showAlert(Alert.AlertType.ERROR, "Invalid Player ID", "Player ID must contain only numbers.");
+            player_id_textfield.requestFocus();
             return;
         }
 
-        if (playerId <= 0) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Invalid Player ID",
-                    "Player ID must be greater than zero."
-            );
+        if (matchDate == null) {showAlert(Alert.AlertType.ERROR, "Empty Field", "Please select the match date.");
             return;
         }
 
-        if (matchDate.isAfter(LocalDate.now())) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Invalid Match Date",
-                    "Match date cannot be a future date."
-            );
+        if (matchDate.isAfter(LocalDate.now())) {showAlert(Alert.AlertType.ERROR, "Invalid Match Date", "Match date cannot be a future date.");
             return;
         }
 
-        Player foundPlayer =
-                findPlayer(playerId);
-
-        if (foundPlayer == null) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Player Not Found",
-                    "No player exists with Player ID: "
-                            + playerId
-            );
+        if (incidentType == null) {showAlert(Alert.AlertType.ERROR, "Empty Field", "Please select an incident type.");
             return;
         }
 
-        int incidentId =
-                MedicalIncidentManager
-                        .getIncidentList()
-                        .size() + 1;
+        if (severity == null) {showAlert(Alert.AlertType.ERROR, "Empty Field", "Please select the severity.");
+            return;
+        }
 
-        MatchDayMedicalIncident incident =
-                new MatchDayMedicalIncident(
-                        incidentId,
-                        playerId,
-                        matchDate,
-                        incidentType,
-                        severity,
-                        actionTaken
-                );
+        if (actionTaken == null) {showAlert(Alert.AlertType.ERROR, "Empty Field", "Please select the action taken.");
+            return;
+        }
+
+        int playerId = Integer.parseInt(playerIdText);
+        Player foundPlayer = findPlayer(playerId);
+
+        if (foundPlayer == null) {showAlert(Alert.AlertType.ERROR, "Player Not Found", "Player does not exist in the system.");
+            return;
+        }
+
+        int incidentId = MedicalIncidentManager.getIncidentList().size() + 1;
+
+        MatchDayMedicalIncident incident = new MatchDayMedicalIncident(
+                incidentId,
+                playerId,
+                matchDate,
+                incidentType,
+                severity,
+                actionTaken
+        );
 
         MedicalIncidentManager.addIncident(incident);
         MedicalIncidentManager.saveToFile();
 
-        List<MatchDayMedicalIncident> playerIncidents =
-                getIncidentsForPlayer(playerId);
+        List<MatchDayMedicalIncident> playerIncidents = getIncidentsForPlayer(playerId);
 
-        medical_incident_tableview.getItems().setAll(
-                playerIncidents
-        );
+        medical_incident_tableview.getItems().setAll(playerIncidents);
+        medical_incident_tableview.getSelectionModel().select(incident);
+        medical_incident_tableview.scrollTo(incident);
 
-        medical_incident_tableview.refresh();
-
-        displayPlayerAndIncidents(
-                foundPlayer,
-                playerIncidents
-        );
-
-        medical_incident_tableview
-                .getSelectionModel()
-                .select(incident);
-
-        medical_incident_tableview.scrollTo(
-                incident
-        );
+        displayPlayerAndIncidents(foundPlayer, playerIncidents);
 
         showAlert(
                 Alert.AlertType.INFORMATION,
                 "Successful",
-                "Match Day Incident Recorded Successfully "
-                        + "for Player ID: "
-                        + playerId + "."
+                "Match Day Incident Recorded Successfully for Player ID: " + playerId + "."
         );
 
         clearFields();
     }
 
     @FXML
-    public void search_button_on_action(
-            ActionEvent actionEvent) {
+    public void search_button_on_action(ActionEvent actionEvent) {
 
         if (!loadPlayersFromFile()) {
             return;
         }
 
-        String playerIdText =
-                search_player_id_textfield
-                        .getText()
-                        .trim();
+        String playerIdText = search_player_id_textfield.getText().trim();
 
-        if (playerIdText.isEmpty()) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Empty Field",
-                    "Please enter a Player ID."
-            );
+        if (playerIdText.isEmpty()) {showAlert(Alert.AlertType.ERROR, "Empty Field", "Please enter a Player ID.");
+            search_player_id_textfield.requestFocus();
             return;
         }
 
-        int playerId;
-
-        try {
-
-            playerId =
-                    Integer.parseInt(playerIdText);
-
-        } catch (NumberFormatException e) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Invalid Player ID",
-                    "Player ID must be a valid whole number."
-            );
+        if (!playerIdText.matches("\\d+")) {showAlert(Alert.AlertType.ERROR, "Invalid Player ID", "Player ID must contain only numbers.");
+            search_player_id_textfield.requestFocus();
             return;
         }
 
-        if (playerId <= 0) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Invalid Player ID",
-                    "Player ID must be greater than zero."
-            );
-            return;
-        }
-
-        Player foundPlayer =
-                findPlayer(playerId);
+        int playerId = Integer.parseInt(playerIdText);
+        Player foundPlayer = findPlayer(playerId);
 
         if (foundPlayer == null) {
-
-            player_incident_details_textarea.setText(
-                    "Player does not exist in the system."
-            );
-
-            medical_incident_tableview
-                    .getItems()
-                    .clear();
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Player Not Found",
-                    "No player exists with Player ID: "
-                            + playerId
-            );
+            player_incident_details_textarea.setText("Player does not exist in the system.");
+            medical_incident_tableview.getItems().clear();
+            showAlert(Alert.AlertType.ERROR, "Player Not Found", "Player does not exist in the system.");
             return;
         }
 
-        List<MatchDayMedicalIncident> playerIncidents =
-                getIncidentsForPlayer(playerId);
+        List<MatchDayMedicalIncident> playerIncidents = getIncidentsForPlayer(playerId);
 
-        medical_incident_tableview.getItems().setAll(
-                playerIncidents
-        );
-
-        medical_incident_tableview.refresh();
-
-        displayPlayerAndIncidents(
-                foundPlayer,
-                playerIncidents
-        );
+        medical_incident_tableview.getItems().setAll(playerIncidents);
+        displayPlayerAndIncidents(foundPlayer, playerIncidents);
 
         if (playerIncidents.isEmpty()) {
-
-            showAlert(
-                    Alert.AlertType.INFORMATION,
-                    "Player Found",
-                    "Player found, but no medical incident exists."
-            );
-
+            showAlert(Alert.AlertType.INFORMATION, "Player Found", "Player found, but no medical incident exists.");
         } else {
-
             MatchDayMedicalIncident latestIncident =
-                    playerIncidents.get(
-                            playerIncidents.size() - 1
-                    );
+                    playerIncidents.get(playerIncidents.size() - 1);
 
-            medical_incident_tableview
-                    .getSelectionModel()
-                    .select(latestIncident);
-
-            medical_incident_tableview.scrollTo(
-                    latestIncident
-            );
-
-            showAlert(
-                    Alert.AlertType.INFORMATION,
-                    "Incidents Found",
-                    "Player details and medical incidents "
-                            + "loaded successfully."
-            );
+            medical_incident_tableview.getSelectionModel().select(latestIncident);
+            medical_incident_tableview.scrollTo(latestIncident);
         }
     }
 
     private Player findPlayer(int playerId) {
 
         for (Player player : playerList) {
-
             if (player.getId() == playerId) {
                 return player;
             }
@@ -397,15 +217,11 @@ public class medical_incident_controller {
         return null;
     }
 
-    private List<MatchDayMedicalIncident>
-    getIncidentsForPlayer(int playerId) {
+    private List<MatchDayMedicalIncident> getIncidentsForPlayer(int playerId) {
 
-        List<MatchDayMedicalIncident> playerIncidents =
-                new ArrayList<>();
+        ArrayList<MatchDayMedicalIncident> playerIncidents = new ArrayList<>();
 
-        for (MatchDayMedicalIncident incident :
-                MedicalIncidentManager.getIncidentList()) {
-
+        for (MatchDayMedicalIncident incident : MedicalIncidentManager.getIncidentList()) {
             if (incident.getPlayerId() == playerId) {
                 playerIncidents.add(incident);
             }
@@ -418,216 +234,63 @@ public class medical_incident_controller {
             Player player,
             List<MatchDayMedicalIncident> incidents) {
 
-        StringBuilder details =
-                new StringBuilder();
-
-        details.append("PLAYER DETAILS\n");
-        details.append(
-                "=====================================================\n"
-        );
-
-        details.append("Player ID          : ")
-                .append(player.getId())
-                .append("\n");
-
-        details.append("Player Name        : ")
-                .append(player.getName())
-                .append("\n");
-
-        details.append("Team               : ")
-                .append(player.getTeamName())
-                .append("\n");
-
-        details.append("Playing Position   : ")
-                .append(player.getPlayingPosition())
-                .append("\n");
-
-        details.append("Age                : ")
-                .append(player.getAge())
-                .append("\n");
-
-        details.append("Fitness Status     : ")
-                .append(player.getFitnessStatus())
-                .append("\n");
-
-        details.append("Eligibility Status : ")
-                .append(player.getMatchEligibilityStatus())
-                .append("\n");
-
-        details.append("Contact Number     : ")
-                .append(player.getContactNumber())
-                .append("\n\n");
-
-        details.append("MATCH DAY MEDICAL INCIDENTS\n");
-        details.append(
-                "=====================================================\n"
-        );
+        String details =
+                "Player ID: " + player.getId() + "\n" +
+                        "Player Name: " + player.getName() + "\n" +
+                        "Team: " + player.getTeamName() + "\n" +
+                        "Playing Position: " + player.getPlayingPosition() + "\n" +
+                        "Age: " + player.getAge() + "\n" +
+                        "Fitness Status: " + player.getFitnessStatus() + "\n" +
+                        "Eligibility Status: " + player.getMatchEligibilityStatus() + "\n" +
+                        "Contact Number: " + player.getContactNumber() + "\n\n";
 
         if (incidents.isEmpty()) {
-
-            details.append(
-                    "No match day medical incidents found "
-                            + "for this player."
-            );
-
+            details += "No match day medical incident found for this player.";
         } else {
+            details += "Match Day Medical Incidents:\n";
 
-            int incidentNumber = 1;
-
-            for (MatchDayMedicalIncident incident :
-                    incidents) {
-
-                details.append("\nIncident #")
-                        .append(incidentNumber++)
-                        .append("\n");
-
-                details.append("Match Date         : ")
-                        .append(incident.getMatchDate())
-                        .append("\n");
-
-                details.append("Incident Type      : ")
-                        .append(incident.getIncidentType())
-                        .append("\n");
-
-                details.append("Severity           : ")
-                        .append(incident.getSeverity())
-                        .append("\n");
-
-                details.append("Action Taken       : ")
-                        .append(incident.getActionTaken())
-                        .append("\n");
-
-                details.append(
-                        "-----------------------------------------------------\n"
-                );
+            for (MatchDayMedicalIncident incident : incidents) {
+                details +=
+                        "\nMatch Date: " + incident.getMatchDate() +
+                                "\nIncident Type: " + incident.getIncidentType() +
+                                "\nSeverity: " + incident.getSeverity() +
+                                "\nAction Taken: " + incident.getActionTaken() +
+                                "\n----------------------------------------\n";
             }
         }
 
-        player_incident_details_textarea.setText(
-                details.toString()
-        );
-
-        player_incident_details_textarea.positionCaret(0);
+        player_incident_details_textarea.setText(details);
     }
 
     private boolean loadPlayersFromFile() {
 
         playerList.clear();
 
-        File playerFile =
-                new File(PLAYER_FILE_NAME);
-
-        System.out.println(
-                "Loading players from: "
-                        + playerFile.getAbsolutePath()
-        );
-
-        if (!playerFile.exists()) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Player File Not Found",
-                    "players.bin was not found at:\n"
-                            + playerFile.getAbsolutePath()
-            );
-
-            return false;
-        }
-
         try (ObjectInputStream inputStream =
-                     new ObjectInputStream(
-                             new FileInputStream(
-                                     playerFile
-                             ))) {
+                     new ObjectInputStream(new FileInputStream(PLAYER_FILE_NAME))) {
 
-            Object object =
-                    inputStream.readObject();
+            Object object = inputStream.readObject();
 
-            if (!(object instanceof ArrayList<?>)) {
+            if (object instanceof ArrayList<?>) {
+                ArrayList<?> loadedList = (ArrayList<?>) object;
 
-                showAlert(
-                        Alert.AlertType.ERROR,
-                        "Invalid Player File",
-                        "players.bin does not contain an ArrayList."
-                );
-
-                return false;
-            }
-
-            ArrayList<?> loadedList =
-                    (ArrayList<?>) object;
-
-            for (Object item : loadedList) {
-
-                if (item instanceof Player) {
-
-                    playerList.add(
-                            (Player) item
-                    );
+                for (Object item : loadedList) {
+                    if (item instanceof Player) {
+                        playerList.add((Player) item);
+                    }
                 }
             }
 
-            System.out.println(
-                    "Players loaded successfully: "
-                            + playerList.size()
-            );
-
-            for (Player player : playerList) {
-
-                System.out.println(
-                        "Player ID: "
-                                + player.getId()
-                                + ", Name: "
-                                + player.getName()
-                );
-            }
-
-            if (playerList.isEmpty()) {
-
-                showAlert(
-                        Alert.AlertType.WARNING,
-                        "No Players Found",
-                        "players.bin contains no Player records."
-                );
-
+            if (playerList.isEmpty()) {showAlert(Alert.AlertType.WARNING, "No Players Found", "No player record was found in players.bin.");
                 return false;
             }
 
             return true;
 
-        } catch (InvalidClassException e) {
-
-            e.printStackTrace();
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Incompatible Player File",
-                    "players.bin was created using an older "
-                            + "Player or User class.\n\n"
-                            + "Delete players.bin and save the "
-                            + "Player profile again."
-            );
-
         } catch (FileNotFoundException e) {
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Player File Not Found",
-                    "players.bin could not be found."
-            );
-
+            showAlert(Alert.AlertType.ERROR, "File Error", "players.bin was not found.");
         } catch (IOException | ClassNotFoundException e) {
-
-            e.printStackTrace();
-
-            showAlert(
-                    Alert.AlertType.ERROR,
-                    "Player File Error",
-                    "Could not load players.bin.\n\n"
-                            + e.getClass().getSimpleName()
-                            + ": "
-                            + e.getMessage()
-            );
+            showAlert(Alert.AlertType.ERROR, "File Error", "Could not load player data.");
         }
 
         return false;
@@ -637,43 +300,31 @@ public class medical_incident_controller {
 
         player_id_textfield.clear();
         match_date_datepicker.setValue(null);
-        incident_type_combobox.setValue(null);
-        severity_combobox.setValue(null);
-        action_taken_combobox.setValue(null);
+        incident_type_combobox.getSelectionModel().clearSelection();
+        severity_combobox.getSelectionModel().clearSelection();
+        action_taken_combobox.getSelectionModel().clearSelection();
     }
 
     @FXML
-    public void severity_combobox_on_action(
-            ActionEvent actionEvent) {
+    public void severity_combobox_on_action(ActionEvent actionEvent) {
     }
 
     @FXML
-    public void incident_type_combobox_on_action(
-            ActionEvent actionEvent) {
+    public void incident_type_combobox_on_action(ActionEvent actionEvent) {
     }
 
     @FXML
-    public void action_taken_on_action(
-            ActionEvent actionEvent) {
+    public void action_taken_on_action(ActionEvent actionEvent) {
     }
 
     @FXML
-    public void back_button_on_action(
-            ActionEvent actionEvent) {
-
-        SceneSwitcher.switchTo(
-                "Arman/medical_officer/medical_officer_dashboard.fxml"
-        );
+    public void back_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/medical_officer/medical_officer_dashboard.fxml");
     }
 
-    private void showAlert(
-            Alert.AlertType alertType,
-            String title,
-            String message) {
+    private void showAlert(Alert.AlertType type, String title, String message) {
 
-        Alert alert =
-                new Alert(alertType);
-
+        Alert alert = new Alert(type);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);

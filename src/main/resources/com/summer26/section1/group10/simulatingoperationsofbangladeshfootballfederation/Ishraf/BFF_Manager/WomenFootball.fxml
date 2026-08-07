@@ -1,14 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.WomenFootballController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="532.0" prefWidth="1026.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.WomenFootballController">
+   <children>
+      <Text layoutX="85.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Program id:" />
+      <TextField fx:id="programidTF" layoutX="162.0" layoutY="86.0" />
+      <Text layoutX="342.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Program name:" />
+      <TextField fx:id="programNameTF" layoutX="430.0" layoutY="86.0" />
+      <Text layoutX="85.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="age:" />
+      <TextField fx:id="ageTF" layoutX="162.0" layoutY="128.0" />
+      <Text layoutX="349.0" layoutY="145.0" strokeType="OUTSIDE" strokeWidth="0.0" text="team name:" />
+      <TextField fx:id="teamNameTF" layoutX="430.0" layoutY="128.0" />
+      <Text layoutX="84.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="coach name:" />
+      <TextField fx:id="coachNameTF" layoutX="162.0" layoutY="172.0" />
+      <Text layoutX="349.0" layoutY="198.0" strokeType="OUTSIDE" strokeWidth="0.0" text="contact number:" />
+      <TextField fx:id="contactNumberTF" layoutX="442.0" layoutY="181.0" />
+      <Button layoutX="96.0" layoutY="226.0" mnemonicParsing="false" onAction="#createProgramButton" text="create program" />
+      <Button layoutX="216.0" layoutY="226.0" mnemonicParsing="false" onAction="#registerPlayerButton" text="register player" />
+      <Button layoutX="329.0" layoutY="226.0" mnemonicParsing="false" onAction="#registerClubButton" text="register club" />
+      <Button layoutX="660.0" layoutY="206.0" mnemonicParsing="false" onAction="#generateProgressButton" text="generate progress report" />
+      <TableView fx:id="createProgramTV" layoutX="60.0" layoutY="272.0" prefHeight="200.0" prefWidth="567.0">
+        <columns>
+          <TableColumn fx:id="programIdTC" prefWidth="75.0" text="Program id" />
+          <TableColumn fx:id="programNameTC" prefWidth="98.0" text="Program name" />
+            <TableColumn fx:id="ageTC" prefWidth="98.0" text="age" />
+            <TableColumn fx:id="teamNameTC" prefWidth="98.0" text="team name" />
+            <TableColumn fx:id="coachNameTC" prefWidth="98.0" text="coach name" />
+            <TableColumn fx:id="contactTC" prefWidth="98.0" text="contact number" />
+        </columns>
+      </TableView>
+      <TextArea fx:id="generateProgressTA" layoutX="660.0" layoutY="239.0" prefHeight="200.0" prefWidth="297.0" />
+      <Button layoutX="43.0" layoutY="24.0" mnemonicParsing="false" onAction="#backButton" text="back" />
+      <Label fx:id="messageLabel" layoutX="448.0" layoutY="212.0" prefHeight="54.0" prefWidth="166.0" text="Label" />
+   </children>
 </AnchorPane>

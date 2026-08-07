@@ -15,31 +15,21 @@ public class coach_information_controller {
 
     @FXML
     private ComboBox<String> coach_combobox;
-
     @FXML
     private Label coach_name_label;
-
     @FXML
     private Label coach_contact_label;
-
     @FXML
     private Label coach_specialization_label;
-
     @FXML
     private TextArea coach_schedule_textarea;
 
-    private final Map<String, String> contactNumberMap =
-            new LinkedHashMap<>();
-
-    private final Map<String, String> specializationMap =
-            new LinkedHashMap<>();
-
-    private final Map<String, String> scheduleMap =
-            new LinkedHashMap<>();
+    private final Map<String, String> contactNumberMap = new LinkedHashMap<>();
+    private final Map<String, String> specializationMap = new LinkedHashMap<>();
+    private final Map<String, String> scheduleMap = new LinkedHashMap<>();
 
     @FXML
     public void initialize() {
-
         initializeCoachNames();
         initializeContactNumbers();
         initializeSpecializations();
@@ -52,7 +42,6 @@ public class coach_information_controller {
     }
 
     private void initializeCoachNames() {
-
         coach_combobox.getItems().setAll(
                 "Coach Rahman",
                 "Coach Karim",
@@ -63,63 +52,22 @@ public class coach_information_controller {
     }
 
     private void initializeContactNumbers() {
-
-        contactNumberMap.put(
-                "Coach Rahman",
-                "01711000001"
-        );
-
-        contactNumberMap.put(
-                "Coach Karim",
-                "01711000002"
-        );
-
-        contactNumberMap.put(
-                "Coach Hasan",
-                "01711000003"
-        );
-
-        contactNumberMap.put(
-                "Coach Kabir",
-                "01711000004"
-        );
-
-        contactNumberMap.put(
-                "Coach Ahmed",
-                "01711000005"
-        );
+        contactNumberMap.put("Coach Rahman", "01711000001");
+        contactNumberMap.put("Coach Karim", "01711000002");
+        contactNumberMap.put("Coach Hasan", "01711000003");
+        contactNumberMap.put("Coach Kabir", "01711000004");
+        contactNumberMap.put("Coach Ahmed", "01711000005");
     }
 
     private void initializeSpecializations() {
-
-        specializationMap.put(
-                "Coach Rahman",
-                "Defensive Training"
-        );
-
-        specializationMap.put(
-                "Coach Karim",
-                "Attacking and Finishing"
-        );
-
-        specializationMap.put(
-                "Coach Hasan",
-                "Midfield Development"
-        );
-
-        specializationMap.put(
-                "Coach Kabir",
-                "Goalkeeping Training"
-        );
-
-        specializationMap.put(
-                "Coach Ahmed",
-                "Fitness and Tactical Training"
-        );
+        specializationMap.put("Coach Rahman", "Defensive Training");
+        specializationMap.put("Coach Karim", "Attacking and Finishing");
+        specializationMap.put("Coach Hasan", "Midfield Development");
+        specializationMap.put("Coach Kabir", "Goalkeeping Training");
+        specializationMap.put("Coach Ahmed", "Fitness and Tactical Training");
     }
 
     private void initializeSchedules() {
-
         scheduleMap.put(
                 "Coach Rahman",
                 "Sunday: 08:00 AM - 10:00 AM\n"
@@ -157,21 +105,15 @@ public class coach_information_controller {
     }
 
     @FXML
-    public void view_details_button_on_action(
-            ActionEvent actionEvent) {
+    public void view_details_button_on_action(ActionEvent actionEvent) {
+        String selectedCoach = coach_combobox.getValue();
 
-        String selectedCoach =
-                coach_combobox.getValue();
-
-        if (selectedCoach == null
-                || selectedCoach.isBlank()) {
-
+        if (selectedCoach == null || selectedCoach.isBlank()) {
             showAlert(
                     Alert.AlertType.ERROR,
                     "Coach Not Selected",
                     "Please select a coach first."
             );
-
             return;
         }
 
@@ -184,49 +126,29 @@ public class coach_information_controller {
         );
     }
 
-    private void displayCoachInformation(
-            String selectedCoach) {
-
-        coach_name_label.setText(
-                selectedCoach
-        );
+    private void displayCoachInformation(String selectedCoach) {
+        coach_name_label.setText(selectedCoach);
 
         coach_contact_label.setText(
-                contactNumberMap.getOrDefault(
-                        selectedCoach,
-                        "Not available"
-                )
+                contactNumberMap.getOrDefault(selectedCoach, "Not available")
         );
 
         coach_specialization_label.setText(
-                specializationMap.getOrDefault(
-                        selectedCoach,
-                        "Not available"
-                )
+                specializationMap.getOrDefault(selectedCoach, "Not available")
         );
 
         coach_schedule_textarea.setText(
-                scheduleMap.getOrDefault(
-                        selectedCoach,
-                        "No schedule is available."
-                )
+                scheduleMap.getOrDefault(selectedCoach, "No schedule is available.")
         );
 
         coach_schedule_textarea.positionCaret(0);
     }
 
     @FXML
-    public void coach_combobox_on_action(
-            ActionEvent actionEvent) {
-
-        /*
-         * Coach details are loaded only after
-         * clicking the View Details button.
-         */
+    public void coach_combobox_on_action(ActionEvent actionEvent) {
     }
 
     private void clearCoachInformation() {
-
         coach_name_label.setText("-");
         coach_contact_label.setText("-");
         coach_specialization_label.setText("-");
@@ -234,12 +156,8 @@ public class coach_information_controller {
     }
 
     @FXML
-    public void back_button_on_action(
-            ActionEvent actionEvent) {
-
-        SceneSwitcher.switchTo(
-                "Arman/player/player_dashboard.fxml"
-        );
+    public void back_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/player/player_dashboard.fxml");
     }
 
     private void showAlert(
@@ -248,11 +166,9 @@ public class coach_information_controller {
             String message) {
 
         Alert alert = new Alert(alertType);
-
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
-
         alert.showAndWait();
     }
 }

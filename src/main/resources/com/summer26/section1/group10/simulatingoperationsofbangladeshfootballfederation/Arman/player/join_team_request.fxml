@@ -48,7 +48,6 @@
 
             </Label>
 
-            <!-- Request Form -->
             <VBox maxWidth="970.0" spacing="14.0" style="-fx-background-color: WHITE;                          -fx-background-radius: 10;                          -fx-border-color: #D5E3D8;                          -fx-border-radius: 10;">
 
                 <padding>
@@ -119,7 +118,6 @@
 
             </VBox>
 
-            <!-- Request History -->
             <VBox maxWidth="970.0" spacing="9.0" style="-fx-background-color: WHITE;                          -fx-background-radius: 10;                          -fx-border-color: #D5E3D8;                          -fx-border-radius: 10;">
 
                 <padding>
@@ -162,7 +160,6 @@
 
             </VBox>
 
-            <!-- Bottom Navigation -->
             <HBox alignment="CENTER" maxWidth="970.0">
 
                 <Button mnemonicParsing="false" onAction="#back_button_on_action" prefWidth="105.0" text="← Back" />

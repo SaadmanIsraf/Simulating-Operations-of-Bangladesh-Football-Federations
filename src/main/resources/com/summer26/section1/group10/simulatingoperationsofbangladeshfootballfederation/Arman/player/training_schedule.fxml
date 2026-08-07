@@ -62,7 +62,6 @@
                 </font>
             </Label>
 
-            <!-- Enrollment Section -->
             <VBox maxWidth="1000.0"
                   spacing="14.0"
                   style="-fx-background-color: WHITE;
@@ -224,7 +223,6 @@
                 </GridPane>
             </VBox>
 
-            <!-- Search Section -->
             <VBox maxWidth="1000.0"
                   spacing="10.0"
                   style="-fx-background-color: #E7F0E9;
@@ -294,7 +292,7 @@
                 </HBox>
             </VBox>
 
-            <!-- Training Table -->
+
             <VBox maxWidth="1000.0"
                   spacing="7.0">
 
@@ -348,7 +346,7 @@
                 </TableView>
             </VBox>
 
-            <!-- Large Search Result Card -->
+
             <VBox maxWidth="1000.0"
                   spacing="8.0"
                   style="-fx-background-color: WHITE;
@@ -395,7 +393,6 @@
                 </font>
             </Label>
 
-            <!-- Bottom Navigation -->
             <HBox alignment="CENTER"
                   maxWidth="1000.0">
 

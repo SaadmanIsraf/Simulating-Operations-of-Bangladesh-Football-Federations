@@ -15,43 +15,27 @@ public class tournament_rules_controller {
 
     @FXML
     private TextArea tournament_rules_textarea;
-
     @FXML
     private TextArea match_regulations_textarea;
-
     @FXML
     private ComboBox<String> tournament_combobox;
-
     @FXML
     private TextArea code_of_conduct_textarea;
-
     @FXML
     private Label information_label;
-
     @FXML
     private TextArea disciplinary_guidelines_textarea;
-
     @FXML
     private TextArea eligibility_criteria_textarea;
 
-    private final Map<String, String> tournamentRulesMap =
-            new LinkedHashMap<>();
-
-    private final Map<String, String> eligibilityCriteriaMap =
-            new LinkedHashMap<>();
-
-    private final Map<String, String> codeOfConductMap =
-            new LinkedHashMap<>();
-
-    private final Map<String, String> matchRegulationsMap =
-            new LinkedHashMap<>();
-
-    private final Map<String, String> disciplinaryGuidelinesMap =
-            new LinkedHashMap<>();
+    private final Map<String, String> tournamentRulesMap = new LinkedHashMap<>();
+    private final Map<String, String> eligibilityCriteriaMap = new LinkedHashMap<>();
+    private final Map<String, String> codeOfConductMap = new LinkedHashMap<>();
+    private final Map<String, String> matchRegulationsMap = new LinkedHashMap<>();
+    private final Map<String, String> disciplinaryGuidelinesMap = new LinkedHashMap<>();
 
     @FXML
     public void initialize() {
-
         initializeTournamentNames();
         initializeTournamentRules();
         initializeEligibilityCriteria();
@@ -69,7 +53,6 @@ public class tournament_rules_controller {
     }
 
     private void initializeTournamentNames() {
-
         tournament_combobox.getItems().setAll(
                 "Bangladesh Premier League",
                 "Federation Cup",
@@ -80,7 +63,6 @@ public class tournament_rules_controller {
     }
 
     private void initializeTournamentRules() {
-
         tournamentRulesMap.put(
                 "Bangladesh Premier League",
                 "The tournament follows a league format where each team plays "
@@ -122,7 +104,6 @@ public class tournament_rules_controller {
     }
 
     private void initializeEligibilityCriteria() {
-
         eligibilityCriteriaMap.put(
                 "Bangladesh Premier League",
                 "Players must be officially registered with a participating club. "
@@ -160,7 +141,6 @@ public class tournament_rules_controller {
     }
 
     private void initializeCodeOfConduct() {
-
         codeOfConductMap.put(
                 "Bangladesh Premier League",
                 "Players must respect match officials, opponents, teammates and "
@@ -199,7 +179,6 @@ public class tournament_rules_controller {
     }
 
     private void initializeMatchRegulations() {
-
         matchRegulationsMap.put(
                 "Bangladesh Premier League",
                 "Each match consists of two halves of 45 minutes with a halftime "
@@ -237,7 +216,6 @@ public class tournament_rules_controller {
     }
 
     private void initializeDisciplinaryGuidelines() {
-
         disciplinaryGuidelinesMap.put(
                 "Bangladesh Premier League",
                 "Yellow and red cards are recorded throughout the competition. "
@@ -275,32 +253,22 @@ public class tournament_rules_controller {
     }
 
     @FXML
-    public void tournament_combobox_on_action(
-            ActionEvent actionEvent) {
-
-        String selectedTournament =
-                tournament_combobox.getValue();
+    public void tournament_combobox_on_action(ActionEvent actionEvent) {
+        String selectedTournament = tournament_combobox.getValue();
 
         if (selectedTournament == null) {
-
             clearTournamentInformation();
             return;
         }
 
-        displayTournamentInformation(
-                selectedTournament
-        );
+        displayTournamentInformation(selectedTournament);
 
         information_label.setText(
-                selectedTournament
-                        + " information loaded successfully."
+                selectedTournament + " information loaded successfully."
         );
     }
 
-
-    private void displayTournamentInformation(
-            String tournamentName) {
-
+    private void displayTournamentInformation(String tournamentName) {
         tournament_rules_textarea.setText(
                 tournamentRulesMap.getOrDefault(
                         tournamentName,
@@ -340,7 +308,6 @@ public class tournament_rules_controller {
     }
 
     private void clearTournamentInformation() {
-
         tournament_rules_textarea.clear();
         eligibility_criteria_textarea.clear();
         code_of_conduct_textarea.clear();
@@ -350,7 +317,6 @@ public class tournament_rules_controller {
     }
 
     private void moveTextAreasToTop() {
-
         tournament_rules_textarea.positionCaret(0);
         eligibility_criteria_textarea.positionCaret(0);
         code_of_conduct_textarea.positionCaret(0);
@@ -359,12 +325,8 @@ public class tournament_rules_controller {
     }
 
     @FXML
-    public void back_button_on_action(
-            ActionEvent actionEvent) {
-
-        SceneSwitcher.switchTo(
-                "Arman/player/player_dashboard.fxml"
-        );
+    public void back_button_on_action(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Arman/player/player_dashboard.fxml");
     }
 
     private void showAlert(

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="expence_date_datepicker" prefHeight="613.0" prefWidth="766.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.record_expense_Controller">
+   <children>
+      <HBox alignment="CENTER" prefHeight="100.0" prefWidth="765.0" style="-fx-background-color: #1E90FF;">
+         <children>
+            <Label text="Record Expense" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Button layoutX="325.0" layoutY="315.0" mnemonicParsing="false" onAction="#saveButtonOA" prefHeight="26.0" prefWidth="138.0" style="-fx-background-color: #1E90FF;" text="Save" />
+      <Text layoutX="25.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Record ID:" />
+      <Text layoutX="35.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Source :" />
+      <TextField fx:id="recordIDTF" layoutX="88.0" layoutY="119.0" />
+      <TextField fx:id="expenseIDTF" layoutX="87.0" layoutY="164.0" />
+      <TextField fx:id="expense_sourceTF" layoutX="88.0" layoutY="205.0" />
+      <TextField fx:id="expense_typeTF" layoutX="88.0" layoutY="245.0" />
+      <Text layoutX="501.0" layoutY="136.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount:" />
+      <Text layoutX="510.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date:" />
+      <Text layoutX="501.0" layoutY="222.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description:" />
+      <TextField fx:id="expense__amountTF" layoutX="559.0" layoutY="119.0" />
+      <TextField fx:id="descriptionTF" layoutX="573.0" layoutY="204.0" prefHeight="59.0" prefWidth="150.0" />
+      <Text layoutX="19.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Expense  ID:" />
+      <Text layoutX="36.0" layoutY="258.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type:" />
+      <DatePicker fx:id="expense_datepicker" layoutX="565.0" layoutY="157.0" prefHeight="26.0" prefWidth="157.0" />
+      <TableView fx:id="expense_tableview" layoutX="2.0" layoutY="361.0" prefHeight="200.0" prefWidth="766.0">
+        <columns>
+          <TableColumn fx:id="recordID_column" prefWidth="75.0" text="Record ID" />
+          <TableColumn fx:id="expenseID_column" prefWidth="109.5999755859375" text="Expense ID" />
+            <TableColumn fx:id="expense_source_column" prefWidth="152.0" text="Source " />
+            <TableColumn fx:id="expense_type_column" prefWidth="121.60003662109375" text="Type" />
+            <TableColumn fx:id="expense_amount_column" prefWidth="86.39996337890625" text="Amount" />
+            <TableColumn fx:id="expense_date_column" prefWidth="102.39996337890625" text="Date" />
+            <TableColumn fx:id="description_column" prefWidth="119.20001220703125" text="Description" />
+        </columns>
+      </TableView>
+      <Button layoutX="38.0" layoutY="574.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="26.0" prefWidth="45.0" text="Back" />
+      <Button layoutX="683.0" layoutY="574.0" mnemonicParsing="false" onAction="#clearButtonOA" text="Clean" />
+   </children>
+</AnchorPane>

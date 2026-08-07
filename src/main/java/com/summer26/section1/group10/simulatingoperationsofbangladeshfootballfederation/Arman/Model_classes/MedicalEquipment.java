@@ -10,16 +10,15 @@ public class MedicalEquipment implements Serializable {
     private String condition;
     private String storageLocation;
 
-    // Default Constructor
     public MedicalEquipment() {
     }
 
-    // Parameterized Constructor
-    public MedicalEquipment(int equipmentId,
-                            String equipmentName,
-                            int quantityAvailable,
-                            String condition,
-                            String storageLocation) {
+    public MedicalEquipment(
+            int equipmentId,
+            String equipmentName,
+            int quantityAvailable,
+            String condition,
+            String storageLocation) {
 
         this.equipmentId = equipmentId;
         this.equipmentName = equipmentName;
@@ -28,44 +27,40 @@ public class MedicalEquipment implements Serializable {
         this.storageLocation = storageLocation;
     }
 
-    // Getters
-
     public int getEquipmentId() {
         return equipmentId;
+    }
+
+    public void setEquipmentId(int equipmentId) {
+        this.equipmentId = equipmentId;
     }
 
     public String getEquipmentName() {
         return equipmentName;
     }
 
-    public int getQuantityAvailable() {
-        return quantityAvailable;
-    }
-
-    public String getCondition() {
-        return condition;
-    }
-
-    public String getStorageLocation() {
-        return storageLocation;
-    }
-
-    // Setters
-
-    public void setEquipmentId(int equipmentId) {
-        this.equipmentId = equipmentId;
-    }
-
     public void setEquipmentName(String equipmentName) {
         this.equipmentName = equipmentName;
+    }
+
+    public int getQuantityAvailable() {
+        return quantityAvailable;
     }
 
     public void setQuantityAvailable(int quantityAvailable) {
         this.quantityAvailable = quantityAvailable;
     }
 
+    public String getCondition() {
+        return condition;
+    }
+
     public void setCondition(String condition) {
         this.condition = condition;
+    }
+
+    public String getStorageLocation() {
+        return storageLocation;
     }
 
     public void setStorageLocation(String storageLocation) {

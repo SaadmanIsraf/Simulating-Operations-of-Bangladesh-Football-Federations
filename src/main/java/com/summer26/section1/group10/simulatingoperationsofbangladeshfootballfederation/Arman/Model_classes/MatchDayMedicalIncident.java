@@ -13,11 +13,9 @@ public class MatchDayMedicalIncident implements Serializable {
     private String severity;
     private String actionTaken;
 
-    // Default Constructor
     public MatchDayMedicalIncident() {
     }
 
-    // Parameterized Constructor
     public MatchDayMedicalIncident(
             int incidentId,
             int playerId,
@@ -33,60 +31,57 @@ public class MatchDayMedicalIncident implements Serializable {
         this.severity = severity;
         this.actionTaken = actionTaken;
     }
-    // Getters
 
     public int getIncidentId() {
         return incidentId;
+    }
+
+    public void setIncidentId(int incidentId) {
+        this.incidentId = incidentId;
     }
 
     public int getPlayerId() {
         return playerId;
     }
 
-    public LocalDate getMatchDate() {
-        return matchDate;
-    }
-
-    public int getMatchMinute() {
-        return matchMinute;
-    }
-
-    public String getIncidentType() {
-        return incidentType;
-    }
-
-    public String getSeverity() {
-        return severity;
-    }
-
-    public String getActionTaken() {
-        return actionTaken;
-    }
-
-    // Setters
-
-    public void setIncidentId(int incidentId) {
-        this.incidentId = incidentId;
-    }
-
     public void setPlayerId(int playerId) {
         this.playerId = playerId;
+    }
+
+    public LocalDate getMatchDate() {
+        return matchDate;
     }
 
     public void setMatchDate(LocalDate matchDate) {
         this.matchDate = matchDate;
     }
 
+    public int getMatchMinute() {
+        return matchMinute;
+    }
+
     public void setMatchMinute(int matchMinute) {
         this.matchMinute = matchMinute;
+    }
+
+    public String getIncidentType() {
+        return incidentType;
     }
 
     public void setIncidentType(String incidentType) {
         this.incidentType = incidentType;
     }
 
+    public String getSeverity() {
+        return severity;
+    }
+
     public void setSeverity(String severity) {
         this.severity = severity;
+    }
+
+    public String getActionTaken() {
+        return actionTaken;
     }
 
     public void setActionTaken(String actionTaken) {

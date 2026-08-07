@@ -9,6 +9,7 @@ import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfed
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.medical_officer_manager.TreatmentPlanManager;
 import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 
@@ -17,39 +18,39 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class player_rehabitation_progress_controller
-{
-    @javafx.fxml.FXML
+public class player_rehabitation_progress_controller {
+
+    @FXML
     private TableColumn<RehabilitationProgress, Integer> player_id_column;
-    @javafx.fxml.FXML
+    @FXML
     private TableColumn<RehabilitationProgress, LocalDate> progress_date_column;
-    @javafx.fxml.FXML
+    @FXML
     private TableColumn<RehabilitationProgress, Integer> session_status_column;
-    @javafx.fxml.FXML
+    @FXML
     private TextField player_id_textfield;
-    @javafx.fxml.FXML
+    @FXML
     private TableView<RehabilitationProgress> player_rehabitation_tableview;
-    @javafx.fxml.FXML
+    @FXML
     private TableColumn<RehabilitationProgress, String> note_column;
-    @javafx.fxml.FXML
+    @FXML
     private TableColumn<RehabilitationProgress, String> update_fitness_status_column;
-    @javafx.fxml.FXML
+    @FXML
     private DatePicker progress_date_datepicker;
-    @javafx.fxml.FXML
+    @FXML
     private TableColumn<RehabilitationProgress, Double> recovery_percentage_column;
-    @javafx.fxml.FXML
+    @FXML
     private ComboBox<Integer> physiotherapy_sessions_completed_combobox;
-    @javafx.fxml.FXML
+    @FXML
     private ComboBox<String> updated_fitness_status_combobox;
-    @javafx.fxml.FXML
+    @FXML
     private ComboBox<Double> recovery_percentage_combobox;
-    @javafx.fxml.FXML
+    @FXML
     private TextField physical_condition_note_textfield;
 
     private final List<Player> playerList = new ArrayList<>();
     private static final String PLAYER_FILE_NAME = "players.bin";
 
-    @javafx.fxml.FXML
+    @FXML
     public void initialize() {
 
         recovery_percentage_combobox.getItems().addAll(
@@ -68,29 +69,12 @@ public class player_rehabitation_progress_controller
                 "Fit"
         );
 
-        player_id_column.setCellValueFactory(
-                new PropertyValueFactory<>("playerId")
-        );
-
-        progress_date_column.setCellValueFactory(
-                new PropertyValueFactory<>("progressDate")
-        );
-
-        recovery_percentage_column.setCellValueFactory(
-                new PropertyValueFactory<>("recoveryPercentage")
-        );
-
-        update_fitness_status_column.setCellValueFactory(
-                new PropertyValueFactory<>("updatedFitnessStatus")
-        );
-
-        session_status_column.setCellValueFactory(
-                new PropertyValueFactory<>("physiotherapySessionsCompleted")
-        );
-
-        note_column.setCellValueFactory(
-                new PropertyValueFactory<>("physicalConditionNotes")
-        );
+        player_id_column.setCellValueFactory(new PropertyValueFactory<>("playerId"));
+        progress_date_column.setCellValueFactory(new PropertyValueFactory<>("progressDate"));
+        recovery_percentage_column.setCellValueFactory(new PropertyValueFactory<>("recoveryPercentage"));
+        update_fitness_status_column.setCellValueFactory(new PropertyValueFactory<>("updatedFitnessStatus"));
+        session_status_column.setCellValueFactory(new PropertyValueFactory<>("physiotherapySessionsCompleted"));
+        note_column.setCellValueFactory(new PropertyValueFactory<>("physicalConditionNotes"));
 
         player_rehabitation_tableview.getItems().addAll(
                 RehabilitationProgressManager.getProgressList()
@@ -99,12 +83,12 @@ public class player_rehabitation_progress_controller
         loadPlayersFromFile();
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void physiotherapy_sessions_completed_combobox_on_action(
             ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void save_button_on_action(ActionEvent actionEvent) {
 
         String playerIdText = player_id_textfield.getText().trim();
@@ -136,9 +120,7 @@ public class player_rehabitation_progress_controller
 
         try {
             playerId = Integer.parseInt(playerIdText);
-
         } catch (NumberFormatException e) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Invalid Player ID",
@@ -148,7 +130,6 @@ public class player_rehabitation_progress_controller
         }
 
         if (playerId <= 0) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Invalid Player ID",
@@ -158,7 +139,6 @@ public class player_rehabitation_progress_controller
         }
 
         if (progressDate.isAfter(LocalDate.now())) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Invalid Progress Date",
@@ -168,7 +148,6 @@ public class player_rehabitation_progress_controller
         }
 
         if (recoveryPercentage < 0 || recoveryPercentage > 100) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Invalid Recovery Percentage",
@@ -180,7 +159,6 @@ public class player_rehabitation_progress_controller
         Player foundPlayer = null;
 
         for (Player player : playerList) {
-
             if (player.getId() == playerId) {
                 foundPlayer = player;
                 break;
@@ -188,7 +166,6 @@ public class player_rehabitation_progress_controller
         }
 
         if (foundPlayer == null) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "Player Not Found",
@@ -211,7 +188,6 @@ public class player_rehabitation_progress_controller
         }
 
         if (activeInjuryReport == null) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "No Active Injury",
@@ -234,7 +210,6 @@ public class player_rehabitation_progress_controller
         }
 
         if (activeTreatmentPlan == null) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "No Treatment Plan",
@@ -257,16 +232,15 @@ public class player_rehabitation_progress_controller
         int progressId =
                 RehabilitationProgressManager.getProgressList().size() + 1;
 
-        RehabilitationProgress progress =
-                new RehabilitationProgress(
-                        progressId,
-                        playerId,
-                        progressDate,
-                        recoveryPercentage,
-                        completedSessions,
-                        physicalConditionNote,
-                        updatedFitnessStatus
-                );
+        RehabilitationProgress progress = new RehabilitationProgress(
+                progressId,
+                playerId,
+                progressDate,
+                recoveryPercentage,
+                completedSessions,
+                physicalConditionNote,
+                updatedFitnessStatus
+        );
 
         RehabilitationProgressManager.addProgress(progress);
         RehabilitationProgressManager.saveToFile();
@@ -295,24 +269,23 @@ public class player_rehabitation_progress_controller
         clearFields();
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void recovery_percentage_combobox_on_action(
             ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void physical_condition_note_textfield_on_action(
             ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void updated_fitness_status_combobox_on_action(
             ActionEvent actionEvent) {
     }
 
-    @javafx.fxml.FXML
+    @FXML
     public void back_button_on_action(ActionEvent actionEvent) {
-
         SceneSwitcher.switchTo(
                 "Arman/medical_officer/medical_officer_dashboard.fxml"
         );
@@ -347,7 +320,6 @@ public class player_rehabitation_progress_controller
             out.writeObject(tempList);
 
         } catch (IOException e) {
-
             showAlert(
                     Alert.AlertType.ERROR,
                     "File Error",

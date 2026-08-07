@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.FootballAcademicsController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="450.0" prefWidth="1190.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.FootballAcademicsController">
+   <children>
+      <Text layoutX="78.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academy ID:" />
+      <TextField fx:id="academyIdTF" layoutX="183.0" layoutY="52.0" />
+      <Text layoutX="78.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academy Name:" />
+      <Text layoutX="78.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academy Location:" />
+      <TextField fx:id="academyNameTF" layoutX="183.0" layoutY="82.0" />
+      <TextField fx:id="academyLocationTF" layoutX="183.0" layoutY="113.0" />
+      <Text layoutX="366.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Academy Type:" />
+      <Text layoutX="366.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Head Coach Name:" />
+      <Text layoutX="366.0" layoutY="130.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number:" />
+      <ComboBox fx:id="academyTypeTF" layoutX="475.0" layoutY="52.0" prefHeight="25.0" prefWidth="86.0" />
+      <TextField fx:id="headCoachTF" layoutX="475.0" layoutY="82.0" />
+      <TextField fx:id="coachNumberTF" layoutX="475.0" layoutY="113.0" />
+      <Text layoutX="635.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Number of Players:" />
+      <TextField fx:id="numberOfPlayersTF" layoutX="742.0" layoutY="44.0" prefHeight="25.0" prefWidth="54.0" />
+      <Button layoutX="72.0" layoutY="156.0" mnemonicParsing="false" onAction="#registerButton" text="Register Academy" />
+      <Button layoutX="196.0" layoutY="156.0" mnemonicParsing="false" onAction="#updateAcademyButton" text="Update Academy" />
+      <Button layoutX="831.0" layoutY="175.0" mnemonicParsing="false" onAction="#displayAcademyButton" text="Display Academy" />
+      <Button layoutX="318.0" layoutY="156.0" mnemonicParsing="false" onAction="#updateLicenseButton" text="Update License" />
+      <Button layoutX="434.0" layoutY="156.0" mnemonicParsing="false" onAction="#chechExpiryButton" text="Check Expiry" />
+      <TextArea fx:id="displayAcademyTA" layoutX="831.0" layoutY="213.0" prefHeight="193.0" prefWidth="340.0" />
+      <TableView fx:id="registerAcademyTV" layoutX="83.0" layoutY="209.0" prefHeight="200.0" prefWidth="729.0">
+        <columns>
+          <TableColumn fx:id="academyIdTC" prefWidth="75.0" text="Academy ID" />
+          <TableColumn fx:id="academyNameTC" prefWidth="97.0" text="Academy Name" />
+            <TableColumn fx:id="academyLocationTC" prefWidth="112.0" text="Academy Location" />
+            <TableColumn fx:id="academyTypeTC" prefWidth="92.0" text="Academy Type" />
+            <TableColumn fx:id="headCoachTC" prefWidth="113.0" text="Head Coach Name:" />
+            <TableColumn fx:id="contactTC" prefWidth="113.0" text="Contact Number" />
+            <TableColumn fx:id="numberOfPlayersTC" prefWidth="113.0" text="Number of Players" />
+        </columns>
+      </TableView>
+      <Label fx:id="messageLabel2" layoutX="964.0" layoutY="125.0" prefHeight="63.0" prefWidth="149.0" text="Label" />
+      <Label fx:id="messageLabel1" layoutX="536.0" layoutY="142.0" prefHeight="57.0" prefWidth="173.0" text="Label" />
+      <Button layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" text="back" />
+   </children>
 </AnchorPane>

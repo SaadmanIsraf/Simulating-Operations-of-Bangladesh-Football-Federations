@@ -18,7 +18,6 @@ public class TrainingSchedule implements Serializable {
     private ArrayList<Integer> enrolledPlayerIds;
 
     public TrainingSchedule() {
-
         enrolledPlayerIds = new ArrayList<>();
     }
 
@@ -37,14 +36,9 @@ public class TrainingSchedule implements Serializable {
         this.coachName = coachName;
 
         if (enrolledPlayerIds == null) {
-
-            this.enrolledPlayerIds =
-                    new ArrayList<>();
-
+            this.enrolledPlayerIds = new ArrayList<>();
         } else {
-
-            this.enrolledPlayerIds =
-                    enrolledPlayerIds;
+            this.enrolledPlayerIds = enrolledPlayerIds;
         }
     }
 
@@ -52,24 +46,43 @@ public class TrainingSchedule implements Serializable {
         return trainingId;
     }
 
+    public void setTrainingId(int trainingId) {
+        this.trainingId = trainingId;
+    }
+
     public LocalDate getTrainingDate() {
         return trainingDate;
+    }
+
+    public void setTrainingDate(LocalDate trainingDate) {
+        this.trainingDate = trainingDate;
     }
 
     public String getTrainingTime() {
         return trainingTime;
     }
 
+    public void setTrainingTime(String trainingTime) {
+        this.trainingTime = trainingTime;
+    }
+
     public String getVenue() {
         return venue;
+    }
+
+    public void setVenue(String venue) {
+        this.venue = venue;
     }
 
     public String getCoachName() {
         return coachName;
     }
 
-    public ArrayList<Integer> getEnrolledPlayerIds() {
+    public void setCoachName(String coachName) {
+        this.coachName = coachName;
+    }
 
+    public ArrayList<Integer> getEnrolledPlayerIds() {
         if (enrolledPlayerIds == null) {
             enrolledPlayerIds = new ArrayList<>();
         }
@@ -77,14 +90,19 @@ public class TrainingSchedule implements Serializable {
         return enrolledPlayerIds;
     }
 
-    public String getEnrollmentCount() {
+    public void setEnrolledPlayerIds(ArrayList<Integer> enrolledPlayerIds) {
+        if (enrolledPlayerIds == null) {
+            this.enrolledPlayerIds = new ArrayList<>();
+        } else {
+            this.enrolledPlayerIds = enrolledPlayerIds;
+        }
+    }
 
-        return getEnrolledPlayerIds().size()
-                + " / 11";
+    public String getEnrollmentCount() {
+        return getEnrolledPlayerIds().size() + " / 11";
     }
 
     public String getSessionStatus() {
-
         if (getEnrolledPlayerIds().size() >= 11) {
             return "Full";
         }
@@ -92,58 +110,15 @@ public class TrainingSchedule implements Serializable {
         return "Available";
     }
 
-    public void setTrainingId(int trainingId) {
-        this.trainingId = trainingId;
-    }
-
-    public void setTrainingDate(
-            LocalDate trainingDate) {
-
-        this.trainingDate = trainingDate;
-    }
-
-    public void setTrainingTime(
-            String trainingTime) {
-
-        this.trainingTime = trainingTime;
-    }
-
-    public void setVenue(String venue) {
-        this.venue = venue;
-    }
-
-    public void setCoachName(
-            String coachName) {
-
-        this.coachName = coachName;
-    }
-
-    public void setEnrolledPlayerIds(
-            ArrayList<Integer> enrolledPlayerIds) {
-
-        if (enrolledPlayerIds == null) {
-
-            this.enrolledPlayerIds =
-                    new ArrayList<>();
-
-        } else {
-
-            this.enrolledPlayerIds =
-                    enrolledPlayerIds;
-        }
-    }
-
     @Override
     public String toString() {
-
         return "TrainingSchedule{" +
                 "trainingId=" + trainingId +
                 ", trainingDate=" + trainingDate +
                 ", trainingTime='" + trainingTime + '\'' +
                 ", venue='" + venue + '\'' +
                 ", coachName='" + coachName + '\'' +
-                ", enrolledPlayerIds=" +
-                enrolledPlayerIds +
+                ", enrolledPlayerIds=" + enrolledPlayerIds +
                 '}';
     }
 }

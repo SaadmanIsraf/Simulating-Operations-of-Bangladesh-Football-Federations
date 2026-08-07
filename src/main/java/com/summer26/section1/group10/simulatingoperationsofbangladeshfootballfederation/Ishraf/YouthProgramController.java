@@ -96,4 +96,8 @@ public class YouthProgramController
     @javafx.fxml.FXML
     public void RegisterPlayerButton(ActionEvent actionEvent) {
     }
+
+    @javafx.fxml.FXML
+    public void backButton(ActionEvent actionEvent) {
+    }
 }

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="632.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.financial_officer_profile_Controller">
+   <children>
+      <HBox alignment="CENTER" layoutY="-2.0" prefHeight="86.0" prefWidth="742.0" style="-fx-background-color: #1E90FF;">
+         <children>
+            <Label text="Financial Officer Profile" textFill="WHITE">
+               <font>
+                  <Font name="Times New Roman" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <Label contentDisplay="CENTER" layoutX="220.0" layoutY="111.0" prefHeight="28.0" prefWidth="302.0" text="       View  and  Update  Profile  Information">
+         <font>
+            <Font name="Times New Roman" size="17.0" />
+         </font>
+      </Label>
+      <TextField fx:id="officerIDTF" layoutX="355.0" layoutY="180.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter ID" />
+      <TextField layoutX="355.0" layoutY="221.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Full Name" />
+      <TextField fx:id="financialOfficerEmailTF" layoutX="355.0" layoutY="263.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Valid Email" />
+      <TextField fx:id="financialOfficerContactNumberTF" layoutX="355.0" layoutY="307.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter 11 digit ContactNumber" />
+      <TextField fx:id="financialOfficerDepartmentTF" layoutX="355.0" layoutY="346.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Department" />
+      <Text layoutX="248.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FinancialOfficer ID:" />
+      <Text layoutX="283.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name:" />
+      <Text layoutX="283.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email::" wrappingWidth="56.044921875" />
+      <Text layoutX="272.0" layoutY="363.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Department:" />
+      <Text layoutX="252.0" layoutY="324.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Contact Number:" />
+      <Text layoutX="297.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position:" />
+      <Text layoutX="248.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Password :" />
+      <Text layoutX="265.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Password:" />
+      <TextField fx:id="financialOfficerPositionTF" layoutX="357.0" layoutY="387.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Position" />
+      <TextField fx:id="financialOfficerCurrentPasswordTF" layoutX="357.0" layoutY="423.0" prefHeight="26.0" prefWidth="182.0" promptText="Required To Change Password" />
+      <TextField fx:id="financialOfficerNewPasswordTF" layoutX="355.0" layoutY="459.0" prefHeight="26.0" prefWidth="182.0" promptText="Leave Empty If  Unchanged" />
+      <Button layoutX="42.0" layoutY="582.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="26.0" prefWidth="56.0" text="Back" />
+      <Button layoutX="383.0" layoutY="576.0" mnemonicParsing="false" onAction="#saveButtonOA" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #1E90FF;" text="Save" />
+      <Button layoutX="654.0" layoutY="582.0" mnemonicParsing="false" onAction="#refreshButtonOA" prefHeight="26.0" prefWidth="56.0" style="-fx-background-color: #90EE90;" text="Refresh" />
+   </children>
+</AnchorPane>

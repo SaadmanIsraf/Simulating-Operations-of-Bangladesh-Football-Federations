@@ -1,6 +1,6 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf;
 
-public class FundingRecordController
+public class VenuesController
 {
     @javafx.fxml.FXML
     public void initialize() {
