@@ -2,7 +2,6 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -20,24 +19,32 @@ import java.util.ArrayList;
 
 public class SeatManagementController {
 
-    @FXML
+    private static final String SEAT_FILE = "seats.bin";
+
+    @javafx.fxml.FXML
     private ComboBox<String> matchComboBox;
-    @FXML
+
+    @javafx.fxml.FXML
     private TextField availableSeatsField;
-    @FXML
+
+    @javafx.fxml.FXML
     private Label statusLabel;
-    @FXML
+
+    @javafx.fxml.FXML
     private TableView<SeatModel> seatTable;
-    @FXML
+
+    @javafx.fxml.FXML
     private TableColumn<SeatModel, String> matchColumn;
-    @FXML
+
+    @javafx.fxml.FXML
     private TableColumn<SeatModel, Integer> totalSeatsColumn;
-    @FXML
+
+    @javafx.fxml.FXML
     private TableColumn<SeatModel, Integer> availableSeatsColumn;
 
-    private final ArrayList<SeatModel> allSeats = new ArrayList<>();
+    private ArrayList<SeatModel> allSeats = new ArrayList<>();
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
 
         matchColumn.setCellValueFactory(new PropertyValueFactory<>("match"));
@@ -49,13 +56,18 @@ public class SeatManagementController {
                 "Mohammedan SC vs Sheikh Russel"
         );
 
-        allSeats.add(new SeatModel("Bashundhara Kings vs Abahani Limited", 5000, 3200));
-        allSeats.add(new SeatModel("Mohammedan SC vs Sheikh Russel", 4000, 4000));
+        allSeats = FileStorageUtil.loadData(SEAT_FILE);
+
+        if (allSeats.isEmpty()) {
+            allSeats.add(new SeatModel("Bashundhara Kings vs Abahani Limited", 5000, 3200));
+            allSeats.add(new SeatModel("Mohammedan SC vs Sheikh Russel", 4000, 4000));
+            FileStorageUtil.saveData(SEAT_FILE, allSeats);
+        }
 
         seatTable.setItems(FXCollections.observableArrayList(allSeats));
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void updateSeats() {
 
         String selectedMatch = matchComboBox.getValue();
@@ -102,20 +114,23 @@ public class SeatManagementController {
         }
 
         found.setAvailableSeats(newAvailableSeats);
+
+        FileStorageUtil.saveData(SEAT_FILE, allSeats);
+
         seatTable.setItems(FXCollections.observableArrayList(allSeats));
         availableSeatsField.clear();
 
-        statusLabel.setText("Seat availability updated for " + selectedMatch + ".");
+        statusLabel.setText("Seat availability updated and saved for " + selectedMatch + ".");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void backBtnOnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ruba/TicketManagerDashboard.fxml"));
         Parent home = loader.load();
         Stage stage = (Stage) ((Node) actionEvent.getSource()).getScene().getWindow();
         stage.setScene(new Scene(home));
-        stage.setTitle("Ticket Manager Dashboard");
+        stage.setTitle("Seat Management");
         stage.show();
     }
 }

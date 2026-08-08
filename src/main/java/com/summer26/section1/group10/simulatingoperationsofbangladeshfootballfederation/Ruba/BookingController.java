@@ -1,7 +1,6 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba;
 
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -15,34 +14,41 @@ import java.util.ArrayList;
 
 public class BookingController {
 
-    @FXML
+    private static final String BOOKING_FILE = "bookings.bin";
+
+    @javafx.fxml.FXML
     private TextField bookingIdField;
-    @FXML
+    @javafx.fxml.FXML
     private Label matchLabel;
-    @FXML
+    @javafx.fxml.FXML
     private Label customerLabel;
-    @FXML
+    @javafx.fxml.FXML
     private Label quantityLabel;
-    @FXML
+    @javafx.fxml.FXML
     private Label statusValueLabel;
-    @FXML
+    @javafx.fxml.FXML
     private Label statusLabel;
 
-    private final ArrayList<BookingModel> allBookings = new ArrayList<>();
+    private ArrayList<BookingModel> allBookings = new ArrayList<>();
 
     private BookingModel selectedBooking;
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
 
-        allBookings.add(new BookingModel("BK001", "Bashundhara Kings vs Abahani Limited", "Rahim Uddin", 2, "Booked"));
-        allBookings.add(new BookingModel("BK002", "Mohammedan SC vs Sheikh Russel", "Karim Ahmed", 4, "Booked"));
-        allBookings.add(new BookingModel("BK003", "Bashundhara Kings vs Abahani Limited", "Nusrat Jahan", 1, "Cancelled"));
+        allBookings = FileStorageUtil.loadData(BOOKING_FILE);
+
+        if (allBookings.isEmpty()) {
+            allBookings.add(new BookingModel("BK001", "Bashundhara Kings vs Abahani Limited", "Rahim Uddin", 2, "Booked"));
+            allBookings.add(new BookingModel("BK002", "Mohammedan SC vs Sheikh Russel", "Karim Ahmed", 4, "Booked"));
+            allBookings.add(new BookingModel("BK003", "Bashundhara Kings vs Abahani Limited", "Nusrat Jahan", 1, "Cancelled"));
+            FileStorageUtil.saveData(BOOKING_FILE, allBookings);
+        }
 
         clearDetails();
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void searchBooking() {
 
         String bookingId = bookingIdField.getText();
@@ -74,7 +80,7 @@ public class BookingController {
         statusLabel.setText("Booking found.");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void cancelBooking() {
 
         if (selectedBooking == null) {
@@ -90,10 +96,12 @@ public class BookingController {
         selectedBooking.setStatus("Cancelled");
         statusValueLabel.setText(selectedBooking.getStatus());
 
+        FileStorageUtil.saveData(BOOKING_FILE, allBookings);
+
         statusLabel.setText("Booking cancelled. " + selectedBooking.getQuantity() + " seat(s) restored to availability.");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void refundBooking() {
 
         if (selectedBooking == null) {
@@ -109,6 +117,8 @@ public class BookingController {
         selectedBooking.setStatus("Refunded");
         statusValueLabel.setText(selectedBooking.getStatus());
 
+        FileStorageUtil.saveData(BOOKING_FILE, allBookings);
+
         statusLabel.setText("Refund processed. " + selectedBooking.getQuantity() + " seat(s) restored to availability.");
     }
 
@@ -120,7 +130,7 @@ public class BookingController {
         statusValueLabel.setText("-");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void backBtnOnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ruba/TicketManagerDashboard.fxml"));
