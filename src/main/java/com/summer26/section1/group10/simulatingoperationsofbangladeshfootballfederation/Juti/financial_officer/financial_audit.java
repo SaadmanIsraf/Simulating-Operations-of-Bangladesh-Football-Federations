@@ -3,6 +3,7 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 import java.time.LocalDate;
 
 public class financial_audit {
+
     private String auditId;
     private String recordType;
     private String recordId;
@@ -66,17 +67,4 @@ public class financial_audit {
     public void setStatus(String status) {
         this.status = status;
     }
-
-    @Override
-    public String toString() {
-        return "financial_audit{" +
-                "auditId='" + auditId + '\'' +
-                ", recordType='" + recordType + '\'' +
-                ", recordId='" + recordId + '\'' +
-                ", amount=" + amount +
-                ", date=" + date +
-                ", status='" + status + '\'' +
-                '}';
-    }
-
 }
