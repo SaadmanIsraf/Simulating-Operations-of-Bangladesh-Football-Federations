@@ -2,7 +2,6 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -20,30 +19,32 @@ import java.util.ArrayList;
 
 public class CreateTicketController {
 
-    @FXML
+    private static final String TICKET_FILE = "tickets.bin";
+
+    @javafx.fxml.FXML
     private ComboBox<String> matchComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> categoryComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private TextField priceField;
-    @FXML
+    @javafx.fxml.FXML
     private TextField quantityField;
-    @FXML
+    @javafx.fxml.FXML
     private Label statusLabel;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<TicketModel> ticketTable;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<TicketModel, String> matchColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<TicketModel, String> categoryColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<TicketModel, Double> priceColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<TicketModel, Integer> quantityColumn;
 
-    private final ArrayList<TicketModel> allTickets = new ArrayList<>();
+    private ArrayList<TicketModel> allTickets = new ArrayList<>();
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
 
         matchColumn.setCellValueFactory(new PropertyValueFactory<>("match"));
@@ -62,10 +63,12 @@ public class CreateTicketController {
                 "Student"
         );
 
+        allTickets = FileStorageUtil.loadData(TICKET_FILE);
+
         ticketTable.setItems(FXCollections.observableArrayList(allTickets));
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void saveTicket() {
 
         String match = matchComboBox.getValue();
@@ -97,15 +100,17 @@ public class CreateTicketController {
         TicketModel newTicket = new TicketModel(match, category, price, quantity);
         allTickets.add(newTicket);
 
+        FileStorageUtil.saveData(TICKET_FILE, allTickets);
+
         ticketTable.setItems(FXCollections.observableArrayList(allTickets));
 
         priceField.clear();
         quantityField.clear();
 
-        statusLabel.setText("Ticket created successfully for " + match + ".");
+        statusLabel.setText("Ticket created and saved successfully for " + match + ".");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void backBtnOnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ruba/TicketManagerDashboard.fxml"));

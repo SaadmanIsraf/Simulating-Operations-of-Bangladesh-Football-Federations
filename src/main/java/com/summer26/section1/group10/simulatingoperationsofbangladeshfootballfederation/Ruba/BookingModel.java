@@ -1,6 +1,12 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba;
 
-public class BookingModel {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class BookingModel implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private String bookingId;
     private String match;

@@ -1,4 +1,5 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.scene.control.*;
@@ -24,6 +25,7 @@ public class ClubController
 
     @javafx.fxml.FXML
     public void manageAcademyButton(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Ishraf/BFF_Manager/FootballAcademics.fxml");
     }
 
     @javafx.fxml.FXML
@@ -32,6 +34,7 @@ public class ClubController
 
     @javafx.fxml.FXML
     public void addplayerButton(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Ishraf/BFF_Manager/ClubLicensing.fxml");
     }
 
     @javafx.fxml.FXML
@@ -40,5 +43,6 @@ public class ClubController
 
     @javafx.fxml.FXML
     public void backButton(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
     }
 }

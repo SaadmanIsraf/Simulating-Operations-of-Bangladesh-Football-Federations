@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="498.0" prefWidth="660.0" style="-fx-background-color: E6E8AC;" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba.PlayerController">
+<AnchorPane prefHeight="498.0" prefWidth="660.0" style="-fx-background-color: E6E8AC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba.PlayerController">
 
     <Label layoutX="211.0" layoutY="21.0" text="Player Statistics">
         <font>
@@ -26,10 +26,10 @@
         <columns>
             <TableColumn fx:id="playerNameColumn" prefWidth="135.0" text="Player Name" />
             <TableColumn fx:id="teamColumn" prefWidth="112.0" text="Team" />
-            <TableColumn fx:id="goalColumn" prefWidth="112.0" text="Goal" />
-            <TableColumn fx:id="appearanceColumn" prefWidth="112.0" text="Appearance" />
+            <TableColumn fx:id="positionColumn" prefWidth="112.0" text="Position" />
+            <TableColumn fx:id="fitnessColumn" prefWidth="112.0" text="Fitness Status" />
         </columns>
     </TableView>
-   <Button layoutX="44.0" layoutY="437.0" mnemonicParsing="false" onAction="#backBtnOnAction" text="Back" />
+    <Button layoutX="44.0" layoutY="437.0" mnemonicParsing="false" onAction="#backBtnOnAction" text="Back" />
 
 </AnchorPane>

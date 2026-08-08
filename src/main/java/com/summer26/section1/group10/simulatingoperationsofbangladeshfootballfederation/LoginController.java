@@ -29,16 +29,16 @@ public class LoginController
     @javafx.fxml.FXML
     public void initialize() {
         // Username -> Password
-        users.put("user1", "0000");
-        users.put("user2", "1111");
-        users.put("user3", "2222");
-        users.put("user4", "3333");
-        users.put("user5", "4444");
-        users.put("user6", "5555");
-        users.put("user7", "6666");
-        users.put("user8", "7777");
-        users.put("user9", "8888");
-        users.put("user10", "9999");
+        users.put("user1", "1111");
+        users.put("user2", "2222");
+        users.put("user3", "3333");
+        users.put("user4", "4444");
+        users.put("user5", "5555");
+        users.put("user6", "6666");
+        users.put("user7", "7777");
+        users.put("user8", "8888");
+        users.put("user9", "9999");
+        users.put("user10", "1010");
         users.put("user11", "911");
         users.put("user12", "1212");
 
@@ -59,11 +59,11 @@ public class LoginController
         dashboards.put("user7",
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
         dashboards.put("user8",
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/Match_management/MatchmanagementDashboard.fxml");
         dashboards.put("user9",
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Juti/financial officer/finance_officer_dashboard.fxml");
         dashboards.put("user10",
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Juti/scout/scout_dashboard.fxml");
         dashboards.put("user11",
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/turjo/federation_administrator/dashboardView.fxml");
         dashboards.put("user12",

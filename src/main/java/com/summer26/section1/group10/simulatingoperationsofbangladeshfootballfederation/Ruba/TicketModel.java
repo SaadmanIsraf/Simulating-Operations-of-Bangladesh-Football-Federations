@@ -1,6 +1,12 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba;
 
-public class TicketModel {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class TicketModel implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private String match;
     private String category;

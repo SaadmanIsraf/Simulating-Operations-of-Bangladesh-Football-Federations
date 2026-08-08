@@ -20,28 +20,28 @@ import java.util.ArrayList;
 
 public class MatchController {
 
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> tournamentComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> matchComboBox;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<MatchModel> matchTable;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<MatchModel, String> matchColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<MatchModel, String> dateColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<MatchModel, String> timeColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<MatchModel, String> venueColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<MatchModel, String> scoreColumn;
-    @FXML
+    @javafx.fxml.FXML
     private Label match_details_label;
 
     private final ArrayList<MatchModel> allMatches = new ArrayList<>();
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
 
         matchColumn.setCellValueFactory(new PropertyValueFactory<>("match"));
@@ -82,7 +82,7 @@ public class MatchController {
         tournamentComboBox.setOnAction(actionEvent -> viewSchedule());
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewSchedule() {
 
         matchTable.getColumns().setAll(matchColumn, dateColumn, timeColumn, venueColumn, scoreColumn);
@@ -106,7 +106,7 @@ public class MatchController {
         match_details_label.setText("Showing Schedule for: " + selectedTournament);
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewScore() {
 
         matchTable.getColumns().setAll(matchColumn, scoreColumn);
@@ -129,7 +129,7 @@ public class MatchController {
         match_details_label.setText("Showing Score for: " + selectedMatch);
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void viewVenue() {
 
         matchTable.getColumns().setAll(matchColumn, dateColumn, venueColumn);
@@ -160,7 +160,7 @@ public class MatchController {
         alert.showAndWait();
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void backBtnOnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ruba/SpectatorDashboard.fxml"));

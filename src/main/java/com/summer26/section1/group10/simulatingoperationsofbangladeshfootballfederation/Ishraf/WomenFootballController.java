@@ -1,4 +1,6 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -53,25 +55,45 @@ public class WomenFootballController
     @javafx.fxml.FXML
     public void initialize() {
         programIdTC.setCellValueFactory(
-                new PropertyValueFactory<>("programId"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getProgramId()
+                )
+        );
 
         programNameTC.setCellValueFactory(
-                new PropertyValueFactory<>("programName"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getProgramName()
+                )
+        );
 
         ageTC.setCellValueFactory(
-                new PropertyValueFactory<>("age"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getAge()
+                )
+        );
 
         teamNameTC.setCellValueFactory(
-                new PropertyValueFactory<>("teamName"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getTeamName()
+                )
+        );
 
         coachNameTC.setCellValueFactory(
-                new PropertyValueFactory<>("coachName"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getCoachName()
+                )
+        );
 
         contactTC.setCellValueFactory(
-                new PropertyValueFactory<>("contactNumber"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getContactNumber()
+                )
+        );
 
+        // Connect ObservableList to TableView
         createProgramTV.setItems(programList);
 
+        // Load previously saved programs
         loadPrograms();
     }
 
@@ -119,10 +141,43 @@ public class WomenFootballController
 
     @javafx.fxml.FXML
     public void generateProgressButton(ActionEvent actionEvent) {
+        String programId = programidTF.getText().trim();
+        String programName = programNameTF.getText().trim();
+        String age = ageTF.getText().trim();
+        String teamName = teamNameTF.getText().trim();
+        String coachName = coachNameTF.getText().trim();
+        String contactNumber = contactNumberTF.getText().trim();
+
+        // Check if fields are empty
+        if (programId.isEmpty() ||
+                programName.isEmpty() ||
+                age.isEmpty() ||
+                teamName.isEmpty() ||
+                coachName.isEmpty() ||
+                contactNumber.isEmpty()) {
+
+            messageLabel.setText("Please fill in all fields.");
+            return;
+        }
+
+        // Display information in TextArea
+        generateProgressTA.setText(
+                "WOMEN'S FOOTBALL PROGRAM PROGRESS REPORT\n\n" +
+                        "Program ID: " + programId + "\n" +
+                        "Program Name: " + programName + "\n" +
+                        "Age Group: " + age + "\n" +
+                        "Team Name: " + teamName + "\n" +
+                        "Coach Name: " + coachName + "\n" +
+                        "Contact Number: " + contactNumber + "\n\n" +
+                        "Progress report generated successfully."
+        );
+
+        messageLabel.setText("Progress report generated.");
     }
 
     @javafx.fxml.FXML
     public void backButton(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
     }
     private void loadPrograms() {
 

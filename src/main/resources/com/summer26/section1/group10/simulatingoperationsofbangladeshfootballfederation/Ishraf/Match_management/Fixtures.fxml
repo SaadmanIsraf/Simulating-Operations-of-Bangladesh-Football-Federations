@@ -11,11 +11,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="429.0" prefWidth="1026.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.FixturesController">
    <children>
       <Text layoutX="121.0" layoutY="93.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Fixture Id:" />
-      <TextField fx:id="fixtureIDTF" layoutX="207.0" layoutY="76.0" />
+      <TextField fx:id="fixtureIdTF" layoutX="207.0" layoutY="76.0" />
       <Text layoutX="94.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Competetion name:" />
       <TextField fx:id="competitionNameTF" layoutX="207.0" layoutY="122.0" />
       <Text layoutX="396.0" layoutY="92.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Home team:" />
@@ -33,15 +32,16 @@
       <Label fx:id="messageLabel1" layoutX="473.0" layoutY="156.0" prefHeight="55.0" prefWidth="186.0" text="Label" />
       <TableView fx:id="CreateFixtureTV" layoutX="54.0" layoutY="215.0" prefHeight="200.0" prefWidth="533.0">
         <columns>
-          <TableColumn fx:id="fixtureIDTC" prefWidth="75.0" text="Fixture Id" />
+          <TableColumn fx:id="fixtureIdTC" prefWidth="75.0" text="Fixture Id" />
           <TableColumn fx:id="homeTeamTC" prefWidth="75.0" text="Home team" />
             <TableColumn fx:id="awayTeamTC" prefWidth="75.0" text="Away team" />
-            <TableColumn fx:id="competetionNameTC" prefWidth="127.0" text="Competetion name:" />
+            <TableColumn fx:id="competitionNameTC" prefWidth="127.0" text="Competetion name:" />
             <TableColumn fx:id="fixtureDateTC" prefWidth="90.0" text="Fixture Date" />
             <TableColumn fx:id="matchRoundTC" prefWidth="90.0" text="Match Round" />
         </columns>
       </TableView>
       <TextArea fx:id="viewFixtureTA" layoutX="593.0" layoutY="244.0" prefHeight="171.0" prefWidth="302.0" />
       <Label fx:id="messageLabel2" layoutX="895.0" layoutY="208.0" prefHeight="120.0" prefWidth="122.0" text="Label" />
+      <Button layoutX="31.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" text="back" />
    </children>
 </AnchorPane>
