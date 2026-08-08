@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.financial_report_Controller"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.financial_report_Controller">
+   <children>
+      <Text layoutX="77.0" layoutY="188.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID" />
+      <Text layoutX="71.0" layoutY="253.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+      <Text layoutX="329.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="type" />
+      <Text layoutX="29.0" layoutY="107.0" strokeType="OUTSIDE" strokeWidth="0.0" text="date" />
+      <TextField fx:id="reportID_TF" layoutX="118.0" layoutY="171.0" />
+      <TextField fx:id="amount_TF" layoutX="119.0" layoutY="228.0" />
+      <Button layoutX="123.0" layoutY="312.0" mnemonicParsing="false" onAction="#backButton" text="back" />
+      <Button layoutX="300.0" layoutY="287.0" mnemonicParsing="false" onAction="#saveButton" text="Save" />
+      <ComboBox fx:id="reportType_CB" layoutX="375.0" layoutY="102.0" prefWidth="150.0" />
+      <DatePicker fx:id="date_DP" layoutX="77.0" layoutY="90.0" />
+      <Label layoutX="268.0" layoutY="25.0" text="Financial Report">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <Text layoutX="72.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount" />
+   </children>
 </AnchorPane>

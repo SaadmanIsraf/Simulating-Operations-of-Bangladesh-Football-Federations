@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.approve_payment_Controller"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="514.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.approve_payment_Controller">
+   <children>
+      <Text fx:id="paymentIDTF" layoutX="37.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="paymentID" />
+      <Text layoutX="45.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="amount" />
+      <Text layoutX="40.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="requestID" />
+      <Text layoutX="308.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="paymentPurpose" />
+      <Text layoutX="430.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="payeeName" />
+      <TextField layoutX="117.0" layoutY="62.0" />
+      <TextField fx:id="requestIDTF" layoutX="123.0" layoutY="109.0" />
+      <TextField fx:id="payeeNameTF" layoutX="437.0" layoutY="90.0" />
+      <TextField fx:id="paymentPurposeTF" layoutX="312.0" layoutY="169.0" />
+      <TextField fx:id="amountTF" layoutX="96.0" layoutY="169.0" />
+      <Label layoutX="215.0" layoutY="14.0" text="Approve Payment">
+         <font>
+            <Font name="Times New Roman Bold" size="24.0" />
+         </font>
+      </Label>
+      <TableView fx:id="paymentTV" layoutX="60.0" layoutY="271.0" prefHeight="200.0" prefWidth="511.0">
+        <columns>
+          <TableColumn fx:id="paymentIDCol" prefWidth="75.0" text="paymentID" />
+          <TableColumn fx:id="amountCol" prefWidth="75.0" text="amount" />
+            <TableColumn fx:id="paymentDateCol" prefWidth="75.0" text="Date" />
+            <TableColumn fx:id="paymentPurposeCol" prefWidth="116.0" text="paymentPurpose" />
+            <TableColumn fx:id="paymentStatusCol" prefWidth="139.199951171875" text="paymentStatus" />
+        </columns>
+      </TableView>
+      <DatePicker fx:id="paymentDateDP" layoutX="66.0" layoutY="211.0" />
+      <Text layoutX="26.0" layoutY="228.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date" />
+      <ComboBox fx:id="paymentStatusCB" layoutX="323.0" layoutY="224.0" prefWidth="150.0" promptText="paymentStatus" />
+      <Button layoutX="486.0" layoutY="182.0" mnemonicParsing="false" onAction="#approveButtonOA" text="Approve" />
+      <Button layoutX="34.0" layoutY="471.0" mnemonicParsing="false" onAction="#BackButtonOA" text="Back" />
+   </children>
 </AnchorPane>
