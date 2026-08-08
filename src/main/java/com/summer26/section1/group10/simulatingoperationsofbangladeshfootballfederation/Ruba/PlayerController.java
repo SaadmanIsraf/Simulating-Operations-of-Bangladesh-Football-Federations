@@ -1,13 +1,14 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.Model_classes.Player;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Arman.player_manager.PlayerManager;
+
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -16,52 +17,62 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class PlayerController {
 
-    @FXML
+    @javafx.fxml.FXML
     private ComboBox<String> playerComboBox;
-    @FXML
+
+    @javafx.fxml.FXML
     private TableView<PlayerModel> playerTable;
-    @FXML
+
+    @javafx.fxml.FXML
     private TableColumn<PlayerModel, String> playerNameColumn;
-    @FXML
+
+    @javafx.fxml.FXML
     private TableColumn<PlayerModel, String> teamColumn;
-    @FXML
-    private TableColumn<PlayerModel, Integer> goalColumn;
-    @FXML
-    private TableColumn<PlayerModel, Integer> appearanceColumn;
+
+    @javafx.fxml.FXML
+    private TableColumn<PlayerModel, String> positionColumn;
+
+    @javafx.fxml.FXML
+    private TableColumn<PlayerModel, String> fitnessColumn;
 
     private final ArrayList<PlayerModel> allPlayers = new ArrayList<>();
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
 
         playerNameColumn.setCellValueFactory(new PropertyValueFactory<>("playerName"));
         teamColumn.setCellValueFactory(new PropertyValueFactory<>("team"));
-        goalColumn.setCellValueFactory(new PropertyValueFactory<>("goals"));
-        appearanceColumn.setCellValueFactory(new PropertyValueFactory<>("appearances"));
+        positionColumn.setCellValueFactory(new PropertyValueFactory<>("position"));
+        fitnessColumn.setCellValueFactory(new PropertyValueFactory<>("fitnessStatus"));
 
-        playerComboBox.getItems().addAll(
-                "Rakib Hossain",
-                "Jamal Bhuyan",
-                "Topu Barman"
-        );
+        // fetch real player data from players.bin
+        List<Player> realPlayers = PlayerManager.getPlayerList();
 
-        allPlayers.add(new PlayerModel("Rakib Hossain", "Bashundhara Kings", 8, 15));
-        allPlayers.add(new PlayerModel("Jamal Bhuyan", "Sheikh Russel", 5, 12));
-        allPlayers.add(new PlayerModel("Topu Barman", "Abahani Limited", 3, 10));
+        for (Player p : realPlayers) {
+            allPlayers.add(new PlayerModel(
+                    p.getFullName(),
+                    p.getTeamName(),
+                    p.getPlayingPosition(),
+                    p.getFitnessStatus()
+            ));
+
+            playerComboBox.getItems().add(p.getFullName());
+        }
 
         playerTable.setItems(FXCollections.observableArrayList(allPlayers));
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void searchPlayer() {
 
         String selectedPlayer = playerComboBox.getValue();
 
         if (selectedPlayer == null) {
-            showValidationAlert("Please select a player first.");
+            playerTable.setItems(FXCollections.observableArrayList(allPlayers));
             return;
         }
 
@@ -75,15 +86,7 @@ public class PlayerController {
         playerTable.setItems(FXCollections.observableArrayList(result));
     }
 
-    private void showValidationAlert(String message) {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Selection Required");
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.showAndWait();
-    }
-
-    @FXML
+    @javafx.fxml.FXML
     public void backBtnOnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ruba/SpectatorDashboard.fxml"));

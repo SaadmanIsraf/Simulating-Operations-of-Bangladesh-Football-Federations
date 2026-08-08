@@ -1,6 +1,12 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ruba;
 
-public class SeatModel {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class SeatModel implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private String match;
     private int totalSeats;

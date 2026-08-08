@@ -30,9 +30,7 @@ public class StandingsController {
     private TableColumn<StandingModel, Integer> playedColumn;
     @FXML
     private TableColumn<StandingModel, Integer> pointsColumn;
-
     private final ArrayList<StandingModel> allStandings = new ArrayList<>();
-
     @FXML
     public void initialize() {
 

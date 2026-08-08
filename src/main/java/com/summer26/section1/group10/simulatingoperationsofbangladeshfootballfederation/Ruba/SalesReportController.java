@@ -2,7 +2,6 @@ package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfe
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -20,30 +19,30 @@ import java.util.ArrayList;
 
 public class SalesReportController {
 
-    @FXML
+    @javafx.fxml.FXML
     private DatePicker startDatePicker;
-    @FXML
+    @javafx.fxml.FXML
     private DatePicker endDatePicker;
-    @FXML
+    @javafx.fxml.FXML
     private Label statusLabel;
-    @FXML
+    @javafx.fxml.FXML
     private Label totalTicketsLabel;
-    @FXML
+    @javafx.fxml.FXML
     private Label totalRevenueLabel;
-    @FXML
+    @javafx.fxml.FXML
     private TableView<SaleModel> saleTable;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SaleModel, LocalDate> dateColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SaleModel, String> matchColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SaleModel, Integer> ticketsSoldColumn;
-    @FXML
+    @javafx.fxml.FXML
     private TableColumn<SaleModel, Double> revenueColumn;
 
     private final ArrayList<SaleModel> allSales = new ArrayList<>();
 
-    @FXML
+    @javafx.fxml.FXML
     public void initialize() {
 
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
@@ -61,7 +60,7 @@ public class SalesReportController {
         showResults(allSales);
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void generateReport() {
 
         LocalDate start = startDatePicker.getValue();
@@ -88,7 +87,7 @@ public class SalesReportController {
         statusLabel.setText("Report generated from " + start + " to " + end + ".");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void showTodaySummary() {
 
         LocalDate today = LocalDate.now();
@@ -104,7 +103,7 @@ public class SalesReportController {
         statusLabel.setText("Showing today's sales summary.");
     }
 
-    @FXML
+    @javafx.fxml.FXML
     public void showWeekSummary() {
 
         LocalDate weekAgo = LocalDate.now().minusDays(7);
@@ -135,7 +134,8 @@ public class SalesReportController {
         totalTicketsLabel.setText("Total Tickets Sold: " + totalTickets);
         totalRevenueLabel.setText("Total Revenue: " + totalRevenue);
     }
-    @FXML
+
+    @javafx.fxml.FXML
     public void backBtnOnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ruba/TicketManagerDashboard.fxml"));

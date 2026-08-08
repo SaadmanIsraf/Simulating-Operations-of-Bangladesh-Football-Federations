@@ -4,29 +4,29 @@ public class PlayerModel {
 
     private String playerName;
     private String team;
-    private int goals;
-    private int appearances;
+    private String position;
+    private String fitnessStatus;
 
-    public PlayerModel(String playerName,String team,int goals,int appearances){
-        this.playerName=playerName;
-        this.team=team;
-        this.goals=goals;
-        this.appearances=appearances;
+    public PlayerModel(String playerName, String team, String position, String fitnessStatus) {
+        this.playerName = playerName;
+        this.team = team;
+        this.position = position;
+        this.fitnessStatus = fitnessStatus;
     }
 
-    public String getPlayerName(){
+    public String getPlayerName() {
         return playerName;
     }
 
-    public String getTeam(){
+    public String getTeam() {
         return team;
     }
 
-    public int getGoals(){
-        return goals;
+    public String getPosition() {
+        return position;
     }
 
-    public int getAppearances(){
-        return appearances;
+    public String getFitnessStatus() {
+        return fitnessStatus;
     }
 }
