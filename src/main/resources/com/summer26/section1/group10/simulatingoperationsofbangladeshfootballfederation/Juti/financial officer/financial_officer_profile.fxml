@@ -25,10 +25,10 @@
          </font>
       </Label>
       <TextField fx:id="officerIDTF" layoutX="355.0" layoutY="180.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter ID" />
-      <TextField layoutX="355.0" layoutY="221.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Full Name" />
-      <TextField fx:id="financialOfficerEmailTF" layoutX="355.0" layoutY="263.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Valid Email" />
-      <TextField fx:id="financialOfficerContactNumberTF" layoutX="355.0" layoutY="307.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter 11 digit ContactNumber" />
-      <TextField fx:id="financialOfficerDepartmentTF" layoutX="355.0" layoutY="346.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Department" />
+      <TextField fx:id="fullNameTF" layoutX="355.0" layoutY="221.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Full Name" />
+      <TextField fx:id="emailTF" layoutX="355.0" layoutY="263.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Valid Email" />
+      <TextField fx:id="contactNumberTF" layoutX="355.0" layoutY="307.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter 11 digit ContactNumber" />
+      <TextField fx:id="departmentTF" layoutX="355.0" layoutY="346.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Department" />
       <Text layoutX="248.0" layoutY="197.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FinancialOfficer ID:" />
       <Text layoutX="283.0" layoutY="238.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Full Name:" />
       <Text layoutX="283.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email::" wrappingWidth="56.044921875" />
@@ -37,9 +37,9 @@
       <Text layoutX="297.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Position:" />
       <Text layoutX="248.0" layoutY="440.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Password :" />
       <Text layoutX="265.0" layoutY="476.0" strokeType="OUTSIDE" strokeWidth="0.0" text="New Password:" />
-      <TextField fx:id="financialOfficerPositionTF" layoutX="357.0" layoutY="387.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Position" />
-      <TextField fx:id="financialOfficerCurrentPasswordTF" layoutX="357.0" layoutY="423.0" prefHeight="26.0" prefWidth="182.0" promptText="Required To Change Password" />
-      <TextField fx:id="financialOfficerNewPasswordTF" layoutX="355.0" layoutY="459.0" prefHeight="26.0" prefWidth="182.0" promptText="Leave Empty If  Unchanged" />
+      <TextField fx:id="positionTF" layoutX="357.0" layoutY="387.0" prefHeight="26.0" prefWidth="182.0" promptText="Enter Position" />
+      <TextField fx:id="currentPasswordTF" layoutX="357.0" layoutY="423.0" prefHeight="26.0" prefWidth="182.0" promptText="Required To Change Password" />
+      <TextField fx:id="newPasswordTF" layoutX="355.0" layoutY="459.0" prefHeight="26.0" prefWidth="182.0" promptText="Leave Empty If  Unchanged" />
       <Button layoutX="42.0" layoutY="582.0" mnemonicParsing="false" onAction="#backButtonOA" prefHeight="26.0" prefWidth="56.0" text="Back" />
       <Button layoutX="383.0" layoutY="576.0" mnemonicParsing="false" onAction="#saveButtonOA" prefHeight="26.0" prefWidth="80.0" style="-fx-background-color: #1E90FF;" text="Save" />
       <Button layoutX="654.0" layoutY="582.0" mnemonicParsing="false" onAction="#refreshButtonOA" prefHeight="26.0" prefWidth="56.0" style="-fx-background-color: #90EE90;" text="Refresh" />

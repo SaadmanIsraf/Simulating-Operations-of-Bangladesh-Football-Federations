@@ -7,16 +7,17 @@ public class finance_officer_profile {
     private String contactNumber;
     private String department;
     private String position;
-    private String password;
+    private String currentPassword,newPassword;
 
-    public finance_officer_profile(String financialOfficerId, String fullName, String email, String contactNumber, String department, String position, String password) {
+    public finance_officer_profile(String financialOfficerId, String fullName, String email, String contactNumber, String department, String position, String currentPassword, String newPassword) {
         this.financialOfficerId = financialOfficerId;
         this.fullName = fullName;
         this.email = email;
         this.contactNumber = contactNumber;
         this.department = department;
         this.position = position;
-        this.password = password;
+        this.currentPassword = currentPassword;
+        this.newPassword = newPassword;
     }
 
     public String getFinancialOfficerId() {
@@ -67,12 +68,20 @@ public class finance_officer_profile {
         this.position = position;
     }
 
-    public String getPassword() {
-        return password;
+    public String getCurrentPassword() {
+        return currentPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
+    }
+
+    public String getNewPassword() {
+        return newPassword;
+    }
+
+    public void setNewPassword(String newPassword) {
+        this.newPassword = newPassword;
     }
 
     @Override
@@ -84,7 +93,8 @@ public class finance_officer_profile {
                 ", contactNumber='" + contactNumber + '\'' +
                 ", department='" + department + '\'' +
                 ", position='" + position + '\'' +
-                ", password='" + password + '\'' +
+                ", currentPassword='" + currentPassword + '\'' +
+                ", newPassword='" + newPassword + '\'' +
                 '}';
     }
 }

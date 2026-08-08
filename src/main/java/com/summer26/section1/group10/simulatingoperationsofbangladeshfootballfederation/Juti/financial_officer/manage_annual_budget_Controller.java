@@ -7,6 +7,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+
+
 public class manage_annual_budget_Controller
 {
     @javafx.fxml.FXML
@@ -16,17 +18,17 @@ public class manage_annual_budget_Controller
     @javafx.fxml.FXML
     private TableColumn<manage_annual_budget_Controller,String> categoryColumn;
     @javafx.fxml.FXML
-    private TableView<manage_annual_budget_Controller> generatereportTV;
+    private TableView<manage_annual_budget_Controller> generate_reportTV;
     @javafx.fxml.FXML
-    private TableColumn<manage_annual_budget_Controller,Double> spentamountColumn;
+    private TableColumn<manage_annual_budget_Controller,Double> spent_amountColumn;
     @javafx.fxml.FXML
-    private TableColumn<manage_annual_budget_Controller,String> remainingamountColumn;
+    private TableColumn<manage_annual_budget_Controller,String> remaining_amountColumn;
     @javafx.fxml.FXML
-    private TableColumn<manage_annual_budget,Double> allocatedamountColumn;
+    private TableColumn<manage_annual_budget,Double> allocated_amountColumn;
     @javafx.fxml.FXML
-    private TextField remainingbudgetTF;
+    private TextField remaining_budgetTF;
     @javafx.fxml.FXML
-    private TextField spentbudgetTF;
+    private TextField spent_budgetTF;
     @javafx.fxml.FXML
     private TextField allocated_budgetTF;
 
@@ -36,7 +38,7 @@ public class manage_annual_budget_Controller
 
     @javafx.fxml.FXML
     public void backButtonOA(ActionEvent actionEvent) {
-            SceneSwitcher.switchTo("");
+            SceneSwitcher.switchTo("Juti/financial_officer/medical_officer_dashboard.fxml");
 
         }
 

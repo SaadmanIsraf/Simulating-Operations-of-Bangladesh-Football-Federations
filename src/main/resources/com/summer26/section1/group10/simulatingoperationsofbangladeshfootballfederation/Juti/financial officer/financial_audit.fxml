@@ -5,11 +5,11 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-
 
 <AnchorPane prefHeight="578.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Juti.financial_officer.financial_audit_Controller">
    <children>
@@ -29,14 +29,21 @@
       <Text layoutX="52.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of The Audit Year :" />
       <TableView fx:id="auditReportTableView" layoutX="25.0" layoutY="297.0" prefHeight="200.0" prefWidth="663.0">
         <columns>
-          <TableColumn fx:id="auditIDColumnTF" prefWidth="75.0" text="Audit ID" />
-          <TableColumn fx:id="recordTypeColumnTF" prefWidth="119.20001220703125" text="Record Type" />
-            <TableColumn fx:id="recordIDColumnTF" prefWidth="97.5999755859375" text="Record ID" />
-            <TableColumn fx:id="amountColumnTF" prefWidth="129.60003662109375" text="Amount" />
-            <TableColumn fx:id="dateColumnTF" prefWidth="120.800048828125" text="Date" />
-            <TableColumn fx:id="statusColumnTF" prefWidth="123.99993896484375" text="Status" />
+          <TableColumn fx:id="auditIDColumn" prefWidth="75.0" text="Audit ID" />
+          <TableColumn fx:id="recordTypeColumn" prefWidth="119.20001220703125" text="Record Type" />
+            <TableColumn fx:id="recordIDColumn" prefWidth="97.5999755859375" text="Record ID" />
+            <TableColumn fx:id="amountColumn" prefWidth="129.60003662109375" text="Amount" />
+            <TableColumn fx:id="statusColumn" prefWidth="123.99993896484375" text="Status" />
         </columns>
       </TableView>
       <Button layoutX="25.0" layoutY="521.0" mnemonicParsing="false" onAction="#backButtonOA" text="Back" />
+      <Text layoutX="412.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="record ID:" />
+      <Text layoutX="412.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Record Type: " />
+      <TextField fx:id="recordIDTF" layoutX="520.0" layoutY="131.0" />
+      <TextField fx:id="typeTF" layoutX="528.0" layoutY="177.0" />
+      <Text layoutX="464.0" layoutY="249.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Amount :t" />
+      <Text layoutX="41.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status:" />
+      <TextField fx:id="statusTF" layoutX="84.0" layoutY="224.0" />
+      <TextField fx:id="amountTF" layoutX="521.0" layoutY="232.0" />
    </children>
 </AnchorPane>
