@@ -1,14 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.ManageSponsorshipController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="448.0" prefWidth="1011.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf.ManageSponsorshipController">
+   <children>
+      <Text layoutX="81.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sponsorId:" />
+      <Text layoutX="321.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sponsor name:" />
+      <Text layoutX="538.0" layoutY="64.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sponsorship amount:" />
+      <Text layoutX="62.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="sponsorshipType:" />
+      <Text layoutX="321.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="contractStartDate:" />
+      <Text layoutX="549.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="contractEndDate" />
+      <TextField fx:id="sponsorIdTF" layoutX="161.0" layoutY="47.0" prefHeight="25.0" prefWidth="129.0" />
+      <TextField fx:id="sponsornameTF" layoutX="405.0" layoutY="47.0" prefHeight="25.0" prefWidth="119.0" />
+      <ComboBox fx:id="sponsorshipTypeCB" layoutX="161.0" layoutY="127.0" prefHeight="25.0" prefWidth="119.0" />
+      <DatePicker fx:id="contractStartDateDP" layoutX="425.0" layoutY="127.0" prefHeight="25.0" prefWidth="111.0" />
+      <DatePicker fx:id="contractEndDateDP" layoutX="640.0" layoutY="127.0" prefHeight="25.0" prefWidth="111.0" />
+      <TableView fx:id="createContractTV" layoutX="33.0" layoutY="224.0" prefHeight="195.0" prefWidth="671.0">
+        <columns>
+          <TableColumn fx:id="sponsorIdTC" prefWidth="75.0" text="sponsorId:" />
+          <TableColumn fx:id="sponsornameTC" prefWidth="94.0" text="sponsor name:" />
+            <TableColumn fx:id="sponsorshipAmountTC" prefWidth="125.0" text="sponsorship amount:" />
+            <TableColumn fx:id="sponsorshipTypeTC" prefWidth="125.0" text="sponsorshipType:" />
+            <TableColumn fx:id="contractStartDateTC" prefWidth="125.0" text="contractStartDate:" />
+            <TableColumn fx:id="contractEndDateTC" prefWidth="125.0" text="contractEndDate" />
+        </columns>
+      </TableView>
+      <Label fx:id="messageLabel1" layoutX="481.0" layoutY="189.0" text="Label" />
+      <TextField fx:id="sponsorshipAmountTF" layoutX="656.0" layoutY="47.0" prefHeight="25.0" prefWidth="119.0" />
+      <TextArea fx:id="ShowContractInfoTA" layoutX="722.0" layoutY="222.0" prefHeight="200.0" prefWidth="256.0" />
+      <Button layoutX="862.0" layoutY="185.0" mnemonicParsing="false" onAction="#ShowcontractinfoButton" text="Show contract info" />
+      <Button layoutX="360.0" layoutY="185.0" mnemonicParsing="false" onAction="#CreatecontractButton" text="Create contract" />
+      <Label fx:id="messageLabel2" layoutX="775.0" layoutY="189.0" text="Label" />
+      <Button layoutX="33.0" layoutY="14.0" mnemonicParsing="false" onAction="#backButton" text="back" />
+   </children>
 </AnchorPane>

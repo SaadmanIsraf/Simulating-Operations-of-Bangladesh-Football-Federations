@@ -1,5 +1,6 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf;
 
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -89,6 +90,7 @@ public class NationalTeamController
 
     @javafx.fxml.FXML
     public void backButton(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
     }
 
     @javafx.fxml.FXML

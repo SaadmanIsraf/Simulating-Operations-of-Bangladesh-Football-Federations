@@ -1,12 +1,10 @@
 package com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.Ishraf;
+import com.summer26.section1.group10.simulatingoperationsofbangladeshfootballfederation.SceneSwitcher;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.event.ActionEvent;
 import javafx.scene.control.*;
-import javafx.scene.control.cell.PropertyValueFactory;
 
 public class FootballAcademicsController
 {   private ObservableList<Academy> academyList = FXCollections.observableArrayList();
@@ -50,27 +48,57 @@ public class FootballAcademicsController
     @javafx.fxml.FXML
     public void initialize() {
         academyIdTC.setCellValueFactory(
-                new PropertyValueFactory<>("academyId"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getAcademyId()
+                )
+        );
 
         academyNameTC.setCellValueFactory(
-                new PropertyValueFactory<>("academyName"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getAcademyName()
+                )
+        );
 
         academyLocationTC.setCellValueFactory(
-                new PropertyValueFactory<>("academyLocation"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getAcademyLocation()
+                )
+        );
 
         academyTypeTC.setCellValueFactory(
-                new PropertyValueFactory<>("academyType"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getAcademyType()
+                )
+        );
 
         headCoachTC.setCellValueFactory(
-                new PropertyValueFactory<>("headCoach"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getHeadCoach()
+                )
+        );
 
         contactTC.setCellValueFactory(
-                new PropertyValueFactory<>("contactNumber"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getContactNumber()
+                )
+        );
 
         numberOfPlayersTC.setCellValueFactory(
-                new PropertyValueFactory<>("numberOfPlayers"));
+                data -> new SimpleStringProperty(
+                        data.getValue().getNumberOfPlayers()
+                )
+        );
 
+        // Connect the list to the TableView
         registerAcademyTV.setItems(academyList);
+        // Academy Type ComboBox
+        academyTypeTF.setItems(
+                FXCollections.observableArrayList(
+                        "Youth",
+                        "Main Team"
+                )
+        );
+
     }
 
     @javafx.fxml.FXML
@@ -79,6 +107,25 @@ public class FootballAcademicsController
 
     @javafx.fxml.FXML
     public void displayAcademyButton(ActionEvent actionEvent) {
+        Academy selectedAcademy =
+                registerAcademyTV.getSelectionModel().getSelectedItem();
+
+        // Check if a row is selected
+        if (selectedAcademy == null) {
+            messageLabel2.setText("Please select an academy to display.");
+            return;
+        }
+
+        // Display academy details in TextArea
+        displayAcademyTA.setText(
+                "Academy ID: " + selectedAcademy.getAcademyId() + "\n" +
+                        "Academy Name: " + selectedAcademy.getAcademyName() + "\n" +
+                        "Location: " + selectedAcademy.getAcademyLocation() + "\n" +
+                        "Academy Type: " + selectedAcademy.getAcademyType() + "\n" +
+                        "Head Coach: " + selectedAcademy.getHeadCoach() + "\n" +
+                        "Contact Number: " + selectedAcademy.getContactNumber() + "\n" +
+                        "Number of Players: " + selectedAcademy.getNumberOfPlayers()
+        );
     }
 
     @javafx.fxml.FXML
@@ -123,5 +170,6 @@ public class FootballAcademicsController
 
     @javafx.fxml.FXML
     public void backButton(ActionEvent actionEvent) {
+        SceneSwitcher.switchTo("Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
     }
 }

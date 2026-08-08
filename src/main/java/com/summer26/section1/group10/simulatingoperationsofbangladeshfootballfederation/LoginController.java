@@ -59,7 +59,7 @@ public class LoginController
         dashboards.put("user7",
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
         dashboards.put("user8",
-                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
+                "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/Match_management/MatchmanagementDashboard.fxml");
         dashboards.put("user9",
                 "/com/summer26/section1/group10/simulatingoperationsofbangladeshfootballfederation/Ishraf/BFF_Manager/BffManagerDashBoard.fxml");
         dashboards.put("user10",
